@@ -14,7 +14,7 @@ npm install -D @tailwindcss/typography
 ```
 
 For a freshly cloned repo update the git submodules.  
-y
+
 ```bash
 git submodule update --init --recursive # needed when you reclone your repo (submodules may not get cloned automatically)
 ```
