@@ -11,7 +11,7 @@ timeZone = "America/New_York"
   title = "arts-link.com"
   description = "Lightning Fast Portfolios for Artists"
   defaultTheme = "auto"
-  disableThemeToggle = true
+  disableThemeToggle = false 
 
 
 [author]
