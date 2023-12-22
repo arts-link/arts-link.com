@@ -1,0 +1,8 @@
+title = 'arts-link.com - lightning fast portfolios for artists ⚡'
+
+[params]
+  env = "production"
+
+[services]
+  [services.googleAnalytics]
+    # ID = 'G-JMTEM65W38'
