@@ -12,10 +12,8 @@ timeZone = "America/New_York"
   description = "Lightning Fast Portfolios for Artists"
   defaultTheme = "auto"
   disableThemeToggle = false 
-
-
-[author]
-  name = "Ben Strawbridge"
+  [[params.author]]
+    name = "Ben Strawbridge"
 
 [outputs]
   page = ["HTML"]
