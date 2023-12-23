@@ -2,7 +2,7 @@ baseURL = 'https://www.arts-link.com/'
 title = 'arts-link.com - dev server'
 theme = 'PaperMod'
 languageCode = "en-us"
-copyright = "© 2024 arts-link.com"
+copyright = "© 2024 arts-link.com ⚡"
 
 enableRobotsTXT = true
 timeZone = "America/New_York"
