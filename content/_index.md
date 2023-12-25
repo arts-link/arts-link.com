@@ -2,7 +2,6 @@
 title = 'arts-link.com'
 date = 2023-12-21T22:49:59-08:00
 draft = false
-<!-- showToc = true -->
 +++
 
 # Welcome to arts-link.com  
