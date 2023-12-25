@@ -1,33 +1,35 @@
 +++
-title = ''
+title = 'arts-link.com'
 date = 2023-12-21T22:49:59-08:00
 draft = false
-showToc = true
+<!-- showToc = true -->
 +++
 
 # Welcome to arts-link.com  
 
-We create lightning fast websites for artists ⚡.
+## We create lightning fast websites for artists ⚡.
+
+We are celebrating the christmas day launch of our latest client portfolio website -- [https://www.louisestrawbridge.com](https://www.louisestrawbridge.com).  
+
+[arts-link.com] is undergoing a redisign, but in the meantime, we are still accepting new clients, so feel free to [contact us](mailto:ben@arts-link.com)
 
 ## Our goals  
 
 - A+ Google speed test  
-- multiiple template options  
-- unlimited static pages  
-- contact form  
-- social media interaction  
-- blog / updates feed  
-- unlimited galleries  
-- extremely inexpensive hosting on your own account or managed service hosting with us  
+- Multiiple template options  
+- Unlimited galleries  
+- Unlimited static pages  
+- Contact Form  
+- Social Media integration
+- Blog / Updates page / Feed  
 
 ## Image processing 
 
-- image processing from raw large original file  
-- optimize and resize into multiple scale responsive web images  
-- rotate  
-- can you any final web image format  
+- Image processing from raw large original file  
+- Optimize and resize into multiple scale responsive web images  
+- Rotate images and crop to any aspect ratio
+- Use any final web image format you prefer 
 
 ## Managed hosting service
 
-- you website code lives in a git repo either in either arts-link's git or your own cloud git account that arts-link has access to when making updates  
-- hosting you control in any cloud host or in arts-link.com's cloud infrastructure  
+- Hosting you control in any cloud host - or in arts-link.com's cloud infrastructure  
