@@ -55,10 +55,10 @@ timeZone = "America/New_York"
     target = "$1"
 
 [menu]
-[[menu.main]]
-    name = 'Services'
-    url = '/services/'
-    weight = 30
+# [[menu.main]]
+#     name = 'Services'
+#     url = '/services/'
+#     weight = 30
 [[menu.footer]]
     name = 'Contact Us'
     url = '/contact-us/'
