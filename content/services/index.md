@@ -1,10 +1,13 @@
-+++
-title = 'Services'
-date = 2023-12-22T21:34:48-08:00
-draft = false
-+++
+---
+title: "Services"
+date: 2024-01-05T15:08:20-08:00
+draft: false
+menu: "main"
+---
 
-## website  
+## website   
+
+- a website that will load quickly, look beautiful, be accessible and secure.
 
 ### galleries
 
