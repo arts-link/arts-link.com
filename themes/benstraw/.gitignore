@@ -5,7 +5,6 @@
 *.log
 /_ignore/
 /node_modules
-# /themes/benstraw/
 
 # frontmatter
 .frontmatter/

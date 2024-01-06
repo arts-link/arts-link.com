@@ -1,8 +1,8 @@
 baseURL = 'https://www.arts-link.com/'
 title = 'arts-link.com - dev server'
-theme = 'PaperMod'
+theme = 'benstraw'
 languageCode = "en-us"
-copyright = "© 2024 arts-link.com ⚡"
+copyright = "© arts-link.com ⚡"
 
 enableRobotsTXT = true
 timeZone = "America/New_York"
@@ -10,58 +10,14 @@ timeZone = "America/New_York"
 [params]
   title = "arts-link.com"
   description = "Lightning Fast Portfolios for Artists"
-  defaultTheme = "auto"
-  disableThemeToggle = false 
 
 
-[author]
+[[params.author]]
   name = "Ben Strawbridge"
-
-[outputs]
-  page = ["HTML"]
-  home = ["HTML", "RSS", "JSON"]
-  section = ["HTML"]
-
-[imaging]
-  resampleFilter = "CatmullRom"
-  quality = 75
-  [imaging.exif]
-    disableDate = false
-    disableLatLong = true
-    includeFields = "ImageDescription"
-
 [module]
   [module.hugoVersion]
     extended = false
-    min = "0.112.0"
+    min = "0.116.0"
   [[module.mounts]]
     source = "assets"
     target = "assets"
-  [[module.mounts]]
-    source = "hugo_stats.json"
-    target = "assets/watching/hugo_stats.json"
-
-[build]
-  writeStats = true
-  [[build.cachebusters]]
-    source = "assets/watching/hugo_stats\\.json"
-    target = "styles\\.css"
-  [[build.cachebusters]]
-    source = "(postcss|tailwind)\\.config\\.js"
-    target = "css"
-  [[build.cachebusters]]
-    source = "assets/.*\\.(js)"
-    target = "js"
-  [[build.cachebusters]]
-    source = "assets/.*\\.(.*)$"
-    target = "$1"
-
-[menu]
-[[menu.main]]
-    name = 'Services'
-    url = '/services/'
-    weight = 30
-[[menu.footer]]
-    name = 'Contact Us'
-    url = '/contact-us/'
-    weight = 20
