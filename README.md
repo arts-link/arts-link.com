@@ -21,8 +21,18 @@ git submodule update --init --recursive # needed when you reclone your repo (sub
 
 ## Resources  
 
-- [Google drive folder](https://docs.google.com/document/d/1fLLuI-PdlMsFoGNuLFCQZiZC0hyGsWXNpBg48teuiVc/edit)
-- [Photo Swipe plugin](https://github.com/dimsemenov/PhotoSwipe)
+- [arts-link project folder](https://docs.google.com/document/d/1fLLuI-PdlMsFoGNuLFCQZiZC0hyGsWXNpBg48teuiVc/edit)
+
+### css resources
+
 - [Tailwindcss docs](https://tailwindcss.com/docs/installation)
+
+### starter theme
 - [PaperMod theme](https://github.com/adityatelange/hugo-PaperMod/wiki/Installation)
 - [PaperMod variables](https://github.com/adityatelange/hugo-PaperMod/wiki/Variables)
+
+### image gallery resources
+
+- [Photo Swipe plugin](https://github.com/dimsemenov/PhotoSwipe)
+- [Gallery Deluxe Theme](https://github.com/bep/gallerydeluxe)
+- [Gallery Theme](https://github.com/nicokaiser/hugo-theme-gallery)
