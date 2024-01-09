@@ -2,7 +2,7 @@
 
 
 
-<div class="mb-12 mt-9 text-black grid grid-cols-2 gap-6 px-6 sm:grid-cols-2 lg:grid-cols-2">
+<div class="mb-12 mt-9 text-black grid grid-cols-1 gap-6 px-6 sm:grid-cols-2 lg:grid-cols-2">
   {{ $features := where .Pages "Params.homeFeature" "eq" true }}
   {{ range first 2 $features }}
 
@@ -13,7 +13,7 @@
           
           <h2 class="mb-2 text-lg font-semibold text-neutral-400 leading-6">
             {{ if .Params.homeFeatureIcon }}
-              <i class="{{ .Params.homeFeatureIcon }} text-white mr-4 text-lg"></i>
+              <i class="{{ .Params.homeFeatureIcon }} text-black mr-4 text-2xl"></i>
               {{ end }}
               {{ or .Params.homeFeatureTitle .Title }}
           </h2>
