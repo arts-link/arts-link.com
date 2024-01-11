@@ -4,12 +4,10 @@
   {{ partial "head.html" . }}
 </head>
 <body class="min-h-screen flex flex-col  items-center justify-center bg-black text-white">
-
   <header class="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 py-5 px-10 w-full">
-  {{/*  <header class="p-4 bg-gradient-to-r from-cyan-500 to-blue-500">  */}}
-    {{ partial "header.html" . }}
+    {{- partial "header.html" . }}
   </header>
-  {{ if (.Param "isAlpha") }}
+  {{- if (.Param "isAlpha") }}
     <div class="flex items-center p-4 my-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800" role="alert">
       <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
         <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
@@ -19,10 +17,9 @@
         <span class="font-medium">Alpha Release</span> You are viewing an alpha version of this site redesign. Things may be broken at times or just in a state of flux.
       </div>
     </div>
-  {{ end }}
+  {{- end }}
   <main class="flex-1 p-5 overflow-y-auto">
-  
-    {{ block "main" . }}{{ end }}
+    {{- block "main" . }}{{- end }}
   </main>
   <footer class="p-4">
     {{ partial "footer.html" . }}

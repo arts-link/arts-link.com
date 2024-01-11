@@ -6,20 +6,15 @@ Renders a menu for the given menu ID.
 
 @example: {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
 */}}
-
 {{- $page := .page }}
 {{- $menuID := .menuID }}
-
 {{- with index site.Menus $menuID }}
-  {{/*  <nav >  */}}
-  <nav class="flex items-center justify-between">
-    <ul class="flex space-x-4">
-    {{/*  <ul>  */}}
-      {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
-    </ul>
-  </nav>
+      <nav class="flex items-center justify-between">
+        <ul class="flex space-x-4">
+          {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
+        </ul>
+      </nav>
 {{- end }}
-
 {{- define "partials/inline/menu/walk.html" }}
   {{- $page := .page }}
   {{- range .menuEntries }}
@@ -35,8 +30,8 @@ Renders a menu for the given menu ID.
         {{- $name = . }}
       {{- end }}
     {{- end }}
-    <li>
-      <a class="text-white hover:text-gray-300 active:text-gray-500" 
+          <li>
+            <a class="text-white hover:text-gray-300 active:text-gray-500" 
         {{- range $k, $v := $attrs }}
           {{- with $v }}
             {{- printf " %s=%q" $k $v | safeHTMLAttr }}
@@ -44,10 +39,10 @@ Renders a menu for the given menu ID.
         {{- end -}}
       >{{ $name }}</a>
       {{- with .Children }}
-        <ul class="flex space-x-4">
-          {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
-        </ul>
+            <ul class="flex space-x-4">
+              {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
+            </ul>
       {{- end }}
-    </li>
+          </li>
   {{- end }}
 {{- end }}
