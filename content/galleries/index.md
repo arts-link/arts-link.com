@@ -4,6 +4,6 @@ summary = 'arts-link.com is here to help you build your presence online. The gal
 date = 2024-01-05T17:19:12-08:00
 draft = false
 homeFeature = true
-homeFeatureTitle = "For Gallery Owners"
+homeFeatureTitle = "For Galleries"
 homeFeatureIcon = "fa-solid fa-shop"
 +++

@@ -9,7 +9,6 @@
   {{/*  <header class="p-4 bg-gradient-to-r from-cyan-500 to-blue-500">  */}}
     {{ partial "header.html" . }}
   </header>
-  <main class="flex-1 p-5 overflow-y-auto">
   {{ if (.Param "isAlpha") }}
     <div class="flex items-center p-4 my-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800" role="alert">
       <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -21,6 +20,8 @@
       </div>
     </div>
   {{ end }}
+  <main class="flex-1 p-5 overflow-y-auto">
+  
     {{ block "main" . }}{{ end }}
   </main>
   <footer class="p-4">

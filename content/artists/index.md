@@ -7,3 +7,15 @@ homeFeature = true
 homeFeatureTitle = "For Artists"
 homeFeatureIcon = "fa-solid fa-palette"
 +++
+
+Our aim is to have your website be as simple as possible for you to create. Select a template, upload the raw source images of the art and you are done.
+
+Your images will then be converted by our build system to optimal sizes and formats, so the fastest most compact image possible image is served, while also providing the highest resolution available for the current screen.
+
+Your website will be lightning fast, and highly accessible with scores of A+ (above 95) on google page speed tests. We also use industry standard search optimization techniques allowing your site to be well placed in search engines.
+
+We have basic theme layouts, with fully configurable color pallet to customize your website look. For more advanced options, provide your own background textures or font files.
+
+Create a newsletter, and begin to collect subscribers using our privacy focused contact forms.
+
+Your website can be hosted literally anywhere. After the build process is complete arts-link.com can deliver you a directory you could serve out of any folder, or cloud bucket, or you can host your website with us on our cutting edge cloud infrastructure.

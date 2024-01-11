@@ -2,7 +2,6 @@
 title = 'Home'
 date = 2023-12-21T22:49:59-08:00
 draft = false
-menu = "main"
 +++
 
 # Welcome to arts-link.com  
