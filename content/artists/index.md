@@ -10,9 +10,11 @@ homeFeatureIcon = "fa-solid fa-palette"
 
 Our aim is to have your website be as simple as possible for you to create. Select a template, upload the raw source images of the art and you are done.
 
-Your images will then be converted by our build system to optimal sizes and formats, so the fastest most compact image possible image is served, while also providing the highest resolution available for the current screen.
+Your images will then be converted by our build system to optimal sizes and formats, so the fastest most compact image possible is served, while also providing the highest resolution available for the current screen.
 
-Your website will be lightning fast, and highly accessible with scores of A+ (above 95) on google page speed tests. We also use industry standard search optimization techniques allowing your site to be well placed in search engines.
+We also support streaming videos through any platform you choose, or self hosted on your website.
+
+Your website will be lightning fast, and highly accessible with scores of A+ (above 95) on [google pageSpeed Insights](https://pagespeed.web.dev/). We also use industry standard search optimization techniques allowing your site to be well placed in search engines.
 
 We have basic theme layouts, with fully configurable color pallet to customize your website look. For more advanced options, provide your own background textures or font files.
 
