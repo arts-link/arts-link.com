@@ -8,8 +8,8 @@ enableRobotsTXT = true
 timeZone = "America/New_York"
 
 [params]
-  title = "arts-link.com"
   description = "Lightning Fast Portfolios for Artists"
+  isAlpha = true
 
 
 [[params.author]]
