@@ -1,39 +1,25 @@
 {{ define "main" }}
-
-
-
-
-
-
-<div class="mb-12 mt-9 text-black grid grid-cols-1 gap-6 px-6 sm:grid-cols-2 lg:grid-cols-2">
-  {{ $features := where .Pages "Params.homeFeature" "eq" true }}
-  {{ range first 2 $features }}
-
-  {{/*  {{ range where .Pages.ByDate.Reverse "Params.private" "ne" true }}  */}}
-    <a href="{{ .RelPermalink }}" class="rounded-2xl text-black bg-neutral-100 transition-[filter] hover:brightness-90 dark:bg-neutral-800 dark:hover:brightness-110" title="{{ .Title }}">
-      <div class="h-100">
-        <div class="p-5">
-          
-          <h2 class="mb-2 text-lg font-semibold text-neutral-400 leading-6">
-            {{ if .Params.homeFeatureIcon }}
-              <i class="{{ .Params.homeFeatureIcon }} text-black mr-4 text-2xl"></i>
-              {{ end }}
-              {{ or .Params.homeFeatureTitle .Title }}
-          </h2>
-          <p class="text-sm font-normal text-neutral-600 dark:text-neutral-400">
-            {{ .Summary }}
-          </p>
-        </div>
-      </div>
-    </a>
-  {{ end }}
-</div>
-
-{{/*  <div class="items-center p-4 my-4 text-sm text-red-800 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800">  */}}
-{{/*  <div class="mb-12 grid grid-cols-1 gap-6 px-6 w-full prose lg:prose-xl prose-invert">  */}}
-<div class="prose lg:prose-xl prose-invert rounded-xl bg-gray-800/75 mt-10 p-4">
-
-  {{ .Content }}
-</div>
-
+  <div class="prose lg:prose-xl prose-invert rounded-xl bg-gray-800/75 p-4">
+    <div class="grid grid-cols-1 gap-12 p-6 sm:grid-cols-2 lg:grid-cols-2 ">
+      {{ $features := where .Pages "Params.homeFeature" "eq" true }}
+      {{ range first 2 $features }}
+        <a href="{{ .RelPermalink }}" class="rounded-2xl bg-neutral-100 transition-[filter] hover:brightness-90 dark:bg-neutral-800 dark:hover:brightness-110 no-underline" title="{{ .Title }}">
+          <div class="h-100">
+            <div class="p-5">
+              <h2 class="mb-2 mt-1 text-2xl font-semibold text-neutral-400">
+                {{ if .Params.homeFeatureIcon }}
+                  <i class="{{ .Params.homeFeatureIcon }} mr-4 text-4xl"></i>
+                  {{ end }}
+                  {{ or .Params.homeFeatureTitle .Title }}
+              </h2>
+              <p class="text-sm font-normal no-underline text-neutral-600 dark:text-neutral-400">
+                {{ .Summary }}
+              </p>
+            </div>
+          </div>
+        </a>
+      {{ end }}
+    </div>
+      {{ .Content }}
+  </div>
 {{ end }}

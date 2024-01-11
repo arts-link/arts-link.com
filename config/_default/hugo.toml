@@ -10,10 +10,24 @@ timeZone = "America/New_York"
 [params]
   description = "Lightning Fast Portfolios for Artists"
   isAlpha = true
-
-
 [[params.author]]
   name = "Ben Strawbridge"
+
+[menus]
+[[menus.main]]
+  name = 'For Galleries'
+  url = '/galleries/'
+  weight = 10
+[[menus.main]]
+  name = 'For Artists'
+  url = '/artists/'
+  weight = 20
+[[menus.main]]
+  name = 'About'
+  url = '/about/'
+  weight = 30
+
+
 [module]
   [module.hugoVersion]
     extended = false
