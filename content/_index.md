@@ -11,4 +11,4 @@ menu = "main"
 
 ### We are pleased to announce the launch of our newest artist's portfolio gallery!
 
-- [Louise Strawbridge's portfolio]("https://www.louisestrawbridge.com")
+- [Louise Strawbridge's portfolio](https://www.louisestrawbridge.com)
