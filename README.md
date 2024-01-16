@@ -19,6 +19,11 @@ For a freshly cloned repo update the git submodules.
 git submodule update --init --recursive # needed when you reclone your repo (submodules may not get cloned automatically)
 ```
 
+## Competition
+
+- https://www.format.com/ 
+- https://web.archive.org/web/20020220112908/http://www.arts-link.com:80/ 
+
 ## Resources  
 
 - [arts-link project folder](https://docs.google.com/document/d/1fLLuI-PdlMsFoGNuLFCQZiZC0hyGsWXNpBg48teuiVc/edit)

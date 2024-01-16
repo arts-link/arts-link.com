@@ -7,3 +7,9 @@ homeFeature = true
 homeFeatureTitle = "For Galleries"
 homeFeatureIcon = "fa-solid fa-shop"
 +++
+
+Create a unique experience for each of your exhibitions and artists through clean, individually-branded websites.
+
+Offer e-commerce for your artists through integrations with popular payment platforms.
+
+Automatic image processing allows you to only worry about the original images for the art.
