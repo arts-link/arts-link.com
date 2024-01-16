@@ -22,10 +22,10 @@ timeZone = "America/New_York"
   name = 'For Artists'
   url = '/artists/'
   weight = 20
-[[menus.main]]
-  name = 'About'
-  url = '/about/'
-  weight = 30
+# [[menus.main]]
+#   name = 'Services'
+#   url = '/services/'
+#   weight = 30
 
 
 [module]

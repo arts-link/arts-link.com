@@ -4,8 +4,6 @@ date = 2023-12-21T22:49:59-08:00
 draft = false
 +++
 
-# Welcome to arts-link.com  
-
 ## _⚡ We create lightning fast websites for artists ⚡_
 
 ### We are pleased to announce the launch of our newest artist's portfolio gallery!
