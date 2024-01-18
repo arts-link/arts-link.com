@@ -27,7 +27,9 @@ timeZone = "America/New_York"
 #   url = '/services/'
 #   weight = 30
 
-
+[build]
+  writeStats = true
+  
 [module]
   [module.hugoVersion]
     extended = false

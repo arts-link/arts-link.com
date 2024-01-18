@@ -1,8 +1,14 @@
 {{ define "main" }}
+<div class="prose lg:prose-xl prose-invert rounded-xl bg-gray-800/75 p-4">
+
   <h1>{{ .Title }}</h1>
   {{ .Content }}
-  {{ range .Pages }}
+  {{ with .Pages }}
+  Some things about arts-link  
+  {{ range . }}
     <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
     {{ .Summary }}
   {{ end }}
+  {{ end }}
+</div>
 {{ end }}
