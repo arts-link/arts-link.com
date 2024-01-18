@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./layouts/**/*.html", "./themes/benstraw/layouts/**/*.html"],
+  content: ["./hugo_stats.json", "./layouts/**/*.html", "./themes/benstraw/layouts/**/*.html"],
   theme: {
     extend: {
       backgroundImage: {
