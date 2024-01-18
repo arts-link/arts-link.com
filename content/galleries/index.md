@@ -13,3 +13,5 @@ Create a unique experience for each of your exhibitions and artists through clea
 Offer e-commerce for your artists through integrations with popular payment platforms.
 
 Automatic image processing allows you to only worry about the original images for the art.
+
+You control all of your data, and you can host your platform with us, or on any cloud provider you choose.
