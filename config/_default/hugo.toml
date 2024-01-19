@@ -22,6 +22,14 @@ timeZone = "America/New_York"
   name = 'For Artists'
   url = '/artists/'
   weight = 20
+[[menus.main]]
+  name = 'Portfolio Features'
+  url = '/features/'
+  weight = 30
+[[menus.main]]
+  name = 'About'
+  url = '/about/'
+  weight = 50
 # [[menus.main]]
 #   name = 'Services'
 #   url = '/services/'
