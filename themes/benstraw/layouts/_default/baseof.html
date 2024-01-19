@@ -13,7 +13,7 @@
     {{- .Scratch.Set "alertMessage" "You are viewing an alpha version of this site redesign. Things may be broken at times or just in a state of flux." }}
     {{- partial "alert.html" . }}
   {{- end }}
-  <main class="flex-1 p-5 overflow-y-auto">
+  <main class="container flex-1 p-5 overflow-y-auto">
     {{- block "main" . }}{{- end }}
   </main>
   <footer class="p-4">

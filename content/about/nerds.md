@@ -1,5 +1,5 @@
 +++
-title = 'Nerds'
+title = 'Just for you Nerds'
 date = 2024-01-18T14:15:12-08:00
 # draft = false
 +++
