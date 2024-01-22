@@ -41,3 +41,7 @@ git submodule update --init --recursive # needed when you reclone your repo (sub
 - [Photo Swipe plugin](https://github.com/dimsemenov/PhotoSwipe)
 - [Gallery Deluxe Theme](https://github.com/bep/gallerydeluxe)
 - [Gallery Theme](https://github.com/nicokaiser/hugo-theme-gallery)
+
+### portfolio website ideas
+
+- https://car-gallery-webapp.vercel.app/
