@@ -6,6 +6,9 @@ date = 2024-01-18T14:15:12-08:00
 
 Part of the reason I built arts-link.com is I know artists want to maintain control over their work. They may not know how to express this, but privacy and control over their own content is a top concern for many artists. We created features of this platform that fit that mold.
 
+## Using open source tools, even for our customers
+- github.com actions to modify your galleries
+
 ## Source Code
 
 The source code for your website is yours, you should have access to it and be in control of it. We use [open source](https://opensource.com/resources/what-open-source) software to build everything we use on arts-link.com, which means that it is freely available for anyone to analyze or use. This freedom is what makes it the most secure software you can use, because it is open for anyone to look at it is heavily scrutinized for any security issues.
