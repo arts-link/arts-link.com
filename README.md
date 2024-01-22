@@ -42,6 +42,7 @@ git submodule update --init --recursive # needed when you reclone your repo (sub
 - [Gallery Deluxe Theme](https://github.com/bep/gallerydeluxe)
 - [Gallery Theme](https://github.com/nicokaiser/hugo-theme-gallery)
 
-### portfolio website ideas
+### portfolio website looks
 
+- https://www.nicooved.com/
 - https://car-gallery-webapp.vercel.app/
