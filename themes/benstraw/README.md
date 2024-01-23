@@ -7,32 +7,27 @@ v0.1 - This theme is pretty barebones, with a few additions to get things setup 
 - tailwindcss configured and ready to go pretty much out of the box (see below)
 - fontawesome integrated and ready to go with svg icons
 
+### Some included partials 
+
+- social icons partial
+- alerts partial
+- toc (table of contents) partial
+- SEO Friendly
+
 ## Installation
 
-- what is needed to use tailwindcss
-
-- Check this below to see if it is correct, gotta test this on a site.
-```bash
-cd themes/benstraw
-npm init -y
-npm install --save-dev tailwindcss
-npx tailwindcss init
-touch assets/css/style.css
-npm run build-tw
-# npm run watch-tw # use when working on css
-```
+- npm install
 
 ## Configuration
 
-- go over all the variables -- see papermod's readme
+- go over all the variables -- see papermod's WIKI 
 
 ## TODO
 
-- move fontawesome to npm package
 - document alert.html partial
 
 ## THANK YOU
 
 - For the help I found on the internet thank you to these pages:
-- papermod theme
-- gallery theme
+- [Hugo-papermod theme](https://github.com/adityatelange/hugo-PaperMod)
+- [hugo-theme-gallery theme](https://github.com/nicokaiser/hugo-theme-gallery)
