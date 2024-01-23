@@ -1,17 +1,29 @@
 baseURL = 'https://www.arts-link.com/'
-title = 'arts-link.com - dev server'
-theme = 'benstraw'
-languageCode = "en-us"
 copyright = "© arts-link.com ⚡"
-
 enableRobotsTXT = true
+languageCode = "en-us"
+summaryLength = 25
+theme = 'benstraw'
 timeZone = "America/New_York"
+title = 'arts-link.com - dev server'
 
 [params]
   description = "Lightning Fast Portfolios for Artists"
   isAlpha = true
 [[params.author]]
   name = "Ben Strawbridge"
+[[params.social]]
+  faClasses = "fa-solid fa-envelope"
+  title = "Email me"
+  url   = "mailto:ben@benstrawbridge.com?subject=web"
+  target= "_blank"
+  weight = 30 
+[[params.social]]
+  faClasses = "fa-brands fa-github"
+  title = "GitHub"
+  url   = "https://www.github.com/arts-link"
+  target= "_blank"
+  weight = 20
 
 [menus]
 [[menus.main]]
