@@ -6,6 +6,7 @@ v0.1 - This theme is pretty barebones, with a few additions to get things setup 
 
 - tailwindcss configured and ready to go pretty much out of the box (see below)
 - fontawesome integrated and ready to go with svg icons
+- homeFeature param creates featured boxes for those pages on the home page.
 
 ### Some included partials 
 
