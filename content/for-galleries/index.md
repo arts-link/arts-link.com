@@ -6,6 +6,10 @@ draft = false
 homeFeature = true
 homeFeatureTitle = "For Galleries"
 homeFeatureIcon = "fa-solid fa-shop"
+[menu]
+ [menu.main]
+  weight = 20
+
 +++
 
 Create a unique experience for each of your exhibitions and artists through clean, individually-branded websites.
