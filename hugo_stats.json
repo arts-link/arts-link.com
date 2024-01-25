@@ -6,6 +6,8 @@
       "details",
       "div",
       "em",
+      "figcaption",
+      "figure",
       "footer",
       "h1",
       "h2",
@@ -32,7 +34,9 @@
       "ul"
     ],
     "classes": [
+      "active",
       "active:text-gray-500",
+      "ancestor",
       "bg-blue-50",
       "bg-gradient-to-r",
       "bg-gray-800/75",
@@ -100,6 +104,7 @@
       "mr-2",
       "mr-4",
       "mt-1",
+      "mt-4",
       "mt-6",
       "mx-6",
       "mx-auto",

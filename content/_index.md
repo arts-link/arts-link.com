@@ -9,4 +9,4 @@ draft = false
 
 ### We are pleased to announce the launch of our newest artist's portfolio gallery!
 
-- [Louise Strawbridge's portfolio](https://www.louisestrawbridge.com)
+{{< figure src="/artists/louise-strawbridge/featured_louisestrawbridge-hp.png" title="Louise Strawbridge's artist portfolio" link="https://www.louisestrawbridge.com" target="_blank" >}}

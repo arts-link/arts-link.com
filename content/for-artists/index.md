@@ -6,6 +6,10 @@ draft = false
 homeFeature = true
 homeFeatureTitle = "For Artists"
 homeFeatureIcon = "fa-solid fa-palette"
+[menu]
+ [menu.main]
+  weight = 22
+
 +++
 
 Our aim is to have your website be as simple as possible for you to create. Select a template, upload the raw source images of the art and you are done.

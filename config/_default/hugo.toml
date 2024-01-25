@@ -2,6 +2,7 @@ baseURL = 'https://www.arts-link.com/'
 copyright = "© arts-link.com ⚡"
 enableRobotsTXT = true
 languageCode = "en-us"
+# sectionPagesMenu = "main"
 summaryLength = 25
 theme = 'ryder'
 timeZone = "America/New_York"
@@ -25,23 +26,23 @@ title = 'arts-link.com - dev server'
   target= "_blank"
   weight = 20
 
-[menus]
-[[menus.main]]
-  name = 'For Galleries'
-  url = '/galleries/'
-  weight = 10
-[[menus.main]]
-  name = 'For Artists'
-  url = '/artists/'
-  weight = 20
-[[menus.main]]
-  name = 'Portfolio Features'
-  url = '/features/'
-  weight = 30
-[[menus.main]]
-  name = 'About'
-  url = '/about/'
-  weight = 50
+# [menus]
+# [[menus.main]]
+#   name = 'For Galleries'
+#   url = '/for-galleries/'
+#   weight = 10
+# [[menus.main]]
+#   name = 'For Artists'
+#   url = '/for-artists/'
+#   weight = 20
+# [[menus.main]]
+#   name = 'Portfolio Features'
+#   url = '/features/'
+#   weight = 30
+# [[menus.main]]
+#   name = 'About'
+#   url = '/about/'
+#   weight = 50
 # [[menus.main]]
 #   name = 'Services'
 #   url = '/services/'
