@@ -3,7 +3,7 @@ copyright = "© arts-link.com ⚡"
 enableRobotsTXT = true
 languageCode = "en-us"
 summaryLength = 25
-theme = 'benstraw'
+theme = 'ryder'
 timeZone = "America/New_York"
 title = 'arts-link.com - dev server'
 
