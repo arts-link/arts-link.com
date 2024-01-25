@@ -5,7 +5,7 @@ draft = false
 # layout = 'hidden-home'
 +++
 
-## _⚡ We create lightning fast websites for artists ⚡_
+## _⚡ We create lightning-fast websites for artists ⚡_
 
 ### We are pleased to announce the launch of our newest artist's portfolio gallery!
 
