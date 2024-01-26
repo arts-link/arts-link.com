@@ -1,6 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./hugo_stats.json", "./layouts/**/*.html", "./themes/benstraw/layouts/**/*.html"],
+  content: [
+    "./hugo_stats.json",
+    "./layouts/**/*.html",
+    "./themes/ryder/layouts/**/*.html",
+    "./themes/ryder-dev/layouts/**/*.html"],
   darkMode: 'class',
   theme: {
     extend: {
