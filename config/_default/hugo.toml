@@ -26,7 +26,7 @@ title = 'arts-link.com - dev server'
 [[params.social]]
   faClasses = "fa-solid fa-envelope"
   title = "Email me"
-  url   = "mailto:ben@benstrawbridge.com?subject=web"
+  url   = "mailto:hello@arts-link.com?subject=web"
   target= "_blank"
   weight = 30 
 [[params.social]]
