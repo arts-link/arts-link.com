@@ -16,6 +16,9 @@ title = 'arts-link.com - dev server'
 [params]
   description = "Lightning Fast Portfolios for Artists"
   isAlpha = true
+   
+  headerGradientClasses = "bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500" 
+
 [[params.alphaAlert]]
   alertType = "warning"
   alertTitle = "Alpha version"
