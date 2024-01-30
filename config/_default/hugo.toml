@@ -1,10 +1,11 @@
 baseURL = 'https://www.arts-link.com/'
-copyright = "© arts-link.com ⚡ made with ❤️ for a better web"
+copyright = "© arts-link.com ⚡"
 enableRobotsTXT = true
 languageCode = "en-us"
 # sectionPagesMenu = "main"
 summaryLength = 25
-theme = 'ryder-dev'
+# theme = 'ryder-dev'
+theme = 'ryder'
 timeZone = "America/New_York"
 title = 'arts-link.com - dev server'
 
