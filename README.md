@@ -23,6 +23,7 @@ git submodule update --init --recursive # needed when you reclone your repo (sub
 
 - https://www.format.com/ 
 - https://web.archive.org/web/20020220112908/http://www.arts-link.com:80/ 
+- https://www.librarycat.org/ -- not competition but similar idea, could copy some of their page ideas
 
 ## Resources  
 
@@ -46,5 +47,6 @@ git submodule update --init --recursive # needed when you reclone your repo (sub
 
 - https://www.nicooved.com/
 - https://car-gallery-webapp.vercel.app/
+
 
 Talk with us: hello@arts-link.com
