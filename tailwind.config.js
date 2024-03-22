@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require("tailwindcss/defaultTheme");
 module.exports = {
   content: [
     "./hugo_stats.json",
@@ -10,7 +11,13 @@ module.exports = {
     extend: {
       backgroundImage: {
         'hidden-home': " url('/images/maui-sunset.webp')",
-      },},
+      },
+      screens: {
+        'xs': '475px',
+        ...defaultTheme.screens,
+        '3xl': '1600px',
+      },
+    },
   },
   plugins: [require("@tailwindcss/typography")],
 }
