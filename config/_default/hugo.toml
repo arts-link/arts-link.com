@@ -4,26 +4,20 @@ enableRobotsTXT = true
 languageCode = "en-us"
 # sectionPagesMenu = "main"
 summaryLength = 25
-# theme = 'ryder-dev'
-theme = 'ryder'
+theme = 'ryder-dev'
+# theme = 'ryder'
 timeZone = "America/New_York"
 title = 'arts-link.com - dev server'
-
-# [services]
-#   [services.googleAnalytics]
-#     ID = 'G-R4DMQE7FCY'
-
 
 [params]
   description = "Lightning Fast Portfolios for Artists"
   isAlpha = true
-   
   headerGradientClasses = "bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500" 
-
+  showDarkToggle = true
 [[params.alphaAlert]]
   alertType = "warning"
   alertTitle = "Alpha version"
-  alertMessage = "The redesign of arts-link.com is in progress and happening live in front of your eyes! Please consider this a prototype with no design at this point."
+  alertMessage = "The redesign of arts-link.com is in progress and happening live in front of your eyes! Please consider this a prototype with little design at this point."
   alertIconClass = "fa-solid fa-camera-retro"
 [[params.author]]
   name = "Ben Strawbridge"
