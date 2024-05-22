@@ -6,9 +6,10 @@ languageCode = "en-us"
 summaryLength = 25
 theme = 'ryder-dev'
 # theme = 'ryder'
-timeZone = "America/New_York"
-title = 'arts-link.com - dev server'
-
+timeZone = "America/Los_Angeles"
+title = 'arts-link.com dev'
+enableEmoji = true
+enableGitInfo = true
 [params]
   description = "Lightning Fast Portfolios for Artists"
   isAlpha = true
@@ -19,21 +20,13 @@ title = 'arts-link.com - dev server'
   alertTitle = "Alpha version"
   alertMessage = "The redesign of arts-link.com is in progress and happening live in front of your eyes! Please consider this a prototype with little design at this point."
   alertIconClass = "fa-solid fa-camera-retro"
-[[params.author]]
+[params.author]
   name = "Ben Strawbridge"
-[[params.social]]
-  faClasses = "fa-solid fa-envelope"
-  title = "Email me"
-  url   = "mailto:hello@arts-link.com?subject=web"
-  target= "_blank"
-  weight = 30 
-[[params.social]]
-  faClasses = "fa-brands fa-github"
-  title = "GitHub"
-  url   = "https://www.github.com/arts-link"
-  target= "_blank"
-  weight = 20
-
+  email = "hello@arts-link.com"
+[params.twClasses]
+  headerBackgroundFrameOuter = "bg-gradient-to-r to-zinc-400 from-zinc-900 dark:from-violet-950 dark:to-rose-950 border-b border-fuchsia-600 text-zinc-200 dark:text-neutral-100"
+  headerBackgroundFrameInner = ""
+   
 # [menus]
 # [[menus.main]]
 #   name = 'For Galleries'
