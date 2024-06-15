@@ -6,8 +6,9 @@ homeFeature = true
 +++
 ### WritingSos.com has lauched using the Ryder Theme from arts-link
 
-{{< figure src="screencapture-writingsos-2024-06-15-07_52_50.png" title="WritingSos is a tutoring Site for writing" alt="Screenshot of writingsos.com" link="https://www.writingsos.com" target="_blank" >}}
+{{< picture src="screencapture-writingsos-2024-06-15-07_52_50.png" title="WritingSos is a tutoring Site for writing" alt="Screenshot of writingsos.com" link="https://www.writingsos.com" class="z-10" target="_blank" >}}
 
+{{< cta-button button_label="visit writingsos.com" button_href="https://www.writingsos.com" >}}
 <!--more-->
 
 (sort of) This was a highly customized version of the Ryder Theme for Hugo websites. WritingSos wanted to stop paying for their hosted content management system that they never used, so they turned to arts-link.com to find a free hosting solution with no advertising and complete control over their data.
