@@ -1,5 +1,5 @@
 +++
-title = 'For Artists'
+title = 'Artists'
 summary = 'Create the website of your dreams. arts-link.com will provide you with the streamlined system you need to focus on creating great art, not messing around with website building tools.'
 date = 2024-01-05T17:18:41-08:00
 draft = false
@@ -19,6 +19,8 @@ Your images will then be converted by our build system to optimal sizes and form
 We also support streaming videos through any platform you choose, or self hosted on your website.
 
 Your website will be lightning fast, and highly accessible with scores of A+ (above 95) on [google pageSpeed Insights](https://pagespeed.web.dev/). We also use industry standard search optimization techniques allowing your site to be well placed in search engines.
+
+<!--more-->
 
 We have basic theme layouts, with fully configurable color pallet to customize your website look. For more advanced options, provide your own background textures or font files.
 

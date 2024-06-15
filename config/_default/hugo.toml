@@ -11,11 +11,11 @@ title = 'arts-link.com dev'
 enableEmoji = true
 enableGitInfo = true
 [params]
-  description = "⚡ Lightning Fast Portfolios for Artists ⚡"
+  description = "⚡ Lightning-Fast Portfolios for Artists ⚡"
   isAlpha = true
   headerGradientClasses = "bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500" 
   showDarkToggle = true
-  logo_tagline = "⚡ LIGHTNING-FAST ARTIST PORTFOLIOS ⚡"
+  logo_tagline = "⚡ LIGHTNING-FAST PORTFOLIOS ⚡"
 [[params.alphaAlert]]
   alertType = "warning"
   alertTitle = "Alpha version"
