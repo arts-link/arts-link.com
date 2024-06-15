@@ -11,7 +11,7 @@ homeFeatureIcon = "fa-solid fa-stamp"
 
 ### We are pleased to announce the launch of our newest artist's portfolio gallery!
 
-{{< picture src="featured_louisestrawbridge-hp.png" title="Louise Strawbridge's artist portfolio" alt="Screenshot of louisestrawbridge.com" link="https://www.louisestrawbridge.com" target="_blank" >}}
+{{< picture src="featured_louisestrawbridge-hp.png" title="Louise Strawbridge's artist portfolio" alt="Screenshot of louisestrawbridge.com" link="https://www.louisestrawbridge.com" target="_blank" class=" lg:w-1/2" >}}
 
 {{< cta-button button_label="visit louisestrawbridge.com" button_href="https://www.louisestrawbridge.com" >}}
 <!--more-->
