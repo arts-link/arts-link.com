@@ -2,6 +2,7 @@
 title = 'Artists'
 summary = 'Create the website of your dreams. arts-link.com will provide you with the streamlined system you need to focus on creating great art, not messing around with website building tools.'
 date = 2024-01-05T17:18:41-08:00
+hideAsideBar = true
 draft = false
 # homeFeature = true
 homeFeatureTitle = "For Artists"
@@ -12,18 +13,33 @@ homeFeatureIcon = "fa-solid fa-palette"
 
 +++
 
-Our aim is to have your website be as simple as possible for you to create. Select a template, upload the raw source images of the art and you are done.
+## Create with Ease
 
-Your images will then be converted by our build system to optimal sizes and formats, so the fastest most compact image possible is served, while also providing the highest resolution available for the current screen.
-
-We also support streaming videos through any platform you choose, or self hosted on your website.
-
-Your website will be lightning fast, and highly accessible with scores of A+ (above 95) on [google pageSpeed Insights](https://pagespeed.web.dev/). We also use industry standard search optimization techniques allowing your site to be well placed in search engines.
+Creating your portfolio has never been simpler. Choose from our sleek, customizable templates, upload your raw images, and let our system handle the rest. We automatically optimize your images for any device, ensuring your work looks stunning and loads lightning-fast.
 
 <!--more-->
 
-We have basic theme layouts, with fully configurable color pallet to customize your website look. For more advanced options, provide your own background textures or font files.
+## Stream Your Vision
 
-Create a newsletter, and begin to collect subscribers using our privacy focused contact forms.
+Got videos? Stream directly from any platform you prefer or host them right on your site. Your audience will enjoy seamless, high-quality viewing experiences every time.
 
-Your website can be hosted literally anywhere. After the build process is complete arts-link.com can deliver you a directory you could serve out of any folder, or cloud bucket, or you can host your website with us on our cutting edge cloud infrastructure.
+## Speed and Accessibility
+
+We’ve built Arts-Link to be incredibly fast and accessible. With top-tier scores on Google PageSpeed Insights and adherence to industry standards, your portfolio will perform beautifully on any device, reaching the widest audience possible.
+
+## Optimize for Success
+
+Stand out in search engines with built-in SEO tools. Our platform ensures your site is discoverable, helping you reach more fans and collaborators.
+
+## Customize Your Canvas
+
+Your art is unique, and your portfolio should be too. Customize your color palette, upload your own background textures, and use custom fonts to make your site truly yours.
+
+## Connect with Your Audience
+
+Engage your audience with a professional newsletter. Collect subscribers easily with our privacy-focused contact forms and keep your fans updated with your latest works and events.
+
+## Host Anywhere
+Flexibility is key. Host your portfolio wherever you like, from a simple folder on your computer to a sophisticated cloud infrastructure. Or, let us take care of it with our cutting-edge hosting solutions.
+
+> At Arts-Link, we’re here to make sure your art gets the spotlight it deserves, with the simplicity and power you need. Start creating today and let your art shine.
