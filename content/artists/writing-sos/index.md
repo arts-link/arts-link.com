@@ -7,7 +7,7 @@ homeFeatureIcon = "fa-solid fa-signature"
 +++
 ### WritingSos.com has lauched using the Ryder Theme from arts-link
 
-{{< figure src="screencapture-writingsos-2024-06-15-07_52_50.png" title="WritingSos is a tutoring Site for writing" alt="Screenshot of writingsos.com" link="https://www.writingsos.com" class="z-10 lg:w-1/2" target="_blank" >}}
+{{< picture src="screencapture-writingsos-2024-06-15-07_52_50.png" title="WritingSos is a tutoring Site for writing" alt="Screenshot of writingsos.com" link="https://www.writingsos.com" class="z-10 lg:w-1/2" target="_blank" >}}
 
 {{< cta-button 
   button_label="visit writingsos.com" 
