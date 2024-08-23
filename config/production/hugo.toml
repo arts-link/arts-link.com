@@ -4,6 +4,7 @@ theme = 'ryder'
 
 [params]
   env = "production"
+  plausible_domain = "arts-link.com"
 
 [services]
   [services.googleAnalytics]
