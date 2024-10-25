@@ -30,9 +30,8 @@ homeFeatureWide = true
   - If you already have a design in place we will adapt that into our optimized template. Alternatively, we can collaborate with your designer if you have one -- or connect you to one of our partner designers for a customized creation.
 
 4. **Flexible, Affordable Payment Options**
-  - Drawing on my two decades+ of experience building websites and web applications in Silicon Valley tech firms and Enterprise Corporations I have learned that what I really enjoy is working with artists and small businesses and I am willing to set affordable rates that you can afford.
   - There will be an upfront charge to get your website built and deployed to our platform, hosting is included for most sites as well* (Very large volume projects will have some additional considerations, but I guarantee the cost will be lower than you expect.)
   - Your website can be transferred to you so you are in control everything and can update it when ever you like following our easy tutorials, OR you can leave your website in our capable hands and pay a reasonable fee every time you want to make changes.
   
-  
+
 <!--more-->
