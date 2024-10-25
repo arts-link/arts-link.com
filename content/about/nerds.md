@@ -1,7 +1,8 @@
 +++
-title = 'Just for you Nerds'
+title = 'The technical Details - Just for you Nerds'
 date = 2024-01-18T14:15:12-08:00
 # draft = false
+
 +++
 
 Part of the reason I built arts-link.com is I know artists want to maintain control over their work. They may not know how to express this, but privacy and control over their own content is a top concern for many artists. We created features of this platform that fit that mold.
