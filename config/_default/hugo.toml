@@ -17,13 +17,14 @@ enableGitInfo = true
   showDarkToggle = true
   logo_tagline = "⚡ LIGHTNING-FAST PORTFOLIOS ⚡"
   repository = "https://github.com/arts-link/arts-link.com"
-  homePageFeatureHeader = "Featured Sites"
+  showHomeTitle = true
+  # homePageFeatureHeader = "Featured Sites"
   hideHomeFeed = true
-[[params.alphaAlert]]
-  alertType = "warning"
-  alertTitle = "Alpha version"
-  alertMessage = "The redesign of arts-link.com is in progress and happening live in front of your eyes! Please consider this a prototype with little design at this point."
-  alertIconClass = "fa-solid fa-camera-retro"
+# [[params.alphaAlert]]
+#   alertType = "warning"
+#   alertTitle = "Alpha version"
+#   alertMessage = "The redesign of arts-link.com is in progress and happening live in front of your eyes! Please consider this a prototype with little design at this point."
+#   alertIconClass = "fa-solid fa-camera-retro"
 [params.author]
   name = "Ben Strawbridge"
   email = "hello@arts-link.com"
