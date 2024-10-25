@@ -5,7 +5,7 @@ draft = false
 homeFeatureIcon = "fa-solid fa-palette"
 +++
 
-> At Arts-Link, we believe every artist deserves a platform that’s as brilliant and unique as their work. Whether you’re a painter, musician, writer, or any kind of creative, we’ve designed the ultimate tool to help you showcase your art with ease.
+<!-- > At Arts-Link, we believe every artist deserves a platform that’s as brilliant and unique as their work. Whether you’re a painter, musician, writer, or any kind of creative, we’ve designed the ultimate tool to help you showcase your art with ease. -->
 
 
 <!--more-->
