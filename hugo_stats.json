@@ -77,12 +77,10 @@
       "content",
       "cursor-pointer",
       "dark:bg-neutral-900",
-      "dark:from-rose-900",
       "dark:from-violet-950",
       "dark:prose-invert",
       "dark:text-neutral-100",
       "dark:to-rose-950",
-      "dark:to-teal-900",
       "details",
       "fa-angles-right",
       "fa-bars",
@@ -159,6 +157,7 @@
       "max-w-max-screen-xl",
       "max-w-screen-md",
       "max-w-screen-xl",
+      "max-w-xl",
       "mb-1",
       "mb-2",
       "mb-5",
@@ -308,9 +307,7 @@
       "themeSwitcher",
       "using-open-source-tools-even-for-our-customers",
       "video-streaming",
-      "we-are-pleased-to-announce-the-launch-of-our-newest-artists-portfolio-gallery",
-      "website",
-      "writingsoscom-has-lauched-using-the-ryder-theme-from-arts-link"
+      "website"
     ]
   }
 }
