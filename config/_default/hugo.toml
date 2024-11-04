@@ -19,7 +19,8 @@ enableGitInfo = true
   repository = "https://github.com/arts-link/arts-link.com"
   showHomeTitle = true
   # homePageFeatureHeader = "Featured Sites"
-  hideHomeFeed = true
+  showHomeFeed = false 
+  showSummaryMeta = false
 # [[params.alphaAlert]]
 #   alertType = "warning"
 #   alertTitle = "Alpha version"

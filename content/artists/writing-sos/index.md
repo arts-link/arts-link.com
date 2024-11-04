@@ -2,12 +2,12 @@
 title = 'Writing Sos'
 date = 2024-06-15T07:50:58-07:00
 homeFeature = true
-homeFeatureWide = true
+# homeFeatureWide = true
 homeFeatureIcon = "fa-solid fa-signature"
 # draft = false
 +++
 
-{{< picture src="screencapture-writingsos-2024-06-15-07_52_50.png" title="WritingSos is a tutoring Site for writers" alt="Screenshot of writingsos.com" link="https://www.writingsos.com" class="z-10 lg:w-1/2" target="_blank" >}}
+{{< picture src="screencapture-writingsos-2024-06-15-07_52_50.png" title="WritingSos is a tutoring Site for writers" alt="Screenshot of writingsos.com" link="https://www.writingsos.com" class="z-10 " target="_blank" >}}
 
 {{< cta-button 
   button_label="Visit writingsos.com" 
