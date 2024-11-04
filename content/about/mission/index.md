@@ -10,13 +10,13 @@ hideAsideBar = true
   # ""
   # ]
 # featured_image = ""
-# homeFeatureIcon = ""
+homeFeatureIcon = "fa-solid fa-bullseye"
 # showTOC = true
 homeFeature = true
 homeFeatureWide = true
 +++
 
-> At Arts-Link, our mission is to empower artists and small businesses with affordable, privacy-first websites that are free from invasive tracking and tailored to your unique vision. Here’s how we deliver on that mission:
+> Our mission is to empower artists and small businesses with affordable, privacy-first websites that are free from invasive tracking and tailored to your unique vision. Here’s how we deliver on that mission:
 
 1. **Privacy as a Core Value**
   - At Arts-Link, we believe in respecting the privacy of you and your audience. Your website will only collect data that you explicitly request, and we never sell or share it. Unlike major hosting platforms, our websites are free of tracking cookies and designed to respect the privacy of all users.
