@@ -160,6 +160,7 @@
       "max-h-max",
       "max-w-fit",
       "max-w-max-screen-xl",
+      "max-w-screen-lg",
       "max-w-screen-md",
       "max-w-screen-xl",
       "max-w-xl",

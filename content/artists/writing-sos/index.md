@@ -3,6 +3,7 @@ title = 'Writing Sos'
 date = 2024-06-15T07:50:58-07:00
 homeFeature = true
 homeFeatureIcon = "fa-solid fa-signature"
+hideAsideBar = true
 # draft = false
 +++
 
@@ -11,7 +12,6 @@ homeFeatureIcon = "fa-solid fa-signature"
 {{< cta-button 
   button_label="Visit writingsos.com" 
   button_href="https://www.writingsos.com" 
-  width=768
  >}}
 <!--more-->
 
