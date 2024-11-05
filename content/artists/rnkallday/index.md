@@ -22,7 +22,6 @@ homeFeatureIcon = "fa-solid fa-guitar"
 {{< cta-button 
   button_label="Visit rnkallday.com" 
   button_href="https://www.rnkallday.com" 
-  width=768
  >}}
 <!--more-->
 
