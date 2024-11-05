@@ -2,7 +2,6 @@
 title = 'Writing Sos'
 date = 2024-06-15T07:50:58-07:00
 homeFeature = true
-# homeFeatureWide = true
 homeFeatureIcon = "fa-solid fa-signature"
 # draft = false
 +++
