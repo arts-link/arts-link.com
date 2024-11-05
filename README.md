@@ -48,5 +48,10 @@ git submodule update --init --recursive # needed when you reclone your repo (sub
 - https://www.nicooved.com/
 - https://car-gallery-webapp.vercel.app/
 
+### domain reseller stuff
+
+- [opensrs domain reseller dashboard](https://manage.opensrs.com//#!)
+- [opensrs storefront reseller site]()
+
 
 Talk with us: hello@arts-link.com

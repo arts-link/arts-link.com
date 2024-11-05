@@ -19,6 +19,7 @@ enableGitInfo = true
   repository = "https://github.com/arts-link/arts-link.com"
   showHomeTitle = true
   # homePageFeatureHeader = "Featured Sites"
+  # og_image_default = "/images/sunset-mission-bay.jpg"
   showHomeFeed = false 
   showSummaryMeta = false
 # [[params.alphaAlert]]
