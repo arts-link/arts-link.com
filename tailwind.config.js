@@ -11,6 +11,10 @@ module.exports = {
     extend: {
       backgroundImage: {
         'hidden-home': " url('/images/maui-sunset.webp')",
+        'paint-drip': " url('/images/bg-paint-drip.webp')",
+      },
+      fontFamily: {
+        header: ["Chalkduster", ...defaultTheme.fontFamily.sans],
       },
       screens: {
         'xs': '475px',

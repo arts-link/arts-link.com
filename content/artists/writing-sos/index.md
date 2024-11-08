@@ -7,7 +7,14 @@ hideAsideBar = true
 # draft = false
 +++
 
-{{< picture src="featured-writingsos.png" title="WritingSos is a tutoring Site for writers" alt="Screenshot of writingsos.com" link="https://www.writingsos.com" class="z-10 " target="_blank" >}}
+{{< picture 
+  src="featured-writingsos.png"
+  title="WritingSos is a tutoring Site for writers"
+  alt="Screenshot of writingsos.com"
+  link="https://www.writingsos.com"
+  width=768
+  class="w-full"
+>}}
 
 {{< cta-button 
   button_label="Visit writingsos.com" 
