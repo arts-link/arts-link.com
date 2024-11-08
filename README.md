@@ -53,5 +53,11 @@ git submodule update --init --recursive # needed when you reclone your repo (sub
 - [opensrs domain reseller dashboard](https://manage.opensrs.com//#!)
 - [opensrs storefront reseller site]()
 
+### Set steps for new hosting / domain site
+
+- ideally host the site on github pages for free with their github account linked as an owner.
+- setup the domain in arts-link domains
+- setup a new host on plausible analytics
+- set up a new host on google console
 
 Talk with us: hello@arts-link.com

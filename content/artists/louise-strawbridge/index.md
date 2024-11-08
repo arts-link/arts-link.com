@@ -11,7 +11,14 @@ homeFeatureTitle = "Louise Strawbridge artist portfolio"
 homeFeatureIcon = "fa-solid fa-stamp"
 +++
 
-{{< picture src="featured_louisestrawbridge-hp.png" title="Louise Strawbridge's artist portfolio" alt="Screenshot of louisestrawbridge.com" link="https://www.louisestrawbridge.com" target="_blank" class=" " >}}
+{{< picture 
+  src="featured_louisestrawbridge-hp.png" 
+  title="Louise Strawbridge's artist portfolio" 
+  alt="Screenshot of louisestrawbridge.com" 
+  link="https://www.louisestrawbridge.com"
+  width=768
+  class="w-full"
+>}}
 
 {{< cta-button button_label="Visit louisestrawbridge.com" button_href="https://www.louisestrawbridge.com" >}}
 <!--more-->

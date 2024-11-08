@@ -16,7 +16,13 @@ homeFeatureIcon = "fa-solid fa-guitar"
 # showTOC = true
 +++
 
-{{< picture src="featured-rnkallday.png" title="Rian Kochel's artist portfolio" alt="Screenshot of rnkallday.com" link="https://www.rnkallday.com" target="_blank" class=" " >}}
+{{< picture 
+  src="featured-rnkallday.png"
+  title="Rian Kochel's artist portfolio"
+  alt="Screenshot of rnkallday.com"
+  width=768
+  class="w-full" 
+>}}
 
 
 {{< cta-button 
