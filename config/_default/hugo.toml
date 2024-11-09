@@ -9,7 +9,7 @@ theme = 'ryder-dev'
 timeZone = "America/Los_Angeles"
 title = 'arts-link.com dev'
 enableEmoji = true
-enableGitInfo = true
+enableGitInfo = false 
 [params]
   description = "⚡ Lightning-Fast Portfolios for Artists ⚡"
   isAlpha = true
@@ -17,6 +17,7 @@ enableGitInfo = true
   showDarkToggle = true
   logo_tagline = "⚡ LIGHTNING-FAST PORTFOLIOS ⚡"
   repository = "https://github.com/arts-link/arts-link.com"
+  hideAttribution = true
   showHomeTitle = true
   # homePageFeatureHeader = "Featured Sites"
   # og_image_default = "/images/sunset-mission-bay.jpg"
