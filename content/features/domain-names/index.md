@@ -24,5 +24,6 @@ When you build your website with Arts-Link, a personalized domain name is part o
 
 Arts-Link.com is an official partner of Tucows, a trusted leader in domain security and reliability.
 
+{{< cta-button button_label="Get Your Domain" button_href="https://domains.arts-link.com" >}}
 
 <!--more-->
