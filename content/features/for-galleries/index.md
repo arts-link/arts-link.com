@@ -6,6 +6,7 @@ draft = false
 homeFeature = true
 homeFeatureTitle = "For Galleries"
 homeFeatureIcon = "fa-solid fa-shop"
+hideAsideBar = true
 [menu]
  [menu.main]
   name = "Galleries"
@@ -13,7 +14,9 @@ homeFeatureIcon = "fa-solid fa-shop"
 
 +++
 
-Create a unique experience for each of your exhibitions and artists through clean, individually-branded websites.
+## Create a branded gallery website for each Artists
+
+> Create a unique experience for each of your exhibitions and artists through clean, individually-branded websites.
 
 Offer e-commerce for your artists through integrations with popular payment platforms.
 
