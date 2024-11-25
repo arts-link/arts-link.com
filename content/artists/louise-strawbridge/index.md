@@ -26,3 +26,5 @@ homeFeatureIcon = "fa-solid fa-stamp"
 [Louise Strawbridge](https://www.louisestrawbridge.com) uses a wide range of materials and textures to explore the possibilities of disturbing qualities in the commonplace. In her work, mystery is not to be solved but valued and explored.
 
 Launched in December 2023. It was a real joy for me to create this website for my mom as the first website in relaunched arts-link.com.
+
+[LouiseStrawbridge.com](https://www.louisestrawbridge.com/) was created using a modified version of the opensource [hugo Gallery Theme](https://github.com/nicokaiser/hugo-theme-gallery).

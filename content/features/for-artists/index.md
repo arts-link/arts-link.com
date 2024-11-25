@@ -14,6 +14,8 @@ homeFeatureIcon = "fa-solid fa-palette"
 
 +++
 
+> At Arts-Link, we’re here to make sure your art gets the spotlight it deserves, with the simplicity and power you need. Start creating today and let your art shine.
+
 ## Create with Ease
 
 Creating your portfolio has never been simpler. Choose from our sleek, customizable templates, upload your raw images, and let our system handle the rest. We automatically optimize your images for any device, ensuring your work looks stunning and loads lightning-fast.
@@ -42,5 +44,3 @@ Engage your audience with a professional newsletter. Collect subscribers easily 
 
 ## Host Anywhere
 Flexibility is key. Host your portfolio wherever you like, from a simple folder on your computer to a sophisticated cloud infrastructure. Or, let us take care of it with our cutting-edge hosting solutions.
-
-> At Arts-Link, we’re here to make sure your art gets the spotlight it deserves, with the simplicity and power you need. Start creating today and let your art shine.
