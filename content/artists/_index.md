@@ -12,6 +12,10 @@ hideAsideBar = true
 # featured_image = ""
 # homeFeatureIcon = ""
 # showTOC = true
+[menu]
+ [menu.main]
+  name = "Artists"
+  weight = 22
 +++
 
 
