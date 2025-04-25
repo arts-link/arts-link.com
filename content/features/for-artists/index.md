@@ -7,10 +7,7 @@ draft = false
 homeFeature = true
 homeFeatureTitle = "For Artists"
 homeFeatureIcon = "fa-solid fa-palette"
-[menu]
- [menu.main]
-  name = "Artists"
-  weight = 22
+
 
 +++
 

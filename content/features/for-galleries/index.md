@@ -7,10 +7,7 @@ homeFeature = true
 homeFeatureTitle = "For Galleries"
 homeFeatureIcon = "fa-solid fa-shop"
 hideAsideBar = true
-[menu]
- [menu.main]
-  name = "Galleries"
-  weight = 20
+
 
 +++
 
