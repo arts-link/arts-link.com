@@ -20,9 +20,9 @@ homeFeatureIcon = "fa-solid fa-stamp"
   class="w-full"
 >}}
 
-{{< cta-button button_label="Visit jillbonovitz.com" button_href="https://jillbonovitz.arts-link.com" >}}
+{{< cta-button button_label="Visit jillbonovitz.com" button_href="https://jillbonovitz.com" >}}
 <!--more-->
 
 > In wire I am creating the edges of what is not there; in clay, I am creating the essence of what is.
 
-[jillbonovitz.com](https://jillbonovitz.arts-link.com/) was created using a custom theme created by arts-link.
+[jillbonovitz.com](https://jillbonovitz.com/) was created using a custom theme created by arts-link.
