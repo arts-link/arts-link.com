@@ -20,6 +20,6 @@ homeFeatureIcon = "fa-solid fa-route"
   class="w-full"
 >}}
 
-{{< cta-button button_label="Visit lucindakindredart.com" button_href="https://www.lucindakindredart.com.com" >}}
+{{< cta-button button_label="Visit lucindakindredart.com" button_href="https://www.lucindakindredart.com" >}}
 <!--more-->
 
