@@ -22,14 +22,9 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300;1,9..144,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=optional" media="print" onload="this.onload=null;this.removeAttribute('media')">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300;1,9..144,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=optional"></noscript>
 
-  <!-- Styles (async — non-render-blocking in production) -->
-  {{- $css := resources.Get "css/main.css" | postCSS | minify | fingerprint }}
-  {{- if eq hugo.Environment "production" }}
-  <link rel="preload" as="style" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}"></noscript>
-  {{- else }}
-  <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
-  {{- end }}
+  <!-- Styles (inlined — zero render-block, zero FOUC) -->
+  {{- $css := resources.Get "css/main.css" | postCSS | minify }}
+  <style>{{ $css.Content | safeCSS }}</style>
 
   <!-- Alpine.js -->
   <script defer src="/js/alpine.min.js"></script>

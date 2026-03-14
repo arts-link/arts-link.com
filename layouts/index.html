@@ -11,23 +11,24 @@
         {{ with resources.Get "images/ben-strawbridge.jpg" }}
           {{- $img1x := .Fill "320x320 Top" }}
           {{- $img2x := .Fill "640x640 Top" }}
-          {{- $wp1x  := $img1x.Process "webp" }}
-          {{- $wp2x  := $img2x.Process "webp" }}
+          {{- $wp1x  := $img1x.Process "webp q65" }}
+          {{- $wp2x  := $img2x.Process "webp q65" }}
           <div class="w-full max-w-xs mb-4 shadow-[0_0_0_4px_#C4502A]">
             <div class="aspect-square overflow-hidden">
               <picture>
                 <source
                   type="image/webp"
                   srcset="{{ $wp1x.RelPermalink }} 320w, {{ $wp2x.RelPermalink }} 640w"
-                  sizes="320px"
+                  sizes="(max-width: 767px) 100vw, 320px"
                 >
                 <img
                   srcset="{{ $img1x.RelPermalink }} 320w, {{ $img2x.RelPermalink }} 640w"
-                  sizes="320px"
-                  src="{{ $img1x.RelPermalink }}"
+                  sizes="(max-width: 767px) 100vw, 320px"
+                  src="{{ $wp2x.RelPermalink }}"
                   alt="Ben Strawbridge"
                   width="{{ $img1x.Width }}"
                   height="{{ $img1x.Height }}"
+                  fetchpriority="high"
                   class="w-full h-full object-cover object-top"
                 >
               </picture>
