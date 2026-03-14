@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Arts-link.com is a boutique web studio site for Ben Strawbridge, offering bespoke Hugo portfolio sites for artists and bands. It uses a custom theme called "Ryder" (maintained as a git submodule) with Tailwind CSS and Alpine.js.
+Arts-link.com is a boutique web studio site for Ben Strawbridge, offering bespoke Hugo portfolio sites for artists and bands. It uses a custom theme called "Ryder" (vendored in `themes/ryder/`) with Tailwind CSS and Alpine.js.
 
 ## Site Strategy
 
@@ -15,14 +15,13 @@ The site strategy follows the framework in `docs/web-systems-adventure-mode.md`.
 ## Development Commands
 
 ```bash
-# Start local dev server (uses ryder-dev theme symlink)
+# Start local dev server
 hugo server
 
 # Build for production
 hugo --minify
 
 # Install dependencies (after cloning)
-git submodule update --init --recursive
 npm ci
 ```
 
@@ -30,7 +29,7 @@ The `ryder-dev` theme in `themes/ryder-dev/` is a symlink to `themes/ryder/` for
 
 ## Architecture
 
-**Hugo + Ryder Theme**: Most layout/template logic lives in `themes/ryder/`. The root `layouts/` directory contains only a few overrides (logo partial, font loading).
+**Hugo + Ryder Theme**: Most layout/template logic lives in `themes/ryder/`. The root `layouts/` directory contains overrides — prefer adding new or modified partials here rather than editing theme files directly.
 
 **CSS Pipeline**: Tailwind CSS is processed through PostCSS (`postcss-import` → `tailwindcss` → `autoprefixer`). Tailwind scans `hugo_stats.json` (generated at build time) for class names used in templates — this is the mechanism Hugo uses to integrate with Tailwind's content detection.
 
@@ -47,10 +46,6 @@ homeFeatureIcon = "fa-solid fa-..."      # Font Awesome icon class
 ```
 
 **Deployment**: GitHub Pages via `.github/workflows/hugo.yml` (manual trigger). Hugo v0.138.0 extended (Dart Sass support).
-
-## Theme Submodule
-
-The `themes/ryder/` directory is a git submodule. When making theme changes, you're editing a separate git repo. Run `git submodule update --init --recursive` after cloning.
 
 ## Tailwind & Styling
 
