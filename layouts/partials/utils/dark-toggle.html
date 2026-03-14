@@ -1,0 +1,19 @@
+{{/*
+  Theme-switcher buttons. Visible button indicates the current theme.
+  Cycle: light → dark → artistic → system → light …
+  JS in assets/js/themeSwitcher.js manages visibility and localStorage.
+*/}}
+<div id="themeSwitcher" class="flex justify-center mb-auto cursor-pointer text-2xl">
+  <button aria-label="Switch to Dark Theme" id="lightMode" class="p-3">
+    <i class="aspect-square fa-solid fa-sun" title="Currently Light – click for Dark"></i>
+  </button>
+  <button aria-label="Switch to Artistic Theme" id="darkMode" class="p-3">
+    <i class="aspect-square fa-solid fa-moon" title="Currently Dark – click for Artistic"></i>
+  </button>
+  <button aria-label="Switch to System Theme" id="artisticMode" class="p-3">
+    <i class="aspect-square fa-solid fa-palette" title="Currently Artistic – click for System"></i>
+  </button>
+  <button aria-label="Switch to Light Theme" id="systemMode" class="p-3">
+    <i class="aspect-square fa-solid fa-computer" title="Currently System – click for Light"></i>
+  </button>
+</div>

@@ -5,3 +5,151 @@
   text-transform: uppercase;
 } */
 
+/* ==========================================================
+   ARTISTIC / CREATIVE THEME
+   Applied when <html class="artistic"> is set by the JS theme
+   switcher (assets/js/themeSwitcher.js).
+   ========================================================== */
+
+/* Body */
+html.artistic body {
+  background-color: #fdf6e3 !important; /* warm parchment */
+  color: #3d2b1f !important;            /* rich warm charcoal */
+}
+
+/* Header – rainbow paint-stroke gradient */
+html.artistic header {
+  background: linear-gradient(
+    to right,
+    #e63946,
+    #f4a261,
+    #e9c46a,
+    #52b788,
+    #4895ef,
+    #7209b7
+  ) !important;
+  border-bottom: 3px solid rgba(255, 255, 255, 0.35) !important;
+  color: #fff !important;
+}
+
+/* Remove the paint-drip background image so the gradient shows through */
+html.artistic header .bg-paint-drip,
+html.artistic header [class*="bg-paint-drip"] {
+  background-image: none !important;
+  height: auto !important;
+  min-height: 80px;
+  background-color: transparent !important;
+}
+
+/* Logo text */
+html.artistic header h1 {
+  color: #fff !important;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4), -1px -1px 0 rgba(0, 0, 0, 0.15);
+}
+
+/* Footer – mirrors header gradient */
+html.artistic footer {
+  background: linear-gradient(
+    to right,
+    #e63946,
+    #f4a261,
+    #e9c46a,
+    #52b788,
+    #4895ef,
+    #7209b7
+  ) !important;
+  color: #fff !important;
+  border-top: 3px solid rgba(255, 255, 255, 0.35) !important;
+}
+
+html.artistic footer a,
+html.artistic footer p,
+html.artistic footer span {
+  color: #fff !important;
+}
+
+/* Navigation menu */
+html.artistic .main-menu-nav .main-menu-ul {
+  background-color: rgba(253, 246, 227, 0.95) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+html.artistic .main-menu-nav .main-menu-ul > li {
+  border-bottom-color: #e63946 !important;
+}
+
+html.artistic .main-menu-nav .main-menu-ul > li a {
+  color: #3d2b1f !important;
+}
+
+html.artistic .main-menu-nav .main-menu-ul > li a:hover,
+html.artistic .main-menu-nav .main-menu-ul li .active,
+html.artistic .main-menu-nav .main-menu-ul li .ancestor {
+  color: #e63946 !important;
+}
+
+/* Headings – use Chalkduster for a hand-crafted feel.
+   The @font-face for Chalkduster is declared in layouts/partials/head/fonts.html
+   and the font file ships at static/fonts/Chalkduster.ttf. */
+html.artistic h1,
+html.artistic h2,
+html.artistic h3 {
+  font-family: 'Chalkduster', sans-serif;
+}
+
+html.artistic h2 {
+  color: #e63946;
+}
+
+html.artistic h3 {
+  color: #7209b7;
+}
+
+/* Homepage feature headings */
+html.artistic .hpContent h2 {
+  background: linear-gradient(
+    to right,
+    #e63946,
+    #f4a261,
+    #e9c46a,
+    #52b788
+  ) !important;
+  color: #fff !important;
+}
+
+/* Article body */
+html.artistic .articleBody {
+  background-color: rgba(253, 246, 227, 0.7);
+  border-radius: 8px;
+}
+
+/* Prose typography variables */
+html.artistic .prose {
+  --tw-prose-body: #3d2b1f;
+  --tw-prose-headings: #e63946;
+  --tw-prose-links: #4895ef;
+  --tw-prose-bold: #3d2b1f;
+  --tw-prose-counters: #7209b7;
+  --tw-prose-bullets: #7209b7;
+  --tw-prose-hr: #e9c46a;
+  --tw-prose-quotes: #e63946;
+  --tw-prose-quote-borders: #f4a261;
+  --tw-prose-code: #7209b7;
+  --tw-prose-pre-bg: #3d2b1f;
+}
+
+/* Links in main content */
+html.artistic main a {
+  color: #4895ef !important;
+}
+
+html.artistic main a:hover {
+  color: #e63946 !important;
+  text-decoration: underline;
+}
+
+/* Highlight the palette icon when artistic mode is active */
+html.artistic #artisticMode i {
+  color: #e63946;
+}
+

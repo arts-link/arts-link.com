@@ -1,4 +1,24 @@
 {{/*  add your custom font links here, google fonts or etc.  */}}
+{{/*
+  Inline theme-init script – must run synchronously (no defer/async) so the
+  correct theme class is applied to <html> before any CSS is painted, which
+  prevents a flash of the wrong theme on page load.
+*/}}
+<script>
+  (function () {
+    var t = localStorage.theme;
+    if (t === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else if (t === 'artistic') {
+      document.documentElement.classList.add('artistic');
+    } else if (!t) {
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.classList.add('dark');
+      }
+    }
+    // 'light' is the default – no class needed
+  })();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <!-- async CSS (optionally increase loading priority with fetchpriority="high") -->
