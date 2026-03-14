@@ -11,11 +11,13 @@
         {{ with resources.Get "images/ben-strawbridge.jpg" }}
           {{ $img := .Fill "600x600 Top" }}
           {{ $webp := $img.Process "webp" }}
-          <div class="w-full aspect-square overflow-hidden mb-4 max-w-xs">
-            <picture>
-              <source srcset="{{ $webp.RelPermalink }}" type="image/webp">
-              <img src="{{ $img.RelPermalink }}" alt="Ben Strawbridge" class="w-full h-full object-cover object-top">
-            </picture>
+          <div class="w-full max-w-xs mb-4 shadow-[0_0_0_4px_#C4502A]">
+            <div class="aspect-square overflow-hidden">
+              <picture>
+                <source srcset="{{ $webp.RelPermalink }}" type="image/webp">
+                <img src="{{ $img.RelPermalink }}" alt="Ben Strawbridge" class="w-full h-full object-cover object-top">
+              </picture>
+            </div>
           </div>
         {{ end }}
         <p class="text-cream/30 text-xs uppercase tracking-widest">Ben Strawbridge</p>
