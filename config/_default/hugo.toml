@@ -1,11 +1,10 @@
 baseURL = 'https://www.arts-link.com/'
 copyright = "© arts-link.com ⚡"
 enableRobotsTXT = true
+disableKinds = ["taxonomy", "term"]
 languageCode = "en-us"
 # sectionPagesMenu = "main"
 summaryLength = 25
-# theme = 'ryder-dev'
-theme = 'ryder'
 timeZone = "America/Los_Angeles"
 title = 'arts-link.com dev'
 enableEmoji = true

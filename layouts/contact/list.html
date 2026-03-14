@@ -1,0 +1,39 @@
+{{ define "main" }}
+
+  <div class="min-h-[85vh] flex flex-col md:flex-row">
+
+    <!-- Left panel -->
+    <div class="md:w-2/5 bg-ink-light px-8 md:px-14 py-24 flex flex-col justify-between">
+      <div>
+        <p class="text-ember text-xs tracking-[0.3em] uppercase mb-8">Get in touch</p>
+        <h1 class="font-display text-4xl md:text-5xl text-cream font-light mb-8 leading-snug">
+          Let's talk about your project.
+        </h1>
+        <p class="text-cream/50 leading-relaxed mb-14">
+          I'm Ben Strawbridge. I work one-on-one with artists and bands. Send me a message and I'll get back to you personally — usually within a day or two.
+        </p>
+        <div>
+          <p class="text-cream/25 text-xs uppercase tracking-widest mb-3">Direct email</p>
+          <a href="mailto:hello@arts-link.com" class="text-cream hover:text-ember transition-colors text-sm">
+            hello@arts-link.com
+          </a>
+        </div>
+      </div>
+
+      <div class="mt-16">
+        <div class="w-8 h-[1px] bg-ember mb-6"></div>
+        <p class="text-cream/25 text-sm leading-relaxed">
+          Based in Philadelphia, PA.<br>
+          Working with artists everywhere.
+        </p>
+      </div>
+    </div>
+
+    <!-- Right panel: form -->
+    <div class="md:w-3/5 px-8 md:px-14 py-24">
+      {{ partial "modules/contact-form.html" . }}
+    </div>
+
+  </div>
+
+{{ end }}
