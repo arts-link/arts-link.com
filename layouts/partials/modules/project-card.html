@@ -3,7 +3,7 @@
   <!-- Image -->
   <a href="{{ .RelPermalink }}" class="block aspect-video overflow-hidden bg-[#252220]">
     {{ with .Resources.GetMatch "screenshot*" }}
-      {{ $img := .Fill "800x500 Top" }}
+      {{ $img := .Fill "1440x900 Top" }}
       {{ $webp := $img.Process "webp" }}
       <picture>
         <source srcset="{{ $webp.RelPermalink }}" type="image/webp">
