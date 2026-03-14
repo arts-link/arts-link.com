@@ -4,12 +4,16 @@
   <a href="{{ .RelPermalink }}" class="block aspect-video overflow-hidden bg-[#252220]">
     {{ with .Resources.GetMatch "screenshot*" }}
       {{ $img := .Fill "800x500 Top" }}
-      <img
-        src="{{ $img.RelPermalink }}"
-        alt="{{ $.Title }}"
-        class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
-        loading="lazy"
-      >
+      {{ $webp := $img.Process "webp" }}
+      <picture>
+        <source srcset="{{ $webp.RelPermalink }}" type="image/webp">
+        <img
+          src="{{ $img.RelPermalink }}"
+          alt="{{ $.Title }}"
+          class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+          loading="lazy"
+        >
+      </picture>
     {{ else }}
       <div class="w-full h-full flex items-center justify-center">
         <span class="text-cream/15 text-sm font-body">{{ .Title }}</span>
