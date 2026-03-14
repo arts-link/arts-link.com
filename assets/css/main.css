@@ -1,0 +1,294 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #141210;
+    color: #F5F0E8;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Fraunces', Georgia, serif;
+  }
+
+  ::selection {
+    background-color: #C4502A;
+    color: #F5F0E8;
+  }
+}
+
+@layer utilities {
+  /* Film grain overlay */
+  .grain {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Hero entrance animations */
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(1.5rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-hero {
+    animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+  }
+
+  .delay-100 { animation-delay: 100ms; }
+  .delay-250 { animation-delay: 250ms; }
+  .delay-400 { animation-delay: 400ms; }
+  .delay-550 { animation-delay: 550ms; }
+  .delay-700 { animation-delay: 700ms; }
+
+  /* Project card lift */
+  .card-hover {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  }
+
+  .card-hover:hover {
+    transform: translateY(-5px) rotate(0.3deg);
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* ─── Light Theme ──────────────────────────────────────────────────────────── */
+
+html.light body {
+  background-color: #F5F0E8;
+  color: #141210;
+}
+
+html.light .grain {
+  opacity: 0.015;
+}
+
+/* Header */
+html.light header {
+  background-color: rgba(245, 240, 232, 0.97) !important;
+  border-bottom-color: rgba(20, 18, 16, 0.1) !important;
+}
+
+html.light header a {
+  color: rgba(20, 18, 16, 0.65);
+}
+
+html.light header a:hover {
+  color: #141210;
+}
+
+html.light header a.font-display {
+  color: #141210;
+}
+
+html.light header .border-ember {
+  color: #141210 !important;
+}
+
+html.light header button {
+  color: rgba(20, 18, 16, 0.5);
+}
+
+html.light header button:hover {
+  color: #141210;
+}
+
+/* Mobile menu overlay */
+html.light .bg-ink {
+  background-color: #F5F0E8 !important;
+}
+
+html.light .border-cream\/5 {
+  border-color: rgba(20, 18, 16, 0.08) !important;
+}
+
+html.light .border-cream\/10 {
+  border-color: rgba(20, 18, 16, 0.1) !important;
+}
+
+/* Project cards */
+html.light article.group {
+  background-color: #E8E3D9 !important;
+}
+
+html.light article.group .bg-\[\#252220\],
+html.light article.group [class*="bg-ink"] {
+  background-color: #D8D2C8 !important;
+}
+
+/* Body text */
+html.light .text-cream {
+  color: #141210 !important;
+}
+
+html.light .text-cream\/70 { color: rgba(20, 18, 16, 0.7) !important; }
+html.light .text-cream\/60 { color: rgba(20, 18, 16, 0.6) !important; }
+html.light .text-cream\/55 { color: rgba(20, 18, 16, 0.55) !important; }
+html.light .text-cream\/50 { color: rgba(20, 18, 16, 0.5) !important; }
+html.light .text-cream\/40 { color: rgba(20, 18, 16, 0.4) !important; }
+html.light .text-cream\/35 { color: rgba(20, 18, 16, 0.35) !important; }
+html.light .text-cream\/30 { color: rgba(20, 18, 16, 0.3) !important; }
+html.light .text-cream\/25 { color: rgba(20, 18, 16, 0.25) !important; }
+html.light .text-cream\/20 { color: rgba(20, 18, 16, 0.2) !important; }
+html.light .text-cream\/15 { color: rgba(20, 18, 16, 0.15) !important; }
+
+/* About photo placeholder */
+html.light .bg-ink-light {
+  background-color: #E0D9CF !important;
+}
+
+html.light .border-cream\/10 {
+  border-color: rgba(20, 18, 16, 0.1) !important;
+}
+
+/* Footer */
+html.light footer {
+  border-top-color: rgba(20, 18, 16, 0.1) !important;
+}
+
+/* Section dividers */
+html.light .border-t {
+  border-top-color: rgba(20, 18, 16, 0.08);
+}
+
+/* Selection */
+html.light ::selection {
+  background-color: #C4502A;
+  color: #F5F0E8;
+}
+
+/* Active light icon tint */
+html.light #icon-light {
+  color: #C4502A;
+}
+
+/* ─── Artistic Theme ───────────────────────────────────────────────────────── */
+
+html.artistic {
+  color-scheme: dark;
+}
+
+html.artistic body {
+  background: linear-gradient(135deg, #1a0533 0%, #2d1b69 40%, #11348a 100%);
+  background-attachment: fixed;
+  color: #f0e6ff;
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+html.artistic .grain {
+  opacity: 0.025;
+}
+
+/* Headings: rainbow gradient text */
+html.artistic h1,
+html.artistic h2,
+html.artistic h3,
+html.artistic h4 {
+  background: linear-gradient(90deg, #ff6ec7, #ffa040, #ffee55, #4fffb0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-style: italic;
+}
+
+/* Header */
+html.artistic header {
+  background: linear-gradient(90deg, rgba(59,7,100,0.97) 0%, rgba(124,58,237,0.97) 50%, rgba(219,39,119,0.97) 100%) !important;
+  border-bottom-color: rgba(251, 191, 36, 0.4) !important;
+}
+
+html.artistic header a {
+  color: rgba(245, 208, 254, 0.75);
+}
+
+html.artistic header a:hover {
+  color: #f5d0fe;
+}
+
+html.artistic header a.font-display {
+  background: linear-gradient(90deg, #ff6ec7, #fbbf24);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+html.artistic header button {
+  color: rgba(245, 208, 254, 0.55);
+}
+
+html.artistic header button:hover {
+  color: #f5d0fe;
+}
+
+/* Mobile menu */
+html.artistic .bg-ink {
+  background: #1a0533 !important;
+}
+
+html.artistic .border-cream\/5 {
+  border-color: rgba(251, 191, 36, 0.15) !important;
+}
+
+/* Project cards */
+html.artistic article.group {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(167, 139, 250, 0.25);
+  backdrop-filter: blur(4px);
+}
+
+html.artistic .text-cream { color: #ede9fe !important; }
+html.artistic .text-cream\/70 { color: rgba(237, 233, 254, 0.7) !important; }
+html.artistic .text-cream\/60 { color: rgba(237, 233, 254, 0.6) !important; }
+html.artistic .text-cream\/55 { color: rgba(237, 233, 254, 0.55) !important; }
+html.artistic .text-cream\/50 { color: rgba(237, 233, 254, 0.5) !important; }
+html.artistic .text-cream\/40 { color: rgba(237, 233, 254, 0.4) !important; }
+html.artistic .text-cream\/35 { color: rgba(237, 233, 254, 0.35) !important; }
+html.artistic .text-cream\/30 { color: rgba(237, 233, 254, 0.3) !important; }
+html.artistic .text-cream\/25 { color: rgba(237, 233, 254, 0.25) !important; }
+html.artistic .text-cream\/15 { color: rgba(237, 233, 254, 0.15) !important; }
+
+html.artistic .text-ember { color: #fbbf24 !important; }
+html.artistic .border-ember { border-color: #fbbf24 !important; }
+html.artistic .hover\:bg-ember:hover { background-color: rgba(251,191,36,0.2) !important; }
+
+/* Footer */
+html.artistic footer {
+  background: linear-gradient(90deg, #3b0764 0%, #7c3aed 50%, #db2777 100%) !important;
+  border-top-color: rgba(251, 191, 36, 0.3) !important;
+}
+
+html.artistic footer .text-cream\/25 { color: rgba(245, 208, 254, 0.4) !important; }
+html.artistic footer .text-cream\/40 { color: rgba(245, 208, 254, 0.55) !important; }
+html.artistic footer .text-cream\/50 { color: rgba(245, 208, 254, 0.65) !important; }
+
+html.artistic footer .border-cream\/5 {
+  border-color: rgba(251, 191, 36, 0.15) !important;
+}
+
+/* Active artistic icon tint */
+html.artistic #icon-artistic {
+  color: #fbbf24;
+}
+
+::selection {
+  background-color: #C4502A;
+  color: #F5F0E8;
+}
