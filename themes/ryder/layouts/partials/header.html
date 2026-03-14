@@ -1,0 +1,42 @@
+{{/* 
+Set variables in either hugo.toml OR front matter to configure you header. 
+By default it will have a background gradient in cayan.
+*/}}
+{{/*  make sure to remember you point tailwind.config.js to your config file  */}}
+{{- $headerClass := split "" " " -}} 
+{{- $headerBackgroundFrameInner := "" -}}
+{{- with or (.Param "twClasses.headerBackgroundFrameOuter") (.Param "headerGradientClasses") -}}
+    {{- $headerClass = split . " " -}}
+{{- end -}}
+{{/*  {{ $headerClass }}  */}}
+{{- with .Param "twClasses.navbar_fixed" -}}
+{{- $headerClass = $headerClass | append . -}}
+{{- end -}}
+{{- $headerClass = delimit $headerClass " " -}}
+{{- with .Param "twClasses.headerBackgroundFrameInner" -}}
+{{- $headerBackgroundFrameInner = . -}}
+{{- end -}}
+<header class=" w-full {{ $headerClass }}">
+<div class=" m-3 rounded-lg flex flex-row {{ $headerBackgroundFrameInner }}">
+    <div class="mr-auto relative">
+        {{- partial "logo.html" . -}}
+    </div>
+    <div class="ml-auto flex relative " x-data="{ openMenu : false }"  @click.away="openMenu = false">
+        <!-- navbar toggler -->
+        {{/*  <input id="nav-toggle" type="checkbox" class="hidden" />  */}}
+        <button
+            aria-label="Toggle Menu"
+            class="absolute right-0 z-50 cursor-pointer md:hidden p-3 text-[#17729C] bg-neutral-200 rounded-full "
+            @click="openMenu = ! openMenu">
+            <div x-bind:class="openMenu ? 'hidden' : 'visible'" class="flex flex-col text-xs"><i class="size-8 text-2xl fas fa-bars"></i></div>
+            <div x-bind:class="openMenu ? 'visible' : 'hidden'" class="flex flex-col text-xs"><i class="size-8 text-2xl fas fa-xmark"></i></div>
+        </button>
+        {{/*  <span x-text="openMenu"></span>  */}}
+        <div id="nav-menu"  x-bind:class="{ 'hidden': !openMenu, 'inline': openMenu }"
+            class="ml-auto absolute top-20 right-0 md:inline md:relative md:top-auto md:left-auto md:right-0 text-xl ">
+            {{ $menuType := .Param "menuType" | default "" }}
+            {{- partial (printf "menu%s.html" $menuType) (dict "menuID" "main" "page" . "shade" "rose") -}}
+        </div>
+    </div>
+</div>
+</header>
