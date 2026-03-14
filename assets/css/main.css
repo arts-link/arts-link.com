@@ -3,13 +3,31 @@
 @tailwind utilities;
 
 @layer base {
+  /* Dark mode palette (default) */
+  :root {
+    --color-ink:        20 18 16;
+    --color-ink-light:  30 27 24;
+    --color-cream:      245 240 232;
+    --color-ember:      196 80 42;
+    --color-ember-light: 212 98 46;
+  }
+
+  /* Light mode palette */
+  html.light {
+    --color-ink:        247 243 236;
+    --color-ink-light:  237 231 220;
+    --color-cream:      26 23 20;
+    --color-ember:      196 80 42;
+    --color-ember-light: 212 98 46;
+  }
+
   html {
     scroll-behavior: smooth;
   }
 
   body {
-    background-color: #141210;
-    color: #F5F0E8;
+    background-color: rgb(var(--color-ink));
+    color: rgb(var(--color-cream));
     font-family: 'DM Sans', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -20,9 +38,20 @@
   }
 
   ::selection {
-    background-color: #C4502A;
-    color: #F5F0E8;
+    background-color: rgb(var(--color-ember));
+    color: rgb(var(--color-cream));
   }
+}
+
+/* Smooth theme transition — class applied briefly during switch */
+html.theme-transitioning,
+html.theme-transitioning *,
+html.theme-transitioning *::before,
+html.theme-transitioning *::after {
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease,
+    border-color 0.35s ease !important;
 }
 
 @layer utilities {

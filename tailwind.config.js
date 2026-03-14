@@ -11,15 +11,15 @@ module.exports = {
     extend: {
       colors: {
         ink: {
-          DEFAULT: '#141210',
-          light: '#1E1B18',
+          DEFAULT: 'rgb(var(--color-ink) / <alpha-value>)',
+          light: 'rgb(var(--color-ink-light) / <alpha-value>)',
         },
         cream: {
-          DEFAULT: '#F5F0E8',
+          DEFAULT: 'rgb(var(--color-cream) / <alpha-value>)',
         },
         ember: {
-          DEFAULT: '#C4502A',
-          light: '#D4622E',
+          DEFAULT: 'rgb(var(--color-ember) / <alpha-value>)',
+          light: 'rgb(var(--color-ember-light) / <alpha-value>)',
         },
       },
       fontFamily: {
