@@ -28,8 +28,12 @@
     <!-- Screenshot -->
     {{ with .Resources.GetMatch "screenshot*" }}
       {{ $img := .Resize "1200x" }}
+      {{ $webp := $img.Process "webp" }}
       <figure class="mb-16 -mx-6 md:-mx-20">
-        <img src="{{ $img.RelPermalink }}" alt="{{ $.Title }}" class="w-full" loading="lazy">
+        <picture>
+          <source srcset="{{ $webp.RelPermalink }}" type="image/webp">
+          <img src="{{ $img.RelPermalink }}" alt="{{ $.Title }}" class="w-full" loading="lazy">
+        </picture>
       </figure>
     {{ end }}
 

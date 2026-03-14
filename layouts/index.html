@@ -8,10 +8,16 @@
 
       <!-- Photo -->
       <div class="flex flex-col items-start">
-        <!-- Replace src with your photo once available -->
-        <div class="w-full aspect-square bg-ink-light border border-cream/10 flex items-center justify-center mb-4 max-w-xs">
-          <span class="font-display italic text-5xl text-cream/20">BS</span>
-        </div>
+        {{ with resources.Get "images/ben-strawbridge.jpg" }}
+          {{ $img := .Fill "600x600 Top" }}
+          {{ $webp := $img.Process "webp" }}
+          <div class="w-full aspect-square overflow-hidden mb-4 max-w-xs">
+            <picture>
+              <source srcset="{{ $webp.RelPermalink }}" type="image/webp">
+              <img src="{{ $img.RelPermalink }}" alt="Ben Strawbridge" class="w-full h-full object-cover object-top">
+            </picture>
+          </div>
+        {{ end }}
         <p class="text-cream/30 text-xs uppercase tracking-widest">Ben Strawbridge</p>
         <p class="text-cream/25 text-xs">Los Angeles, CA</p>
       </div>
