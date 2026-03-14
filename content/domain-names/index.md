@@ -1,7 +1,7 @@
 +++
 title = 'Domain Names'
 date = 2024-11-06T19:52:30-08:00
-# draft = true
+draft = true
 # I like this by default now... keeps the page full width with tags below.
 hideAsideBar = true
 # summary = ""

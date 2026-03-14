@@ -1,0 +1,62 @@
+{{ define "main" }}
+
+  {{ partial "modules/hero.html" . }}
+
+  <!-- About -->
+  <section class="border-t border-cream/10">
+    <div class="max-w-6xl mx-auto px-6 py-24 grid grid-cols-1 md:grid-cols-3 gap-16 items-start">
+
+      <!-- Photo -->
+      <div class="flex flex-col items-start">
+        {{ with resources.Get "images/ben-strawbridge.jpg" }}
+          {{ $img := .Fill "600x600 Top" }}
+          {{ $webp := $img.Process "webp" }}
+          <div class="w-full aspect-square overflow-hidden mb-4 max-w-xs">
+            <picture>
+              <source srcset="{{ $webp.RelPermalink }}" type="image/webp">
+              <img src="{{ $img.RelPermalink }}" alt="Ben Strawbridge" class="w-full h-full object-cover object-top">
+            </picture>
+          </div>
+        {{ end }}
+        <p class="text-cream/30 text-xs uppercase tracking-widest">Ben Strawbridge</p>
+        <p class="text-cream/25 text-xs">Los Angeles, CA</p>
+      </div>
+
+      <!-- Text -->
+      <div class="md:col-span-2 space-y-5 pt-2">
+        <p class="text-cream/30 text-xs uppercase tracking-widest mb-6">The studio</p>
+        <p class="font-display text-2xl md:text-3xl text-cream font-light leading-snug mb-8">
+          I'm Ben Strawbridge — a web builder for the arts. I work one-on-one with artists and bands to create sites that are fast, personal, and permanent.
+        </p>
+        <p class="text-cream/55 leading-relaxed">
+          The big platforms are built for volume — thousands of sites on shared templates, with your content locked inside their system. I do the opposite. Every site I build is custom, yours to keep, and free from monthly platform fees — whether I manage it for you or hand it off entirely.
+        </p>
+        <p class="text-cream/55 leading-relaxed">
+          I'm also a rescue service. If your host shut down, your CMS is outdated, or you're paying too much for a site you don't love — I can fix that.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Work preview -->
+  {{ $work := where .Site.RegularPages "Section" "work" }}
+  {{ if $work }}
+  <section class="max-w-6xl mx-auto px-6 pb-24">
+    <div class="flex items-baseline justify-between mb-12">
+      <h2 class="font-display text-3xl md:text-4xl text-cream font-light">Selected work</h2>
+      <a href="/work/" class="text-ember text-sm hover:underline tracking-wide">All projects →</a>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {{ range first 3 $work }}
+        {{ partial "modules/project-card.html" . }}
+      {{ end }}
+    </div>
+  </section>
+  {{ end }}
+
+  {{ partial "modules/service-block.html" . }}
+
+  {{ partial "modules/cta-block.html" . }}
+
+{{ end }}

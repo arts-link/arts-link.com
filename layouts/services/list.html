@@ -1,0 +1,68 @@
+{{ define "main" }}
+
+  <div class="max-w-6xl mx-auto px-6 pt-16">
+    <header class="mb-4">
+      <p class="text-ember text-xs tracking-[0.3em] uppercase mb-4">What I do</p>
+      <h1 class="font-display text-5xl md:text-7xl text-cream font-light">Services</h1>
+    </header>
+  </div>
+
+  {{ partial "modules/service-block.html" . }}
+
+  <!-- Who it's for -->
+  <section class="border-t border-cream/10">
+    <div class="max-w-6xl mx-auto px-6 py-24">
+      <h2 class="font-display text-3xl md:text-4xl text-cream font-light mb-16">Who I work with</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div>
+          <div class="w-8 h-[2px] bg-ember mb-8"></div>
+          <h3 class="font-display text-xl text-cream font-light mb-3">Visual artists</h3>
+          <p class="text-cream/50 leading-relaxed text-sm">Painters, sculptors, photographers, printmakers. Portfolio sites that let your work breathe.</p>
+        </div>
+        <div>
+          <div class="w-8 h-[2px] bg-ember mb-8"></div>
+          <h3 class="font-display text-xl text-cream font-light mb-3">Bands &amp; musicians</h3>
+          <p class="text-cream/50 leading-relaxed text-sm">Gig listings, press kits, music embeds, and a home base that you actually own.</p>
+        </div>
+        <div>
+          <div class="w-8 h-[2px] bg-ember mb-8"></div>
+          <h3 class="font-display text-xl text-cream font-light mb-3">Site rescues &amp; managed clients</h3>
+          <p class="text-cream/50 leading-relaxed text-sm">Anyone paying too much for a platform they hate, or who just wants someone to handle the technical side entirely.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="border-t border-cream/10">
+    <div class="max-w-6xl mx-auto px-6 py-24">
+      <h2 class="font-display text-3xl md:text-4xl text-cream font-light mb-16">How it works</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
+        {{ range $i, $step := slice "We talk about your project — what you need, what you have, what you want." "I design and build the site, checking in with you along the way." "We launch. I teach you how to update content yourself." "You own everything. I'm available when you need me." }}
+        <div>
+          <p class="text-ember text-xs uppercase tracking-widest mb-5">0{{ add $i 1 }}</p>
+          <p class="text-cream/55 leading-relaxed text-sm">{{ . }}</p>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+
+  <!-- Domain names -->
+  <section class="border-t border-cream/10">
+    <div class="max-w-6xl mx-auto px-6 py-24 flex flex-col md:flex-row justify-between items-start gap-8">
+      <div>
+        <h2 class="font-display text-2xl text-cream font-light mb-3">Domain names</h2>
+        <p class="text-cream/45 max-w-lg text-sm leading-relaxed">
+          Need a domain? I run a domain reseller store with competitive pricing. Getting the right domain is the first step for any new site.
+        </p>
+      </div>
+      <a href="https://domains.arts-link.com" target="_blank" rel="noopener noreferrer" class="shrink-0 text-cream text-sm tracking-widest uppercase px-8 py-4 border border-cream/20 hover:border-ember transition-colors duration-200">
+        Browse domains ↗
+      </a>
+    </div>
+  </section>
+
+  {{ partial "modules/cta-block.html" . }}
+
+{{ end }}
