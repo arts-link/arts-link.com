@@ -3,12 +3,20 @@
   <!-- Image -->
   <a href="{{ .RelPermalink }}" class="block aspect-video overflow-hidden bg-[#252220]">
     {{ with .Resources.GetMatch "screenshot*" }}
-      {{ $img := .Fill "1440x900 Top" }}
-      {{ $webp := $img.Process "webp" }}
+      {{- $sm   := .Fill "480x270 Top" }}
+      {{- $md   := .Fill "800x450 Top" }}
+      {{- $smWp := $sm.Process "webp" }}
+      {{- $mdWp := $md.Process "webp" }}
       <picture>
-        <source srcset="{{ $webp.RelPermalink }}" type="image/webp">
+        <source
+          type="image/webp"
+          srcset="{{ $smWp.RelPermalink }} 480w, {{ $mdWp.RelPermalink }} 800w"
+          sizes="(max-width: 767px) calc(100vw - 3rem), (max-width: 1023px) calc(50vw - 2.25rem), 33vw"
+        >
         <img
-          src="{{ $img.RelPermalink }}"
+          srcset="{{ $sm.RelPermalink }} 480w, {{ $md.RelPermalink }} 800w"
+          sizes="(max-width: 767px) calc(100vw - 3rem), (max-width: 1023px) calc(50vw - 2.25rem), 33vw"
+          src="{{ $sm.RelPermalink }}"
           alt="{{ $.Title }}"
           class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
           loading="lazy"
