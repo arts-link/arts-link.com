@@ -14,6 +14,10 @@ site_system:
     - name: Site Rescue
       description: Migration from dying or expensive CMS to modern static hosting.
                    Cut recurring fees, learn to own your content.
+    - name: Ongoing Management
+      description: >
+        À la carte hosting, deployment, domain, and content management.
+        Available to existing clients only — not a standalone service.
 
   page_inventory:
     - name: Home
