@@ -1,0 +1,54 @@
+<form
+  action="https://formspree.io/f/{{ .Site.Params.formspree_id }}"
+  method="POST"
+  class="flex flex-col gap-10"
+>
+
+  <div>
+    <label for="name" class="block text-xs uppercase tracking-widest text-cream/35 mb-4">Your name</label>
+    <input
+      type="text"
+      id="name"
+      name="name"
+      required
+      autocomplete="name"
+      class="w-full bg-transparent border-b border-cream/20 pb-4 text-cream text-lg focus:border-ember focus:outline-none transition-colors placeholder:text-cream/20"
+      placeholder="First Last"
+    >
+  </div>
+
+  <div>
+    <label for="email" class="block text-xs uppercase tracking-widest text-cream/35 mb-4">Email address</label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      required
+      autocomplete="email"
+      class="w-full bg-transparent border-b border-cream/20 pb-4 text-cream text-lg focus:border-ember focus:outline-none transition-colors placeholder:text-cream/20"
+      placeholder="you@example.com"
+    >
+  </div>
+
+  <div>
+    <label for="message" class="block text-xs uppercase tracking-widest text-cream/35 mb-4">Tell me about your project</label>
+    <textarea
+      id="message"
+      name="message"
+      rows="7"
+      required
+      class="w-full bg-transparent border-b border-cream/20 pb-4 text-cream focus:border-ember focus:outline-none transition-colors resize-none placeholder:text-cream/20"
+      placeholder="I'm a painter based in Philadelphia looking for a new portfolio site..."
+    ></textarea>
+  </div>
+
+  <div>
+    <button
+      type="submit"
+      class="text-cream text-sm tracking-widest uppercase px-10 py-4 border border-ember hover:bg-ember transition-colors duration-200 cursor-pointer"
+    >
+      Send message →
+    </button>
+  </div>
+
+</form>

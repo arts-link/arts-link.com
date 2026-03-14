@@ -1,0 +1,119 @@
+site_system:
+  keystone_metrics:
+    primary: New clients onboarded
+    secondary: Revenue
+
+  positioning: >
+    Boutique web studio for artists and bands. Bespoke, personal,
+    no lock-in. You own your site. Real person, real conversation.
+    Starting from $1,000.
+
+  services:
+    - name: New Site
+      description: Custom Hugo portfolio built for your work. Fast, free hosting, yours to keep.
+    - name: Site Rescue
+      description: Migration from dying or expensive CMS to modern static hosting.
+                   Cut recurring fees, learn to own your content.
+
+  page_inventory:
+    - name: Home
+      type: Collector/Converter
+      target_action: Click "Work with me" CTA
+      metric: CTA click-through to Contact
+
+    - name: Work
+      type: Collector
+      target_action: Route to Contact
+      metric: Contact page visits from Work
+      notes: >
+        Portfolio of sites built — Louise Strawbridge, Cindy Kindred,
+        road trip site, grandfather photography, Jill Bonovitz (rescue story),
+        bands TBD. Each entry should name the service type (new vs rescue).
+
+    - name: Services
+      type: Collector
+      target_action: Route to Contact
+      metric: Contact page visits from Services
+      notes: >
+        Describe New Site and Site Rescue. "Starting from $1,000" as
+        a signal, not a full pricing table. No pricing page.
+
+    - name: Contact
+      type: Converter
+      target_action: Form submission
+      metric: Form completions
+      notes: One job. No nav distractions. Simple form.
+
+  pages_cut:
+    - Features (absorbed into Services)
+    - Domain Names (link to tucows store, not a full page)
+    - Resources (dead weight)
+    - About (absorbed into Home or a section on Contact)
+
+  about_strategy: >
+    Ben's name and face go on the site. The pitch is "you get a real
+    person" — that only works if there's a person visible. Short bio
+    woven into Home or a minimal About section, not a separate page.
+
+  nav:
+    primary_links:
+      - Work
+      - Services
+      - Contact
+
+  footer:
+    sections:
+      - Links (Work, Services, Contact)
+      - Domain reseller link (external)
+    final_cta: "Ready to talk? Get in touch."
+
+  conversion_flow:
+    steps:
+      - Land on Home, understand the offer and the person behind it
+      - Browse Work to see quality and range
+      - Read Services to understand what's available and rough cost
+      - Hit Contact and submit
+      - Ben follows up personally
+    friction_points:
+      - Contact form should be minimal (name, email, tell me about your project)
+      - No pricing page debate needed — remove that decision point
+
+  architecture:
+    frontend: Hugo (no theme — layouts built directly in root layouts/ with Tailwind + Alpine.js)
+    cms: Markdown + Hugo front matter
+    hosting: Vercel (migrating from GitHub Pages)
+    form_handler: Formspree (connected to Contact page)
+    seo_strategy: Static HTML, fast load, artist/band name targeting
+    performance_monitoring: Plausible Analytics
+
+  content_model:
+    work_entries:
+      required:
+        - client_name
+        - site_type: new | rescue
+        - client_type: visual artist | band | photographer | other
+        - image
+        - live_url
+      optional:
+        - case_study: true/false (enables full case study page)
+        - story: short narrative for case study pages
+      notes: >
+        Card grid by default. Projects with case_study: true get their
+        own page. Jill Bonovitz is the first case study candidate (rescue story).
+
+  modules:
+    workhorse:
+      - Hero (headline, sub, CTA — Home page opener)
+      - Project card (image, name, type badge, live site link)
+      - Service block (name, description, used on Services page)
+      - CTA block (reusable strip — "Ready to talk?" — used on Home and Services)
+      - Contact form (Formspree, minimal fields: name, email, project description)
+    showstopper: []
+    high_touch: []
+
+  analytics:
+    primary_events:
+      - Contact form submission (keystone)
+      - CTA clicks from Home and Services
+    funnel_definition: >
+      Home → Work or Services → Contact → Submission

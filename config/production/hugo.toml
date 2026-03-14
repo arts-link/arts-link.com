@@ -1,6 +1,4 @@
 title = 'ARTS-LINK'
-theme = 'ryder'
-
 
 [params]
   env = "production"

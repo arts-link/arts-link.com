@@ -1,0 +1,24 @@
+{{ define "main" }}
+
+  <div class="max-w-6xl mx-auto px-6 pt-16 pb-32">
+
+    <header class="mb-20">
+      <p class="text-ember text-xs tracking-[0.3em] uppercase mb-4">Portfolio</p>
+      <h1 class="font-display text-5xl md:text-7xl text-cream font-light">Work</h1>
+    </header>
+
+    {{ if .Pages }}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {{ range .Pages.ByParam "weight" }}
+        {{ partial "modules/project-card.html" . }}
+      {{ end }}
+    </div>
+    {{ else }}
+    <p class="text-cream/30 text-lg">Projects coming soon.</p>
+    {{ end }}
+
+  </div>
+
+  {{ partial "modules/cta-block.html" . }}
+
+{{ end }}
