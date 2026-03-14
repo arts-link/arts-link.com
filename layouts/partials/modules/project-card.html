@@ -1,0 +1,47 @@
+<article class="group bg-ink-light card-hover overflow-hidden">
+
+  <!-- Image -->
+  <a href="{{ .RelPermalink }}" class="block aspect-video overflow-hidden bg-[#252220]">
+    {{ with .Resources.GetMatch "screenshot*" }}
+      {{ $img := .Fill "1440x900 Top" }}
+      {{ $webp := $img.Process "webp" }}
+      <picture>
+        <source srcset="{{ $webp.RelPermalink }}" type="image/webp">
+        <img
+          src="{{ $img.RelPermalink }}"
+          alt="{{ $.Title }}"
+          class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+          loading="lazy"
+        >
+      </picture>
+    {{ else }}
+      <div class="w-full h-full flex items-center justify-center">
+        <span class="text-cream/15 text-sm font-body">{{ .Title }}</span>
+      </div>
+    {{ end }}
+  </a>
+
+  <!-- Meta -->
+  <div class="p-6">
+    <div class="flex items-start justify-between gap-4 mb-2">
+      <h3 class="font-display text-xl text-cream font-light">{{ .Title }}</h3>
+      {{ if eq .Params.site_type "rescue" }}
+        <span class="text-xs uppercase tracking-widest text-ember border border-ember px-2 py-1 shrink-0 leading-none mt-1">Rescue</span>
+      {{ else }}
+        <span class="text-xs uppercase tracking-widest text-cream/30 border border-cream/10 px-2 py-1 shrink-0 leading-none mt-1">New site</span>
+      {{ end }}
+    </div>
+
+    <p class="text-cream/35 text-sm mb-6 capitalize">{{ .Params.client_type }}</p>
+
+    <div class="flex items-center gap-5">
+      {{ if .Params.case_study }}
+        <a href="{{ .RelPermalink }}" class="text-xs uppercase tracking-widest text-cream/50 hover:text-cream transition-colors">Read story →</a>
+      {{ end }}
+      {{ with .Params.live_url }}
+        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="text-xs uppercase tracking-widest text-cream/35 hover:text-cream transition-colors">Visit site ↗</a>
+      {{ end }}
+    </div>
+  </div>
+
+</article>

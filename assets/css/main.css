@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Dark mode palette (default) */
+  :root {
+    --color-ink:        20 18 16;
+    --color-ink-light:  30 27 24;
+    --color-cream:      245 240 232;
+    --color-ember:      196 80 42;
+    --color-ember-light: 212 98 46;
+  }
+
+  /* Light mode palette */
+  html.light {
+    --color-ink:        247 243 236;
+    --color-ink-light:  237 231 220;
+    --color-cream:      26 23 20;
+    --color-ember:      196 80 42;
+    --color-ember-light: 212 98 46;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: rgb(var(--color-ink));
+    color: rgb(var(--color-cream));
+    font-family: 'DM Sans', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Fraunces', Georgia, serif;
+  }
+
+  ::selection {
+    background-color: rgb(var(--color-ember));
+    color: rgb(var(--color-cream));
+  }
+}
+
+/* Smooth theme transition — class applied briefly during switch */
+html.theme-transitioning,
+html.theme-transitioning *,
+html.theme-transitioning *::before,
+html.theme-transitioning *::after {
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease,
+    border-color 0.35s ease !important;
+}
+
+@layer utilities {
+  /* Film grain overlay */
+  .grain {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Hero entrance animations */
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(1.5rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-hero {
+    animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+  }
+
+  .delay-100 { animation-delay: 100ms; }
+  .delay-250 { animation-delay: 250ms; }
+  .delay-400 { animation-delay: 400ms; }
+  .delay-550 { animation-delay: 550ms; }
+  .delay-700 { animation-delay: 700ms; }
+
+  /* Project card lift */
+  .card-hover {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  }
+
+  .card-hover:hover {
+    transform: translateY(-5px) rotate(0.3deg);
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+  }
+}
