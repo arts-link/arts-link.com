@@ -1,7 +1,7 @@
 +++
 title = 'Lucinda Kindred'
 date = 2025-01-20T11:39:41-08:00
-siteUrl = 'https://www.https://lucindakindredart.com/.com/'
+siteUrl = 'https://lucindakindredart.com/'
 # featured_image = ''
 hideAsideBar = true
 # draft = false
@@ -20,6 +20,6 @@ homeFeatureIcon = "fa-solid fa-route"
   class="w-full"
 >}}
 
-{{< cta-button button_label="Visit lucindakindredart.com" button_href="https://www.lucindakindredart.com.com" >}}
+{{< cta-button button_label="Visit lucindakindredart.com" button_href="https://lucindakindredart.com" >}}
 <!--more-->
 

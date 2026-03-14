@@ -1,7 +1,7 @@
 <article class="group bg-ink-light card-hover overflow-hidden">
 
   <!-- Image -->
-  <a href="{{ .Permalink }}" class="block aspect-video overflow-hidden bg-[#252220]">
+  <a href="{{ .RelPermalink }}" class="block aspect-video overflow-hidden bg-[#252220]">
     {{ with .Resources.GetMatch "screenshot*" }}
       {{ $img := .Fill "800x500 Center" }}
       <img
@@ -32,7 +32,7 @@
 
     <div class="flex items-center gap-5">
       {{ if .Params.case_study }}
-        <a href="{{ .Permalink }}" class="text-xs uppercase tracking-widest text-cream/50 hover:text-cream transition-colors">Read story →</a>
+        <a href="{{ .RelPermalink }}" class="text-xs uppercase tracking-widest text-cream/50 hover:text-cream transition-colors">Read story →</a>
       {{ end }}
       {{ with .Params.live_url }}
         <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="text-xs uppercase tracking-widest text-cream/35 hover:text-cream transition-colors">Visit site ↗</a>
