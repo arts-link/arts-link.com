@@ -37,7 +37,8 @@
   <!-- Alpine.js -->
   <script defer src="/js/alpine.min.js"></script>
 
-  <!-- Analytics (production only) -->
+  <!-- Analytics -->
+  <script defer src="/js/analytics.js"></script>
   {{ if eq hugo.Environment "production" }}
   {{ with .Site.Params.plausible_domain }}
   <script defer data-domain="{{ . }}" src="https://plausible.io/js/script.js"></script>
