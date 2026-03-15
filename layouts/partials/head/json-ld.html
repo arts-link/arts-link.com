@@ -1,0 +1,39 @@
+{{- $baseURL := strings.TrimRight "/" .Site.BaseURL -}}
+{{- $author := .Site.Params.author -}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "{{ $baseURL }}/#website",
+      "name": "{{ .Site.Title }}",
+      "url": "{{ $baseURL }}",
+      "description": "{{ .Site.Params.description }}"
+    },
+    {
+      "@type": "Organization",
+      "@id": "{{ $baseURL }}/#organization",
+      "name": "{{ .Site.Title }}",
+      "url": "{{ $baseURL }}",
+      "description": "{{ .Site.Params.description }}",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "{{ $baseURL }}/images/logo/arts-link-colors.jpg"
+      },
+      "image": "{{ $baseURL }}/images/og-default.png",
+      "email": "{{ $author.email }}",
+      "founder": { "@id": "{{ $baseURL }}/#person" },
+      "sameAs": ["https://github.com/arts-link/"]
+    },
+    {
+      "@type": "Person",
+      "@id": "{{ $baseURL }}/#person",
+      "name": "{{ $author.name }}",
+      "email": "{{ $author.email }}",
+      "url": "{{ $baseURL }}",
+      "worksFor": { "@id": "{{ $baseURL }}/#organization" }
+    }
+  ]
+}
+</script>

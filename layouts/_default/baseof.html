@@ -43,6 +43,9 @@
   <script defer data-domain="{{ . }}" src="https://plausible.io/js/script.js"></script>
   {{ end }}
   {{ end }}
+
+  <!-- Structured data (JSON-LD) -->
+  {{ partial "head/json-ld.html" . }}
 </head>
 <body>
   <div class="grain" aria-hidden="true"></div>
