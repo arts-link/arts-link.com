@@ -4,17 +4,17 @@
   <a href="{{ .RelPermalink }}" class="block aspect-video overflow-hidden bg-[#252220]">
     {{ with .Resources.GetMatch "screenshot*" }}
       {{- $sm   := .Fill "480x270 Top" }}
-      {{- $md   := .Fill "800x450 Top" }}
-      {{- $smWp := $sm.Process "webp" }}
-      {{- $mdWp := $md.Process "webp" }}
+      {{- $lg   := .Fill "700x394 Top" }}
+      {{- $smWp := $sm.Process "webp q75" }}
+      {{- $lgWp := $lg.Process "webp q75" }}
       <picture>
         <source
           type="image/webp"
-          srcset="{{ $smWp.RelPermalink }} 480w, {{ $mdWp.RelPermalink }} 800w"
+          srcset="{{ $smWp.RelPermalink }} 480w, {{ $lgWp.RelPermalink }} 700w"
           sizes="(max-width: 767px) calc(100vw - 3rem), (max-width: 1023px) calc(50vw - 2.25rem), 33vw"
         >
         <img
-          srcset="{{ $sm.RelPermalink }} 480w, {{ $md.RelPermalink }} 800w"
+          srcset="{{ $sm.RelPermalink }} 480w, {{ $lg.RelPermalink }} 700w"
           sizes="(max-width: 767px) calc(100vw - 3rem), (max-width: 1023px) calc(50vw - 2.25rem), 33vw"
           src="{{ $sm.RelPermalink }}"
           alt="{{ $.Title }}"
