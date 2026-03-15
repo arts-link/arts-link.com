@@ -20,7 +20,7 @@
           </a>
         </li>
         <li>
-          <a href="/contact/" class="text-cream text-sm tracking-widest uppercase px-5 py-2 border border-ember hover:bg-ember transition-colors duration-200">
+          <a href="/contact/" data-track-event="CTA Click" data-track-props='{"location":"header"}' class="text-cream text-sm tracking-widest uppercase px-5 py-2 border border-ember hover:bg-ember transition-colors duration-200">
             Let's talk
           </a>
         </li>
@@ -57,7 +57,7 @@
         <a href="/services/" @click="open = false" class="text-cream/70 hover:text-cream text-xl tracking-wide transition-colors">Services</a>
       </li>
       <li>
-        <a href="/contact/" @click="open = false" class="text-ember text-xl tracking-wide">Let's talk →</a>
+        <a href="/contact/" @click="open = false" data-track-event="CTA Click" data-track-props='{"location":"header-mobile"}' class="text-ember text-xl tracking-wide">Let's talk →</a>
       </li>
     </ul>
   </div>
