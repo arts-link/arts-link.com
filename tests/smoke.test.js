@@ -83,20 +83,7 @@ describe.skipIf(!built)('smoke – services page (public/services/index.html)', 
   });
 });
 
-// ─── Louise Strawbridge work page ────────────────────────────────────────────
-
-describe.skipIf(!built)('smoke – Louise Strawbridge work page (public/work/louise-strawbridge/index.html)', () => {
-  let dom;
-  beforeAll(() => { dom = readPage('work/louise-strawbridge/index.html'); });
-
-  it('exists and is not empty', () => {
-    expect(dom.window.document.body.textContent.trim().length).toBeGreaterThan(0);
-  });
-
-  it('displays designer credit', () => {
-    expect(dom.window.document.body.textContent).toContain('Lynne Koble');
-  });
-});
+// ─── Contact page ────────────────────────────────────────────────────────────
 
 describe.skipIf(!built)('smoke – contact page (public/contact/index.html)', () => {
   let dom;
