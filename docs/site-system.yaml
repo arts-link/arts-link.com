@@ -99,6 +99,7 @@ site_system:
         - image
         - live_url
       optional:
+        - designer: credit for a collaborating designer (displayed on the project page)
         - case_study: true/false (enables full case study page)
         - story: short narrative for case study pages
       notes: >
