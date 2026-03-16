@@ -6,4 +6,5 @@ site_type = "new"
 live_url = "https://louisestrawbridge.com"
 case_study = false
 weight = 37
+designer = "Lynne Koble"
 +++
