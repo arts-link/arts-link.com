@@ -19,19 +19,29 @@
     }
 
     html, body {
-      width: 8.5in;
-      height: 11in;
       -webkit-print-color-adjust: exact;
       print-color-adjust: exact;
       color-adjust: exact;
     }
 
     body {
-      background-color: #F7F3EC;
+      background-color: #D0C8BC;
       color: #1A1714;
       font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
       font-weight: 400;
-      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      padding: 0.5in 0;
+    }
+
+    @media print {
+      html, body {
+        width: 8.5in;
+        height: 11in;
+        background-color: #F7F3EC;
+        padding: 0;
+        display: block;
+      }
     }
 
     .page {
