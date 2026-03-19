@@ -55,3 +55,7 @@ Dark mode uses the `class` strategy. Custom additions in `tailwind.config.js`:
 - Custom bg images: `hidden-home`, `paint-drip`
 
 The `@tailwindcss/typography` plugin is active for prose content.
+
+## Copywriting Rules
+
+**Never mention Hugo** in any user-facing copy — page descriptions, meta tags, OG text, hero copy, or marketing content. Hugo is an implementation detail. Visitor-facing language should focus on outcomes (fast, beautiful, yours to own) not the underlying technology.

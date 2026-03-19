@@ -40,22 +40,35 @@
   ]
 }
 </script>
-{{- else if .IsPage -}}
+{{- else -}}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
+  "@graph": [
     {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "{{ .Site.BaseURL }}"
+      "@type": "{{ if .IsPage }}WebPage{{ else }}CollectionPage{{ end }}",
+      "@id": "{{ .Permalink }}#webpage",
+      "url": "{{ .Permalink }}",
+      "name": "{{ .Title }}",
+      "description": "{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}",
+      "isPartOf": { "@id": "{{ .Site.BaseURL }}#website" }
     },
     {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "{{ .Title }}"
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "{{ .Site.BaseURL }}"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "{{ .Title }}",
+          "item": "{{ .Permalink }}"
+        }
+      ]
     }
   ]
 }
