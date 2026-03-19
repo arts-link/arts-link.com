@@ -3,6 +3,7 @@ title: "Services"
 date: 2024-01-05T15:08:20-08:00
 draft: false
 showTOC: true
+description: "Bespoke websites for artists and musicians — galleries, static pages, email, hosting, and source code included. Fast, accessible, and built to last."
 # menu: "main"
 ---
 
