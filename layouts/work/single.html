@@ -37,6 +37,11 @@
       </figure>
     {{ end }}
 
+    <!-- Designer credit -->
+    {{ with .Params.designer }}
+    <p class="text-cream/50 text-sm mb-16">This site was built in collaboration with artist and web designer {{ with $.Params.designer_url }}<a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="text-ember hover:underline">{{ $.Params.designer }}</a>{{ else }}{{ $.Params.designer }}{{ end }}.</p>
+    {{ end }}
+
     <!-- Content -->
     {{ if .Content }}
     <div class="prose prose-invert prose-lg max-w-none

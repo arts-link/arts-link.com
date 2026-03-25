@@ -110,6 +110,8 @@ site_system:
         - image
         - live_url
       optional:
+        - designer: name of a collaborating designer (renders prose credit below screenshot)
+        - designer_url: URL to link the designer's name in the credit line
         - case_study: true/false (enables full case study page)
         - story: short narrative for case study pages
       notes: >

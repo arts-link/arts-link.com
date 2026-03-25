@@ -6,4 +6,6 @@ site_type = "new"
 live_url = "https://louisestrawbridge.com"
 case_study = false
 weight = 37
+designer = "Lynn Koble"
+designer_url = "https://socratessculpturepark.org/artist/lynn-koble/"
 +++
