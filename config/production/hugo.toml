@@ -2,8 +2,8 @@ title = 'ARTS-LINK'
 
 [params]
   env = "production"
-  plausible_domain = "arts-link.com"
-  plausible_advanced = true
+  posthog_key = "phc_6ETRdmu3rRItmhyAtxqdN8umjqSAWMRKYVvlu35GMJ7"
+  posthog_host = "https://g.arts-link.com"
 
 # [services]
 #   [services.googleAnalytics]

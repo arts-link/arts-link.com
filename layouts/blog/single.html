@@ -1,0 +1,57 @@
+{{ define "main" }}
+<article>
+
+  <!-- Article header -->
+  <div class="max-w-3xl mx-auto px-6 pt-16 pb-12">
+
+    <!-- Back link -->
+    <a
+      href="/blog/"
+      class="inline-flex items-center gap-2 text-cream/30 hover:text-cream/60 text-xs tracking-widest uppercase transition-colors duration-200 mb-12"
+    >
+      <span aria-hidden="true">←</span> Writing
+    </a>
+
+    <!-- Title -->
+    <h1 class="font-display text-5xl md:text-6xl lg:text-7xl text-cream font-light leading-none tracking-tight mb-8">
+      {{ .Title }}
+    </h1>
+
+    <!-- Description / lede -->
+    {{ with .Description }}
+    <p class="text-cream/60 text-xl leading-relaxed mb-10 max-w-2xl">{{ . }}</p>
+    {{ end }}
+
+    <!-- Meta -->
+    <div class="flex items-center gap-3 text-cream/25 text-xs tracking-widest uppercase">
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+      <span aria-hidden="true">·</span>
+      <span>{{ .ReadingTime }} min read</span>
+    </div>
+
+  </div>
+
+  <!-- Separator -->
+  <div class="max-w-3xl mx-auto px-6">
+    <hr class="border-cream/10">
+  </div>
+
+  <!-- Body -->
+  <div class="max-w-3xl mx-auto px-6 pt-12 pb-32">
+    <div class="prose prose-invert prose-lg max-w-none
+      prose-headings:font-display prose-headings:font-light prose-headings:text-cream prose-headings:tracking-tight
+      prose-p:text-cream/70 prose-p:leading-relaxed
+      prose-a:text-ember prose-a:no-underline hover:prose-a:underline
+      prose-strong:text-cream prose-strong:font-medium
+      prose-hr:border-cream/10
+      prose-blockquote:border-l-ember prose-blockquote:text-cream/50 prose-blockquote:not-italic
+      prose-code:text-ember prose-code:bg-cream/5 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:before:content-none prose-code:after:content-none
+    ">
+      {{ .Content }}
+    </div>
+  </div>
+
+</article>
+
+{{ partial "modules/cta-block.html" . }}
+{{ end }}
