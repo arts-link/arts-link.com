@@ -48,6 +48,16 @@ site_system:
       metric: Form completions
       notes: One job. No nav distractions. Simple form.
 
+    - name: Writing (Blog)
+      type: Collector
+      target_action: Route to Contact
+      metric: Organic traffic volume; % routed to Contact
+      notes: >
+        Posts on build philosophy, SEO/GEO capability, open source theme work,
+        and technical depth. Each post ends with a CTA block routing to Contact.
+        First post: "Web Systems Adventure Mode" adapted for general audience.
+        Nav label: "Writing".
+
   pages_cut:
     - Features (absorbed into Services)
     - Domain Names (link to tucows store, not a full page)
@@ -63,6 +73,7 @@ site_system:
     primary_links:
       - Work
       - Services
+      - Writing
       - Contact
 
   footer:
@@ -119,5 +130,8 @@ site_system:
     primary_events:
       - Contact form submission (keystone)
       - CTA clicks from Home and Services
+      - Blog post CTA clicks (location: blog-post)
+      - Blog organic traffic (Plausible source attribution)
     funnel_definition: >
-      Home → Work or Services → Contact → Submission
+      Home → Work or Services → Contact → Submission;
+      Writing (organic) → Blog post → Contact → Submission

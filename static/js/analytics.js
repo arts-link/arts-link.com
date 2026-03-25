@@ -6,9 +6,9 @@
   // `sendEvent` function below — no other files need to change.
 
   function sendEvent(name, props) {
-    // Plausible Analytics — replace this block to use a different platform.
-    if (typeof window.plausible === 'function') {
-      window.plausible(name, props ? { props: props } : undefined);
+    // PostHog Analytics — replace this block to use a different platform.
+    if (window.posthog && typeof window.posthog.capture === 'function') {
+      window.posthog.capture(name, props || {});
     }
   }
 
