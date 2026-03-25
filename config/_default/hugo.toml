@@ -13,6 +13,15 @@ enableGitInfo = false
 
 [build]
   writeStats = true
+
+[outputFormats.llmstxt]
+  mediaType = "text/plain"
+  baseName = "llms"
+  isPlainText = true
+  notAlternative = true
+
+[outputs]
+  home = ["HTML", "RSS", "llmstxt"]
   
 [module]
   [module.hugoVersion]
