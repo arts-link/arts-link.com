@@ -7,7 +7,7 @@
     <!-- Back link -->
     <a
       href="/blog/"
-      class="inline-flex items-center gap-2 text-cream/30 hover:text-cream/60 text-xs tracking-widest uppercase transition-colors duration-200 mb-12"
+      class="inline-flex items-center gap-2 text-cream/55 hover:text-cream text-xs tracking-widest uppercase transition-colors duration-200 mb-12"
     >
       <span aria-hidden="true">←</span> Writing
     </a>
@@ -23,7 +23,7 @@
     {{ end }}
 
     <!-- Meta -->
-    <div class="flex items-center gap-3 text-cream/25 text-xs tracking-widest uppercase">
+    <div class="flex items-center gap-3 text-cream/45 text-xs tracking-widest uppercase">
       <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
       <span aria-hidden="true">·</span>
       <span>{{ .ReadingTime }} min read</span>
@@ -41,7 +41,7 @@
     <div class="prose prose-invert prose-lg max-w-none
       prose-headings:font-display prose-headings:font-light prose-headings:text-cream prose-headings:tracking-tight
       prose-p:text-cream/70 prose-p:leading-relaxed
-      prose-a:text-ember prose-a:no-underline hover:prose-a:underline
+      prose-a:text-ember prose-a:underline prose-a:underline-offset-2
       prose-strong:text-cream prose-strong:font-medium
       prose-hr:border-cream/10
       prose-blockquote:border-l-ember prose-blockquote:text-cream/50 prose-blockquote:not-italic
