@@ -185,6 +185,32 @@ describe.skipIf(!built)('smoke – SEO: JSON-LD', () => {
   });
 });
 
+// ─── llms.txt ────────────────────────────────────────────────────────────────
+
+describe.skipIf(!built)('smoke – llms.txt', () => {
+  let content;
+  beforeAll(() => { content = fs.readFileSync(path.join(PUBLIC, 'llms.txt'), 'utf8'); });
+
+  it('exists and is not empty', () => {
+    expect(content.trim().length).toBeGreaterThan(0);
+  });
+
+  it('starts with a top-level heading', () => {
+    expect(content.trimStart()).toMatch(/^# /);
+  });
+
+  it('contains a ## Work section with at least one project', () => {
+    expect(content).toContain('## Work');
+    expect(content).toMatch(/^- \[.+\]\(https?:\/\//m);
+  });
+
+  it('contains ## Services, ## Writing, and ## Contact sections', () => {
+    expect(content).toContain('## Services');
+    expect(content).toContain('## Writing');
+    expect(content).toContain('## Contact');
+  });
+});
+
 // ─── Internal links resolve ──────────────────────────────────────────────────
 
 describe.skipIf(!built)('smoke – internal links resolve', () => {
