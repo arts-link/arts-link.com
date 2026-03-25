@@ -13,6 +13,18 @@ Two-tier setup:
 - PostHog project: `https://us.posthog.com`
 - `person_profiles: 'identified_only'` — no anonymous profiles created
 - Vercel preview deployments are filtered via `before_send` (no noise from CI)
+- `preconnect` + `dns-prefetch` hints for `posthog_host` added early in `<head>` (see below)
+
+### Adding a new third-party origin
+
+For any external origin that loads resources (scripts, fonts, APIs), add a connection hint pair early in `baseof.html`, before the font preloads:
+
+```html
+<link rel="preconnect" href="https://third-party-origin.com">
+<link rel="dns-prefetch" href="https://third-party-origin.com">
+```
+
+`preconnect` opens DNS + TCP + TLS upfront so the connection is warm when the resource is actually requested. `dns-prefetch` is the lighter fallback for browsers that don't support `preconnect`. Both together is the standard pattern. Order matters — place these before CSS and font preloads so they resolve in parallel with critical resources.
 
 ---
 
