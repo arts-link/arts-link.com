@@ -16,9 +16,6 @@
           <span class="text-xs uppercase tracking-widest text-cream/35 border border-cream/10 px-3 py-1">New site</span>
         {{ end }}
         <span class="text-cream/35 text-sm capitalize">{{ .Params.client_type }}</span>
-        {{ with .Params.designer }}
-          <span class="text-cream/35 text-sm">Design: {{ . }}</span>
-        {{ end }}
       </div>
       <h1 class="font-display text-5xl md:text-7xl text-cream font-light mb-8">{{ .Title }}</h1>
       {{ with .Params.live_url }}
@@ -38,6 +35,11 @@
           <img src="{{ $img.RelPermalink }}" alt="{{ $.Title }}" class="w-full" loading="lazy">
         </picture>
       </figure>
+    {{ end }}
+
+    <!-- Designer credit -->
+    {{ with .Params.designer }}
+    <p class="text-cream/50 text-sm mb-16">This site was built in collaboration with artist and web designer {{ with $.Params.designer_url }}<a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="text-ember hover:underline">{{ $.Params.designer }}</a>{{ else }}{{ $.Params.designer }}{{ end }}.</p>
     {{ end }}
 
     <!-- Content -->
