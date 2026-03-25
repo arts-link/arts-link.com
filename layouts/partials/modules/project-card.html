@@ -38,18 +38,18 @@
       {{ if eq .Params.site_type "rescue" }}
         <span class="text-xs uppercase tracking-widest text-ember border border-ember px-2 py-1 shrink-0 leading-none mt-1">Rescue</span>
       {{ else }}
-        <span class="text-xs uppercase tracking-widest text-cream/30 border border-cream/10 px-2 py-1 shrink-0 leading-none mt-1">New site</span>
+        <span class="text-xs uppercase tracking-widest text-cream/50 border border-cream/10 px-2 py-1 shrink-0 leading-none mt-1">New site</span>
       {{ end }}
     </div>
 
-    <p class="text-cream/35 text-sm mb-6 capitalize">{{ .Params.client_type }}</p>
+    <p class="text-cream/50 text-sm mb-6 capitalize">{{ .Params.client_type }}</p>
 
     <div class="flex items-center gap-5">
       {{ if .Params.case_study }}
-        <a href="{{ .RelPermalink }}" class="text-xs uppercase tracking-widest text-cream/50 hover:text-cream transition-colors">Read story →</a>
+        <a href="{{ .RelPermalink }}" class="text-xs uppercase tracking-widest text-cream/55 hover:text-cream transition-colors">Read story →</a>
       {{ end }}
       {{ with .Params.live_url }}
-        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="text-xs uppercase tracking-widest text-cream/35 hover:text-cream transition-colors">Visit site ↗</a>
+        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="text-xs uppercase tracking-widest text-cream/55 hover:text-cream transition-colors">Visit site ↗</a>
       {{ end }}
     </div>
   </div>

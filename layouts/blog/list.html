@@ -3,7 +3,7 @@
 
   <!-- Section header -->
   <header class="pb-14 border-b border-cream/10">
-    <p class="text-cream/25 text-xs tracking-widest uppercase mb-5">Studio notes</p>
+    <p class="text-cream/25 text-xs tracking-widest uppercase mb-5" aria-hidden="true">Studio notes</p>
     <h1 class="font-display text-6xl md:text-7xl text-cream font-light leading-none mb-6">
       {{ .Title }}
     </h1>
@@ -22,7 +22,7 @@
           <!-- Date (left column on desktop) -->
           <time
             datetime="{{ .Date.Format "2006-01-02" }}"
-            class="shrink-0 text-cream/25 text-xs tracking-widest uppercase pt-1 md:w-32 md:text-right"
+            class="shrink-0 text-cream/45 text-xs tracking-widest uppercase pt-1 md:w-32 md:text-right"
           >
             {{ .Date.Format "Jan 2006" }}
           </time>
@@ -33,7 +33,7 @@
               <a href="{{ .Permalink }}">{{ .Title }}</a>
             </h2>
             {{ with .Description }}
-            <p class="text-cream/50 text-base leading-relaxed mb-6 max-w-xl">{{ . }}</p>
+            <p class="text-cream/60 text-base leading-relaxed mb-6 max-w-xl">{{ . }}</p>
             {{ end }}
             <a
               href="{{ .Permalink }}"
