@@ -1,0 +1,22 @@
+# {{ .Site.Title }}
+
+> {{ .Site.Params.description }}
+
+Arts-link.com is a boutique web studio run by Ben Strawbridge. We build bespoke portfolio sites for artists, photographers, and musicians — fast, beautiful, and yours to own outright. No subscriptions, no platform lock-in.
+
+## Services
+
+- [Services]({{ "/services/" | absURL }}): Custom portfolio sites for artists and bands. New builds start from scratch; site rescues migrate away from expensive or dying platforms. Starting from $1,000.
+
+## Work
+{{ $work := where .Site.RegularPages "Section" "work" -}}
+{{ range $work.ByParam "weight" -}}
+- [{{ .Title }}]({{ .Params.live_url | default .Permalink }}){{ with .Params.client_type }}: {{ . }}{{ end }}{{ if eq .Params.site_type "rescue" }} (site rescue){{ end }}
+{{ end }}
+## Writing
+
+- [Writing]({{ "/blog/" | absURL }}): Articles on build philosophy, technical depth, and what makes a portfolio site actually work.
+
+## Contact
+
+- [Contact]({{ "/contact/" | absURL }}): Get in touch to start your project.
