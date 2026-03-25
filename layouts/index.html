@@ -18,13 +18,11 @@
               <picture>
                 <source
                   type="image/webp"
-                  srcset="{{ $wp1x.RelPermalink }} 320w, {{ $wp2x.RelPermalink }} 640w"
-                  sizes="320px"
+                  srcset="{{ $wp1x.RelPermalink }} 1x, {{ $wp2x.RelPermalink }} 2x"
                 >
                 <img
-                  srcset="{{ $img1x.RelPermalink }} 320w, {{ $img2x.RelPermalink }} 640w"
-                  sizes="320px"
-                  src="{{ $wp1x.RelPermalink }}"
+                  srcset="{{ $img1x.RelPermalink }} 1x, {{ $img2x.RelPermalink }} 2x"
+                  src="{{ $img1x.RelPermalink }}"
                   alt="Ben Strawbridge"
                   width="{{ $img1x.Width }}"
                   height="{{ $img1x.Height }}"
