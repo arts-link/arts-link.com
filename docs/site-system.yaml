@@ -56,6 +56,9 @@ site_system:
         Posts on build philosophy, SEO/GEO capability, open source theme work,
         and technical depth. Each post ends with a CTA block routing to Contact.
         First post: "Web Systems Adventure Mode" adapted for general audience.
+        Open source/Ryder post: "Why I Build With Open Source" explains why
+        Arts-Link builds with Hugo and maintains Ryder as a free theme for the
+        Hugo community.
         Nav label: "Writing".
 
   pages_cut:
