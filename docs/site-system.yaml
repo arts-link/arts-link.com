@@ -39,8 +39,10 @@ site_system:
       target_action: Route to Contact
       metric: Contact page visits from Services
       notes: >
-        Describe New Site and Site Rescue. "Starting from $1,000" as
-        a signal, not a full pricing table. No pricing page.
+        Describe New Site and Site Rescue. Includes a "What it costs"
+        section with two cards: Artist Site and Band/Musician Site,
+        both starting from $1,000, listing the included pages for each.
+        All pricing CTAs route to Contact.
 
     - name: Contact
       type: Converter
