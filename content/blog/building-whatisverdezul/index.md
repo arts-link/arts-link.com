@@ -11,6 +11,8 @@ It's fast, it's theirs, and the band updates it themselves — shows, releases, 
 
 This post is about how it got built. Not a tutorial — a look at how Arts-Link actually works.
 
+{{< figure src="whatisverdezul-home.webp" alt="Verdèzul homepage: a tiled wall of the band's globe logo behind a glowing neon-green box that asks 'What is Verdèzul?'" caption="The homepage: tiled logos, one question." class="max-w-sm mx-auto" >}}
+
 ---
 
 ## It Started With a Checklist, Not a Mockup
@@ -20,6 +22,8 @@ Before any design work, the band filled out a 12-section onboarding checklist: b
 That checklist did two jobs at once.
 
 First, it forced the design conversation early. The band supplied visual reference sites, a palette — green, blue, black, white, with occasional red and brown — and a guiding line for the whole brand: *"We're in the world, not of the world, but we reflect the world around us."* By the time I opened an editor, the visual direction was already settled.
+
+{{< figure src="whatisverdezul-about.webp" alt="Verdèzul's About page: the band's guiding line set over a photograph of a mountain reflected in still water" caption="The guiding line from the onboarding doc, on the About page." class="max-w-sm mx-auto" >}}
 
 Second — and this is the part I didn't fully expect — the checklist's answers mapped almost one-to-one onto the site's data model. Shows, releases, press quotes, merch, social links: each section became a structured data file the site reads at build time. The intake document *was* the content architecture.
 
@@ -43,7 +47,9 @@ The site is built with [Hugo](https://gohugo.io/) on top of [Ryder](https://gith
 
 Owning the theme changes the economics of custom work. Every convention in Ryder is one we wrote, so heavily customizing it is faster than starting from scratch somewhere else. And band sites fit Hugo's shape exactly: content-heavy, layout-stable, driven by structured data, rebuilt in milliseconds.
 
-The rule for the whole project was **override, never fork**. Ryder ships a variant-partial system — set a couple of parameters and the theme loads the site's own header, footer, and nav in place of its defaults. On top of that, the site overrides the homepage with a fully custom hero (tiled-logo background, neon-green statement box, glowing scroll cue), adds per-section layouts for About, Music, Shows, Press, Shop, and Contact, and layers all of its styling in one site-specific CSS file.
+The rule for the whole project was **override, never fork**. Ryder ships a variant-partial system — set a couple of parameters and the theme loads the site's own header, footer, and nav in place of its defaults. On top of that, the site overrides the homepage with a fully custom hero (the tiled-logo wall you saw up top), adds per-section layouts for About, Music, Shows, Press, Shop, and Contact, and layers all of its styling in one site-specific CSS file.
+
+{{< figure src="whatisverdezul-music.webp" alt="Verdèzul's Music page with Albums and Streaming tabs and the cover of the EP Earthtones & Shades of Blue and Green" caption="The Music page — one of the per-section layouts built over Ryder's base." class="max-w-sm mx-auto" >}}
 
 The theme itself — included as a git submodule — was never edited. Not once, the entire project. Which means every improvement made to Ryder upstream can flow into Verdèzul's site cleanly, and every lesson from this build can flow back into the free theme.
 
@@ -63,6 +69,8 @@ Open source end to end, with pragmatic hosted glue where a service honestly beat
 
 That last one is an honest iteration note. Email signup started life as a serverless function proxying a newsletter API. We threw it out. Formspree posts straight from the browser, signups collect into a spreadsheet, and choosing a newsletter platform is deliberately deferred until the band has a real list and can own their own account. The contact form made the same move. The site's serverless footprint *shrank* as it approached launch — which is usually a sign you're doing it right.
 
+{{< figure src="whatisverdezul-contact.webp" alt="Verdèzul's contact page: a simple three-field form inside a glowing blue border" caption="The contact form posts straight to Formspree — no server code on our side." class="max-w-sm mx-auto" >}}
+
 ---
 
 ## The Band Runs the Site Now
@@ -71,11 +79,15 @@ Here's the part that matters most after launch day.
 
 Every piece of client-editable content — shows, releases, merch, press — lives in structured data files in the site's repository. Decap CMS sits behind a private login and turns those files into friendly forms. A band member logs in, adds a show, hits save.
 
+{{< figure src="whatisverdezul-admin.webp" alt="The site's private CMS showing collections for Site Config, Shows, Releases, Press Quotes, Shop / Merch, and Page Content" caption="The band's view: friendly forms for shows, releases, press, and merch." class="max-w-sm mx-auto" >}}
+
 That save is a git commit. Vercel sees the commit and redeploys the site in about a minute.
 
 No database. No server to maintain. A full edit history of every change ever made, and any mistake is one revert away. The band gets the ease of a website builder with the ownership of a plain folder of files.
 
 One favorite detail: sections with no content remove themselves. There's no Press link in the nav until the press data has at least one item — the site never shows scaffolding while the band collects clippings. The site grows as the band does.
+
+{{< figure src="whatisverdezul-shows.webp" alt="Verdèzul's Shows page: 'No shows scheduled. Check back soon.' above a list of past shows" caption="Honest empty states: nothing upcoming, so the page says so — and past shows keep the history." class="max-w-sm mx-auto" >}}
 
 ---
 
