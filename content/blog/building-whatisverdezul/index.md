@@ -69,7 +69,7 @@ That last one is an honest iteration note. Email signup started life as a server
 
 Here's the part that matters most after launch day.
 
-Every piece of client-editable content — shows, releases, merch, press — lives in structured data files in the site's repository. Decap CMS sits at `/admin` and turns those files into friendly forms. A band member logs in, adds a show, hits save.
+Every piece of client-editable content — shows, releases, merch, press — lives in structured data files in the site's repository. Decap CMS sits behind a private login and turns those files into friendly forms. A band member logs in, adds a show, hits save.
 
 That save is a git commit. Vercel sees the commit and redeploys the site in about a minute.
 
