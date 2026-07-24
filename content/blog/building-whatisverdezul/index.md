@@ -87,7 +87,7 @@ No database. No server to maintain. A full edit history of every change ever mad
 
 One favorite detail: sections with no content remove themselves. There's no Press link in the nav until the press data has at least one item — the site never shows scaffolding while the band collects clippings. The site grows as the band does.
 
-{{< figure src="whatisverdezul-shows.webp" alt="Verdèzul's Shows page: 'No shows scheduled. Check back soon.' above a list of past shows" caption="Honest empty states: nothing upcoming, so the page says so — and past shows keep the history." class="max-w-sm mx-auto" >}}
+{{< figure src="whatisverdezul-shows.webp" alt="Verdèzul's Shows page: 'No shows scheduled. Check back soon.' above the full list of past shows" caption="The Shows page is honest when nothing's booked — and every past show stays on the record." class="max-w-sm mx-auto" >}}
 
 ---
 
