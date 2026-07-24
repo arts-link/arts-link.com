@@ -61,6 +61,9 @@ site_system:
         Open source/Ryder post: "Why I Build With Open Source" explains why
         Arts-Link builds with Hugo and maintains Ryder as a free theme for the
         Hugo community.
+        Launch case study: "Building Verdèzul's Website" covers the
+        whatisverdezul.com build — onboarding checklist, docs-first process,
+        Ryder overrides, and the git-based CMS the band edits with.
         Nav label: "Writing".
 
   pages_cut:
