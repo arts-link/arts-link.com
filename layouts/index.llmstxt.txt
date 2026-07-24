@@ -13,9 +13,9 @@ Arts-link.com is a boutique web studio run by Ben Strawbridge. We build bespoke 
 {{ range $work.ByParam "weight" -}}
 - [{{ .Title }}]({{ .Params.live_url | default .Permalink }}){{ with .Params.client_type }}: {{ . }}{{ end }}{{ if eq .Params.site_type "rescue" }} (site rescue){{ end }}
 {{ end }}
-## Writing
+## Blog
 
-- [Writing]({{ "/blog/" | absURL }}): Articles on build philosophy, technical depth, and what makes a portfolio site actually work.
+- [Blog]({{ "/blog/" | absURL }}): Articles on build philosophy, technical depth, and what makes a portfolio site actually work.
 
 ## Contact
 
