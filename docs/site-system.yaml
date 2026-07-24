@@ -50,7 +50,7 @@ site_system:
       metric: Form completions
       notes: One job. No nav distractions. Simple form.
 
-    - name: Writing (Blog)
+    - name: Blog
       type: Collector
       target_action: Route to Contact
       metric: Organic traffic volume; % routed to Contact
@@ -64,7 +64,7 @@ site_system:
         Launch case study: "Building Verdèzul's Website" covers the
         whatisverdezul.com build — onboarding checklist, docs-first process,
         Ryder overrides, and the git-based CMS the band edits with.
-        Nav label: "Writing".
+        Nav label: "Blog".
 
   pages_cut:
     - Features (absorbed into Services)
@@ -81,7 +81,7 @@ site_system:
     primary_links:
       - Work
       - Services
-      - Writing
+      - Blog
       - Contact
 
   footer:
@@ -144,4 +144,4 @@ site_system:
       - Blog organic traffic (Plausible source attribution)
     funnel_definition: >
       Home → Work or Services → Contact → Submission;
-      Writing (organic) → Blog post → Contact → Submission
+      Blog (organic) → Blog post → Contact → Submission
