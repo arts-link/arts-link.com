@@ -57,17 +57,26 @@ The theme itself — included as a git submodule — was never edited. Not once,
 
 ## The Toolchain
 
-Open source end to end, with pragmatic hosted glue where a service honestly beats self-rolling:
+The foundation is open source. A few pieces aren't, and it's worth being precise about which is which — "open source" gets used loosely, and a stack diagram that blurs the two isn't doing anyone a favor.
+
+Genuinely open source — free to use, inspect, and fork:
 
 - **Hugo** builds the site from plain files.
 - **TailwindCSS** handles styling, compiled through the theme's own build pipeline.
 - **Alpine.js** (the CSP build) handles interactivity under a strict Content-Security-Policy. That build disallows inline arrow functions and `fetch()` in expressions, so every interactive piece is a proper registered component — a real constraint that made the code better organized, not worse.
 - **Decap CMS** gives the band an admin UI.
-- **PostHog** tracks what actually works: ticket clicks, merch clicks, play clicks, social follows, form submissions.
+
+Commercial services, picked where a hosted product honestly beats self-rolling:
+
 - **Vercel** hosts the site and runs exactly two tiny serverless functions — about thirty lines each — that proxy the CMS login so no secret ever reaches the browser.
+- **PostHog** tracks what actually works: ticket clicks, merch clicks, play clicks, social follows, form submissions. Its core is open source and self-hostable, but we run the paid hosted version — standing up an analytics cluster for a band site would be a strange way to spend everyone's time.
 - **Formspree** handles the contact form and email signup with no server code on our side at all.
 
-That last one is an honest iteration note. Email signup started life as a serverless function proxying a newsletter API. We threw it out. Formspree posts straight from the browser, signups collect into a spreadsheet, and choosing a newsletter platform is deliberately deferred until the band has a real list and can own their own account. The contact form made the same move. The site's serverless footprint *shrank* as it approached launch — which is usually a sign you're doing it right.
+Those three sit on the Arts-Link account. The band doesn't sign up for anything, doesn't manage another set of logins, and doesn't get another bill — analytics and form handling come with the site.
+
+That arrangement is worth being clear-eyed about too, because it's the one part of the stack the band doesn't hold directly. It works because none of the three can hold the site hostage: the form is a URL you can point somewhere else, the analytics is a script tag you can delete, and the site itself is static files that deploy anywhere. Content, templates, and full history live in the repository regardless. That's the difference between using a service and being locked into a platform.
+
+Formspree earned its spot the hard way. Email signup started life as a serverless function proxying a newsletter API. We threw it out. Formspree posts straight from the browser, signups collect into a spreadsheet, and choosing a newsletter platform is deliberately deferred until the band has a real list and can own their own account. The contact form made the same move. The site's serverless footprint *shrank* as it approached launch — which is usually a sign you're doing it right.
 
 {{< figure src="whatisverdezul-contact.webp" alt="Verdèzul's contact page: a simple three-field form inside a glowing blue border" caption="The contact form posts straight to Formspree — no server code on our side." class="max-w-sm mx-auto" >}}
 
