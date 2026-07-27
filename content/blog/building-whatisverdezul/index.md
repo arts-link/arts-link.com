@@ -1,7 +1,7 @@
 +++
 title = "Building Verdèzul's Website"
 date = 2026-07-24
-description = "Verdèzul's new site is live at whatisverdezul.com. Here's how it came together — a structured onboarding checklist, a docs-first build, and a git-based CMS the band runs themselves."
+description = "Verdèzul's new site is live at whatisverdezul.com. Here's how it came together:  a structured onboarding checklist, a docs-first build, and a git-based CMS the band runs themselves."
 draft = false
 +++
 
@@ -43,7 +43,7 @@ This has become the distinctive Arts-Link method.  The docs are the durable asse
 
 ## Owning the Theme Changes the Math
 
-The site is built with [Hugo](https://gohugo.io/) on top of [Ryder](https://github.com/arts-link/ryder), the open source theme Arts-Link created and maintains. I've written before about [why we build with open source](/blog/open-source-and-ryder/) — this project is what that looks like in practice.
+The site is built with [Hugo](https://gohugo.io/) on top of [Ryder](https://github.com/arts-link/ryder), the open source theme Arts-Link created and maintains. I've written before about [why we build with open source](/blog/open-source-and-ryder/).  This project is what that looks like in practice.
 
 Owning the theme changes the economics of custom work. Every convention in Ryder is one we wrote, so heavily customizing it is faster than starting from scratch somewhere else. Band sites fit Hugo's shape exactly: content-heavy, layout-stable, driven by structured data, rebuilt in milliseconds.
 
