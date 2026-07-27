@@ -32,7 +32,9 @@ site_system:
       notes: >
         Portfolio of sites built — Louise Strawbridge, Cindy Kindred,
         road trip site, grandfather photography, Jill Bonovitz (rescue story),
-        bands TBD. Each entry should name the service type (new vs rescue).
+        and Verdèzul (first band; the work card links out to the full launch
+        case study on the Blog). Each entry should name the service type
+        (new vs rescue).
 
     - name: Services
       type: Collector
@@ -50,7 +52,7 @@ site_system:
       metric: Form completions
       notes: One job. No nav distractions. Simple form.
 
-    - name: Writing (Blog)
+    - name: Blog
       type: Collector
       target_action: Route to Contact
       metric: Organic traffic volume; % routed to Contact
@@ -61,7 +63,10 @@ site_system:
         Open source/Ryder post: "Why I Build With Open Source" explains why
         Arts-Link builds with Hugo and maintains Ryder as a free theme for the
         Hugo community.
-        Nav label: "Writing".
+        Launch case study: "Building Verdèzul's Website" covers the
+        whatisverdezul.com build — onboarding checklist, docs-first process,
+        Ryder overrides, and the git-based CMS the band edits with.
+        Nav label: "Blog".
 
   pages_cut:
     - Features (absorbed into Services)
@@ -78,7 +83,7 @@ site_system:
     primary_links:
       - Work
       - Services
-      - Writing
+      - Blog
       - Contact
 
   footer:
@@ -141,4 +146,4 @@ site_system:
       - Blog organic traffic (Plausible source attribution)
     funnel_definition: >
       Home → Work or Services → Contact → Submission;
-      Writing (organic) → Blog post → Contact → Submission
+      Blog (organic) → Blog post → Contact → Submission

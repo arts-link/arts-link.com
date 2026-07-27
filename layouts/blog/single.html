@@ -9,7 +9,7 @@
       href="/blog/"
       class="inline-flex items-center gap-2 text-cream/55 hover:text-cream text-xs tracking-widest uppercase transition-colors duration-200 mb-12"
     >
-      <span aria-hidden="true">←</span> Writing
+      <span aria-hidden="true">←</span> Blog
     </a>
 
     <!-- Title -->
@@ -46,6 +46,8 @@
       prose-hr:border-cream/10
       prose-blockquote:border-l-ember prose-blockquote:text-cream/50 prose-blockquote:not-italic
       prose-code:text-ember prose-code:bg-cream/5 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:before:content-none prose-code:after:content-none
+      prose-img:rounded-xl prose-img:border prose-img:border-cream/10
+      [&_figcaption]:text-center [&_figcaption]:text-cream/45 [&_figcaption]:text-sm [&_figcaption]:mt-3
     ">
       {{ .Content }}
     </div>

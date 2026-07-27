@@ -204,9 +204,9 @@ describe.skipIf(!built)('smoke – llms.txt', () => {
     expect(content).toMatch(/^- \[.+\]\(https?:\/\//m);
   });
 
-  it('contains ## Services, ## Writing, and ## Contact sections', () => {
+  it('contains ## Services, ## Blog, and ## Contact sections', () => {
     expect(content).toContain('## Services');
-    expect(content).toContain('## Writing');
+    expect(content).toContain('## Blog');
     expect(content).toContain('## Contact');
   });
 });
