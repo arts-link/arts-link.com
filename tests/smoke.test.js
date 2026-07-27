@@ -28,6 +28,7 @@ const INDEXABLE_PAGES = [
   'work/jill-bonovitz/index.html',
   'work/louise-strawbridge/index.html',
   'work/rt2026/index.html',
+  'work/ryder/index.html',
   'work/writing-sos/index.html',
 ];
 
