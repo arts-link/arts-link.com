@@ -34,7 +34,10 @@ site_system:
         road trip site, grandfather photography, Jill Bonovitz (rescue story),
         and Verdèzul (first band; the work card links out to the full launch
         case study on the Blog). Each entry should name the service type
-        (new vs rescue).
+        (new vs rescue). The portfolio also carries Ryder, the open source
+        theme Arts-Link maintains — badged "Open source" so it reads as a
+        contribution to the ecosystem rather than as client work, and linking
+        out to the public example site and the source repository.
 
     - name: Services
       type: Collector
@@ -115,11 +118,12 @@ site_system:
     work_entries:
       required:
         - client_name
-        - site_type: new | rescue
-        - client_type: visual artist | band | photographer | other
+        - site_type: new | rescue | open-source
+        - client_type: visual artist | band | photographer | open source theme | other
         - image
         - live_url
       optional:
+        - repo_url: public source repository, rendered beside the live link on the entry page
         - designer: name of a collaborating designer (renders prose credit below screenshot)
         - designer_url: URL to link the designer's name in the credit line
         - case_study: true/false (enables full case study page)

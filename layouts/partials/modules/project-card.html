@@ -25,9 +25,16 @@
         >
       </picture>
     {{ else }}
-      <div class="w-full h-full flex items-center justify-center">
-        <span class="text-cream/15 text-sm font-body">{{ .Title }}</span>
-      </div>
+      {{ if eq .Params.site_type "open-source" }}
+        <div class="w-full h-full flex flex-col items-center justify-center gap-3 px-6 text-center">
+          <p class="font-display text-4xl md:text-5xl text-cream/80 font-light">{{ .Title }}</p>
+          <p class="text-cream/35 text-xs tracking-[0.3em] uppercase">MIT licensed</p>
+        </div>
+      {{ else }}
+        <div class="w-full h-full flex items-center justify-center">
+          <span class="text-cream/15 text-sm font-body">{{ .Title }}</span>
+        </div>
+      {{ end }}
     {{ end }}
   </a>
 
@@ -37,6 +44,8 @@
       <h3 class="font-display text-xl text-cream font-light">{{ .Title }}</h3>
       {{ if eq .Params.site_type "rescue" }}
         <span class="text-xs uppercase tracking-widest text-ember border border-ember px-2 py-1 shrink-0 leading-none mt-1">Rescue</span>
+      {{ else if eq .Params.site_type "open-source" }}
+        <span class="text-xs uppercase tracking-widest text-cream bg-cream/10 border border-cream/25 px-2 py-1 shrink-0 leading-none mt-1">Open source</span>
       {{ else }}
         <span class="text-xs uppercase tracking-widest text-cream/50 border border-cream/10 px-2 py-1 shrink-0 leading-none mt-1">New site</span>
       {{ end }}
