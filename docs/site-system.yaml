@@ -112,7 +112,7 @@ site_system:
     hosting: Vercel (migrating from GitHub Pages)
     form_handler: Formspree (connected to Contact page)
     seo_strategy: Static HTML, fast load, artist/band name targeting
-    performance_monitoring: Plausible Analytics
+    performance_monitoring: PostHog (production only)
 
   content_model:
     work_entries:
@@ -147,7 +147,7 @@ site_system:
       - Contact form submission (keystone)
       - CTA clicks from Home and Services
       - Blog post CTA clicks (location: blog-post)
-      - Blog organic traffic (Plausible source attribution)
+      - Blog organic traffic (PostHog source attribution)
     funnel_definition: >
       Home → Work or Services → Contact → Submission;
       Blog (organic) → Blog post → Contact → Submission
