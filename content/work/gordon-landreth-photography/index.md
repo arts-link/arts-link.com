@@ -17,3 +17,5 @@ The pipeline went through two phases. Tesseract and OpenCV handled rapid iterati
 The search itself runs entirely in the browser. A pre-generated JSON index (~100KB gzipped) is loaded once, and Fuse.js handles fuzzy matching with a 0.4 threshold — loose enough to catch OCR errors and typos without returning noise. Results are grouped by album title matches versus caption matches.
 
 The final site is a static Hugo build, hosted on AWS CloudFront. No backend, no infrastructure to maintain. Thumbnail previews and a PhotoSwipe lightbox ended up being more valuable than any of the query logic that was originally planned — a lesson in what users actually need versus what seems technically interesting.
+
+Read the [full technical case study](https://www.benstrawbridge.com/projects/ocr-powered-search-photo-gallery/) for the OCR pipeline details, prompt engineering, and lessons learned.
