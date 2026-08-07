@@ -56,9 +56,9 @@ The point of all of it is continuity. Box, inventory, digitization, organization
 
 ## Two Examples
 
-[Gordon Landreth Photography](/work/gordon-landreth-photography/) is a photographer's work across six decades — thousands of album pages, scanned. Every page carried handwritten captions: names, dates, places, events. Rather than let that writing sit there as decoration, I built the site so those captions are searchable. A relative can type a name or a town and find the photographs. The archive answers questions instead of just displaying pictures.
+[Gordon Landreth Photography](/work/gordon-landreth-photography/) is a family archive organized around a photographer's own body of work — six decades of it, thousands of album pages, scanned. Every page carried handwritten captions: names, dates, places, events. Rather than let that writing sit there as decoration, I built the site so those captions are searchable. A relative can type a name or a town and find the photographs. The archive answers questions instead of just displaying pictures.
 
-[Road Trip 2026](/work/rt2026/) is a different shape entirely — one event rather than a lifetime. Nine days, 3,753 miles, Philadelphia to Los Angeles, kept as photographs and records of the route. Instead of a single undifferentiated gallery, you move through it day by day: where we were, when, and what the drive looked like. Same principle, much smaller frame.
+[Road Trip 2026](/work/rt2026/) is a travel archive — one event rather than a lifetime. Nine days, 3,753 miles, Philadelphia to Los Angeles, kept as photographs and records of the route. Instead of a single undifferentiated gallery, you move through it day by day: where we were, when, and what the drive looked like. Same principle, much smaller frame.
 
 ---
 

@@ -124,7 +124,8 @@ site_system:
       required:
         - client_name
         - site_type: new | rescue | open-source
-        - client_type: visual artist | band | photographer | open source theme | other
+        - client_type: visual artist | band | photographer | family archive |
+                       travel archive | open source theme | other
         - image
         - live_url
       optional:
@@ -136,6 +137,13 @@ site_system:
       notes: >
         Card grid by default. Projects with case_study: true get their
         own page. Jill Bonovitz is the first case study candidate (rescue story).
+        client_type is free text, printed verbatim on the card, the entry page,
+        and in llms.txt — store it lowercase, since the first two apply a CSS
+        capitalize transform and llms.txt does not. The list above is the
+        vocabulary in use rather than a hard constraint; Writing SOS carries
+        "tutoring / education". The two archive types pair with the family
+        archives blog post, which cites Gordon Landreth and Road Trip 2026 as
+        examples of each.
 
   modules:
     workhorse:
