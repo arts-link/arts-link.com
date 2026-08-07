@@ -46,7 +46,9 @@ The test suite reads from the generated `public/` directory. Without it, `tests/
 ```toml
 title = "Verdèzul"
 date = 2026-07-24
-client_type = "band"          # visual artist | band | photographer | open source theme | other
+client_type = "band"          # lowercase — the card/page applies a capitalize transform
+                              # visual artist | band | photographer | family archive
+                              # | travel archive | open source theme | other
 site_type = "new"             # new | rescue | open-source — drives the card/page badge
 live_url = "https://..."      # the hosted site (or demo, for open-source entries)
 repo_url = "https://..."      # optional; public source repo, renders next to live_url
