@@ -1,7 +1,7 @@
 +++
 title = "What Do You Do With a Box of Old Family Photos and Film?"
 date = 2026-08-07
-description = "Digitizing old family photos and films is the easy part. The harder job is turning a box of material into a family archive your relatives can actually explore and keep."
+description = "Digitizing old family photos and films is the easy part. The harder job is turning a box of material into a family archive your relatives can explore and keep."
 draft = false
 +++
 
