@@ -1,7 +1,7 @@
 +++
 title = "Road Trip 2026"
 date = 2026-02-07
-client_type = "personal / travel"
+client_type = "travel archive"
 site_type = "new"
 live_url = "https://rt2026.benstrawbridge.com"
 case_study = true
