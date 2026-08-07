@@ -33,9 +33,11 @@ Getting from one to the other is the actual work, and it's the part nobody sells
 
 ## What I Can Do With a Collection
 
-I start with an inventory. Before anything gets sent anywhere, it helps enormously to know what's there: how many reels, what condition, which photographs are duplicates of duplicates, which boxes are worth the cost of digitizing and which honestly aren't. That conversation alone tends to make the project feel finite.
+Five steps, in this order.
 
-Then digitization. I want to be clear about this: I don't run film scanners or videotape decks. There are companies whose entire specialty is transferring fragile material, and they're very good at it. What I do is figure out what you have, match it to the right service, handle the logistics, and make sure what comes back is usable. Material usually falls into a handful of categories:
+**Assess.** Before anything gets sent anywhere, we work out what you have and what's worth keeping — how many reels, what condition, which boxes justify the cost and which honestly don't. That conversation alone tends to make the project feel finite.
+
+**Digitize.** I don't run film scanners or videotape decks. There are companies whose entire specialty is transferring fragile material, and they're very good at it. I match your material to the right one, handle the logistics, and check that what comes back is usable. Most collections are some mix of:
 
 - printed photographs
 - negatives and slides
@@ -44,13 +46,13 @@ Then digitization. I want to be clear about this: I don't run film scanners or v
 - audio recordings
 - letters and family documents
 
-Once the files exist, the collection gets organized. Sensible folders instead of one enormous dump. Dates where they're known and approximate dates where they aren't — "sometime in the late sixties" is far more useful than nothing. Names. Places. Events. Descriptions where somebody still remembers the story. And crucially, whatever was already written on the back of a photograph or the side of a box gets preserved rather than thrown away, because that handwriting is often the only surviving record of who those people were.
+**Organize.** Sensible folders instead of one enormous dump, in a structure that still makes sense to somebody opening it years from now.
 
-Then curation, which is the difference between having five thousand scans and having an archive. Not everything deserves equal weight. Some photographs carry a story; some are the fourth nearly identical frame of the same tree.
+**Identify.** Names, places, events, dates — approximate is fine, "sometime in the late sixties" beats nothing. Whatever was already written on the back of a photograph or the side of a box gets kept, because that handwriting is often the only surviving record of who those people were.
 
-And then, when it makes sense, I build the thing you can browse. A family archive site — private if you want it private — organized around whatever shape the material suggests. Sometimes that's chronology. Sometimes it's people, or a place, or a single trip, or one generation, or the original albums as they were assembled, or one person's body of work as a photographer.
+**Build the archive.** The collection becomes something you can browse — private if you want it private — organized around whatever shape the material suggests: chronology, people, a place, a single trip, a generation, the original albums, one person's body of work. Not everything gets equal weight here; some photographs carry a story, and some are the fourth near-identical frame of the same tree.
 
-The point of all of it is continuity. Box, inventory, digitization, organization, names and dates, curation, archive — one project, one person carrying it end to end, instead of a drive handed back to you with the hardest part still undone.
+Where the effort lands depends on the collection. A shoebox of loose prints is mostly identifying; ten unlabeled reels are mostly assessing and digitizing. What doesn't change is that it's one project, carried end to end, instead of a drive handed back to you with the hardest part still undone.
 
 ---
 
