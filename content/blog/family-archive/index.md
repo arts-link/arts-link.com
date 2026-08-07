@@ -5,16 +5,6 @@ description = "Digitizing old family photos and films is the easy part. The hard
 draft = false
 +++
 
-This started with an email from my mom.
-
-A friend of hers has about ten old family film reels. Footage of her children, shot decades ago, sitting in a box. She doesn't know what's on them. She doesn't know whether the film is still any good, or what format it is, or who she'd send it to, or what she'd do with the files if she got them back.
-
-My mom's email was short. Roughly: *my friend has some old family films she wants digitized and organized, and she doesn't even know how to get started.*
-
-That last part is the whole problem.
-
----
-
 ## Where Do You Even Start?
 
 Almost everyone has some version of this box. Photographs in envelopes from the drugstore. A carousel of slides. Negatives in glassine sleeves that nobody has looked at since they were developed. Videotapes labeled in someone's handwriting. Letters. A film reel or two with no label at all.
