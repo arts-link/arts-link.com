@@ -43,9 +43,9 @@ Getting from one to the other is the actual work, and it's the part nobody sells
 
 ## What I Can Do With a Collection
 
-I start with an inventory. Before anything gets sent anywhere, it helps enormously to know what's actually there: how many reels, what condition, which photographs are duplicates of duplicates, which boxes are worth the cost of digitizing and which honestly aren't. That conversation alone tends to make the project feel finite.
+I start with an inventory. Before anything gets sent anywhere, it helps enormously to know what's there: how many reels, what condition, which photographs are duplicates of duplicates, which boxes are worth the cost of digitizing and which honestly aren't. That conversation alone tends to make the project feel finite.
 
-Then digitization. I want to be clear about this: I don't run film scanners or videotape decks. There are companies whose entire specialty is transferring fragile material, and they're very good at it. What I do is figure out what you have, match it to the right service, handle the logistics, and make sure what comes back is actually usable. Material usually falls into a handful of categories:
+Then digitization. I want to be clear about this: I don't run film scanners or videotape decks. There are companies whose entire specialty is transferring fragile material, and they're very good at it. What I do is figure out what you have, match it to the right service, handle the logistics, and make sure what comes back is usable. Material usually falls into a handful of categories:
 
 - printed photographs
 - negatives and slides
@@ -58,7 +58,7 @@ Once the files exist, the collection gets organized. Sensible folders instead of
 
 Then curation, which is the difference between having five thousand scans and having an archive. Not everything deserves equal weight. Some photographs carry a story; some are the fourth nearly identical frame of the same tree.
 
-And then, when it makes sense, I build the thing you can actually browse. A family archive site — private if you want it private — organized around whatever shape the material suggests. Sometimes that's chronology. Sometimes it's people, or a place, or a single trip, or one generation, or the original albums as they were assembled, or one person's body of work as a photographer.
+And then, when it makes sense, I build the thing you can browse. A family archive site — private if you want it private — organized around whatever shape the material suggests. Sometimes that's chronology. Sometimes it's people, or a place, or a single trip, or one generation, or the original albums as they were assembled, or one person's body of work as a photographer.
 
 The point of all of it is continuity. Box, inventory, digitization, organization, names and dates, curation, archive — one project, one person carrying it end to end, instead of a drive handed back to you with the hardest part still undone.
 
@@ -68,7 +68,7 @@ The point of all of it is continuity. Box, inventory, digitization, organization
 
 [Gordon Landreth Photography](/work/gordon-landreth-photography/) is a photographer's work across six decades — thousands of album pages, scanned. Every page carried handwritten captions: names, dates, places, events. Rather than let that writing sit there as decoration, I built the site so those captions are searchable. A relative can type a name or a town and find the photographs. The archive answers questions instead of just displaying pictures.
 
-[Road Trip 2026](/work/rt2026/) is a different shape entirely — one event rather than a lifetime. Nine days, 3,753 miles, Philadelphia to Los Angeles, kept as photographs and records of the route. Instead of a single undifferentiated gallery, you move through it day by day: where we were, when, and what the drive actually looked like. Same principle, much smaller frame.
+[Road Trip 2026](/work/rt2026/) is a different shape entirely — one event rather than a lifetime. Nine days, 3,753 miles, Philadelphia to Los Angeles, kept as photographs and records of the route. Instead of a single undifferentiated gallery, you move through it day by day: where we were, when, and what the drive looked like. Same principle, much smaller frame.
 
 ---
 
