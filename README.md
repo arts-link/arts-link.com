@@ -1,63 +1,52 @@
-# arts-link
-dedicated to building lightning fast portfolio websites for artists
+<p align="center">
+  <a href="https://arts-link.com">
+    <img src="static/images/logo/arts-link-colors.webp" alt="Arts-Link" width="609">
+  </a>
+</p>
 
-## Setup
+<p align="center">
+  <strong>Bespoke portfolio websites for artists, bands, and photographers.</strong><br>
+  Fast, personal, and yours to keep.
+</p>
 
-in order to use tailwindcss install the following npm modules.  
+<p align="center">
+  <a href="https://arts-link.com"><img alt="Visit arts-link.com" src="https://img.shields.io/badge/visit-arts--link.com-65d64f?style=flat-square"></a>
+  <img alt="Made for artists and bands" src="https://img.shields.io/badge/made%20for-artists%20%26%20bands-ff5a36?style=flat-square">
+  <img alt="Independent web studio" src="https://img.shields.io/badge/studio-independent-f7e65b?style=flat-square">
+  <img alt="No platform lock-in" src="https://img.shields.io/badge/lock--in-none-f1a7d1?style=flat-square">
+</p>
 
-```bash
-npm install -g postcss-cli
-npm install --save-dev postcss-import
-npm install -D tailwindcss
-npm install -D autoprefixer
-npm install -D @tailwindcss/typography
-```
+## Your work deserves a website with a point of view
 
-For a freshly cloned repo update the git submodules.  
+Arts-Link is a boutique web studio for creative people. We make one-of-a-kind portfolio sites that put the work first, without burying it beneath a generic template, an expensive subscription, or someone else's branding.
 
-```bash
-git submodule update --init --recursive # needed when you reclone your repo (submodules may not get cloned automatically)
-```
+You work directly with [Ben Strawbridge](https://benstrawbridge.com), from the first conversation to launch. The result is a fast, thoughtful site that belongs to you.
 
-## Competition
+## What Arts-Link does
 
-- https://www.format.com/ 
-- https://web.archive.org/web/20020220112908/http://www.arts-link.com:80/ 
-- https://www.librarycat.org/ -- not competition but similar idea, could copy some of their page ideas
+- **New websites** — distinctive portfolios designed around your art, music, photography, and story.
+- **Site rescues** — a new home for websites stuck on expensive, neglected, or disappearing platforms.
+- **Ongoing help** — practical hosting, domain, deployment, and content support for Arts-Link clients who want it.
 
-## Resources  
+Projects start at **$1,000**. No platform lock-in. No mandatory monthly management plan. Just a site you can be proud to share—and keep.
 
-- [arts-link project folder](https://docs.google.com/document/d/1fLLuI-PdlMsFoGNuLFCQZiZC0hyGsWXNpBg48teuiVc/edit)
+## Made for the independent web
 
-### css resources
+Arts-Link believes artists should own their online home. Every site is built to be:
 
-- [Tailwindcss docs](https://tailwindcss.com/docs/installation)
+- **Personal**, with a real person on the other side of the conversation
+- **Fast**, so the work gets attention instead of a loading screen
+- **Accessible**, for visitors on different devices and connections
+- **Yours**, with the freedom to take it with you
 
-### starter theme
-- [PaperMod theme](https://github.com/adityatelange/hugo-PaperMod/wiki/Installation)
-- [PaperMod variables](https://github.com/adityatelange/hugo-PaperMod/wiki/Variables)
+## See what is possible
 
-### image gallery resources
+Explore [recent work](https://arts-link.com/work/) or read more about [services](https://arts-link.com/services/).
 
-- [Photo Swipe plugin](https://github.com/dimsemenov/PhotoSwipe)
-- [Gallery Deluxe Theme](https://github.com/bep/gallerydeluxe)
-- [Gallery Theme](https://github.com/nicokaiser/hugo-theme-gallery)
+Ready to give your work a better home? **[Tell me about your project.](https://arts-link.com/contact/)**
 
-### portfolio website looks
+`artist portfolios` · `band websites` · `photography websites` · `site rescue` · `independent web`
 
-- https://www.nicooved.com/
-- https://car-gallery-webapp.vercel.app/
-
-### domain reseller stuff
-
-- [opensrs domain reseller dashboard](https://manage.opensrs.com//#!)
-- [opensrs storefront reseller site]()
-
-### Set steps for new hosting / domain site
-
-- ideally host the site on github pages for free with their github account linked as an owner.
-- setup the domain in arts-link domains
-- setup a new host on plausible analytics
-- set up a new host on google console
-
-Talk with us: hello@arts-link.com
+<p align="center">
+  <a href="mailto:hello@arts-link.com">hello@arts-link.com</a> · <a href="https://arts-link.com">arts-link.com</a>
+</p>
