@@ -35,15 +35,15 @@ The goal isn't a folder containing thousands of files with meaningless names.
 
 It's a collection somebody who wasn't there can open in fifteen years and understand — without you standing next to them explaining who everyone is.
 
-Getting from one to the other is the actual work, and it's the part nobody sells.
+Getting from one to the other is the actual work, and it's the part most digitizing services don't solve for you.
 
 ---
 
-## What I Can Do With a Collection
+## How I Turn a Collection Into a Family Archive
 
 Five steps, in this order.
 
-**Assess.** Before anything gets sent anywhere, we work out what you have and what's worth keeping — how many reels, what condition, which boxes justify the cost and which honestly don't. That conversation alone tends to make the project feel finite.
+**Assess.** Before anything gets sent anywhere, we work out what you have, what condition it's in, what should be digitized first, and where professional transfer is worth the cost. That conversation alone tends to make the project feel finite.
 
 **Digitize.** I don't run film scanners or videotape decks. There are companies whose entire specialty is transferring fragile material, and they're very good at it. I match your material to the right one, handle the logistics, and check that what comes back is usable. Most collections are some mix of:
 
@@ -88,7 +88,7 @@ Digitizing makes old material far easier to view, copy, and share, and it protec
 
 The [National Archives](https://www.archives.gov/preservation/family-archives) publishes straightforward guidance on caring for family papers and photographs, and it's worth ten minutes of reading.
 
-Fragile or unusual formats — film especially — are best handled by people who do that work every day. Old film can be brittle, warped, or chemically degraded, and a bad transfer can be a one-time mistake.
+Fragile or unusual formats — film especially — are best handled by people who do that work every day. Old film can be brittle, warped, or chemically degraded, and poor handling can damage material that can't be replaced.
 
 And a digital archive shouldn't live in exactly one place. A drive fails; a laptop gets stolen. The [Library of Congress](https://www.loc.gov/programs/digital-collections-management/personal-digital-archiving/) has a plain-language guide to keeping personal digital material safe over time, and the short version is: more than one copy, in more than one location.
 
