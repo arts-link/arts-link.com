@@ -1,41 +1,37 @@
 +++
 title = "What Do You Do With a Box of Old Family Photos and Film?"
 date = 2026-08-07
-description = "Digitizing old family photos and films is the easy part. The harder job is turning a box of material into a family archive your relatives can explore and keep."
+description = "Digitizing photos and film is the easy part. The harder job is turning a box of material into a family archive your relatives can share and explore."
 draft = false
 +++
 
 ## Where Do You Even Start?
 
-Almost everyone has some version of this box. Photographs in envelopes from the drugstore. A carousel of slides. Negatives in glassine sleeves that nobody has looked at since they were developed. Videotapes labeled in someone's handwriting. Letters. A film reel or two with no label at all.
+Almost everyone has some version of this box: Photographs in envelopes from the drugstore. A carousel of slides. Negatives in glassine sleeves that nobody has looked at since they were developed. Videotapes labeled in someone's handwriting. Letters. A film reel or two with no label at all.
 
-And now, on top of that, twenty years of digital photos scattered across phones, laptops, an old iPad, and a hard drive in a closet.
+And now, on top of that, twenty years of digital photos scattered across phones, laptops, iPads and hard drives.
 
 The stall isn't really about equipment. You can find a service that will scan photographs, and you can buy a bigger drive.
 
-The stall is that nobody has decided what the project *is*. There's no first step, because there's no shape — just an undifferentiated pile of material and a vague sense that something should be done before it's too late.
+The problem is that nobody has decided what the project *is*. There's no first step, because there is just an undifferentiated pile of material and a vague sense that something should be done before it's too late.
 
-Most people in this situation don't need another scanning app or another drive. They need somebody to look at what they've got and turn it into a project with a beginning and an end.
+Most people in this situation don't need another scanning app or another hard drive. They need somebody to look at what they have and turn it into a cohesive project.
 
 ---
 
 ## Digitizing Isn't the Archive
 
-Here's the part that surprises people.
-
 You can do everything right — find a good service, send the box, pay the bill — and get back a drive containing `IMG_0001.jpg` through `IMG_4873.jpg`.
 
-Nothing is labeled. Nothing is in order. Slides from 1974 sit next to a birthday party from 1991, because that's the order they came off the scanner.
+Nothing is labeled. Nothing is chronological. Slides from 1974 sit next to a birthday party from 1991, because that's the order they came off the scanner.
 
 Digitizing isn't the archive.
 
-It's the same box, only now it's invisible. At least in the physical box you could hold a photograph up to the light and recognize your grandmother.
+It's the same box, only now it's invisible. At least with the physical box you could hold a photograph up to the light and recognize your grandmother.
 
-The goal isn't a folder containing thousands of files with meaningless names.
+The goal isn't a folder of files; It's a collection somebody who wasn't there can open and understand, without you standing next to them explaining who everyone is.
 
-It's a collection somebody who wasn't there can open in fifteen years and understand — without you standing next to them explaining who everyone is.
-
-Getting from one to the other is the actual work, and it's the part most digitizing services don't solve for you.
+This is the problem most digitizing services don't solve for you.
 
 ---
 
@@ -54,48 +50,40 @@ Five steps, in this order.
 - audio recordings
 - letters and family documents
 
-**Organize.** Sensible folders instead of one enormous dump, in a structure that still makes sense to somebody opening it years from now.
+**Organize.** Sensible folders instead of one enormous dump, in a structure that will make sense to someone opening it years from now.
 
-**Identify.** Names, places, events, dates — approximate is fine, "sometime in the late sixties" beats nothing. Whatever was already written on the back of a photograph or the side of a box gets kept, because that handwriting is often the only surviving record of who those people were.
+**Identify.** Names, places, events, dates. Approximate is fine. "Sometime in the late sixties" is better than nothing. Anything written on the back of a photograph or the side of a box gets kept, because those notations are often the only surviving record of who those people were. The captions are searchable in a database.
 
-**Build the archive.** The collection becomes something you can browse — private if you want it private — organized around whatever shape the material suggests: chronology, people, a place, a single trip, a generation, the original albums, one person's body of work.
+**Build the archive.** The collection becomes something you can browse. It can remain private, or it can be posted to the internet, password-protected, if you like. It is organized around whatever the material suggests: chronology, people, a place, a single trip, a generation, the original albums, or one person's body of work.
 
-Not everything gets equal weight here. Some photographs carry a story, and some are the fourth near-identical frame of the same tree.
-
-Where the effort lands depends on the collection. A shoebox of loose prints is mostly identifying; ten unlabeled reels are mostly assessing and digitizing.
-
-What doesn't change is that it's one project, carried end to end, instead of a drive handed back to you with the hardest part still undone.
+It is a complete project, carried end to end, instead of a drive handed back to you with the hardest part still undone.
 
 ---
 
 ## Two Examples
 
-[Gordon Landreth Photography](/work/gordon-landreth-photography/) is a family archive organized around a photographer's own body of work — six decades of it, thousands of album pages, scanned. Every page carried handwritten captions: names, dates, places, events.
+[Gordon Landreth Photography](/work/gordon-landreth-photography/) is a family archive organized around a photographer's body of work. Six decades of it, thousands of album pages, scanned. Every page carried handwritten captions: names, dates, places, events.
 
-Rather than let that writing sit there as decoration, I built the site so those captions are searchable. A relative can type a name or a town and find the photographs. The archive answers questions instead of just displaying pictures.
+I built the site so those captions are searchable. A relative can type in the name of a person or a town and find the corresponding photographs.
 
-[Road Trip 2026](/work/rt2026/) is a travel archive — one event rather than a lifetime. Nine days, 3,753 miles, Philadelphia to Los Angeles, kept as photographs and records of the route.
-
-Instead of a single undifferentiated gallery, you move through it day by day: where we were, when, and what the drive looked like. Same principle, much smaller frame.
+[Road Trip 2026](/work/rt2026/) is a travel archive. Nine days, 3,753 miles, Philadelphia to Los Angeles, kept as photographs and records of the route. You move through it day by day: where we were, when, and what the drive looked like.
 
 ---
 
 ## Keep the Originals
 
-A few things worth saying plainly.
+Digitizing makes old material far easier to view, copy, and share. It ensures that there is not only one print that can be damaged. But it is not a replacement. The originals should be kept.
 
-Digitizing makes old material far easier to view, copy, and share, and it protects you against the day the only print gets damaged. But it isn't a replacement — the originals should generally be kept anyway.
+The [National Archives](https://www.archives.gov/preservation/family-archives) publishes guidance on caring for family papers and photographs.
 
-The [National Archives](https://www.archives.gov/preservation/family-archives) publishes straightforward guidance on caring for family papers and photographs, and it's worth ten minutes of reading.
+Fragile or unusual formats are best handled by people who do that work every day. This is especially true for film. Old film can be brittle, warped, or chemically degraded, and poor handling can damage material that can't be replaced.
 
-Fragile or unusual formats — film especially — are best handled by people who do that work every day. Old film can be brittle, warped, or chemically degraded, and poor handling can damage material that can't be replaced.
+A digital archive should not be kept in only one place. A drive fails; a laptop gets stolen. The [Library of Congress](https://www.loc.gov/programs/digital-collections-management/personal-digital-archiving/) has a guide to keeping personal digital material safe over time, and the short version is: more than one copy, in more than one location.
 
-And a digital archive shouldn't live in exactly one place. A drive fails; a laptop gets stolen. The [Library of Congress](https://www.loc.gov/programs/digital-collections-management/personal-digital-archiving/) has a plain-language guide to keeping personal digital material safe over time, and the short version is: more than one copy, in more than one location.
+You keep all of your original media. You get an organized copy of the digital archive, in folders you can open on any computer.
 
-That's why the handoff matters to me. You keep your original media. You get an organized copy of the digital archive, in ordinary folders you can open on any computer, whether or not I'm involved.
-
-If I build you a site, the site is a way to enjoy the collection — never the only copy of it.
+The site is a way to enjoy the collection. It is never the only copy of it.
 
 ---
 
-Have a box of family photos, film, or tapes and no idea where to start? You don't need to know what's on them, or what format they are, or what you want in the end. Tell me what you've got and we'll work out the rest — [get in touch](/contact/).
+Do you have a box of family photos, film, or tapes and no idea where to start? Tell me what you have and we'll work out the rest — [get in touch](/contact/).
