@@ -75,6 +75,7 @@ describe.skipIf(!built)('smoke – homepage (public/index.html)', () => {
     );
     expect(hrefs).toContain('/work/');
     expect(hrefs).toContain('/services/');
+    expect(hrefs).toContain('/blog/');
     expect(hrefs).toContain('/contact/');
   });
 });
