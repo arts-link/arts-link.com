@@ -24,6 +24,12 @@ site_system:
       type: Collector/Converter
       target_action: Click "Work with me" CTA
       metric: CTA click-through to Contact
+      notes: >
+        Module order: Hero, About the studio, Selected work (3 entries),
+        What I build, Studio notes callout, CTA block. The Studio notes
+        callout surfaces the single most recent blog post and sits after
+        Services so it never interrupts the Work → Services → Contact path;
+        it hands off directly into the CTA block.
 
     - name: Work
       type: Collector
@@ -107,6 +113,10 @@ site_system:
       - Read Services to understand what's available and rough cost
       - Hit Contact and submit
       - Ben follows up personally
+    secondary_path: >
+      Visitors who want more proof before committing can take the Studio notes
+      callout on Home into the latest blog post, then to Contact from the
+      post's CTA block.
     friction_points:
       - Contact form should be minimal (name, email, tell me about your project)
       - No pricing page debate needed — remove that decision point
@@ -151,6 +161,8 @@ site_system:
       - Project card (image, name, type badge, live site link)
       - Service block (name, description, used on Services page)
       - CTA block (reusable strip — "Ready to talk?" — used on Home and Services)
+      - Latest post callout (date, title, description, read link — Home only;
+        pulls the newest blog post automatically, hides itself when none exist)
       - Contact form (Formspree, minimal fields: name, email, project description)
     showstopper: []
     high_touch: []
@@ -160,7 +172,9 @@ site_system:
       - Contact form submission (keystone)
       - CTA clicks from Home and Services
       - Blog post CTA clicks (location: blog-post)
+      - Blog callout clicks from Home (Blog Callout Click, location: home)
       - Blog organic traffic (PostHog source attribution)
     funnel_definition: >
       Home → Work or Services → Contact → Submission;
+      Home → Studio notes callout → Blog post → Contact → Submission;
       Blog (organic) → Blog post → Contact → Submission
