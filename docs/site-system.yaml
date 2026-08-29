@@ -128,6 +128,9 @@ site_system:
     form_handler: Formspree (connected to Contact page)
     seo_strategy: Static HTML, fast load, artist/band name targeting
     performance_monitoring: PostHog (production only)
+    social_cards: >
+      Every page has its own 1200x630 Open Graph image rather than one shared
+      card — see social_cards below.
 
   content_model:
     work_entries:
@@ -166,6 +169,42 @@ site_system:
       - Contact form (Formspree, minimal fields: name, email, project description)
     showstopper: []
     high_touch: []
+
+  social_cards:
+    why: >
+      Every page used to share static/images/og-default.jpg, so a link to a
+      specific project previewed identically to the home page everywhere links
+      are unfurled. The card is the part people actually see, so it now carries
+      the page's own title.
+    card_contents:
+      - Arts-Link wordmark, top left
+      - Section eyebrow in ember (Work, Studio Notes, Services, …); work
+        entries append the client_type
+      - Site type badge, top right, on rescue and open-source work entries
+      - Page title in Fraunces, sized down in tiers as the title gets longer
+      - Page description, falling back to the summary
+      - Project screenshot on work entries, from the page bundle's screenshot.*
+      - Footer strip - arts-link.com plus the studio tagline
+    how: >
+      Cards are real Hugo pages. The `ogcard` output format renders each page a
+      second time at <page>/og.html through layouts/_default/baseof.ogcard.html
+      and layouts/partials/og-card.html, styled with the site's own CSS — so the
+      card uses the real ink/cream/ember tokens and the self-hosted fonts, and
+      can be designed live at e.g. localhost:1313/work/rt2026/og.html.
+      scripts/og-images.mjs screenshots those pages with Playwright into
+      static/og/<page-path>.jpg.
+    workflow: >
+      The images are committed. Run `hugo --minify && npm run og` after adding
+      or retitling a page, and commit static/og/ and data/og/manifest.json with
+      the content change. Only cards whose source actually changed are
+      re-rendered, so this is normally a no-op. CI runs `npm run og:check`,
+      which fails the build if a card is missing or stale. The deploy workflow
+      renders nothing — it just copies the committed images. The "Regenerate
+      social cards" workflow does the same job from the Actions tab for anyone
+      without a local Chromium.
+    fallback: >
+      baseof.html falls back to images/og-default.jpg for any page not yet in
+      data/og/manifest.json, so a missing card never becomes a broken preview.
 
   analytics:
     primary_events:

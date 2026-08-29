@@ -28,6 +28,9 @@ npm ci
 
 # Run tests (vitest) — requires a build first, see below
 hugo --minify && npm test
+
+# Regenerate social share cards — requires a build first (see Social Cards)
+hugo --minify && npm run og
 ```
 
 The test suite reads from the generated `public/` directory. Without it, `tests/smoke.test.js` skips itself silently, so always build before running tests.
@@ -56,6 +59,23 @@ case_study = true             # enables the "Read story" link to the full page
 weight = 1                    # ascending sort on /work/; lowest 3 also feature on the homepage
 ```
 `docs/site-system.yaml` (`content_model.work_entries`) is the authority on these fields — update it when they change.
+
+**Social cards**: Every page gets its own 1200×630 Open Graph image. The `ogcard`
+output format renders each page a second time as a card at `<page>/og.html`
+(`layouts/_default/baseof.ogcard.html` + `layouts/partials/og-card.html`), styled with
+the site's own CSS so it uses the real `ink`/`cream`/`ember` tokens and self-hosted
+fonts. `scripts/og-images.mjs` screenshots those with Playwright into `static/og/`.
+
+The images are **committed** — nothing renders at deploy time. After adding or
+retitling a page, run `hugo --minify && npm run og` and commit `static/og/` along with
+`data/og/manifest.json`; only cards whose source changed are re-rendered, so it's
+usually a no-op. CI runs `npm run og:check` and fails if a card is missing or stale.
+`baseof.html` falls back to `og-default.jpg` for pages not yet in the manifest.
+
+To redesign the card, edit `layouts/partials/og-card.html` and preview it live at
+`localhost:1313/work/rt2026/og.html` during `hugo server`. Note that
+`baseof.ogcard.html` deliberately has no `{{ block "main" }}` — see the comment in that
+file.
 
 **Deployment**: GitHub Pages via `.github/workflows/hugo.yml` (manual trigger, Hugo v0.138.0 extended). Note that `docs/site-system.yaml` records a migration to Vercel as in progress. CI runs separately in `.github/workflows/test.yml` on every push and PR: `npm ci` → `hugo --minify` → `npm test`.
 

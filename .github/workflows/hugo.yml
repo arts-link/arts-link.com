@@ -32,6 +32,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       HUGO_VERSION: 0.138.0
+      # Social cards are committed to static/og/ and simply copied by Hugo —
+      # nothing is rendered at deploy time, so skip Playwright's browser fetch.
+      PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
     steps:
       - name: Install Hugo CLI
         run: |

@@ -20,8 +20,19 @@ enableGitInfo = false
   isPlainText = true
   notAlternative = true
 
+# Social share cards. Each page renders a second HTML output at og.html — a
+# 1200x630 card styled with the site's own CSS. scripts/og-images.mjs
+# screenshots those into static/og/. See `npm run og`.
+[outputFormats.ogcard]
+  mediaType = "text/html"
+  baseName = "og"
+  isHTML = true
+  notAlternative = true
+
 [outputs]
-  home = ["HTML", "RSS", "llmstxt"]
+  home = ["HTML", "RSS", "llmstxt", "ogcard"]
+  page = ["HTML", "ogcard"]
+  section = ["HTML", "ogcard"]
   
 [module]
   [module.hugoVersion]

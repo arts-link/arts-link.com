@@ -1,0 +1,57 @@
+# Regenerate the social share cards without needing Chromium locally.
+#
+# Cards live in static/og/ and are committed to the repo; `npm run og` only
+# re-renders the ones whose source changed. Run this from the Actions tab on
+# the branch you want updated, then review the image diff.
+name: Regenerate social cards
+
+on:
+  workflow_dispatch:
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      HUGO_VERSION: 0.138.0
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+          cache: 'npm'
+
+      - name: Install Hugo CLI
+        run: |
+          wget -O ${{ runner.temp }}/hugo.deb \
+            https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb \
+          && sudo dpkg -i ${{ runner.temp }}/hugo.deb
+
+      - name: Install Node.js dependencies
+        run: npm ci
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Build site
+        run: hugo --minify
+
+      - name: Render cards
+        run: npm run og
+
+      - name: Commit any changes
+        run: |
+          if git diff --quiet -- static/og data/og; then
+            echo "Social cards already up to date."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add static/og data/og
+          git commit -m "Regenerate social share cards"
+          git push

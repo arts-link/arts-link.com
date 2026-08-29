@@ -1,0 +1,98 @@
+{{/*
+  Social share card — 1200x630, rendered as a real page at <page>/og.html and
+  screenshotted into static/og/ by scripts/og-images.mjs (`npm run og`).
+
+  Because this is a normal Hugo template using the site's own stylesheet, you
+  can design it live: `hugo server`, then open e.g.
+  http://localhost:1313/work/rt2026/og.html
+
+  This is the only file to edit when redesigning the card.
+*/}}
+
+{{- $shot := "" }}
+{{- with .Resources.GetMatch "screenshot*" }}
+  {{- $shot = .Fill "1120x840 Top" }}
+{{- end }}
+
+{{/* Eyebrow: section label, plus the client type on work entries. */}}
+{{- $labels := dict
+      "work"     "Work"
+      "blog"     "Studio Notes"
+      "services" "Services"
+      "features" "Features"
+      "resources" "Resources"
+      "about"    "About"
+      "contact"  "Contact"
+      "thanks"   "Thanks"
+}}
+{{- $eyebrow := cond .IsHome "Web Studio" (index $labels .Section) }}
+{{- if not $eyebrow }}{{ $eyebrow = "Arts-Link" }}{{ end }}
+{{- if and (eq .Section "work") .Params.client_type }}
+  {{- $eyebrow = printf "%s · %s" $eyebrow (title .Params.client_type) }}
+{{- end }}
+
+{{/* Title scales down as it gets longer, and again when a screenshot is
+     sharing the row, so nothing overflows the fixed canvas. */}}
+{{- $len := len .Title }}
+{{- $titleSize := "" }}
+{{- if $shot }}
+  {{- $titleSize = cond (le $len 18) "text-6xl" (cond (le $len 34) "text-5xl" "text-4xl") }}
+{{- else }}
+  {{- $titleSize = cond (le $len 22) "text-8xl" (cond (le $len 44) "text-7xl" "text-6xl") }}
+{{- end }}
+
+{{/* Description falls back to the page summary; work entries rarely set one. */}}
+{{- $desc := .Description }}
+{{- if not $desc }}{{ $desc = .Summary }}{{ end }}
+{{- $desc = $desc | plainify | htmlUnescape | strings.TrimSpace | truncate (cond (ne $shot "") 90 150) "…" }}
+
+{{/* Footer tagline — first sentence of the site description. */}}
+{{- $tagline := index (split .Site.Params.description ".") 0 }}
+
+<div class="w-[1200px] h-[630px] relative overflow-hidden bg-ink">
+
+  <!-- Texture (desaturated so it reads as grain, not as competing colour),
+       ember glow, and a scrim that keeps the text column on near-solid ink. -->
+  <div class="absolute inset-0 bg-cover bg-center opacity-[0.09]"
+       style="background-image:url('/images/bg-paint-drip.webp');filter:saturate(.25) contrast(1.15)"></div>
+  <div class="absolute inset-0 bg-gradient-to-r from-ink via-ink/80 to-ink/40"></div>
+  <div class="absolute -left-40 -bottom-56 h-[680px] w-[680px] rounded-full bg-ember/25 blur-[140px]"></div>
+
+  <div class="relative flex h-full flex-col px-16 py-14">
+
+    <!-- Wordmark + badge -->
+    <div class="flex items-center justify-between">
+      <span class="font-display text-2xl uppercase tracking-[0.22em] text-cream/85">Arts-Link</span>
+      {{ if eq .Params.site_type "rescue" }}
+        <span class="text-sm uppercase tracking-[0.2em] text-ember border border-ember px-3 py-1 leading-none">Rescue</span>
+      {{ else if eq .Params.site_type "open-source" }}
+        <span class="text-sm uppercase tracking-[0.2em] text-cream/80 border border-cream/25 px-3 py-1 leading-none">Open source</span>
+      {{ end }}
+    </div>
+
+    <!-- Body -->
+    <div class="flex flex-1 items-center gap-14 pt-8">
+      <div class="{{ if $shot }}w-[590px] shrink-0{{ else }}w-full{{ end }}">
+        <p class="mb-6 text-base uppercase tracking-[0.3em] text-ember">{{ $eyebrow }}</p>
+        <h1 class="font-display font-light leading-[1.05] text-cream {{ $titleSize }}">{{ .Title }}</h1>
+        {{ with $desc }}
+          <p class="mt-6 text-xl leading-snug text-cream/55 line-clamp-3">{{ . }}</p>
+        {{ end }}
+      </div>
+
+      {{ with $shot }}
+        <div class="min-w-0 flex-1">
+          <img src="{{ .RelPermalink }}" alt="" width="{{ .Width }}" height="{{ .Height }}"
+               class="w-full rounded-sm ring-1 ring-cream/10 shadow-2xl">
+        </div>
+      {{ end }}
+    </div>
+
+    <!-- Footer -->
+    <div class="flex items-baseline justify-between border-t border-cream/10 pt-6">
+      <span class="font-display text-xl text-cream">arts-link.com</span>
+      <span class="text-lg text-cream/45">{{ $tagline }}</span>
+    </div>
+
+  </div>
+</div>
