@@ -178,13 +178,27 @@ site_system:
       the page's own title.
     card_contents:
       - Arts-Link wordmark, top left
-      - Section eyebrow in ember (Work, Studio Notes, Services, …); work
-        entries append the client_type
+      - Section eyebrow in ember (Work, Studio Notes, …); work entries append
+        the client_type. Section listings get none - their title already says
+        it. Unmapped sections humanize their own name.
       - Site type badge, top right, on rescue and open-source work entries
       - Page title in Fraunces, sized down in tiers as the title gets longer
-      - Page description, falling back to the summary
-      - Project screenshot on work entries, from the page bundle's screenshot.*
-      - Footer strip - arts-link.com plus the studio tagline
+      - Page description, falling back to the summary, on cards without a
+        screenshot only
+      - Project screenshot on work entries, from the page bundle's screenshot.*,
+        bled off the right edge
+      - Footer - arts-link.com, plus the studio tagline where there is no
+        screenshot
+      - A solid ember bar along the bottom edge
+    legibility: >
+      Sized for where these are actually seen. A link unfurl renders the card
+      around 300px wide in iMessage, 360px in Slack and 500px on X - a 2x to 4x
+      downsample - so the card is designed to be read small: nothing below
+      ~27px, the display face at weight 500 rather than the site's usual light
+      (thin strokes disappear when scaled down), text at cream/65 or above, and
+      restrained letter-spacing on the small caps. The ember bar carries the
+      brand at sizes where no type survives at all. Judge any redesign
+      downsampled, not at 1200px.
     how: >
       Cards are real Hugo pages. The `ogcard` output format renders each page a
       second time at <page>/og.html through layouts/_default/baseof.ogcard.html

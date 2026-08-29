@@ -77,6 +77,13 @@ To redesign the card, edit `layouts/partials/og-card.html` and preview it live a
 `baseof.ogcard.html` deliberately has no `{{ block "main" }}` — see the comment in that
 file.
 
+**The card is designed to be read small.** Link unfurls render it at roughly 300px
+(iMessage), 360px (Slack) or 500px (X) wide, a 2–4× downsample, so the type has a floor
+of ~27px, the display face is `font-medium` rather than the site's usual `font-light`
+(thin strokes vanish when scaled down), and text stays at `cream/65` or above. Always
+check a redesign at those widths rather than at 1200px — everything looks fine at full
+size.
+
 **Deployment**: GitHub Pages via `.github/workflows/hugo.yml` (manual trigger, Hugo v0.138.0 extended). Note that `docs/site-system.yaml` records a migration to Vercel as in progress. CI runs separately in `.github/workflows/test.yml` on every push and PR: `npm ci` → `hugo --minify` → `npm test`.
 
 ## Tailwind & Styling
