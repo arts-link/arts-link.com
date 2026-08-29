@@ -162,12 +162,61 @@ describe.skipIf(!built)('smoke – SEO: meta description', () => {
 
 // ─── SEO: og:image ───────────────────────────────────────────────────────────
 
+const ogImage = (rel) =>
+  readPage(rel).window.document.querySelector('meta[property="og:image"]')?.getAttribute('content')?.trim();
+
 describe.skipIf(!built)('smoke – SEO: og:image', () => {
-  it.each(INDEXABLE_PAGES)('%s has og:image', (rel) => {
+  it.each(INDEXABLE_PAGES)('%s has an absolute og:image', (rel) => {
+    const content = ogImage(rel);
+    expect(content).toBeTruthy();
+    expect(content).toMatch(/^https?:\/\/\S+\.jpg$/);
+  });
+
+  it.each(INDEXABLE_PAGES)('%s declares og:image dimensions', (rel) => {
     const { document } = readPage(rel).window;
-    const og = document.querySelector('meta[property="og:image"]');
-    expect(og).not.toBeNull();
-    expect(og.getAttribute('content').trim().length).toBeGreaterThan(0);
+    expect(document.querySelector('meta[property="og:image:width"]')?.getAttribute('content')).toBe('1200');
+    expect(document.querySelector('meta[property="og:image:height"]')?.getAttribute('content')).toBe('630');
+    expect(
+      document.querySelector('meta[property="og:image:alt"]')?.getAttribute('content')?.trim().length,
+    ).toBeGreaterThan(0);
+  });
+
+  // The point of the per-page cards: no two pages may share one image.
+  it('every indexable page has its own card', () => {
+    const byImage = new Map();
+    for (const rel of INDEXABLE_PAGES) {
+      const image = ogImage(rel);
+      byImage.set(image, [...(byImage.get(image) ?? []), rel]);
+    }
+    const shared = [...byImage.entries()].filter(([, pages]) => pages.length > 1);
+    expect(shared).toEqual([]);
+  });
+
+  it.each(INDEXABLE_PAGES.filter((p) => p.startsWith('work/') && p !== 'work/index.html'))(
+    '%s points at its own generated card',
+    (rel) => {
+      const slug = rel.split('/')[1];
+      expect(ogImage(rel)).toContain(`/og/work/${slug}.jpg`);
+    },
+  );
+
+  // Falling back to the shared card means `npm run og` has not been run for a
+  // page that needs it — og:check catches this in CI, but assert it here too.
+  it.each(INDEXABLE_PAGES)('%s does not fall back to the shared card', (rel) => {
+    expect(ogImage(rel)).not.toContain('og-default.jpg');
+  });
+
+  it.each(INDEXABLE_PAGES)('%s og:image resolves to a built file', (rel) => {
+    const file = path.join(PUBLIC, new URL(ogImage(rel)).pathname);
+    expect(fs.existsSync(file), `missing ${file}`).toBe(true);
+    expect(fs.statSync(file).size).toBeGreaterThan(1024);
+  });
+
+  it('twitter:image matches og:image', () => {
+    for (const rel of INDEXABLE_PAGES) {
+      const { document } = readPage(rel).window;
+      expect(document.querySelector('meta[name="twitter:image"]')?.getAttribute('content')).toBe(ogImage(rel));
+    }
   });
 });
 
