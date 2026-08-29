@@ -127,6 +127,11 @@ site_system:
     frontend: Hugo (no theme — layouts built directly in root layouts/ with Tailwind + Alpine.js)
     cms: Markdown + Hugo front matter
     hosting: Vercel (migrating from GitHub Pages)
+    base_url: >
+      Absolute URLs all derive from Hugo's baseURL, never from a hardcoded
+      domain. vercel.json runs scripts/vercel-build.sh, which passes --baseURL
+      from the deployment's own hostname on previews so a preview serves its
+      own social cards and canonical rather than production's.
     form_handler: Formspree (connected to Contact page)
     seo_strategy: Static HTML, fast load, artist/band name targeting
     performance_monitoring: PostHog (production only)
