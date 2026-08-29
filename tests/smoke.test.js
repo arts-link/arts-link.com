@@ -151,12 +151,40 @@ describe.skipIf(!built)('smoke – SEO: canonical tag', () => {
 
 // ─── SEO: meta description ───────────────────────────────────────────────────
 
+const metaDescription = (rel) =>
+  readPage(rel).window.document.querySelector('meta[name="description"]')?.getAttribute('content')?.trim();
+
 describe.skipIf(!built)('smoke – SEO: meta description', () => {
   it.each(INDEXABLE_PAGES)('%s has a non-empty meta description', (rel) => {
+    expect(metaDescription(rel)?.length).toBeGreaterThan(0);
+  });
+
+  // Descriptions are derived from the page's own content (front matter
+  // description, then summary, then a line composed from a work entry's front
+  // matter). Sharing one blurb across pages is what that exists to prevent.
+  it('every indexable page has its own description', () => {
+    const byDescription = new Map();
+    for (const rel of INDEXABLE_PAGES) {
+      const d = metaDescription(rel);
+      byDescription.set(d, [...(byDescription.get(d) ?? []), rel]);
+    }
+    const shared = [...byDescription.entries()].filter(([, pages]) => pages.length > 1);
+    expect(shared).toEqual([]);
+  });
+
+  it.each(INDEXABLE_PAGES)('%s repeats its description in og and twitter tags', (rel) => {
     const { document } = readPage(rel).window;
-    const meta = document.querySelector('meta[name="description"]');
-    expect(meta).not.toBeNull();
-    expect(meta.getAttribute('content').trim().length).toBeGreaterThan(0);
+    const expected = metaDescription(rel);
+    expect(document.querySelector('meta[property="og:description"]')?.getAttribute('content')).toBe(expected);
+    expect(document.querySelector('meta[name="twitter:description"]')?.getAttribute('content')).toBe(expected);
+  });
+
+  // plainify + htmlUnescape run before the text reaches an attribute; a raw
+  // entity here means one of them was dropped.
+  it.each(INDEXABLE_PAGES)('%s description carries no HTML entities or tags', (rel) => {
+    const d = metaDescription(rel);
+    expect(d).not.toMatch(/&(?:[a-zA-Z]+|#\d+);/);
+    expect(d).not.toMatch(/<[a-zA-Z/]/);
   });
 });
 

@@ -134,6 +134,12 @@ site_system:
       own social cards and canonical rather than production's.
     form_handler: Formspree (connected to Contact page)
     seo_strategy: Static HTML, fast load, artist/band name targeting
+    meta_descriptions: >
+      Derived per page by layouts/partials/page-description.html — front matter
+      description, then the page summary, then a line composed from a work
+      entry's own front matter, and only then the site blurb. Seven of eighteen
+      pages used to share that blurb verbatim. One partial feeds the meta tags
+      and the social card, and a smoke test fails on any duplicate.
     performance_monitoring: PostHog (production only)
     social_cards: >
       Every page has its own 1200x630 Open Graph image rather than one shared
