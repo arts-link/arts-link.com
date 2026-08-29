@@ -87,6 +87,8 @@ site_system:
     - Domain Names (link to tucows store, not a full page)
     - Resources (dead weight)
     - About (absorbed into Home or a section on Contact)
+    - Draft Proposals (working client drafts — was rendering publicly by
+      accident, now hidden with the same _build cascade as the others)
 
   about_strategy: >
     Ben's name and face go on the site. The pitch is "you get a real
