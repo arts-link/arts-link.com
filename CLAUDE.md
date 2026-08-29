@@ -84,7 +84,15 @@ of ~27px, the display face is `font-medium` rather than the site's usual `font-l
 check a redesign at those widths rather than at 1200px — everything looks fine at full
 size.
 
-**Deployment**: GitHub Pages via `.github/workflows/hugo.yml` (manual trigger, Hugo v0.138.0 extended). Note that `docs/site-system.yaml` records a migration to Vercel as in progress. CI runs separately in `.github/workflows/test.yml` on every push and PR: `npm ci` → `hugo --minify` → `npm test`.
+**Deployment**: Vercel builds via `vercel.json` → `scripts/vercel-build.sh`, which passes
+`--baseURL` derived from the deployment's own hostname (`VERCEL_BRANCH_URL`, falling back
+to `VERCEL_URL`) on previews, and uses the configured `baseURL` in production. Hugo
+resolves every absolute URL — `og:image`, `og:url`, `canonical`, the JSON-LD `@id`s, the
+sitemap line in `robots.txt` — against `baseURL`, so without that a preview deployment
+advertises production's social cards and canonicalises itself to the live site. Nothing
+in `layouts/` hardcodes the domain; keep it that way.
+
+Also still deployable to GitHub Pages via `.github/workflows/hugo.yml` (manual trigger, Hugo v0.138.0 extended), which passes the URL Pages gives it for the same reason. Note that `docs/site-system.yaml` records a migration to Vercel as in progress. CI runs separately in `.github/workflows/test.yml` on every push and PR: `npm ci` → `hugo --minify` → `npm test`.
 
 ## Tailwind & Styling
 
