@@ -61,7 +61,7 @@
      screenshot already carries the context it would have added. */}}
 {{- $desc := "" }}
 {{- if not $shot }}
-  {{- $desc = default .Summary .Description | plainify | htmlUnescape | strings.TrimSpace | truncate 120 "…" }}
+  {{- $desc = partial "page-description.html" . | truncate 120 "…" }}
 {{- end }}
 
 {{/* Footer tagline — first sentence of the site description. */}}

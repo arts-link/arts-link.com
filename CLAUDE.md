@@ -60,6 +60,15 @@ weight = 1                    # ascending sort on /work/; lowest 3 also feature 
 ```
 `docs/site-system.yaml` (`content_model.work_entries`) is the authority on these fields — update it when they change.
 
+**Page descriptions**: `layouts/partials/page-description.html` returns the text used
+for `meta description`, `og:description`, `twitter:description` and the social card,
+so those can't drift apart. It prefers front matter `description`, then the page
+`.Summary`, then — for a work entry with no body to summarise — a line composed from
+its own front matter, and only falls back to `.Site.Params.description` if all of those
+are empty. Authored `description` copy passes through untouched; derived text is
+plainified and trimmed to 160 characters. Write a `description` whenever the derived
+one is weak; a smoke test fails if any two indexable pages end up sharing one.
+
 **Social cards**: Every page gets its own 1200×630 Open Graph image. The `ogcard`
 output format renders each page a second time as a card at `<page>/og.html`
 (`layouts/_default/baseof.ogcard.html` + `layouts/partials/og-card.html`), styled with
