@@ -15,7 +15,7 @@
  * title, description, section, screenshot — Hugo fingerprints processed image
  * URLs — template edits, and palette or font changes, while ignoring the rest
  * of the Tailwind bundle, which is inlined into every card and would otherwise
- * churn all 20 images whenever an unrelated page gained a class. On a site that
+ * churn every image whenever an unrelated page gained a class. On a site that
  * rarely changes, `npm run og` is a no-op.
  *
  *   npm run og          render missing/stale cards
@@ -93,6 +93,14 @@ function writeManifest(manifest) {
 
 const outFile = (key) => path.join(OUT_DIR, `${key}.jpg`);
 
+/** Drop directories left behind when a whole section stops being published. */
+function pruneEmptyDirs(dir) {
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (entry.isDirectory()) pruneEmptyDirs(path.join(dir, entry.name));
+  }
+  if (dir !== OUT_DIR && fs.readdirSync(dir).length === 0) fs.rmdirSync(dir);
+}
+
 // ─── Static server (Playwright needs real URLs for fonts and images) ─────────
 
 const MIME = {
@@ -163,6 +171,7 @@ for (const key of orphans) {
   delete manifest[key];
   console.log(`removed ${key}.jpg (page no longer exists)`);
 }
+if (orphans.length > 0) pruneEmptyDirs(OUT_DIR);
 
 if (stale.length === 0) {
   writeManifest(manifest);

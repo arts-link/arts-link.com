@@ -60,6 +60,15 @@ weight = 1                    # ascending sort on /work/; lowest 3 also feature 
 ```
 `docs/site-system.yaml` (`content_model.work_entries`) is the authority on these fields — update it when they change.
 
+**Page descriptions**: `layouts/partials/page-description.html` returns the text used
+for `meta description`, `og:description`, `twitter:description` and the social card,
+so those can't drift apart. It prefers front matter `description`, then the page
+`.Summary`, then — for a work entry with no body to summarise — a line composed from
+its own front matter, and only falls back to `.Site.Params.description` if all of those
+are empty. Authored `description` copy passes through untouched; derived text is
+plainified and trimmed to 160 characters. Write a `description` whenever the derived
+one is weak; a smoke test fails if any two indexable pages end up sharing one.
+
 **Social cards**: Every page gets its own 1200×630 Open Graph image. The `ogcard`
 output format renders each page a second time as a card at `<page>/og.html`
 (`layouts/_default/baseof.ogcard.html` + `layouts/partials/og-card.html`), styled with
@@ -77,7 +86,22 @@ To redesign the card, edit `layouts/partials/og-card.html` and preview it live a
 `baseof.ogcard.html` deliberately has no `{{ block "main" }}` — see the comment in that
 file.
 
-**Deployment**: GitHub Pages via `.github/workflows/hugo.yml` (manual trigger, Hugo v0.138.0 extended). Note that `docs/site-system.yaml` records a migration to Vercel as in progress. CI runs separately in `.github/workflows/test.yml` on every push and PR: `npm ci` → `hugo --minify` → `npm test`.
+**The card is designed to be read small.** Link unfurls render it at roughly 300px
+(iMessage), 360px (Slack) or 500px (X) wide, a 2–4× downsample, so the type has a floor
+of ~27px, the display face is `font-medium` rather than the site's usual `font-light`
+(thin strokes vanish when scaled down), and text stays at `cream/65` or above. Always
+check a redesign at those widths rather than at 1200px — everything looks fine at full
+size.
+
+**Deployment**: Vercel builds via `vercel.json` → `scripts/vercel-build.sh`, which passes
+`--baseURL` derived from the deployment's own hostname (`VERCEL_BRANCH_URL`, falling back
+to `VERCEL_URL`) on previews, and uses the configured `baseURL` in production. Hugo
+resolves every absolute URL — `og:image`, `og:url`, `canonical`, the JSON-LD `@id`s, the
+sitemap line in `robots.txt` — against `baseURL`, so without that a preview deployment
+advertises production's social cards and canonicalises itself to the live site. Nothing
+in `layouts/` hardcodes the domain; keep it that way.
+
+Also still deployable to GitHub Pages via `.github/workflows/hugo.yml` (manual trigger, Hugo v0.138.0 extended), which passes the URL Pages gives it for the same reason. Note that `docs/site-system.yaml` records a migration to Vercel as in progress. CI runs separately in `.github/workflows/test.yml` on every push and PR: `npm ci` → `hugo --minify` → `npm test`.
 
 ## Tailwind & Styling
 
