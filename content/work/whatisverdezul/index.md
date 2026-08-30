@@ -4,6 +4,7 @@ date = 2026-07-24
 client_type = "band"
 site_type = "new"
 live_url = "https://whatisverdezul.com"
+description = "A new site for the band Verdèzul — music, shows, press and merch, with a custom homepage hero and content the band edits itself. No lock-in, theirs to own."
 case_study = true
 weight = 1
 +++
