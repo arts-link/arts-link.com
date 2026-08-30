@@ -87,6 +87,8 @@ site_system:
     - Domain Names (link to tucows store, not a full page)
     - Resources (dead weight)
     - About (absorbed into Home or a section on Contact)
+    - Draft Proposals (working client drafts — was rendering publicly by
+      accident, now hidden with the same _build cascade as the others)
 
   about_strategy: >
     Ben's name and face go on the site. The pitch is "you get a real
@@ -125,8 +127,19 @@ site_system:
     frontend: Hugo (no theme — layouts built directly in root layouts/ with Tailwind + Alpine.js)
     cms: Markdown + Hugo front matter
     hosting: Vercel (migrating from GitHub Pages)
+    base_url: >
+      Absolute URLs all derive from Hugo's baseURL, never from a hardcoded
+      domain. vercel.json runs scripts/vercel-build.sh, which passes --baseURL
+      from the deployment's own hostname on previews so a preview serves its
+      own social cards and canonical rather than production's.
     form_handler: Formspree (connected to Contact page)
     seo_strategy: Static HTML, fast load, artist/band name targeting
+    meta_descriptions: >
+      Derived per page by layouts/partials/page-description.html — front matter
+      description, then the page summary, then a line composed from a work
+      entry's own front matter, and only then the site blurb. Seven of eighteen
+      pages used to share that blurb verbatim. One partial feeds the meta tags
+      and the social card, and a smoke test fails on any duplicate.
     performance_monitoring: PostHog (production only)
     social_cards: >
       Every page has its own 1200x630 Open Graph image rather than one shared
@@ -178,13 +191,27 @@ site_system:
       the page's own title.
     card_contents:
       - Arts-Link wordmark, top left
-      - Section eyebrow in ember (Work, Studio Notes, Services, …); work
-        entries append the client_type
+      - Section eyebrow in ember (Work, Studio Notes, …); work entries append
+        the client_type. Section listings get none - their title already says
+        it. Unmapped sections humanize their own name.
       - Site type badge, top right, on rescue and open-source work entries
       - Page title in Fraunces, sized down in tiers as the title gets longer
-      - Page description, falling back to the summary
-      - Project screenshot on work entries, from the page bundle's screenshot.*
-      - Footer strip - arts-link.com plus the studio tagline
+      - Page description, falling back to the summary, on cards without a
+        screenshot only
+      - Project screenshot on work entries, from the page bundle's screenshot.*,
+        bled off the right edge
+      - Footer - arts-link.com, plus the studio tagline where there is no
+        screenshot
+      - A solid ember bar along the bottom edge
+    legibility: >
+      Sized for where these are actually seen. A link unfurl renders the card
+      around 300px wide in iMessage, 360px in Slack and 500px on X - a 2x to 4x
+      downsample - so the card is designed to be read small: nothing below
+      ~27px, the display face at weight 500 rather than the site's usual light
+      (thin strokes disappear when scaled down), text at cream/65 or above, and
+      restrained letter-spacing on the small caps. The ember bar carries the
+      brand at sizes where no type survives at all. Judge any redesign
+      downsampled, not at 1200px.
     how: >
       Cards are real Hugo pages. The `ogcard` output format renders each page a
       second time at <page>/og.html through layouts/_default/baseof.ogcard.html

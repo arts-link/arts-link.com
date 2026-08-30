@@ -4,6 +4,7 @@ date = 2024-06-15
 client_type = "tutoring / education"
 site_type = "rescue"
 live_url = "https://www.writingsos.com"
+description = "A site rescue for Writing SOS — same design, same content, no more hosted CMS or subscription fees. Nothing changed for visitors; the site now runs for free."
 case_study = true
 weight = 40
 +++
