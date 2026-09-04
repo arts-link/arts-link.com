@@ -86,4 +86,4 @@ The site is a way to enjoy the collection. It is never the only copy of it.
 
 ---
 
-Do you have a box of family photos, film, or tapes and no idea where to start? Tell me what you have and we'll work out the rest — [get in touch](/contact/).
+Do you have a box of family photos, film, or tapes and no idea where to start? Tell me what you have and we'll work out the rest — [fill out the project worksheet](/archive-worksheet/).
