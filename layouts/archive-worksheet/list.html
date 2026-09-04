@@ -1,0 +1,323 @@
+{{ define "worksheet-style" }}
+<style>
+:root{
+  /* Arts-Link tokens, wired to the site's real --color-* custom properties
+     (see assets/css/main.css). This page pins html.light, so --color-ink
+     resolves to the paper tone and --color-cream to near-black text — the
+     same flip the site's own theme toggle uses, just fixed to one side. */
+  --ink: rgb(var(--color-cream));
+  --ink-soft: rgb(var(--color-cream) / 70%);
+  --ink-faint: rgb(var(--color-cream) / 64%);
+  --paper: rgb(var(--color-ink));
+  --card: rgb(var(--color-ink-light));
+  --rule: rgb(var(--color-cream) / 10%);
+  --rule-strong: rgb(var(--color-cream) / 20%);
+  --accent: rgb(var(--color-ember));
+  --accent-soft: rgb(var(--color-ember) / 12%);
+  /* Pure ember fails AA text contrast on paper (~4.19:1). --warm is the
+     text-safe shade used anywhere ember sits behind or as text (~5.5:1+);
+     the plain rgb() below is a fallback for browsers without color-mix(). */
+  --warm: rgb(162 69 38);
+  --warm: color-mix(in srgb, rgb(var(--color-ember)) 80%, rgb(var(--color-cream)) 20%);
+  --warm-soft: rgb(var(--color-ember) / 8%);
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --measure: 44rem;
+  --radius: 0;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--font-body);font-size:16px;line-height:1.6;
+}
+.wrap{max-width:var(--measure);margin:0 auto;padding:2.5rem 1.25rem 5rem}
+
+/* --- masthead --- */
+.masthead{border-bottom:2px solid var(--ink);padding-bottom:1.25rem;margin-bottom:2rem}
+.brand{
+  font-family:var(--font-body);font-size:.72rem;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--warm);margin:0 0 .9rem;
+  display:inline-block;text-decoration:none
+}
+.brand:hover{text-decoration:underline}
+h1{
+  font-family:var(--font-display);font-weight:400;
+  font-size:clamp(1.9rem,5.5vw,2.6rem);line-height:1.15;margin:0 0 .5rem;
+  letter-spacing:-.01em
+}
+.dek{margin:0;color:var(--ink-soft);font-size:1.02rem;max-width:34rem}
+
+/* --- expectations panel --- */
+.expect{
+  background:var(--warm-soft);border-left:3px solid var(--warm);
+  padding:1.15rem 1.25rem;margin:0 0 2.5rem;border-radius:0 var(--radius) var(--radius) 0
+}
+.expect h2{
+  font-family:var(--font-body);font-size:.72rem;font-weight:700;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--warm);margin:0 0 .7rem
+}
+.expect ul{margin:0;padding-left:1.1rem}
+.expect li{margin-bottom:.5rem;font-size:.94rem;color:var(--ink-soft)}
+.expect li:last-child{margin-bottom:0}
+.expect strong{color:var(--ink)}
+
+/* --- sections --- */
+section{margin-bottom:2.75rem}
+.sec-head{display:flex;align-items:baseline;gap:.7rem;border-bottom:1px solid var(--rule-strong);padding-bottom:.5rem;margin-bottom:1.35rem}
+.num{
+  font-family:var(--font-display);font-size:.95rem;color:var(--warm);
+  font-variant-numeric:tabular-nums;flex:none
+}
+h2.sec{font-family:var(--font-display);font-size:1.3rem;font-weight:400;margin:0;letter-spacing:-.01em}
+.hint{font-size:.88rem;color:var(--ink-faint);margin:-.7rem 0 1.15rem}
+
+/* --- fields --- */
+.field{margin-bottom:1.15rem;border:0;padding:0;min-width:0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:1.15rem}
+@media(max-width:32rem){.grid2{grid-template-columns:1fr}}
+label,legend{display:block;font-size:.83rem;font-weight:600;letter-spacing:.02em;margin-bottom:.35rem;color:var(--ink);padding:0}
+.opt{font-weight:400;color:var(--ink-faint);letter-spacing:0}
+input[type=text],input[type=email],input[type=tel],select,textarea{
+  width:100%;font-family:inherit;font-size:.95rem;color:var(--ink);
+  background:var(--card);border:1px solid var(--rule-strong);border-radius:var(--radius);
+  padding:.6rem .7rem;transition:border-color .15s,box-shadow .15s
+}
+textarea{min-height:5.5rem;resize:vertical;line-height:1.55}
+input:focus,select:focus,textarea:focus{
+  outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)
+}
+button:focus-visible,.choice input:focus-visible,.brand:focus-visible{
+  outline:2px solid var(--warm);outline-offset:2px
+}
+select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--ink-faint) 50%),linear-gradient(135deg,var(--ink-faint) 50%,transparent 50%);background-position:calc(100% - 15px) 51%,calc(100% - 10px) 51%;background-size:5px 5px,5px 5px;background-repeat:no-repeat;padding-right:2rem}
+
+/* --- media inventory table --- */
+.inv{border:1px solid var(--rule-strong);border-radius:var(--radius);overflow:hidden;background:var(--card)}
+.inv-row{display:grid;grid-template-columns:1fr 12.5rem;gap:.75rem;align-items:center;padding:.6rem .85rem;border-bottom:1px solid var(--rule)}
+.inv-row:last-child{border-bottom:none}
+.inv-row:nth-child(odd){background:var(--paper)}
+.inv-label{font-size:.93rem;color:var(--ink)}
+.inv-label label{display:inline;font-size:inherit;font-weight:400;letter-spacing:0;margin-bottom:0;color:inherit;cursor:pointer}
+.inv-label small{display:block;font-size:.78rem;color:var(--ink-faint);line-height:1.35;margin-top:.1rem}
+.inv-row select{font-size:.88rem;padding:.42rem .6rem}
+@media(max-width:34rem){
+  .inv-row{grid-template-columns:1fr;gap:.4rem}
+  .inv-row select{max-width:100%}
+}
+
+/* --- radio / checkbox groups --- */
+.choices{display:flex;flex-direction:column;gap:.5rem}
+.choice{display:flex;align-items:flex-start;gap:.6rem;font-size:.94rem;color:var(--ink);cursor:pointer;line-height:1.45}
+.choice input{margin:.28rem 0 0;flex:none;accent-color:var(--accent);width:1rem;height:1rem}
+.choice small{display:block;color:var(--ink-faint);font-size:.83rem}
+
+/* --- submit --- */
+.actions{border-top:2px solid var(--ink);padding-top:1.5rem;margin-top:2.5rem}
+button{
+  font-family:inherit;font-size:.95rem;font-weight:600;letter-spacing:.02em;
+  background:var(--ink);color:var(--paper);border:none;border-radius:var(--radius);
+  padding:.8rem 1.6rem;cursor:pointer;transition:background .15s
+}
+button:hover{background:var(--warm)}
+.after{font-size:.88rem;color:var(--ink-faint);margin:.9rem 0 0}
+.sig{margin-top:3rem;padding-top:1.25rem;border-top:1px solid var(--rule);font-size:.82rem;color:var(--ink-faint)}
+.sig a{color:var(--warm)}
+.hp{position:absolute;left:-9999px}
+
+/* --- print --- */
+@media print{
+  body{background:#fff;font-size:11pt}
+  .wrap{max-width:none;padding:0}
+  .actions,.after{display:none}
+  section{break-inside:avoid;margin-bottom:1.5rem}
+  .expect{background:#fff;border-left:2px solid #999}
+  input,select,textarea{border-color:#999;background:#fff}
+  textarea{min-height:3.5rem}
+  .inv-row:nth-child(odd){background:#fff}
+}
+</style>
+{{ end }}
+
+{{ define "main" }}
+<div class="wrap">
+
+<header class="masthead">
+  <a class="brand" href="/">Arts-Link &middot; Family Archive</a>
+  <h1>Project Worksheet</h1>
+  <p class="dek">Ten minutes here saves an hour on our call. Rough answers are fine — estimates and &ldquo;I don&rsquo;t know&rdquo; are both useful. Nothing you put down is binding.</p>
+</header>
+
+<div class="expect">
+  <h2>Before you start — what to expect</h2>
+  <ul>
+    <li><strong>The first conversation is free.</strong> I&rsquo;ll review this worksheet, talk with you for about 45 minutes, and send back a written plan with real numbers.</li>
+    <li><strong>Most projects run $5,000–$8,000</strong> for my work, plus roughly $1,000–$2,500 paid directly to the scanning lab. Smaller collections cost less; we&rsquo;ll size yours together.</li>
+    <li><strong>Plan on 3–6 months end to end.</strong> Most of that is lab turnaround and your family&rsquo;s time, not mine.</li>
+    <li><strong>You never ship anything to me.</strong> I help you choose a lab and write the spec; your originals go straight there and come straight back to you.</li>
+    <li><strong>The work happens in stages,</strong> and you approve the price for each one before it starts. You can stop at any stage and still keep everything finished so far.</li>
+  </ul>
+</div>
+
+<form action="https://formspree.io/f/{{ .Site.Params.formspree_archive_worksheet_id }}" method="POST" data-track-form="Archive Worksheet Submit">
+<input type="hidden" name="_subject" value="Family Archive worksheet submission">
+<input type="hidden" name="_next" value="{{ "archive-worksheet/thanks/" | absURL }}">
+<input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+<section>
+  <div class="sec-head"><span class="num">01</span><h2 class="sec">Who you are</h2></div>
+  <div class="grid2">
+    <div class="field"><label for="name">Your name</label><input type="text" id="name" name="name" required autocomplete="name"></div>
+    <div class="field"><label for="email">Email</label><input type="email" id="email" name="email" required autocomplete="email"></div>
+  </div>
+  <div class="grid2">
+    <div class="field"><label for="phone">Phone <span class="opt">— optional</span></label><input type="tel" id="phone" name="phone" autocomplete="tel"></div>
+    <div class="field"><label for="where">Where do you live?</label><input type="text" id="where" name="city_state" placeholder="City, State" autocomplete="address-level2"></div>
+  </div>
+  <div class="field">
+    <label for="materials_where">Where do the materials physically live right now?</label>
+    <input type="text" id="materials_where" name="materials_location" placeholder="My basement / my mother's house in Ohio / split between three siblings">
+  </div>
+  <div class="field">
+    <label for="who_decides">Who else needs to agree before this project goes ahead?</label>
+    <input type="text" id="who_decides" name="decision_makers" placeholder="Just me / me and my two brothers / the family trust">
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="num">02</span><h2 class="sec">What you have</h2></div>
+  <p class="hint">Guess. A shoebox holds roughly 300–500 loose photos; a full album is usually 100–200. If a category doesn&rsquo;t apply, leave it at &ldquo;None.&rdquo;</p>
+  <div class="inv">
+    <div class="inv-row"><div class="inv-label"><label for="qty_loose_photos">Loose printed photos</label><small>Boxes, envelopes, drawers</small></div>
+      <select id="qty_loose_photos" name="qty_loose_photos"><option>None</option><option>Under 200</option><option>200–500</option><option>500–1,500</option><option>1,500–4,000</option><option>4,000–10,000</option><option>More than 10,000</option><option>No idea</option></select></div>
+    <div class="inv-row"><div class="inv-label"><label for="qty_albums">Photo albums</label><small>Bound or adhesive-page albums</small></div>
+      <select id="qty_albums" name="qty_albums"><option>None</option><option>1–3</option><option>4–10</option><option>11–25</option><option>More than 25</option><option>No idea</option></select></div>
+    <div class="inv-row"><div class="inv-label"><label for="qty_slides">35mm slides</label><small>Carousels, trays, or boxes</small></div>
+      <select id="qty_slides" name="qty_slides"><option>None</option><option>Under 200</option><option>200–1,000</option><option>1,000–3,000</option><option>More than 3,000</option><option>No idea</option></select></div>
+    <div class="inv-row"><div class="inv-label"><label for="qty_negatives">Negatives</label><small>Strips, sleeves, or rolls</small></div>
+      <select id="qty_negatives" name="qty_negatives"><option>None</option><option>A few sleeves</option><option>A shoebox worth</option><option>Several boxes</option><option>No idea</option></select></div>
+    <div class="inv-row"><div class="inv-label"><label for="qty_film">Movie film</label><small>8mm, Super 8, or 16mm reels</small></div>
+      <select id="qty_film" name="qty_film"><option>None</option><option>1–5 reels</option><option>6–15 reels</option><option>16–40 reels</option><option>More than 40 reels</option><option>No idea</option></select></div>
+    <div class="inv-row"><div class="inv-label"><label for="qty_video">Video tapes</label><small>VHS, VHS-C, Hi8, MiniDV, Betamax</small></div>
+      <select id="qty_video" name="qty_video"><option>None</option><option>1–5 tapes</option><option>6–20 tapes</option><option>21–50 tapes</option><option>More than 50 tapes</option><option>No idea</option></select></div>
+    <div class="inv-row"><div class="inv-label"><label for="qty_audio">Audio</label><small>Cassettes, reel-to-reel, records</small></div>
+      <select id="qty_audio" name="qty_audio"><option>None</option><option>A handful</option><option>10–30</option><option>More than 30</option><option>No idea</option></select></div>
+    <div class="inv-row"><div class="inv-label"><label for="qty_documents">Documents &amp; letters</label><small>Correspondence, certificates, journals</small></div>
+      <select id="qty_documents" name="qty_documents"><option>None</option><option>A folder or two</option><option>A box</option><option>Several boxes</option><option>No idea</option></select></div>
+    <div class="inv-row"><div class="inv-label"><label for="qty_oversize">Scrapbooks &amp; oversize</label><small>Newspaper clippings, artwork, framed pieces</small></div>
+      <select id="qty_oversize" name="qty_oversize"><option>None</option><option>A few items</option><option>A dozen or so</option><option>Many</option><option>No idea</option></select></div>
+    <div class="inv-row"><div class="inv-label"><label for="qty_existing_digital">Files already digitized</label><small>Old scans, phone photos, a hard drive someone made</small></div>
+      <select id="qty_existing_digital" name="qty_existing_digital"><option>None</option><option>Under 1,000 files</option><option>1,000–10,000 files</option><option>More than 10,000 files</option><option>No idea</option></select></div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="num">03</span><h2 class="sec">Condition</h2></div>
+  <fieldset class="field">
+    <legend>How would you describe the overall state of things?</legend>
+    <div class="choices">
+      <label class="choice"><input type="radio" name="condition" value="Good"><span>Good — stored indoors, dry, mostly intact</span></label>
+      <label class="choice"><input type="radio" name="condition" value="Mixed"><span>Mixed — some fading, curling, or stuck album pages</span></label>
+      <label class="choice"><input type="radio" name="condition" value="Fragile"><span>Fragile — water damage, mold smell, brittle film, or vinegar odor <small>Worth flagging early; some of this is time-sensitive.</small></span></label>
+      <label class="choice"><input type="radio" name="condition" value="Unknown"><span>I haven&rsquo;t looked closely yet</span></label>
+    </div>
+  </fieldset>
+  <div class="field">
+    <label for="condition_notes">Anything specific worrying you? <span class="opt">— optional</span></label>
+    <textarea id="condition_notes" name="condition_notes" placeholder="The 8mm reels smell like vinegar. Two albums have pages stuck together."></textarea>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="num">04</span><h2 class="sec">Why now</h2></div>
+  <div class="field">
+    <label for="why">What&rsquo;s prompting this?</label>
+    <textarea id="why" name="why_now" placeholder="My father died last year and the boxes are in my garage. My mother is 88 and still remembers everyone. My siblings and I want the same thing for once."></textarea>
+  </div>
+  <div class="grid2">
+    <div class="field">
+      <label for="deadline">Is there a date this needs to be ready for?</label>
+      <input type="text" id="deadline" name="deadline" placeholder="Mom's 90th in June / no deadline">
+    </div>
+    <div class="field">
+      <label for="audience">Who is the finished archive for?</label>
+      <input type="text" id="audience" name="audience" placeholder="Six cousins and their kids / just me / the whole extended family">
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="num">05</span><h2 class="sec">Who can name people</h2></div>
+  <p class="hint">This is the single biggest factor in how a family archive turns out. Software can group faces; only a person can say who they are.</p>
+  <fieldset class="field">
+    <legend>Is there someone living who can identify people in these photos?</legend>
+    <div class="choices">
+      <label class="choice"><input type="radio" name="identifiers" value="Yes, sharp and available"><span>Yes — and they&rsquo;re sharp and willing to sit down for it</span></label>
+      <label class="choice"><input type="radio" name="identifiers" value="Yes, but limited"><span>Yes, but time or memory is limited <small>We should prioritize accordingly.</small></span></label>
+      <label class="choice"><input type="radio" name="identifiers" value="Partially - between us"><span>Partially — between several of us we could piece it together</span></label>
+      <label class="choice"><input type="radio" name="identifiers" value="No one left"><span>No one left who knows <small>Not a dead end. Handwriting on the backs, dates, and locations still carry a lot.</small></span></label>
+    </div>
+  </fieldset>
+  <div class="field">
+    <label for="identifier_who">Who is that person, and where are they? <span class="opt">— optional</span></label>
+    <input type="text" id="identifier_who" name="identifier_who" placeholder="My aunt Rose, 91, in Tucson — good on video calls">
+  </div>
+  <fieldset class="field">
+    <legend>Roughly how much time can your family give to naming people?</legend>
+    <div class="choices">
+      <label class="choice"><input type="radio" name="family_time" value="Several sessions"><span>We&rsquo;ll show up for several sessions — this is the fun part</span></label>
+      <label class="choice"><input type="radio" name="family_time" value="A couple of sessions"><span>A couple of sessions, realistically</span></label>
+      <label class="choice"><input type="radio" name="family_time" value="Very little"><span>Very little — please keep our involvement minimal</span></label>
+    </div>
+  </fieldset>
+</section>
+
+<section>
+  <div class="sec-head"><span class="num">06</span><h2 class="sec">What you want at the end</h2></div>
+  <fieldset class="field">
+    <legend>Pick whichever sounds closest.</legend>
+    <div class="choices">
+      <label class="choice"><input type="radio" name="outcome" value="Files only"><span>Clean, organized files I can keep <small>Everything named, dated, foldered, on a drive and in the cloud.</small></span></label>
+      <label class="choice"><input type="radio" name="outcome" value="Files + private site"><span>That, plus a private website the family can browse <small>Password-protected, searchable, shareable with a link.</small></span></label>
+      <label class="choice"><input type="radio" name="outcome" value="Everything incl. identification"><span>All of the above, with people identified throughout</span></label>
+      <label class="choice"><input type="radio" name="outcome" value="Not sure"><span>Not sure yet — help me figure that out</span></label>
+    </div>
+  </fieldset>
+  <div class="field">
+    <label for="must_have">If only one thing gets finished, what is it?</label>
+    <input type="text" id="must_have" name="must_have" placeholder="The 8mm reels of my parents' wedding">
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="num">07</span><h2 class="sec">Budget</h2></div>
+  <p class="hint">Asked so I can propose something real rather than something aspirational. There&rsquo;s a sensible version of this project at most budgets — and if the number is too far apart, better that we both know today.</p>
+  <div class="field">
+    <label for="budget">What range feels right for the whole project?</label>
+    <select id="budget" name="budget">
+      <option>Not sure yet</option>
+      <option>Under $2,500</option>
+      <option>$2,500–$5,000</option>
+      <option>$5,000–$10,000</option>
+      <option>$10,000–$20,000</option>
+      <option>Over $20,000</option>
+      <option>Whatever it takes — this matters more than the cost</option>
+    </select>
+  </div>
+  <div class="field">
+    <label for="anything">Anything else I should know?</label>
+    <textarea id="anything" name="anything_else"></textarea>
+  </div>
+</section>
+
+<div class="actions">
+  <button type="submit">Send worksheet</button>
+  <p class="after">I read every one of these personally and reply within two business days to set up a time.</p>
+</div>
+
+</form>
+
+<p class="sig">Arts-Link &middot; <a href="https://www.arts-link.com/blog/family-archive/">arts-link.com/blog/family-archive</a><br>Your answers are used only to prepare your archive plan. Nothing is shared with anyone.</p>
+
+</div>
+{{ end }}
