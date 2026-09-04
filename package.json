@@ -16,6 +16,7 @@
     "@tailwindcss/typography": "^0.5.10",
     "@vitest/coverage-v8": "^4.1.0",
     "autoprefixer": "^10.4.16",
+    "browserslist": "^4.28.9",
     "jsdom": "^29.0.0",
     "playwright": "^1.62.1",
     "postcss": "^8.4.33",
