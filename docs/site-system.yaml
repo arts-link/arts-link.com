@@ -24,6 +24,12 @@ site_system:
       type: Collector/Converter
       target_action: Click "Work with me" CTA
       metric: CTA click-through to Contact
+      notes: >
+        Module order: Hero, About the studio, Selected work (3 entries),
+        What I build, Studio notes callout, CTA block. The Studio notes
+        callout surfaces the single most recent blog post and sits after
+        Services so it never interrupts the Work → Services → Contact path;
+        it hands off directly into the CTA block.
 
     - name: Work
       type: Collector
@@ -32,15 +38,22 @@ site_system:
       notes: >
         Portfolio of sites built — Louise Strawbridge, Cindy Kindred,
         road trip site, grandfather photography, Jill Bonovitz (rescue story),
-        bands TBD. Each entry should name the service type (new vs rescue).
+        and Verdèzul (first band; the work card links out to the full launch
+        case study on the Blog). Each entry should name the service type
+        (new vs rescue). The portfolio also carries Ryder, the open source
+        theme Arts-Link maintains — badged "Open source" so it reads as a
+        contribution to the ecosystem rather than as client work, and linking
+        out to the public example site and the source repository.
 
     - name: Services
       type: Collector
       target_action: Route to Contact
       metric: Contact page visits from Services
       notes: >
-        Describe New Site and Site Rescue. "Starting from $1,000" as
-        a signal, not a full pricing table. No pricing page.
+        Describe New Site and Site Rescue. Includes a "What it costs"
+        section with two cards: Artist Site and Band/Musician Site,
+        both starting from $1,000, listing the included pages for each.
+        All pricing CTAs route to Contact.
 
     - name: Contact
       type: Converter
@@ -48,7 +61,7 @@ site_system:
       metric: Form completions
       notes: One job. No nav distractions. Simple form.
 
-    - name: Writing (Blog)
+    - name: Blog
       type: Collector
       target_action: Route to Contact
       metric: Organic traffic volume; % routed to Contact
@@ -59,13 +72,23 @@ site_system:
         Open source/Ryder post: "Why I Build With Open Source" explains why
         Arts-Link builds with Hugo and maintains Ryder as a free theme for the
         Hugo community.
-        Nav label: "Writing".
+        Launch case study: "Building Verdèzul's Website" covers the
+        whatisverdezul.com build — onboarding checklist, docs-first process,
+        Ryder overrides, and the git-based CMS the band edits with.
+        Family archives post: "What Do You Do With a Box of Old Family Photos
+        and Film?" introduces personal and family archive work — inventory,
+        coordinated digitization, organization, curation, and a browsable
+        archive site. Soft launch: the post is the landing page for the
+        offering, deliberately not yet a Services card or a nav item.
+        Nav label: "Blog".
 
   pages_cut:
     - Features (absorbed into Services)
     - Domain Names (link to tucows store, not a full page)
     - Resources (dead weight)
     - About (absorbed into Home or a section on Contact)
+    - Draft Proposals (working client drafts — was rendering publicly by
+      accident, now hidden with the same _build cascade as the others)
 
   about_strategy: >
     Ben's name and face go on the site. The pitch is "you get a real
@@ -76,7 +99,7 @@ site_system:
     primary_links:
       - Work
       - Services
-      - Writing
+      - Blog
       - Contact
 
   footer:
@@ -92,6 +115,10 @@ site_system:
       - Read Services to understand what's available and rough cost
       - Hit Contact and submit
       - Ben follows up personally
+    secondary_path: >
+      Visitors who want more proof before committing can take the Studio notes
+      callout on Home into the latest blog post, then to Contact from the
+      post's CTA block.
     friction_points:
       - Contact form should be minimal (name, email, tell me about your project)
       - No pricing page debate needed — remove that decision point
@@ -100,19 +127,35 @@ site_system:
     frontend: Hugo (no theme — layouts built directly in root layouts/ with Tailwind + Alpine.js)
     cms: Markdown + Hugo front matter
     hosting: Vercel (migrating from GitHub Pages)
+    base_url: >
+      Absolute URLs all derive from Hugo's baseURL, never from a hardcoded
+      domain. vercel.json runs scripts/vercel-build.sh, which passes --baseURL
+      from the deployment's own hostname on previews so a preview serves its
+      own social cards and canonical rather than production's.
     form_handler: Formspree (connected to Contact page)
     seo_strategy: Static HTML, fast load, artist/band name targeting
-    performance_monitoring: Plausible Analytics
+    meta_descriptions: >
+      Derived per page by layouts/partials/page-description.html — front matter
+      description, then the page summary, then a line composed from a work
+      entry's own front matter, and only then the site blurb. Seven of eighteen
+      pages used to share that blurb verbatim. One partial feeds the meta tags
+      and the social card, and a smoke test fails on any duplicate.
+    performance_monitoring: PostHog (production only)
+    social_cards: >
+      Every page has its own 1200x630 Open Graph image rather than one shared
+      card — see social_cards below.
 
   content_model:
     work_entries:
       required:
         - client_name
-        - site_type: new | rescue
-        - client_type: visual artist | band | photographer | other
+        - site_type: new | rescue | open-source
+        - client_type: visual artist | band | photographer | family archive |
+                       travel archive | open source theme | other
         - image
         - live_url
       optional:
+        - repo_url: public source repository, rendered beside the live link on the entry page
         - designer: name of a collaborating designer (renders prose credit below screenshot)
         - designer_url: URL to link the designer's name in the credit line
         - case_study: true/false (enables full case study page)
@@ -120,6 +163,13 @@ site_system:
       notes: >
         Card grid by default. Projects with case_study: true get their
         own page. Jill Bonovitz is the first case study candidate (rescue story).
+        client_type is free text, printed verbatim on the card, the entry page,
+        and in llms.txt — store it lowercase, since the first two apply a CSS
+        capitalize transform and llms.txt does not. The list above is the
+        vocabulary in use rather than a hard constraint; Writing SOS carries
+        "tutoring / education". The two archive types pair with the family
+        archives blog post, which cites Gordon Landreth and Road Trip 2026 as
+        examples of each.
 
   modules:
     workhorse:
@@ -127,16 +177,70 @@ site_system:
       - Project card (image, name, type badge, live site link)
       - Service block (name, description, used on Services page)
       - CTA block (reusable strip — "Ready to talk?" — used on Home and Services)
+      - Latest post callout (date, title, description, read link — Home only;
+        pulls the newest blog post automatically, hides itself when none exist)
       - Contact form (Formspree, minimal fields: name, email, project description)
     showstopper: []
     high_touch: []
+
+  social_cards:
+    why: >
+      Every page used to share static/images/og-default.jpg, so a link to a
+      specific project previewed identically to the home page everywhere links
+      are unfurled. The card is the part people actually see, so it now carries
+      the page's own title.
+    card_contents:
+      - Arts-Link wordmark, top left
+      - Section eyebrow in ember (Work, Studio Notes, …); work entries append
+        the client_type. Section listings get none - their title already says
+        it. Unmapped sections humanize their own name.
+      - Site type badge, top right, on rescue and open-source work entries
+      - Page title in Fraunces, sized down in tiers as the title gets longer
+      - Page description, falling back to the summary, on cards without a
+        screenshot only
+      - Project screenshot on work entries, from the page bundle's screenshot.*,
+        bled off the right edge
+      - Footer - arts-link.com, plus the studio tagline where there is no
+        screenshot
+      - A solid ember bar along the bottom edge
+    legibility: >
+      Sized for where these are actually seen. A link unfurl renders the card
+      around 300px wide in iMessage, 360px in Slack and 500px on X - a 2x to 4x
+      downsample - so the card is designed to be read small: nothing below
+      ~27px, the display face at weight 500 rather than the site's usual light
+      (thin strokes disappear when scaled down), text at cream/65 or above, and
+      restrained letter-spacing on the small caps. The ember bar carries the
+      brand at sizes where no type survives at all. Judge any redesign
+      downsampled, not at 1200px.
+    how: >
+      Cards are real Hugo pages. The `ogcard` output format renders each page a
+      second time at <page>/og.html through layouts/_default/baseof.ogcard.html
+      and layouts/partials/og-card.html, styled with the site's own CSS — so the
+      card uses the real ink/cream/ember tokens and the self-hosted fonts, and
+      can be designed live at e.g. localhost:1313/work/rt2026/og.html.
+      scripts/og-images.mjs screenshots those pages with Playwright into
+      static/og/<page-path>.jpg.
+    workflow: >
+      The images are committed. Run `hugo --minify && npm run og` after adding
+      or retitling a page, and commit static/og/ and data/og/manifest.json with
+      the content change. Only cards whose source actually changed are
+      re-rendered, so this is normally a no-op. CI runs `npm run og:check`,
+      which fails the build if a card is missing or stale. The deploy workflow
+      renders nothing — it just copies the committed images. The "Regenerate
+      social cards" workflow does the same job from the Actions tab for anyone
+      without a local Chromium.
+    fallback: >
+      baseof.html falls back to images/og-default.jpg for any page not yet in
+      data/og/manifest.json, so a missing card never becomes a broken preview.
 
   analytics:
     primary_events:
       - Contact form submission (keystone)
       - CTA clicks from Home and Services
       - Blog post CTA clicks (location: blog-post)
-      - Blog organic traffic (Plausible source attribution)
+      - Blog callout clicks from Home (Blog Callout Click, location: home)
+      - Blog organic traffic (PostHog source attribution)
     funnel_definition: >
       Home → Work or Services → Contact → Submission;
-      Writing (organic) → Blog post → Contact → Submission
+      Home → Studio notes callout → Blog post → Contact → Submission;
+      Blog (organic) → Blog post → Contact → Submission

@@ -13,45 +13,43 @@ function setup(html) {
 }
 
 describe('analytics – click tracking', () => {
-  let plausible;
+  let posthog;
 
   beforeEach(() => {
-    plausible = vi.fn();
-    window.plausible = plausible;
+    posthog = { capture: vi.fn() };
+    window.posthog = posthog;
   });
 
   afterEach(() => {
-    delete window.plausible;
+    delete window.posthog;
     vi.restoreAllMocks();
   });
 
-  it('fires a Plausible event with the correct name on click', () => {
+  it('fires a PostHog event with the correct name on click', () => {
     setup('<button data-track-event="Nav Click">Menu</button>');
     document.querySelector('[data-track-event]').click();
-    expect(plausible).toHaveBeenCalledOnce();
-    expect(plausible).toHaveBeenCalledWith('Nav Click', undefined);
+    expect(posthog.capture).toHaveBeenCalledOnce();
+    expect(posthog.capture).toHaveBeenCalledWith('Nav Click', {});
   });
 
-  it('passes parsed JSON props to Plausible when data-track-props is valid', () => {
+  it('passes parsed JSON props to PostHog when data-track-props is valid', () => {
     setup(
       `<a data-track-event="CTA Click" data-track-props='{"location":"footer"}'>Get in touch</a>`,
     );
     document.querySelector('[data-track-event]').click();
-    expect(plausible).toHaveBeenCalledWith('CTA Click', {
-      props: { location: 'footer' },
-    });
+    expect(posthog.capture).toHaveBeenCalledWith('CTA Click', { location: 'footer' });
   });
 
-  it('sends undefined props when data-track-props contains invalid JSON', () => {
+  it('sends empty props when data-track-props contains invalid JSON', () => {
     setup(
       `<button data-track-event="Bad Props" data-track-props='not-json'>Click</button>`,
     );
     document.querySelector('[data-track-event]').click();
-    expect(plausible).toHaveBeenCalledWith('Bad Props', undefined);
+    expect(posthog.capture).toHaveBeenCalledWith('Bad Props', {});
   });
 
-  it('does not throw when window.plausible is not defined', () => {
-    delete window.plausible;
+  it('does not throw when window.posthog is not defined', () => {
+    delete window.posthog;
     setup('<button data-track-event="Silent Click">Click</button>');
     expect(() =>
       document.querySelector('[data-track-event]').click(),
@@ -66,35 +64,35 @@ describe('analytics – click tracking', () => {
     const [first, second] = document.querySelectorAll('[data-track-event]');
     first.click();
     second.click();
-    expect(plausible).toHaveBeenCalledTimes(2);
-    expect(plausible).toHaveBeenNthCalledWith(1, 'First', undefined);
-    expect(plausible).toHaveBeenNthCalledWith(2, 'Second', { props: { n: 2 } });
+    expect(posthog.capture).toHaveBeenCalledTimes(2);
+    expect(posthog.capture).toHaveBeenNthCalledWith(1, 'First', {});
+    expect(posthog.capture).toHaveBeenNthCalledWith(2, 'Second', { n: 2 });
   });
 });
 
 describe('analytics – form submission tracking', () => {
-  let plausible;
+  let posthog;
 
   beforeEach(() => {
-    plausible = vi.fn();
-    window.plausible = plausible;
+    posthog = { capture: vi.fn() };
+    window.posthog = posthog;
   });
 
   afterEach(() => {
-    delete window.plausible;
+    delete window.posthog;
     vi.restoreAllMocks();
   });
 
-  it('fires a Plausible event with the form name on submit', () => {
+  it('fires a PostHog event with the form name on submit', () => {
     setup('<form data-track-form="Contact Submit"><button type="submit">Send</button></form>');
     document.querySelector('form').dispatchEvent(new Event('submit'));
-    expect(plausible).toHaveBeenCalledOnce();
-    expect(plausible).toHaveBeenCalledWith('Contact Submit', undefined);
+    expect(posthog.capture).toHaveBeenCalledOnce();
+    expect(posthog.capture).toHaveBeenCalledWith('Contact Submit', {});
   });
 
-  it('does not throw on form submit when window.plausible is not defined', () => {
-    delete window.plausible;
-    setup('<form data-track-form="No Plausible"><button type="submit">Send</button></form>');
+  it('does not throw on form submit when window.posthog is not defined', () => {
+    delete window.posthog;
+    setup('<form data-track-form="No PostHog"><button type="submit">Send</button></form>');
     expect(() =>
       document.querySelector('form').dispatchEvent(new Event('submit')),
     ).not.toThrow();

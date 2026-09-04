@@ -12,17 +12,26 @@
       <div class="flex flex-wrap items-center gap-3 mb-6">
         {{ if eq .Params.site_type "rescue" }}
           <span class="text-xs uppercase tracking-widest text-ember border border-ember px-3 py-1">Rescue</span>
+        {{ else if eq .Params.site_type "open-source" }}
+          <span class="text-xs uppercase tracking-widest text-cream bg-cream/10 border border-cream/25 px-3 py-1">Open source</span>
         {{ else }}
           <span class="text-xs uppercase tracking-widest text-cream/35 border border-cream/10 px-3 py-1">New site</span>
         {{ end }}
         <span class="text-cream/35 text-sm capitalize">{{ .Params.client_type }}</span>
       </div>
       <h1 class="font-display text-5xl md:text-7xl text-cream font-light mb-8">{{ .Title }}</h1>
-      {{ with .Params.live_url }}
-      <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="text-ember text-sm tracking-wide hover:underline">
-        Visit the live site ↗
-      </a>
-      {{ end }}
+      <div class="flex flex-wrap items-center gap-6">
+        {{ with .Params.live_url }}
+        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="text-ember text-sm tracking-wide hover:underline">
+          {{ if eq $.Params.site_type "open-source" }}View the live demo ↗{{ else }}Visit the live site ↗{{ end }}
+        </a>
+        {{ end }}
+        {{ with .Params.repo_url }}
+        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="text-ember text-sm tracking-wide hover:underline">
+          Source on GitHub ↗
+        </a>
+        {{ end }}
+      </div>
     </header>
 
     <!-- Screenshot -->

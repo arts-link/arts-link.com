@@ -28,6 +28,7 @@ const INDEXABLE_PAGES = [
   'work/jill-bonovitz/index.html',
   'work/louise-strawbridge/index.html',
   'work/rt2026/index.html',
+  'work/ryder/index.html',
   'work/writing-sos/index.html',
 ];
 
@@ -74,6 +75,7 @@ describe.skipIf(!built)('smoke – homepage (public/index.html)', () => {
     );
     expect(hrefs).toContain('/work/');
     expect(hrefs).toContain('/services/');
+    expect(hrefs).toContain('/blog/');
     expect(hrefs).toContain('/contact/');
   });
 });
@@ -149,23 +151,100 @@ describe.skipIf(!built)('smoke – SEO: canonical tag', () => {
 
 // ─── SEO: meta description ───────────────────────────────────────────────────
 
+const metaDescription = (rel) =>
+  readPage(rel).window.document.querySelector('meta[name="description"]')?.getAttribute('content')?.trim();
+
 describe.skipIf(!built)('smoke – SEO: meta description', () => {
   it.each(INDEXABLE_PAGES)('%s has a non-empty meta description', (rel) => {
+    expect(metaDescription(rel)?.length).toBeGreaterThan(0);
+  });
+
+  // Descriptions are derived from the page's own content (front matter
+  // description, then summary, then a line composed from a work entry's front
+  // matter). Sharing one blurb across pages is what that exists to prevent.
+  it('every indexable page has its own description', () => {
+    const byDescription = new Map();
+    for (const rel of INDEXABLE_PAGES) {
+      const d = metaDescription(rel);
+      byDescription.set(d, [...(byDescription.get(d) ?? []), rel]);
+    }
+    const shared = [...byDescription.entries()].filter(([, pages]) => pages.length > 1);
+    expect(shared).toEqual([]);
+  });
+
+  it.each(INDEXABLE_PAGES)('%s repeats its description in og and twitter tags', (rel) => {
     const { document } = readPage(rel).window;
-    const meta = document.querySelector('meta[name="description"]');
-    expect(meta).not.toBeNull();
-    expect(meta.getAttribute('content').trim().length).toBeGreaterThan(0);
+    const expected = metaDescription(rel);
+    expect(document.querySelector('meta[property="og:description"]')?.getAttribute('content')).toBe(expected);
+    expect(document.querySelector('meta[name="twitter:description"]')?.getAttribute('content')).toBe(expected);
+  });
+
+  // plainify + htmlUnescape run before the text reaches an attribute; a raw
+  // entity here means one of them was dropped.
+  it.each(INDEXABLE_PAGES)('%s description carries no HTML entities or tags', (rel) => {
+    const d = metaDescription(rel);
+    expect(d).not.toMatch(/&(?:[a-zA-Z]+|#\d+);/);
+    expect(d).not.toMatch(/<[a-zA-Z/]/);
   });
 });
 
 // ─── SEO: og:image ───────────────────────────────────────────────────────────
 
+const ogImage = (rel) =>
+  readPage(rel).window.document.querySelector('meta[property="og:image"]')?.getAttribute('content')?.trim();
+
 describe.skipIf(!built)('smoke – SEO: og:image', () => {
-  it.each(INDEXABLE_PAGES)('%s has og:image', (rel) => {
+  it.each(INDEXABLE_PAGES)('%s has an absolute og:image', (rel) => {
+    const content = ogImage(rel);
+    expect(content).toBeTruthy();
+    expect(content).toMatch(/^https?:\/\/\S+\.jpg$/);
+  });
+
+  it.each(INDEXABLE_PAGES)('%s declares og:image dimensions', (rel) => {
     const { document } = readPage(rel).window;
-    const og = document.querySelector('meta[property="og:image"]');
-    expect(og).not.toBeNull();
-    expect(og.getAttribute('content').trim().length).toBeGreaterThan(0);
+    expect(document.querySelector('meta[property="og:image:width"]')?.getAttribute('content')).toBe('1200');
+    expect(document.querySelector('meta[property="og:image:height"]')?.getAttribute('content')).toBe('630');
+    expect(
+      document.querySelector('meta[property="og:image:alt"]')?.getAttribute('content')?.trim().length,
+    ).toBeGreaterThan(0);
+  });
+
+  // The point of the per-page cards: no two pages may share one image.
+  it('every indexable page has its own card', () => {
+    const byImage = new Map();
+    for (const rel of INDEXABLE_PAGES) {
+      const image = ogImage(rel);
+      byImage.set(image, [...(byImage.get(image) ?? []), rel]);
+    }
+    const shared = [...byImage.entries()].filter(([, pages]) => pages.length > 1);
+    expect(shared).toEqual([]);
+  });
+
+  it.each(INDEXABLE_PAGES.filter((p) => p.startsWith('work/') && p !== 'work/index.html'))(
+    '%s points at its own generated card',
+    (rel) => {
+      const slug = rel.split('/')[1];
+      expect(ogImage(rel)).toContain(`/og/work/${slug}.jpg`);
+    },
+  );
+
+  // Falling back to the shared card means `npm run og` has not been run for a
+  // page that needs it — og:check catches this in CI, but assert it here too.
+  it.each(INDEXABLE_PAGES)('%s does not fall back to the shared card', (rel) => {
+    expect(ogImage(rel)).not.toContain('og-default.jpg');
+  });
+
+  it.each(INDEXABLE_PAGES)('%s og:image resolves to a built file', (rel) => {
+    const file = path.join(PUBLIC, new URL(ogImage(rel)).pathname);
+    expect(fs.existsSync(file), `missing ${file}`).toBe(true);
+    expect(fs.statSync(file).size).toBeGreaterThan(1024);
+  });
+
+  it('twitter:image matches og:image', () => {
+    for (const rel of INDEXABLE_PAGES) {
+      const { document } = readPage(rel).window;
+      expect(document.querySelector('meta[name="twitter:image"]')?.getAttribute('content')).toBe(ogImage(rel));
+    }
   });
 });
 
@@ -204,9 +283,9 @@ describe.skipIf(!built)('smoke – llms.txt', () => {
     expect(content).toMatch(/^- \[.+\]\(https?:\/\//m);
   });
 
-  it('contains ## Services, ## Writing, and ## Contact sections', () => {
+  it('contains ## Services, ## Blog, and ## Contact sections', () => {
     expect(content).toContain('## Services');
-    expect(content).toContain('## Writing');
+    expect(content).toContain('## Blog');
     expect(content).toContain('## Contact');
   });
 });

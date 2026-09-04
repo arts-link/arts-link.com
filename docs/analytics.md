@@ -83,7 +83,7 @@ Shows which CTA placement drives the most clicks — hero vs. footer vs. cta-blo
 
 ---
 
-### 3. Blog Funnel (Writing → Contact)
+### 3. Blog Funnel (Blog → Contact)
 
 **Insights → Funnels**
 
@@ -92,7 +92,7 @@ Steps (session-based):
 2. `CTA Click`
 3. `Contact Form Submit`
 
-Measures whether the Writing section is actually routing people into the conversion funnel. This is the primary metric for the blog Collector layer.
+Measures whether the Blog section is actually routing people into the conversion funnel. This is the primary metric for the blog Collector layer.
 
 ---
 
@@ -108,7 +108,7 @@ Quick view of which pages get the most traffic. Filter date range to last 30 day
 
 ---
 
-### 5. Writing Section Traffic
+### 5. Blog Section Traffic
 
 **Insights → Trends**
 
@@ -116,7 +116,7 @@ Quick view of which pages get the most traffic. Filter date range to last 30 day
 - Filter: `$current_url` contains `/blog/`
 - Chart type: Line (weekly)
 
-Tracks whether the Writing section is growing organic traffic over time. Should increase as more posts are published and indexed.
+Tracks whether the Blog section is growing organic traffic over time. Should increase as more posts are published and indexed.
 
 ---
 
