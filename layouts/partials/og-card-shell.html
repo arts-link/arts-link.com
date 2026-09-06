@@ -1,0 +1,38 @@
+{{/*
+  Page shell for the `ogcard` output format: fixed 1200x630 canvas, the site's
+  own stylesheet, and the card itself.
+
+  This lives in a partial rather than directly in a baseof so that a section
+  with its own baseof.html can opt back into the standard card with a
+  one-line layouts/<section>/baseof.ogcard.html — see the note in
+  layouts/_default/baseof.ogcard.html for why that is needed at all.
+*/}}
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex,nofollow">
+  <title>OG card — {{ .Title }}</title>
+
+  {{/* The site's own stylesheet, so the card uses the real design tokens
+       (ink / cream / ember) and the self-hosted Fraunces + DM Sans. */}}
+  {{- $css := resources.Get "css/main.css" | postCSS | minify }}
+  <style>{{ $css.Content | safeCSS }}</style>
+
+  <style>
+    /* Fixed canvas. No theme toggle — cards are always the dark palette,
+       which is what :root defines. */
+    html, body {
+      width: 1200px;
+      height: 630px;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+    body { background-color: rgb(var(--color-ink)); }
+  </style>
+</head>
+<body>
+  {{ partial "og-card.html" . }}
+</body>
+</html>
