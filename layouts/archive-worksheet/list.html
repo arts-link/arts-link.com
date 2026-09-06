@@ -114,12 +114,15 @@ select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,va
 
 /* --- submit --- */
 .actions{border-top:2px solid var(--ink);padding-top:1.5rem;margin-top:2.5rem}
-button{
+/* Tailwind's preflight sets background-color:transparent on [type=submit],
+   which outranks a bare `button` selector — name the attribute here or the
+   CTA renders invisible (paper on paper). */
+button[type=submit]{
   font-family:inherit;font-size:.95rem;font-weight:600;letter-spacing:.02em;
   background:var(--ink);color:var(--paper);border:none;border-radius:var(--radius);
   padding:.8rem 1.6rem;cursor:pointer;transition:background .15s
 }
-button:hover{background:var(--warm)}
+button[type=submit]:hover{background:var(--warm)}
 .after{font-size:.88rem;color:var(--ink-faint);margin:.9rem 0 0}
 .sig{margin-top:3rem;padding-top:1.25rem;border-top:1px solid var(--rule);font-size:.82rem;color:var(--ink-faint)}
 .sig a{color:var(--warm)}
@@ -145,17 +148,17 @@ button:hover{background:var(--warm)}
 <header class="masthead">
   <a class="brand" href="/">Arts-Link &middot; Family Archive</a>
   <h1>Project Worksheet</h1>
-  <p class="dek">Ten minutes here saves an hour on our call. Rough answers are fine — estimates and &ldquo;I don&rsquo;t know&rdquo; are both useful. Nothing you put down is binding.</p>
+  <p class="dek">Please fill out this questionnaire prior to our initial call. Estimates and rough guesses are fine. Nothing you put down is binding.</p>
 </header>
 
 <div class="expect">
   <h2>Before you start — what to expect</h2>
   <ul>
-    <li><strong>The first conversation is free.</strong> I&rsquo;ll review this worksheet, talk with you for about 45 minutes, and send back a written plan with real numbers.</li>
-    <li><strong>Most projects run $5,000–$8,000</strong> for my work, plus roughly $1,000–$2,500 paid directly to the scanning lab. Smaller collections cost less; we&rsquo;ll size yours together.</li>
-    <li><strong>Plan on 3–6 months end to end.</strong> Most of that is lab turnaround and your family&rsquo;s time, not mine.</li>
-    <li><strong>You never ship anything to me.</strong> I help you choose a lab and write the spec; your originals go straight there and come straight back to you.</li>
-    <li><strong>The work happens in stages,</strong> and you approve the price for each one before it starts. You can stop at any stage and still keep everything finished so far.</li>
+    <li><strong>The first conversation is free.</strong> I&rsquo;ll review this worksheet, talk with you for about 45 minutes, and submit a written plan with a fee structure.</li>
+    <li><strong>Most projects run $5,000–$8,000</strong> for my work, plus roughly $1,000–$2,500 paid directly to the scanning lab (if your material is not already scanned). Smaller collections cost less. We&rsquo;ll size yours together.</li>
+    <li><strong>Plan on 3–6 months end to end.</strong> Most of that is lab turnaround time and time spent by your family compiling material.</li>
+    <li><strong>You never ship anything to me.</strong> I help you choose a lab for scanning (if necessary) and write the spec. Your original material goes straight there and is returned straight back to you.</li>
+    <li><strong>The work happens in stages,</strong> and you approve the price for each stage before it starts. You can stop after any stage and you keep everything finished up to that point.</li>
   </ul>
 </div>
 
@@ -165,7 +168,7 @@ button:hover{background:var(--warm)}
 <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
 
 <section>
-  <div class="sec-head"><span class="num">01</span><h2 class="sec">Who you are</h2></div>
+  <div class="sec-head"><span class="num">01</span><h2 class="sec">Who You Are</h2></div>
   <div class="grid2">
     <div class="field"><label for="name">Your name</label><input type="text" id="name" name="name" required autocomplete="name"></div>
     <div class="field"><label for="email">Email</label><input type="email" id="email" name="email" required autocomplete="email"></div>
@@ -175,18 +178,18 @@ button:hover{background:var(--warm)}
     <div class="field"><label for="where">Where do you live?</label><input type="text" id="where" name="city_state" placeholder="City, State" autocomplete="address-level2"></div>
   </div>
   <div class="field">
-    <label for="materials_where">Where do the materials physically live right now?</label>
+    <label for="materials_where">Where are the materials located?</label>
     <input type="text" id="materials_where" name="materials_location" placeholder="My basement / my mother's house in Ohio / split between three siblings">
   </div>
   <div class="field">
-    <label for="who_decides">Who else needs to agree before this project goes ahead?</label>
+    <label for="who_decides">Who else needs to approve this project before it proceeds?</label>
     <input type="text" id="who_decides" name="decision_makers" placeholder="Just me / me and my two brothers / the family trust">
   </div>
 </section>
 
 <section>
-  <div class="sec-head"><span class="num">02</span><h2 class="sec">What you have</h2></div>
-  <p class="hint">Guess. A shoebox holds roughly 300–500 loose photos; a full album is usually 100–200. If a category doesn&rsquo;t apply, leave it at &ldquo;None.&rdquo;</p>
+  <div class="sec-head"><span class="num">02</span><h2 class="sec">What You Have</h2></div>
+  <p class="hint">Guesses and estimates are fine. A shoebox holds roughly 300–500 loose photos. A full album is usually 100–200 photos. If a category doesn&rsquo;t apply, leave it at &ldquo;None.&rdquo;</p>
   <div class="inv">
     <div class="inv-row"><div class="inv-label"><label for="qty_loose_photos">Loose printed photos</label><small>Boxes, envelopes, drawers</small></div>
       <select id="qty_loose_photos" name="qty_loose_photos"><option>None</option><option>Under 200</option><option>200–500</option><option>500–1,500</option><option>1,500–4,000</option><option>4,000–10,000</option><option>More than 10,000</option><option>No idea</option></select></div>
@@ -212,7 +215,7 @@ button:hover{background:var(--warm)}
 </section>
 
 <section>
-  <div class="sec-head"><span class="num">03</span><h2 class="sec">Condition</h2></div>
+  <div class="sec-head"><span class="num">03</span><h2 class="sec">Condition of Material</h2></div>
   <fieldset class="field">
     <legend>How would you describe the overall state of things?</legend>
     <div class="choices">
@@ -229,33 +232,33 @@ button:hover{background:var(--warm)}
 </section>
 
 <section>
-  <div class="sec-head"><span class="num">04</span><h2 class="sec">Why now</h2></div>
+  <div class="sec-head"><span class="num">04</span><h2 class="sec">Why Now</h2></div>
   <div class="field">
-    <label for="why">What&rsquo;s prompting this?</label>
-    <textarea id="why" name="why_now" placeholder="My father died last year and the boxes are in my garage. My mother is 88 and still remembers everyone. My siblings and I want the same thing for once."></textarea>
+    <label for="why">What is prompting this project?</label>
+    <textarea id="why" name="why_now" placeholder="My father died last year and the boxes are in my garage. My mother is 88 and still remembers everyone."></textarea>
   </div>
   <div class="grid2">
     <div class="field">
-      <label for="deadline">Is there a date this needs to be ready for?</label>
+      <label for="deadline">Is there a date by which this needs to be completed?</label>
       <input type="text" id="deadline" name="deadline" placeholder="Mom's 90th in June / no deadline">
     </div>
     <div class="field">
       <label for="audience">Who is the finished archive for?</label>
-      <input type="text" id="audience" name="audience" placeholder="Six cousins and their kids / just me / the whole extended family">
+      <input type="text" id="audience" name="audience" placeholder="Six cousins and their kids / just me">
     </div>
   </div>
 </section>
 
 <section>
-  <div class="sec-head"><span class="num">05</span><h2 class="sec">Who can name people</h2></div>
+  <div class="sec-head"><span class="num">05</span><h2 class="sec">Who Can Identify People</h2></div>
   <p class="hint">This is the single biggest factor in how a family archive turns out. Software can group faces; only a person can say who they are.</p>
   <fieldset class="field">
     <legend>Is there someone living who can identify people in these photos?</legend>
     <div class="choices">
-      <label class="choice"><input type="radio" name="identifiers" value="Yes, sharp and available"><span>Yes — and they&rsquo;re sharp and willing to sit down for it</span></label>
+      <label class="choice"><input type="radio" name="identifiers" value="Yes, sharp and available"><span>Yes, and they are willing to do it</span></label>
       <label class="choice"><input type="radio" name="identifiers" value="Yes, but limited"><span>Yes, but time or memory is limited <small>We should prioritize accordingly.</small></span></label>
       <label class="choice"><input type="radio" name="identifiers" value="Partially - between us"><span>Partially — between several of us we could piece it together</span></label>
-      <label class="choice"><input type="radio" name="identifiers" value="No one left"><span>No one left who knows <small>Not a dead end. Handwriting on the backs, dates, and locations still carry a lot.</small></span></label>
+      <label class="choice"><input type="radio" name="identifiers" value="No one left"><span>No one left who knows <small>Handwriting on the backs of photos providing dates and locations may still be beneficial.</small></span></label>
     </div>
   </fieldset>
   <div class="field">
@@ -265,15 +268,15 @@ button:hover{background:var(--warm)}
   <fieldset class="field">
     <legend>Roughly how much time can your family give to naming people?</legend>
     <div class="choices">
-      <label class="choice"><input type="radio" name="family_time" value="Several sessions"><span>We&rsquo;ll show up for several sessions — this is the fun part</span></label>
+      <label class="choice"><input type="radio" name="family_time" value="Several sessions"><span>We&rsquo;ll show up for several sessions. This is the fun part!</span></label>
       <label class="choice"><input type="radio" name="family_time" value="A couple of sessions"><span>A couple of sessions, realistically</span></label>
-      <label class="choice"><input type="radio" name="family_time" value="Very little"><span>Very little — please keep our involvement minimal</span></label>
+      <label class="choice"><input type="radio" name="family_time" value="Very little"><span>Very little. Please keep our involvement to a minimum.</span></label>
     </div>
   </fieldset>
 </section>
 
 <section>
-  <div class="sec-head"><span class="num">06</span><h2 class="sec">What you want at the end</h2></div>
+  <div class="sec-head"><span class="num">06</span><h2 class="sec">What You Want at the End</h2></div>
   <fieldset class="field">
     <legend>Pick whichever sounds closest.</legend>
     <div class="choices">
@@ -284,24 +287,23 @@ button:hover{background:var(--warm)}
     </div>
   </fieldset>
   <div class="field">
-    <label for="must_have">If only one thing gets finished, what is it?</label>
+    <label for="must_have">Which part of the project is your first priority?</label>
     <input type="text" id="must_have" name="must_have" placeholder="The 8mm reels of my parents' wedding">
   </div>
 </section>
 
 <section>
   <div class="sec-head"><span class="num">07</span><h2 class="sec">Budget</h2></div>
-  <p class="hint">Asked so I can propose something real rather than something aspirational. There&rsquo;s a sensible version of this project at most budgets — and if the number is too far apart, better that we both know today.</p>
+  <p class="hint">Please estimate so I can propose something realistic. There are versions of most projects at most budgets.</p>
   <div class="field">
-    <label for="budget">What range feels right for the whole project?</label>
+    <label for="budget">Price Range</label>
     <select id="budget" name="budget">
       <option>Not sure yet</option>
       <option>Under $2,500</option>
       <option>$2,500–$5,000</option>
       <option>$5,000–$10,000</option>
       <option>$10,000–$20,000</option>
-      <option>Over $20,000</option>
-      <option>Whatever it takes — this matters more than the cost</option>
+      <option>More than $20,000</option>
     </select>
   </div>
   <div class="field">
@@ -312,12 +314,12 @@ button:hover{background:var(--warm)}
 
 <div class="actions">
   <button type="submit">Send worksheet</button>
-  <p class="after">I read every one of these personally and reply within two business days to set up a time.</p>
+  <p class="after">I read every one of these worksheets personally and will reply within three business days. Your answers are used only to prepare your archive plan. Nothing is shared with anyone.</p>
 </div>
 
 </form>
 
-<p class="sig">Arts-Link &middot; <a href="https://www.arts-link.com/blog/family-archive/">arts-link.com/blog/family-archive</a><br>Your answers are used only to prepare your archive plan. Nothing is shared with anyone.</p>
+<p class="sig">Arts-Link &middot; <a href="https://www.arts-link.com/blog/family-archive/">arts-link.com/blog/family-archive</a></p>
 
 </div>
 {{ end }}
