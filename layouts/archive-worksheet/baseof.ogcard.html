@@ -1,0 +1,9 @@
+{{/*
+  Without this file the worksheet's own baseof.html — chrome-free, light
+  palette, print styles — would win the base-template lookup for the `ogcard`
+  output format too, and every page in this section would share a card that is
+  really a screenshot of the top of the form. Naming the output format here
+  puts /archive-worksheet/ and its thanks page back on the site's standard
+  card, the same one the blog and work entries use.
+*/}}
+{{ partial "og-card-shell.html" . }}

@@ -7,36 +7,13 @@
   this output format — section directories beat _default in the lookup order,
   so a per-format single.ogcard.html in _default would lose to them. Because
   those templates only ever `define "main"`, leaving that block out means their
-  output is dropped and the card below is all that renders. New sections get a
-  correct card for free; only a layouts/<section>/baseof.ogcard.html could
-  override this.
+  output is dropped and the card below is all that renders.
+
+  A plain new section gets a correct card for free. A section with its own
+  layouts/<section>/baseof.html does NOT: a section baseof outranks this file
+  for every output format, so the card would render the page's own chrome and
+  main block — i.e. a screenshot of the page instead of a card. Such a section
+  needs a layouts/<section>/baseof.ogcard.html of its own; see
+  layouts/archive-worksheet/baseof.ogcard.html for the one-liner.
 */}}
-<!DOCTYPE html>
-<html lang="{{ .Site.Language.Lang }}">
-<head>
-  <meta charset="utf-8">
-  <meta name="robots" content="noindex,nofollow">
-  <title>OG card — {{ .Title }}</title>
-
-  {{/* The site's own stylesheet, so the card uses the real design tokens
-       (ink / cream / ember) and the self-hosted Fraunces + DM Sans. */}}
-  {{- $css := resources.Get "css/main.css" | postCSS | minify }}
-  <style>{{ $css.Content | safeCSS }}</style>
-
-  <style>
-    /* Fixed canvas. No theme toggle — cards are always the dark palette,
-       which is what :root defines. */
-    html, body {
-      width: 1200px;
-      height: 630px;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-    }
-    body { background-color: rgb(var(--color-ink)); }
-  </style>
-</head>
-<body>
-  {{ partial "og-card.html" . }}
-</body>
-</html>
+{{ partial "og-card-shell.html" . }}
