@@ -82,6 +82,21 @@ site_system:
         offering, deliberately not yet a Services card or a nav item.
         Nav label: "Blog".
 
+    - name: Family Archive — Project Worksheet
+      type: Converter
+      target_action: Worksheet submission
+      metric: Worksheet completions
+      notes: >
+        Standalone intake worksheet at /archive-worksheet/, linked from the
+        family archives blog post rather than the nav — the offering is still
+        a soft launch. Deliberately outside the site chrome: no nav or footer,
+        pinned to the light palette, and print-friendly, so it reads as a paper
+        document. Collects contact details, a media inventory, condition, why
+        now, who can identify people, desired outcome, and budget range, then
+        posts to Formspree and lands on /archive-worksheet/thanks/. Copy sets
+        expectations up front — free first conversation, typical price range,
+        3-6 month timeline, originals never shipped to Ben, staged approvals.
+
   pages_cut:
     - Features (absorbed into Services)
     - Domain Names (link to tucows store, not a full page)
