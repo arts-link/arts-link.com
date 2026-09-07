@@ -76,9 +76,8 @@ site_system:
         announces the open-source release of Screenshot-a-Day, the daily
         cross-browser visual history Arts-Link built rather than rented, and
         uses it to argue the studio's ownership position. Deliberately not a
-        service promise: galleries are set up only for clients who ask, the
-        post says so plainly, and it states that the archive only runs forward
-        rather than implying a back catalogue exists.
+        service promise: galleries are set up only for clients who ask, and the
+        post says so plainly.
         Launch case study: "Building Verdèzul's Website" covers the
         whatisverdezul.com build — onboarding checklist, docs-first process,
         Ryder overrides, and the git-based CMS the band edits with.

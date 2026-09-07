@@ -9,8 +9,6 @@ We spent part of this year building a small piece of software called **Screensho
 
 It photographs a website once a day and keeps every picture.
 
-That's the whole idea. The rest of this is why it turns out to be worth doing.
-
 ---
 
 ## The Failure It's For
@@ -44,21 +42,11 @@ The self-hosted application collects no telemetry. It doesn't phone us.
 
 ---
 
-## The Archive Is Two Days Old
-
-That's the awkward, unavoidable thing about a record like this: it only runs forward.
-
-There is no version of this tool that shows you what your site looked like last spring, because nobody took the picture. The earliest day you can ever have is the day you start. Everything above describes what accumulates from here — it isn't a library we're sitting on.
-
-Worth saying plainly, because *visual history* is the kind of phrase that sounds like it arrives with a history included.
-
----
-
 ## Who Gets One
 
 We run it on our own sites, and on a handful of client sites where the client asked for it.
 
-It isn't automatic, and it isn't part of what you're already paying for. We don't photograph a site we weren't asked to photograph — a visual record of someone's work is theirs to want or not want, and the project's own documentation puts the question of permission squarely on whoever runs it.
+We don't photograph a site we weren't asked to photograph — a visual record of someone's work is theirs to want or not want, and the project's own documentation puts the question of permission squarely on whoever runs it.
 
 Where a gallery does exist, its visibility is a setting rather than a default. A project can be public and indexed; or unlisted, at a share-token URL that carries `noindex` and appears on no index page; or private, in which case nothing is published anywhere and the captures stay on the machine that took them.
 
@@ -95,5 +83,3 @@ Version 0.1 is deliberately small, and we're honest about the edges: SQLite, a s
 What comes next isn't settled. The candidates written down are S3-compatible storage, Postgres, remote worker pools, notification adapters, and possibly a hosted version for people who'd rather not run anything. None of them is committed — the project's rule is that nothing gets built until an issue and an architecture decision record make the case for it, including the case against.
 
 What would help most right now is use. If you self-host it and something about the setup is confusing, [open an issue](https://github.com/arts-link/screenshot-a-day/issues); the deployment path is the part most likely to be wrong, because we've mostly deployed it in one place. And if you're a client with an opinion about what you'd want to see in a gallery of your own site, tell us. That's the more useful kind of feedback at this stage.
-
-*If you want the engineering side of this — the architecture, the decisions, and the dependency we deleted three days before release — Ben wrote that up separately: [Building Screenshot-a-Day v0.1.0](https://www.benstrawbridge.com/posts/building-screenshot-a-day-v0-1-0/).*
