@@ -92,10 +92,14 @@ site_system:
         a soft launch. Deliberately outside the site chrome: no nav or footer,
         pinned to the light palette, and print-friendly, so it reads as a paper
         document. Collects contact details, a media inventory, condition, why
-        now, who can identify people, desired outcome, and budget range, then
-        posts to Formspree and lands on /archive-worksheet/thanks/. Copy sets
-        expectations up front — free first conversation, typical price range,
-        3-6 month timeline, originals never shipped to Ben, staged approvals.
+        now, what there is to work from when identifying people, desired
+        outcome, and budget range, then posts to Formspree and lands on
+        /archive-worksheet/thanks/. Copy sets expectations up front — free
+        first conversation, typical price range, 3-6 month timeline, originals
+        never shipped to Ben, staged approvals. The identification section asks
+        what sources exist (family memory, distributed memory, the written
+        record) rather than whether anyone is still living, so a recently
+        bereaved client is never asked to tick a box about who has died.
 
   pages_cut:
     - Features (absorbed into Services)
