@@ -5,7 +5,7 @@ client_type = "personal / travel"
 site_type = "new"
 live_url = "https://rt2026.benstrawbridge.com"
 case_study = true
-weight = 2
+weight = 3
 +++
 
 A 9-day, 3,753-mile drive from Philadelphia to Los Angeles — documented through nine GPX files from a Garmin GPS and turned into an interactive web experience.

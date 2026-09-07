@@ -8,7 +8,7 @@ live_url = "https://arts-link.github.io/screenshot-a-day/"
 repo_url = "https://github.com/arts-link/screenshot-a-day"
 live_label = "Visit the project site"
 case_study = true
-weight = 24
+weight = 1
 +++
 
 Websites change constantly and remember nothing. A redesign lands, a page gets rewritten, a client asks what the homepage looked like two summers ago — and the honest answer is usually that nobody kept a copy. Screenshot-a-Day is the tool Arts-Link built to stop losing that history.
