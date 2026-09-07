@@ -22,3 +22,6 @@ Desktop.ini
 # Editor-specific
 .vscode/
 .idea/
+
+# Claude Code (machine-local)
+.claude/settings.local.json

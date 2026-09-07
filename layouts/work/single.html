@@ -23,7 +23,7 @@
       <div class="flex flex-wrap items-center gap-6">
         {{ with .Params.live_url }}
         <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="text-ember text-sm tracking-wide hover:underline">
-          {{ if eq $.Params.site_type "open-source" }}View the live demo ↗{{ else }}Visit the live site ↗{{ end }}
+          {{ with $.Params.live_label }}{{ . }} ↗{{ else }}{{ if eq $.Params.site_type "open-source" }}View the live demo ↗{{ else }}Visit the live site ↗{{ end }}{{ end }}
         </a>
         {{ end }}
         {{ with .Params.repo_url }}
