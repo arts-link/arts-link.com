@@ -17,11 +17,13 @@ That's the whole idea. The rest of this is why it turns out to be worth doing.
 
 Most website monitoring answers one question: is the site up? That's a useful question, and it's not the one that usually bites.
 
-What actually happens is quieter. A plugin updates and the hero image stops loading — but only in Safari. A host changes a default and the typography shifts. A form quietly stops sending. The site is up the entire time. Nobody notices for weeks, and when someone finally does, there's no way to say when it started or what it looked like before.
+What actually happens is quieter. A plugin updates and the hero image stops loading — but only in Safari. A host changes a default and the typography shifts. A streaming service changes its embed code and the player on your music page becomes an empty grey box. The site is up the entire time. Nobody notices for weeks, and when someone finally does, there's no way to say when it started or what it looked like before.
 
 An uptime monitor catches none of that, because nothing is down. A person looking at the site every morning would catch it — but nobody has that morning, and human attention isn't reproducible anyway. You'd want the same browser, the same window size, the same scroll position, every day, indefinitely.
 
 That's a machine's job.
+
+One boundary worth stating, since it's the obvious question: this catches what's *visible*. If your contact form renders perfectly and quietly stops delivering mail, no screenshot will ever tell you — the page looks exactly the same on the day it breaks as it did the day before. That's a job for a different tool. Screenshot-a-Day only ever knows what the page looked like.
 
 ---
 
@@ -35,7 +37,7 @@ Then it keeps the pictures. Not the latest one — all of them. What that buys y
 
 - **Any two days can be put side by side.** There are four ways to look at the pair: side by side, a split slider, an overlay, and a heatmap that lights up the pixels that moved. The heatmap is the one that finds things you weren't looking for.
 - **A run of days becomes an animation.** GIF or WebM, generated from the captures. A site's slow drift is much easier to see at speed than as a list of dates.
-- **When something breaks, the archive says when.** Not approximately — the day, and which browser noticed first.
+- **When something visible breaks, the archive says when.** Not approximately — the day, and which browser noticed first.
 - **The galleries can live somewhere else.** Screenshot-a-Day renders a complete static site and deploys it to a Vercel project, a Netlify site, or an SFTP directory, so the machine holding the archive never needs a public door into it. It makes outbound connections only.
 
 There are also signed webhooks for wiring it into other tools, and an experimental MCP endpoint so an agent can inspect the capture history or queue a run. Those matter to about four people, and if you're one of them, the [documentation](https://arts-link.github.io/screenshot-a-day/) is thorough.
