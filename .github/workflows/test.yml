@@ -12,6 +12,9 @@ jobs:
       contents: read
     env:
       HUGO_VERSION: 0.138.0
+      # This job only hashes the cards (`npm run og:check`); it never renders
+      # them, so there is no reason to pull down a browser on install.
+      PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
 
     steps:
       - uses: actions/checkout@v4
@@ -34,6 +37,9 @@ jobs:
 
       - name: Build site
         run: hugo --minify
+
+      - name: Check social cards are current
+        run: npm run og:check
 
       - name: Run tests
         run: npm test

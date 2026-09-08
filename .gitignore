@@ -6,7 +6,11 @@
 /_ignore/
 /node_modules
 /themes/ryder-dev/
+/hugo_stats.json
 # /themes/benstraw/
+
+# Analytics exports
+/assets/plausible-export/
 
 # frontmatter
 .frontmatter/

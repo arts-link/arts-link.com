@@ -1,0 +1,48 @@
+{{/*
+  The best available description for a page, as plain text.
+
+  Returns, in order of preference: the front matter `description`, the page
+  summary, a line composed from a work entry's own front matter, and only then
+  the site description.
+
+  Without the middle two, every work entry that sets no `description` fell back
+  to the site blurb — seven of eighteen pages shipped the identical meta and
+  og:description, the same duplication the single shared og-default.jpg used to
+  cause. Duplicate descriptions are worth avoiding for their own sake in search
+  results, quite apart from how the link unfurls.
+
+  Used by layouts/_default/baseof.html for the meta tags and by
+  layouts/partials/og-card.html for the card, so the two can't drift apart.
+*/}}
+
+{{- $desc := "" }}
+
+{{- with .Description }}
+  {{/* Authored copy wins, and passes through untouched — length included. */}}
+  {{- $desc = . }}
+{{- else }}
+
+  {{- with .Summary }}
+    {{- $desc = . | plainify | htmlUnescape | strings.TrimSpace }}
+  {{- end }}
+
+  {{- if and (not $desc) (eq $.Section "work") }}
+    {{/* A work entry is often just a screenshot and front matter, with no body
+         for Hugo to summarise. Compose something specific from what the entry
+         does declare rather than repeating the site blurb. No stack names —
+         see the copywriting rules in CLAUDE.md. */}}
+    {{- $lead := cond (eq $.Params.site_type "rescue")
+          (printf "A site rescue for %s, rebuilt and migrated by Arts-Link" $.Title)
+          (printf "A bespoke website for %s, built by Arts-Link" $.Title) }}
+    {{- $host := "" }}
+    {{- with $.Params.live_url }}
+      {{- $host = (urls.Parse .).Host | strings.TrimPrefix "www." }}
+    {{- end }}
+    {{- $desc = cond (ne $host "") (printf "%s — live at %s." $lead $host) (printf "%s." $lead) }}
+  {{- end }}
+
+  {{/* Only derived text is trimmed; authored copy is left as written. */}}
+  {{- $desc = truncate 160 "…" $desc }}
+{{- end }}
+
+{{- return (default .Site.Params.description $desc) }}

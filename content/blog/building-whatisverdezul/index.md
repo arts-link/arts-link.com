@@ -9,7 +9,7 @@ draft = false
 
 It's fast, it's theirs, and the band updates it themselves — shows, releases, merch, press — without touching code, without a database, without a platform subscription that decides what their site is allowed to be.
 
-This post is about how it got built.  It is not a tutorial; it is a look at how Arts-Link actually works.
+This post is about how it got built.  It is not a tutorial; it is a look at how Arts-Link works.
 
 {{< figure src="whatisverdezul-home.webp" alt="Verdèzul homepage: a tiled wall of the band's globe logo behind a glowing neon-green box that asks 'What is Verdèzul?'" caption="The homepage: tiled logos, one question." class="max-w-sm mx-auto" >}}
 
@@ -69,7 +69,7 @@ Genuinely open source — free to use, inspect, and fork:
 Commercial services, picked where a hosted product genuinely beats self-rolling:
 
 - **Vercel** hosts the site and runs exactly two tiny serverless functions — about thirty lines each — that proxy the CMS login, so no secret ever reaches the browser.
-- **PostHog** tracks what actually works: ticket clicks, merch clicks, play clicks, social follows, and form submissions. Its core is open source and self-hostable, but we run the paid hosted version — standing up an analytics cluster for a band site would be a strange way to spend everyone's time.
+- **PostHog** tracks what works: ticket clicks, merch clicks, play clicks, social follows, and form submissions. Its core is open source and self-hostable, but we run the paid hosted version — standing up an analytics cluster for a band site would be a strange way to spend everyone's time.
 - **Formspree** handles the contact form and email signup with no server code on our side at all.
 
 Those three sit on the Arts-Link account. The band doesn't sign up for anything, doesn't manage another set of logins, and doesn't get another bill — analytics and form handling come with the site.

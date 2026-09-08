@@ -1,0 +1,19 @@
+{{/*
+  Shell for the `ogcard` output format — the 1200x630 social share card that
+  every page renders alongside its HTML, at <page>/og.html.
+
+  Note there is deliberately no {{ block "main" }} here. Hugo still selects the
+  page's normal layout (layouts/work/single.html, layouts/index.html, …) for
+  this output format — section directories beat _default in the lookup order,
+  so a per-format single.ogcard.html in _default would lose to them. Because
+  those templates only ever `define "main"`, leaving that block out means their
+  output is dropped and the card below is all that renders.
+
+  A plain new section gets a correct card for free. A section with its own
+  layouts/<section>/baseof.html does NOT: a section baseof outranks this file
+  for every output format, so the card would render the page's own chrome and
+  main block — i.e. a screenshot of the page instead of a card. Such a section
+  needs a layouts/<section>/baseof.ogcard.html of its own; see
+  layouts/archive-worksheet/baseof.ogcard.html for the one-liner.
+*/}}
+{{ partial "og-card-shell.html" . }}
