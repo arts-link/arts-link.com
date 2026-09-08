@@ -75,7 +75,7 @@ We released it under the AGPL, a license chosen specifically to keep it that way
 
 Practically, that means two things: If you're technical, or you know someone who is, you can [run your own copy](https://github.com/arts-link/screenshot-a-day#quick-start). Two containers, one volume, on a Docker host you probably already have. It costs nothing but electricity.
 
-And if there's a gallery of yours on our machine, the files are files. If you ever leave, you take them with you. That isn't a promise about our good intentions; it's just what a folder of images is.
+And if there's a gallery of yours on our machine, the screenshots are ordinary image files, not images locked inside a database. A small database keeps their dates and browser details organized. If you ever leave, you can take the complete archive with you.
 
 ---
 
