@@ -8,9 +8,9 @@
     </header>
 
     {{ if .Pages }}
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       {{ range .Pages.ByParam "weight" }}
-        {{ partial "modules/project-card.html" . }}
+        {{ partial "modules/project-card.html" (dict "page" . "sizes" "(max-width: 767px) calc(100vw - 3rem), (max-width: 1151px) calc(50vw - 2.5rem), 536px") }}
       {{ end }}
     </div>
     {{ else }}

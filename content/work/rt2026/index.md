@@ -5,7 +5,7 @@ client_type = "travel archive"
 site_type = "new"
 live_url = "https://rt2026.benstrawbridge.com"
 case_study = true
-weight = 2
+weight = 3
 +++
 
 "The Road" is a nine-day, 3,753-mile drive from Philadelphia to Los Angeles — a father-and-son trip across 14 states in a red Tacoma, kept as photographs and a continuous GPS record, then built into a site you can travel through rather than just look at.
