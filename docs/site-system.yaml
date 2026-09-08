@@ -72,6 +72,13 @@ site_system:
         Open source/Ryder post: "Why I Build With Open Source" explains why
         Arts-Link builds with Hugo and maintains Ryder as a free theme for the
         Hugo community.
+        Screenshot-a-Day release post: "A Picture of a Website, Every Day"
+        announces the open-source release of Screenshot-a-Day, the daily
+        cross-browser visual history Arts-Link built rather than bought. It
+        explains what the tool does and who gets to use it, while arguing the
+        studio's ownership position. Deliberately not a service promise:
+        galleries are set up only for clients who ask, and the post says so
+        plainly.
         Launch case study: "Building Verdèzul's Website" covers the
         whatisverdezul.com build — onboarding checklist, docs-first process,
         Ryder overrides, and the git-based CMS the band edits with.
