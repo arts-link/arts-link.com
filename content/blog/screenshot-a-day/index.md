@@ -39,7 +39,7 @@ What this provides to you:
 - **A run of days becomes an animation.** GIF or WebM, generated from the captures. A site's slow drift is easier to see at speed rather than as a list of dates.
 - **When something breaks, the archive says when.** Not approximately. It notes the day, and which browser noticed first.
 
-There are also signed webhooks for wiring it into other tools, and an experimental MCP endpoint so an agent can inspect the capture history or queue a run. Those matter to about four people, and if you're one of them, the [documentation](https://arts-link.github.io/screenshot-a-day/) is thorough.
+There are also signed webhooks for wiring it into other tools, and an experimental MCP endpoint so an agent can inspect the capture history or queue a run. Those matter to about four people, and if you're one of them, the [documentation](https://github.com/arts-link/screenshot-a-day/tree/main/docs/api) is thorough.
 
 The self-hosted application collects no telemetry. It doesn't phone us.
 
