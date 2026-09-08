@@ -8,8 +8,14 @@
  * it, send whatever Response it returns, and otherwise fall through to the
  * static file — over a built copy of the site.
  *
- *   hugo --environment clients --destination public-clients
- *   CLIENT_HUB_USER=ben CLIENT_HUB_PASS=test node scripts/hub-dev.mjs
+ *   CLIENT_HUB_ENABLED=1 \\
+ *   CLIENT_HUB_RISA_USER=risa CLIENT_HUB_RISA_PASS=test \\
+ *   npm run hub
+ *
+ * Credentials are per client: CLIENT_HUB_<FOLDER>_USER / _PASS, where <FOLDER>
+ * is the directory under content-clients/ upper-cased. Without
+ * CLIENT_HUB_ENABLED the gate is off entirely, which is the public site's
+ * configuration.
  *
  * What this proves: the gate itself — challenge, accept, reject, and that the
  * page really is served once you are through.
