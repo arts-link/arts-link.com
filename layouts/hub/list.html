@@ -1,0 +1,22 @@
+{{ define "main" }}
+  {{ partial "hub/page-header.html" . }}
+
+  <div class="max-w-3xl mx-auto px-6 py-14 md:py-20">
+    <div class="hub-prose">
+      {{ .Content }}
+    </div>
+
+    {{- with .RegularPages.ByWeight }}
+    <nav class="mt-16 pt-10 border-t border-cream/10 grid gap-px bg-cream/10 sm:grid-cols-3 overflow-hidden">
+      {{- range . }}
+      <a href="{{ .RelPermalink }}" class="group bg-ink p-6 hover:bg-ink-light transition-colors">
+        <h2 class="font-display text-lg text-cream group-hover:text-ember transition-colors">{{ .Title }}</h2>
+        {{- with .Params.blurb }}
+        <p class="text-sm text-cream/50 mt-2 leading-relaxed">{{ . }}</p>
+        {{- end }}
+      </a>
+      {{- end }}
+    </nav>
+    {{- end }}
+  </div>
+{{ end }}

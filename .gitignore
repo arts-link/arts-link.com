@@ -27,6 +27,9 @@ Desktop.ini
 .vscode/
 .idea/
 
+# Client hub verification build (see scripts/vercel-build.sh)
+/public-clients/
+
 # Claude Code (machine-local)
 .claude/settings.local.json
 Claude Outputs/

@@ -1,0 +1,7 @@
+{{/* One era on the spine.
+     {{< hub/era years="1954 – 1979" title="Formation" >}}Body.{{< /hub/era >}} */}}
+<div class="hub-era">
+  <div class="yr">{{ .Get "years" }}</div>
+  <h4>{{ .Get "title" }}</h4>
+  <p>{{ .Inner | markdownify }}</p>
+</div>
