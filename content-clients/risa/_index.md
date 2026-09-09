@@ -21,6 +21,6 @@ number.
 
 ## What's next
 
-1. Read the [proposal](proposal/).
+1. Read the [proposal]({{< relref "proposal" >}}).
 2. Tell me which updating option you want.
-3. Send the Google Takeout export, using the [files](files/) page.
+3. Send the Google Takeout export, using the [files]({{< relref "files" >}}) page.

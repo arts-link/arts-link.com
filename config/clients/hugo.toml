@@ -15,7 +15,12 @@ title = 'Arts-Link'
 # Restates _default's ["taxonomy", "term"] — see above. `sitemap` is the
 # addition: it is a Kind, not an output format, so the [outputs] block below
 # cannot remove it and a client sitemap would otherwise be published.
-disableKinds = ["taxonomy", "term", "sitemap"]
+#
+# `404` goes too. Hugo only ever looks for layouts/404.html, which is the
+# public site's — its nav links to /work/, /services/ and /blog/, none of which
+# exist here, so the clients build would publish a 404 page whose every link is
+# also a 404. Vercel serves its own generic 404 instead.
+disableKinds = ["taxonomy", "term", "sitemap", "404"]
 
 [params]
   env = "clients"
