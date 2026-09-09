@@ -12,7 +12,7 @@ blurb = "Phase One — the career archive, what it covers, and what it costs."
 eyebrow = "A proposal · Arts-Link"
 title_heading = "The record you keep"
 title_emphasis = "yourself"
-lede = "A permanent, searchable, self-owned archive of your work and your family's history — built to outlast any platform it happens to sit on."
+lede = "A permanent, searchable, self-owned archive of your work and your family's history. Built to outlast any platform it runs on."
 
 [[meta]]
   label = "Prepared for"
@@ -25,37 +25,39 @@ lede = "A permanent, searchable, self-owned archive of your work and your family
   value = "September 2026"
 +++
 
-## What I heard
+## What I Heard
 
-You have decades of material — much of it already digitized, spread across several hard drives and a Google Photos library you've been steadily working at. You have 8mm film and 35mm slides from your early married life that haven't been touched. And you have a career's worth of documentation that currently has no shape to it.
+You have decades worth of material, much of it already digitized. It is spread across several hard drives and a Google Photos library that you have been working on. You have 8mm film and 35mm slides from your early married life that haven't been touched. You have a career's worth of documentation that needs to be organized.
 
 You also raised something that I think is the real center of this project. Your Wikipedia page is written and edited by other people. You watched a friend have articles she wrote removed from hers, with no recourse. There is a public record of your life that you did not write and cannot control.
 
-That's the problem this archive actually solves. Everything below follows from it.
+This archive addresses that concern and proposes a solution.
 
-## Google Photos stays
+## Google Photos Stays
 
-I want to be direct about this, because it's the obvious question and the answer matters more than the pitch. Google Photos is good. It's where your working library should live, it's where casual sharing should happen, and nothing here asks you to stop using it.
+Google Photos is a good service. You should continue to use it for your working library and for the casual sharing of images.
 
-It's also more capable than people give it credit for. If you've been naming faces and correcting dates on scanned material, that is real cataloguing work and I want to be clear that *none of it is wasted* — it's the head start this project builds on, not something I'd ask you to redo.
+It is also more capable than people give it credit for. If you have been naming faces and correcting dates on scanned material, that is real cataloguing work. None of that work is wasted. The project will build on it.
 
 What it structurally cannot do is be *yours*.
 
 - **It's bound to an account.** A login can't be inherited, transferred, or handed to an institution. Everything in it is one policy change or one lapsed account away from being someone else's problem to solve.
 - **Getting it out is its own project.** The export gives you folders of files with metadata in separate sidecar files alongside them — occasionally missing, frequently mismatched. That's raw material. Reassembling it into something coherent is most of the work of Phase One.
-- **It holds records, not a work.** A date and a name on each photograph is a catalogue. It isn't sequence, chapters, or context — the difference between knowing what a photograph is and understanding why it's there.
+- **It holds records, not a work.** A date and a name on each photograph is a catalogue. It isn't sequence, chapters, or context. That is the difference between knowing what a photograph is and understanding why it is there.
 - **Sharing happens on Google's terms.** A curated set for a colleague arrives as a Google album, viewed in Google's interface, by someone with a Google account. It's a link into your library rather than a piece of your archive.
 - **The terms are not yours to set.** Google retired Picasa, and has changed storage pricing more than once. That's not a criticism — it's just what it means to be a tenant.
 
 > Wikipedia is what other people say about you. This is the record you keep yourself.
 
-The archive isn't a replacement for Google Photos. It's the layer above it: the curated, captioned, permanent, owned version — files you hold, on a domain you own, in a form that can be handed to your children or a library without a password changing hands.
+The archive isn't a replacement for Google Photos. It is the layer above it: the curated, captioned, permanent, owned version. It is the files you hold, on a domain you own, in a form that can be handed to your children or a library without a password changing hands.
 
-## Phase One — the career archive
+## Phase One — The Career Archive
 
-We start with what's already digitized, and with your professional life. It's the material in the best shape, it needs no scanning, and it's the part where "who controls this record" has the sharpest stakes.
+We start with what's already digitized, and with your professional life. It is the material in the best shape and needs no scanning.
 
-Rather than a gallery grid, I'd build it the way a book is built: distinct chapters with their own opening images and their own framing, so someone arriving cold can move through the arc rather than scroll a wall of thumbnails. A proposed spine — you'll rewrite it, but to show the shape:
+Rather than a gallery grid, I would construct it like a book. It will have distinct chapters with their own opening images and their own framing. Anyone could move through the arc rather than scroll a wall of thumbnail images.
+
+Sample chapters:
 
 {{< hub/spine >}}
 {{< hub/era years="1954 – 1979" title="Formation" >}}
@@ -72,35 +74,35 @@ The University Professorship, and the governance work alongside it.
 {{< /hub/era >}}
 {{< /hub/spine >}}
 
-Each chapter opens on a single image and a short piece of writing — yours, not mine — and then gives way to the photographs, documents and records underneath it.
+Each chapter opens on a single image and a short piece of your writing, followed by photographs, documents and records.
 
-## Sharing, and who can see what
+## Sharing, and Who Can See What
 
-You said you want to give selected material to particular people connected to your career, while the family material stays close. That's not one setting — it's three, and I'd propose using all of them.
+You said you want to give select material to particular people connected to your career, while keeping family material private. I suggest having three settings:
 
 {{< hub/table >}}
 | Material | Access | Why |
 |---|---|---|
-| Career archive | Public and indexed | This is the part that answers the Wikipedia problem — and a source nobody can find isn't a source. Public and findable is the entire point of it. |
+| Career archive | Public and indexed | This addresses the Wikipedia problem. This material is public and searchable, because if no one can find it, it isn't a source. |
 | Family &amp; personal | Password-protected | One password you give out, changeable at any time. Not indexed, not findable. |
-| Selected sets | Per-gallery links | Any group of tagged material resolves to its own address you can send to one person. |
+| Selected sets | Per-gallery links | Any group of tagged material resolves to its own address you can send to someone else. |
 {{< /hub/table >}}
 
-One honest caveat: an unlisted URL is not privacy. It's an address nobody has published yet, and it can be forwarded. Anything that genuinely must stay closed goes behind the password, not behind obscurity.
+Note: an unlisted URL is not private. It is an address nobody has published yet, and it can be forwarded. Anything that must remain private must be password-protected.
 
-### Galleries on demand
+### Galleries on Demand
 
 During identification, everything gets tagged — people, places, organizations, years. Any combination of those tags then becomes a gallery with its own link, generated on request rather than built in advance. Ten photographs spanning three decades that all touch one initiative become one page you can send to one person, without me building anything new.
 
-## Identifying what's in it
+## Identifying What's In It
 
-This is the part no software does and the part that decides whether the archive is worth anything in thirty years. You mentioned reviewing in batches rather than sitting through live sessions, which is the cleaner way to run it and the one I'd recommend.
+This is the part no software does. You mentioned reviewing in batches rather than sitting through live sessions.
 
 - **I prepare a batch** — grouped, pre-sorted, with everything I can infer already filled in.
-- **You review it on your own schedule** — correcting names, dates, places, and adding whatever context only you have.
-- **It becomes searchable.** Every caption feeds the index, so a name or a place or a year finds the material.
+- **You review it on your own schedule** — correcting names, dates, places, and adding context.
+- **It becomes searchable** - every caption feeds the index, so a name or a place or a year finds the material.
 
-Approximate is always better than blank. "Sometime in the late eighties" is a real piece of information.
+Approximate is always better than blank. "Sometime in the late eighties" is helpful information.
 
 ## The address it lives at
 
