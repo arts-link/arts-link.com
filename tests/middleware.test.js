@@ -30,7 +30,7 @@ function deploy(clients = {}) {
 
 afterEach(() => {
   for (const key of Object.keys(process.env)) {
-    if (key.startsWith('CLIENT_HUB_')) delete process.env[key];
+    if (key.startsWith('CLIENT_HUB_') || key.startsWith('HUB_ADMIN_')) delete process.env[key];
   }
 });
 
@@ -123,5 +123,60 @@ describe('client hub auth — credential handling', () => {
       const r = new Request('https://clients.arts-link.com/risa/', { headers: { authorization: header } });
       expect(middleware(r).status).toBe(401);
     }
+  });
+});
+
+describe('client hub auth — the admin pair', () => {
+  const ADMIN = { user: 'ben', pass: 'a master password' };
+
+  function withAdmin(clients = {}) {
+    deploy(clients);
+    process.env.HUB_ADMIN_USER = ADMIN.user;
+    process.env.HUB_ADMIN_PASS = ADMIN.pass;
+  }
+
+  const admin = `${ADMIN.user}:${ADMIN.pass}`;
+
+  it('opens every client hub', () => {
+    withAdmin({ risa: RISA, jill: JILL });
+    for (const path of ['/risa/', '/risa/proposal/', '/jill/', '/jill/status/']) {
+      expect(middleware(req(path, admin))).toBeUndefined();
+    }
+  });
+
+  // So a new hub can be reviewed before its own password is set.
+  it('opens a client that has no credentials of its own', () => {
+    withAdmin({});
+    expect(middleware(req('/newclient/proposal/', admin))).toBeUndefined();
+  });
+
+  it('does not weaken the client pairs', () => {
+    withAdmin({ risa: RISA, jill: JILL });
+    expect(middleware(req('/risa/', `${RISA.user}:${RISA.pass}`))).toBeUndefined();
+    expect(middleware(req('/jill/', `${RISA.user}:${RISA.pass}`)).status).toBe(401);
+    expect(middleware(req('/risa/')).status).toBe(401);
+  });
+
+  it('is still refused when wrong', () => {
+    withAdmin({ risa: RISA });
+    for (const bad of [`${ADMIN.user}:nope`, `nobody:${ADMIN.pass}`, 'nobody:nope']) {
+      expect(middleware(req('/risa/', bad)).status).toBe(401);
+    }
+  });
+
+  // Absent admin variables, behaviour is exactly as before.
+  it('changes nothing when not configured', () => {
+    deploy({ risa: RISA });
+    expect(middleware(req('/risa/', admin)).status).toBe(401);
+    expect(middleware(req('/risa/', `${RISA.user}:${RISA.pass}`))).toBeUndefined();
+    expect(middleware(req('/newclient/', admin)).status).toBe(401);
+  });
+
+  // HUB_ADMIN_ rather than CLIENT_HUB_ADMIN_ precisely so this cannot happen.
+  it('does not collide with a client folder named admin', () => {
+    withAdmin({ admin: { user: 'theclient', pass: 'their own password' } });
+    expect(middleware(req('/admin/', 'theclient:their own password'))).toBeUndefined();
+    expect(middleware(req('/admin/', admin))).toBeUndefined();
+    expect(middleware(req('/admin/', 'theclient:wrong')).status).toBe(401);
   });
 });

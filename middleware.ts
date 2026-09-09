@@ -13,6 +13,13 @@
  *                             hyphens as underscores. content-clients/risa/
  *                             is CLIENT_HUB_RISA_USER / CLIENT_HUB_RISA_PASS.
  *
+ *   HUB_ADMIN_USER            optional. Opens every client hub, so Ben can read
+ *   HUB_ADMIN_PASS            any of them without holding each client's
+ *                             password — including a client whose own
+ *                             credentials are not set yet. Named HUB_ADMIN_
+ *                             rather than CLIENT_HUB_ADMIN_ so it cannot
+ *                             collide with a client folder called "admin".
+ *
  * Credentials are per client on purpose. Every proposal carries pricing and
  * personal detail, so one shared password would mean each client could read
  * the others' terms.
@@ -96,12 +103,21 @@ export default function middleware(request: Request): Response | undefined {
   if (client === null) return undefined;
 
   const slug = envSlug(client);
-  const user = process.env[`CLIENT_HUB_${slug}_USER`];
-  const pass = process.env[`CLIENT_HUB_${slug}_PASS`];
 
-  // Fail closed. A client with no credentials configured is unreachable rather
-  // than public.
-  if (!user || !pass) return challenge(client);
+  // Either the client's own pair or the admin pair opens a hub. Admin also
+  // works on a client with no credentials of its own, so a new hub can be
+  // reviewed before its password exists.
+  const accepted: Array<[string, string]> = [];
+  const clientUser = process.env[`CLIENT_HUB_${slug}_USER`];
+  const clientPass = process.env[`CLIENT_HUB_${slug}_PASS`];
+  if (clientUser && clientPass) accepted.push([clientUser, clientPass]);
+  const adminUser = process.env.HUB_ADMIN_USER;
+  const adminPass = process.env.HUB_ADMIN_PASS;
+  if (adminUser && adminPass) accepted.push([adminUser, adminPass]);
+
+  // Fail closed. With nothing configured — neither the client's pair nor an
+  // admin pair — the hub is unreachable rather than public.
+  if (accepted.length === 0) return challenge(client);
 
   const header = request.headers.get("authorization");
   if (!header || !header.toLowerCase().startsWith("basic ")) return challenge(client);
@@ -116,11 +132,18 @@ export default function middleware(request: Request): Response | undefined {
   // Only the first colon separates them; a password may contain more.
   const sep = decoded.indexOf(":");
   if (sep === -1) return challenge(client);
+  const offeredUser = decoded.slice(0, sep);
+  const offeredPass = decoded.slice(sep + 1);
 
-  const okUser = safeEqual(decoded.slice(0, sep), user);
-  const okPass = safeEqual(decoded.slice(sep + 1), pass);
-  // Evaluate both before deciding, so the failure tells you nothing about which.
-  if (!okUser || !okPass) return challenge(client);
+  // Compare against every accepted pair without short-circuiting, so a failure
+  // reveals nothing about which field — or which pair — was wrong.
+  let matched = false;
+  for (const [user, pass] of accepted) {
+    const okUser = safeEqual(offeredUser, user);
+    const okPass = safeEqual(offeredPass, pass);
+    matched = (okUser && okPass) || matched;
+  }
+  if (!matched) return challenge(client);
 
   return undefined;
 }
