@@ -21,7 +21,7 @@ lede = "Getting your site off Network Solutions and somewhere stable, without ch
   value = "Ben Strawbridge"
 [[meta]]
   label = ""
-  value = "September 8, 2026"
+  value = "September 9, 2026"
 +++
 
 ## Where things stand
