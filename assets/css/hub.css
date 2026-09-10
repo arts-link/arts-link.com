@@ -1,0 +1,244 @@
+/*
+ * Client hub styles.
+ *
+ * Inlined only by layouts/hub/baseof.html, so nothing here reaches the public
+ * site — which is why it is a separate file rather than an addition to
+ * main.css. Production CSS must stay byte-identical.
+ *
+ * Plain CSS on purpose: every colour is one of the five theme tokens defined
+ * in main.css (:root dark, html.light light), so all of this adapts to both
+ * themes for free and no new variable is introduced.
+ */
+
+/* ---------- prose ---------- */
+
+.hub-prose {
+  color: rgb(var(--color-cream) / 0.75);
+  font-size: 1.02rem;
+  line-height: 1.7;
+}
+.hub-prose > * + * { margin-top: 1rem; }
+
+.hub-prose h2 {
+  font-family: Fraunces, Georgia, serif;
+  font-weight: 400;
+  font-size: 1.7rem;
+  line-height: 1.2;
+  letter-spacing: -0.012em;
+  color: rgb(var(--color-cream));
+  margin-top: 3.2rem;
+  padding-top: 3.2rem;
+  border-top: 1px solid rgb(var(--color-cream) / 0.08);
+}
+.hub-prose > h2:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+
+.hub-prose h3 {
+  font-family: Fraunces, Georgia, serif;
+  font-weight: 500;
+  font-size: 1.16rem;
+  color: rgb(var(--color-cream));
+  margin-top: 2.2rem;
+}
+
+.hub-prose p { font-family: Fraunces, Georgia, serif; font-size: 1.06rem; line-height: 1.68; }
+.hub-prose strong { color: rgb(var(--color-cream)); font-weight: 600; }
+.hub-prose em { font-style: italic; }
+
+.hub-prose a {
+  color: rgb(var(--color-ember));
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+.hub-prose a:hover { color: rgb(var(--color-ember-light)); }
+
+/* Unbulleted list — the proposal's `plain` list. */
+.hub-prose ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.7rem; }
+.hub-prose ul li {
+  position: relative;
+  padding-left: 1.3rem;
+  font-size: 0.96rem;
+  line-height: 1.55;
+}
+.hub-prose ul li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 6px;
+  height: 1px;
+  background: rgb(var(--color-ember));
+}
+
+/* Numbered steps. */
+.hub-prose ol { list-style: none; counter-reset: step; padding: 0; display: flex; flex-direction: column; gap: 1rem; }
+.hub-prose ol li {
+  counter-increment: step;
+  position: relative;
+  padding-left: 2.4rem;
+  font-size: 0.96rem;
+  line-height: 1.55;
+  min-height: 1.6rem;
+}
+.hub-prose ol li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1.6rem;
+  height: 1.6rem;
+  border: 1px solid rgb(var(--color-ember) / 0.5);
+  color: rgb(var(--color-ember));
+  font-family: "DM Sans", system-ui, sans-serif;
+  font-size: 0.74rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Pull-quote — an ordinary markdown blockquote. */
+.hub-prose blockquote {
+  border-left: 2px solid rgb(var(--color-ember));
+  padding: 0.15rem 0 0.15rem 1.15rem;
+  margin: 1.8rem 0;
+}
+.hub-prose blockquote p {
+  font-family: Fraunces, Georgia, serif;
+  font-size: 1.24rem;
+  line-height: 1.45;
+  font-style: italic;
+  color: rgb(var(--color-cream));
+}
+
+/* Tables scroll rather than pushing the page sideways. */
+.hub-prose .table-wrap { overflow-x: auto; margin-top: 1.3rem; }
+.hub-prose table { width: 100%; border-collapse: collapse; font-family: "DM Sans", system-ui, sans-serif; font-size: 0.9rem; }
+.hub-prose th {
+  text-align: left;
+  font-size: 0.66rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: rgb(var(--color-cream) / 0.4);
+  font-weight: 700;
+  padding: 0 1rem 0.6rem 0;
+  border-bottom: 1px solid rgb(var(--color-cream) / 0.2);
+  white-space: nowrap;
+}
+.hub-prose td {
+  padding: 0.75rem 1rem 0.75rem 0;
+  border-bottom: 1px solid rgb(var(--color-cream) / 0.08);
+  vertical-align: top;
+  line-height: 1.5;
+}
+.hub-prose td:first-child { color: rgb(var(--color-cream)); font-weight: 600; }
+.hub-prose tr:last-child td { border-bottom: none; }
+
+/* ---------- era spine ---------- */
+
+.hub-spine {
+  margin-top: 1.6rem;
+  border-left: 1px solid rgb(var(--color-cream) / 0.12);
+  padding-left: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.hub-era { position: relative; }
+.hub-era::before {
+  content: "";
+  position: absolute;
+  left: calc(-1.6rem - 4px);
+  top: 0.55em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgb(var(--color-ember));
+  box-shadow: 0 0 0 3px rgb(var(--color-ink));
+}
+.hub-era .yr {
+  font-family: "DM Sans", system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: rgb(var(--color-ember));
+  font-variant-numeric: tabular-nums;
+}
+.hub-era h4 { font-family: Fraunces, Georgia, serif; font-size: 1.06rem; font-weight: 500; color: rgb(var(--color-cream)); margin: 0.15rem 0 0.25rem; }
+.hub-era p { font-size: 0.9rem; line-height: 1.55; color: rgb(var(--color-cream) / 0.6); }
+
+/* ---------- option cards ---------- */
+
+.hub-opts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.6rem; }
+.hub-opts[data-cols="2"] { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 820px) { .hub-opts, .hub-opts[data-cols="2"] { grid-template-columns: 1fr; } }
+
+.hub-opt {
+  background: rgb(var(--color-ink-light));
+  border: 1px solid rgb(var(--color-cream) / 0.1);
+  padding: 1.2rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+.hub-opt.is-pick { border-color: rgb(var(--color-ember)); }
+.hub-opt .tag { font-family: "DM Sans", system-ui, sans-serif; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgb(var(--color-ember)); }
+.hub-opt h4 { font-family: Fraunces, Georgia, serif; font-size: 1.06rem; font-weight: 500; color: rgb(var(--color-cream)); }
+.hub-opt .price {
+  font-family: "DM Sans", system-ui, sans-serif;
+  font-size: 1.28rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  color: rgb(var(--color-cream));
+}
+.hub-opt .price small { display: block; font-size: 0.76rem; font-weight: 400; color: rgb(var(--color-cream) / 0.4); letter-spacing: 0; margin-top: 0.15rem; }
+.hub-opt p { font-size: 0.88rem; line-height: 1.55; color: rgb(var(--color-cream) / 0.6); }
+.hub-opt .fit { margin-top: auto; padding-top: 0.7rem; border-top: 1px solid rgb(var(--color-cream) / 0.08); font-size: 0.82rem; color: rgb(var(--color-cream) / 0.6); }
+.hub-opt .fit b { color: rgb(var(--color-cream)); font-weight: 600; }
+
+/* ---------- price block ---------- */
+
+.hub-money {
+  background: rgb(var(--color-ink-light));
+  border: 1px solid rgb(var(--color-cream) / 0.1);
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+}
+.hub-line { display: flex; justify-content: space-between; gap: 1.5rem; align-items: baseline; padding: 0.7rem 0; border-bottom: 1px solid rgb(var(--color-cream) / 0.08); }
+.hub-line:last-of-type { border-bottom: none; }
+.hub-line .what { font-size: 0.94rem; color: rgb(var(--color-cream)); }
+.hub-line .what small { display: block; color: rgb(var(--color-cream) / 0.45); font-size: 0.82rem; margin-top: 0.15rem; line-height: 1.45; }
+.hub-line .amt { font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; font-size: 0.98rem; color: rgb(var(--color-cream)); }
+.hub-line .amt s { color: rgb(var(--color-cream) / 0.35); font-weight: 400; margin-right: 0.4rem; }
+
+.hub-total { display: flex; justify-content: space-between; gap: 1.5rem; align-items: baseline; margin-top: 1rem; padding-top: 1rem; border-top: 2px solid rgb(var(--color-cream) / 0.3); }
+.hub-total .what { font-family: Fraunces, Georgia, serif; font-size: 1.16rem; color: rgb(var(--color-cream)); }
+.hub-total .amt { font-size: 1.5rem; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; color: rgb(var(--color-ember)); }
+
+/* ---------- note ---------- */
+
+.hub-note {
+  border-left: 2px solid rgb(var(--color-ember) / 0.5);
+  background: rgb(var(--color-ink-light));
+  padding: 1rem 1.2rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgb(var(--color-cream) / 0.75);
+  margin-top: 1.3rem;
+}
+.hub-note b, .hub-note strong { color: rgb(var(--color-cream)); font-weight: 600; }
+.hub-note p { font-family: "DM Sans", system-ui, sans-serif; font-size: 0.9rem; }
+.hub-note > * + * { margin-top: 0.6rem; }
+
+/* ---------- print ---------- */
+
+@media print {
+  .hub-prose { color: #000; }
+  .hub-prose h2, .hub-prose h3, .hub-prose strong { color: #000; }
+  .hub-prose a { color: #000; }
+  .hub-opt, .hub-money, .hub-note { background: #fff; border-color: #999; }
+  .hub-opts { grid-template-columns: repeat(3, 1fr); }
+  .hub-era::before { box-shadow: none; }
+  section, .hub-prose h2 { break-inside: avoid; }
+}

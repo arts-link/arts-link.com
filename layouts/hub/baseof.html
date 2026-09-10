@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}">
+<head>
+  <script>
+    try {
+      if (localStorage.getItem('theme') === 'light') {
+        document.documentElement.classList.add('light');
+      }
+    } catch(e) {}
+  </script>
+  <meta charset="utf-8">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  {{/* Private pages. No canonical, no OG card, no social meta, no analytics —
+       none of it has an audience here, and every one of them is a way for a
+       private URL to end up somewhere it shouldn't. */}}
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer">
+
+  <title>{{ .Title }} · {{ with .Params.project_title }}{{ . }}{{ else }}{{ .Site.Title }}{{ end }}</title>
+
+  <!-- Fonts (self-hosted, preloaded — zero third-party, zero CLS) -->
+  <link rel="preload" href="/fonts/fraunces-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/fraunces-italic-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Styles (inlined — zero render-block, zero FOUC) -->
+  {{- $css := resources.Get "css/main.css" | postCSS | minify }}
+  <style>{{ $css.Content | safeCSS }}</style>
+
+  {{/* Hub-only styles. Kept out of main.css so the public stylesheet — and so
+       the public build's output — cannot move. Plain CSS, so no postCSS pass. */}}
+  {{- $hubCss := resources.Get "css/hub.css" | minify }}
+  <style>{{ $hubCss.Content | safeCSS }}</style>
+
+  <!-- Alpine.js -->
+  <script defer src="/js/alpine.min.js"></script>
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  {{ partial "hub/header.html" . }}
+  <main>
+    {{ block "main" . }}{{ end }}
+  </main>
+  {{ partial "hub/footer.html" . }}
+</body>
+</html>

@@ -1,0 +1,38 @@
+# Client hub build — clients.arts-link.com
+#
+# A second site from this same repo: same layouts, same CSS, same build script,
+# but its own content tree and none of the public site's discoverability.
+# Selected with `--environment clients`; see scripts/vercel-build.sh.
+#
+# Two traps live in this file, both the same trap: Hugo merges config maps
+# across environments but *replaces* arrays. Every array below therefore has to
+# restate what config/_default/hugo.toml already said, or the override silently
+# drops it.
+
+baseURL = 'https://clients.arts-link.com/'
+title = 'Arts-Link'
+
+# Restates _default's ["taxonomy", "term"] — see above. `sitemap` is the
+# addition: it is a Kind, not an output format, so the [outputs] block below
+# cannot remove it and a client sitemap would otherwise be published.
+disableKinds = ["taxonomy", "term", "sitemap"]
+
+[params]
+  env = "clients"
+
+# Drops llmstxt, RSS and ogcard. Without this the build publishes an llms.txt
+# enumerating every private client page, and runs Playwright over every
+# proposal to generate social cards for pages nobody may share.
+[outputs]
+  home    = ["HTML"]
+  page    = ["HTML"]
+  section = ["HTML"]
+
+[module]
+  [[module.mounts]]
+    source = "content-clients"
+    target = "content"
+  # Restates _default's assets mount — see above.
+  [[module.mounts]]
+    source = "assets"
+    target = "assets"

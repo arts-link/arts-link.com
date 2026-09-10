@@ -1,0 +1,8 @@
+{{/* The clients landing page. Deliberately says nothing: it must not enumerate
+     who the clients are. Anyone who belongs here arrived with a direct link. */}}
+{{ define "main" }}
+  <div class="max-w-3xl mx-auto px-6 py-32 text-center">
+    <p class="font-display italic text-2xl text-cream/70">arts-link</p>
+    <p class="text-sm text-cream/35 mt-4">{{ .Content | plainify | truncate 120 }}</p>
+  </div>
+{{ end }}

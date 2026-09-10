@@ -1,0 +1,6 @@
+{{/* One priced line. `was` renders as a struck-through original.
+     {{< hub/line what="Phase One" note="What it covers." was="$5,500" amount="$4,400" >}} */}}
+<div class="hub-line">
+  <div class="what">{{ .Get "what" }}{{ with .Get "note" }}<small>{{ . }}</small>{{ end }}</div>
+  <div class="amt">{{ with .Get "was" }}<s>{{ . }}</s>{{ end }}{{ .Get "amount" }}</div>
+</div>

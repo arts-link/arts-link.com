@@ -1,0 +1,11 @@
+{{/* One option card. `pick="true"` marks the suggested one.
+     {{< hub/option tag="Option B · suggested" title="Drop folder" price="+$800"
+        note="one-time, then $150 per batch" fit="you want to add things as you
+        find them" pick="true" >}}Body.{{< /hub/option >}} */}}
+<div class="hub-opt{{ if eq (.Get "pick") "true" }} is-pick{{ end }}">
+  <div class="tag">{{ .Get "tag" }}</div>
+  <h4>{{ .Get "title" }}</h4>
+  <div class="price">{{ .Get "price" }}<small>{{ .Get "note" }}</small></div>
+  <p>{{ .Inner | markdownify }}</p>
+  <div class="fit"><b>Best if</b> {{ .Get "fit" }}</div>
+</div>

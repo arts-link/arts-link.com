@@ -1,0 +1,29 @@
+<footer class="border-t border-cream/5 mt-24 print:hidden">
+  <div
+    class="max-w-5xl mx-auto px-6 py-12 flex flex-col md:flex-row justify-between items-start md:items-center gap-6"
+    x-data="{
+      isDark: !document.documentElement.classList.contains('light'),
+      toggleTheme() {
+        document.documentElement.classList.add('theme-transitioning');
+        this.isDark = !this.isDark;
+        document.documentElement.classList.toggle('light', !this.isDark);
+        localStorage.setItem('theme', this.isDark ? 'dark' : 'light');
+        setTimeout(() => document.documentElement.classList.remove('theme-transitioning'), 400);
+      }
+    }"
+  >
+    <div class="text-sm text-cream/40 leading-relaxed">
+      <p class="text-cream/70">Ben Strawbridge · Arts-Link</p>
+      <p><a href="mailto:ben@benstrawbridge.com" class="hover:text-ember transition-colors">ben@benstrawbridge.com</a></p>
+      <p class="mt-4 text-xs text-cream/25">Private page. Not indexed, not listed.</p>
+    </div>
+
+    <button
+      @click="toggleTheme()"
+      :aria-label="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
+      class="text-xs tracking-widest uppercase text-cream/40 hover:text-ember border border-cream/10 hover:border-ember/40 px-3 py-2 transition-colors"
+    >
+      <span x-text="isDark ? 'Light mode' : 'Dark mode'">Light mode</span>
+    </button>
+  </div>
+</footer>
