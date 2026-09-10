@@ -24,12 +24,21 @@ import { JSDOM } from 'jsdom';
 const PUBLIC = path.resolve(process.cwd(), 'public-clients');
 const built = fs.existsSync(PUBLIC);
 
-const CLIENT_PAGES = [
-  'risa/index.html',
-  'risa/proposal/index.html',
-  'risa/status/index.html',
-  'risa/files/index.html',
-];
+// Derived, so adding a client folder extends the suite automatically rather
+// than quietly leaving the new hub untested.
+const CLIENTS = built
+  ? fs
+      .readdirSync(PUBLIC, { withFileTypes: true })
+      .filter((e) => e.isDirectory() && !['fonts', 'js', 'images', 'og'].includes(e.name))
+      .map((e) => e.name)
+      .filter((name) => fs.existsSync(path.join(PUBLIC, name, 'index.html')))
+  : [];
+
+const CLIENT_PAGES = CLIENTS.flatMap((c) =>
+  ['index.html', 'proposal/index.html', 'status/index.html', 'files/index.html']
+    .map((p) => `${c}/${p}`)
+    .filter((rel) => fs.existsSync(path.join(PUBLIC, rel))),
+);
 
 function findHtmlFiles(dir) {
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap((e) =>
@@ -120,9 +129,28 @@ describe.skipIf(!built)('hub – privacy', () => {
   // The landing page must not name clients — anyone who belongs here arrived
   // with a direct link.
   it('the landing page enumerates no clients', () => {
-    const text = read('index.html').window.document.body.textContent;
-    expect(text).not.toMatch(/risa/i);
-    expect(read('index.html').window.document.querySelectorAll('a[href^="/risa"]')).toHaveLength(0);
+    const doc = read('index.html').window.document;
+    const named = CLIENTS.filter(
+      (c) =>
+        doc.body.textContent.toLowerCase().includes(c.toLowerCase()) ||
+        doc.querySelector(`a[href^="/${c}"]`),
+    );
+    expect(named).toEqual([]);
+  });
+
+  // Not a formality: every client's proposal carries their pricing.
+  it('no client page links to another client', () => {
+    const leaks = [];
+    for (const rel of CLIENT_PAGES) {
+      const owner = rel.split('/')[0];
+      for (const a of read(rel).window.document.querySelectorAll('a[href^="/"]')) {
+        const target = a.getAttribute('href').split('/')[1];
+        if (target && CLIENTS.includes(target) && target !== owner) {
+          leaks.push(`${rel} -> ${a.getAttribute('href')}`);
+        }
+      }
+    }
+    expect(leaks).toEqual([]);
   });
 });
 
