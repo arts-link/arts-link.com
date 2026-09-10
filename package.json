@@ -7,6 +7,7 @@
     "test": "vitest run",
     "postinstall": "cp node_modules/alpinejs/dist/cdn.min.js static/js/alpine.min.js",
     "og": "node scripts/og-images.mjs",
+    "hub": "hugo --environment clients --destination public-clients --cleanDestinationDir && node scripts/hub-dev.mjs",
     "og:check": "node scripts/og-images.mjs --check"
   },
   "keywords": [],
