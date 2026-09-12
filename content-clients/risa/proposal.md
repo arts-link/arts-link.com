@@ -2,7 +2,7 @@
 title = "Proposal"
 weight = 10
 date = 2026-09-08
-lastmod = 2026-09-08
+lastmod = 2026-09-12
 
 client_name = "Risa Lavizzo-Mourey"
 project_title = "Lavizzo-Mourey Archive"
@@ -104,19 +104,17 @@ This is the part no software does. You mentioned reviewing in batches rather tha
 
 Approximate is always better than blank. "Sometime in the late eighties" is helpful information.
 
-## The address it lives at
+## The Address Where It Lives
 
-This matters more than it sounds like it should. An archive about owning your own record shouldn't sit at an address someone else controls, so the domain is part of the deliverable rather than an afterthought.
+Your archive should not exist at an address someone else controls.
 
-If you already have a domain you'd like this on, we use it. If not, I'd register one for you — **in your name, with you as the owner on the record** — through the registrar I run at [domains.arts-link.com](https://domains.arts-link.com/). Domains cost very little; the reason to do it through me is simply that it gives me the access I need to configure everything for you, and gives you one person to ask when something needs changing, rather than a support queue.
+If you already have a domain you would like this on, we will use it. If not, I will register one for you — **in your name, with you as the owner of record** — through the registrar I run at [domains.arts-link.com](https://domains.arts-link.com/). Domains cost very little. The reason to do it through me is simply that it gives me the access I need to configure everything for you, and gives you one person to contact when something needs changing.
 
-I could also host it as a section of my own site, and it would cost you nothing. I'd advise against it. The whole argument of this project is that the record should be yours, and a page on someone else's domain is a weaker version of exactly the thing you're trying to fix.
+You hold the registration and can move the archive elsewhere at any time. Nothing about the way it is built ties it to me. They are ordinary files on ordinary hosting, designed to be handed over intact.
 
-Either way, you hold the registration and can move the archive elsewhere at any time. Nothing about the way it's built ties it to me — it's ordinary files on ordinary hosting, and it's designed to be handed over intact.
+## Three Ways to Keep It Current
 
-## Keeping it current — three ways
-
-An archive that can't grow becomes a snapshot. There are three honest ways to handle new material, and they're genuinely different trade-offs rather than good-better-best. Pick the one that matches how you'd actually work.
+An archive that cannot grow becomes a snapshot. There are three ways to publish new material, depending on how you would like to work.
 
 {{< hub/options >}}
 {{< hub/option tag="Option A" title="I handle it" price="$250" note="per batch — or $800 a year for four" fit="you'd rather never think about the mechanics." >}}
@@ -130,47 +128,49 @@ An editing interface built into the site. You upload, caption, arrange and publi
 {{< /hub/option >}}
 {{< /hub/options >}}
 
-## Phase Two — the personal archive
+## Phase Two — The Personal Archive
 
-Not part of this proposal's price, but worth naming now so the sequence is clear. Once the career archive is standing, the same structure extends to the family material: the historical personal collection, and the 8mm film and 35mm slides from your early married life.
+Once the career archive is live, the same structure extends to the family material: the historical personal collection, and the 8mm film and 35mm slides from your early married life.
 
-That phase involves physical transfer, which I don't do myself — I match the material to a specialist lab, handle the logistics, and check that what comes back is usable. It's priced separately once we know what's there.
+That phase involves physical transfer, which I don't do myself. I match the material to a specialist lab, handle the logistics, and check that what comes back is usable.
+
+It will be priced separately once we know what is there.
 
 {{< hub/note >}}
-**One time-sensitive note.** Everything else here can wait; the film can't, quite. Acetate film from that era degrades on its own, and the warning sign is a faint vinegar smell when you open the can. If you notice that, tell me and we move the film up ahead of everything else. Otherwise: somewhere cool, dry, and dark, and it will keep.
+**One time-sensitive note.** Acetate film from that era degrades on its own, and the warning sign is a faint vinegar smell when you open the can. If you notice that, tell me and we will move the film up ahead of everything else. Otherwise, store it somewhere cool, dry, and dark.
 {{< /hub/note >}}
 
-## What it costs
+## What It Costs
 
 {{< hub/money >}}
-{{< hub/line what="Phase One — career archive" note="Consolidation from drives and Google Photos, de-duplication, organization, tagging and identification, the chapter-based site, search, access controls, and the on-demand gallery system." was="$5,500" amount="$4,400" >}}
-{{< hub/line what="Updating — your choice of A, B or C" note="Option A adds nothing up front. B adds $800. C adds $2,200." amount="$0 – $2,200" >}}
-{{< hub/total what="Phase One, all in" amount="$4,400 – $6,600" >}}
+{{< hub/line what="Phase One — Career Archive" note="Consolidation from drives and Google Photos. De-duplication, organization, tagging and identification. The chapter-based site, search, and access controls. The on-demand gallery system." amount="$4,000" >}}
+{{< hub/line what="Updating — Your choice of option A, B or C" note="Option A adds nothing up front. Option B adds $800. Option C adds $2,200." amount="$0 – $2,200" >}}
+{{< hub/total what="Phase One, All In" amount="$4,000 – $6,200" >}}
 {{< /hub/money >}}
 
 {{< hub/note >}}
-**On the price.** The $1,100 reduction is real and it's specific: you'd be the first commissioned archive under this service, and in exchange I'm asking for two things — permission to write the project up as a case study, with your approval over every word of it, and an introduction or two if the work merits it. Not a favor in either direction. A trade.
+Billed in three parts: a third to begin, a third when the organized files are delivered, and a third at website launch.
+
+The domain is yours and registered in your name.
+
+With your permission, I would like to reference your site on Arts-Link. Nothing would be published without your approval.
 {{< /hub/note >}}
 
-Billed in three parts: a third to begin, a third when the organized files are delivered, a third at launch. Hosting a static site of this kind costs essentially nothing ongoing; the domain is yours and registered in your name.
+## A Word About Wikipedia
 
-## A word about Wikipedia
+Neither of us should edit that page. Wikipedia treats subjects editing their own entries — or people acting on their behalf — as a conflict of interest. What you *can* do is raise factual corrections on the article's talk page, with sources, and let uninvolved editors act on them.
 
-I want to be careful here, because the honest answer isn't the satisfying one.
+Which is exactly why an archive is important. Editors need citable, stable, dated sources. A permanent, well-captioned, publicly findable record — one that isn't going to move or disappear — is precisely the type of source that gets cited.
 
-Neither of us should edit that page. Wikipedia treats subjects editing their own entries — or people acting on their behalf — as a conflict of interest, and for someone with your visibility, being seen to do it would cause a bigger problem than the one it fixed. What you *can* do is raise factual corrections on the article's talk page, with sources, and let uninvolved editors act on them.
+## Next Steps
 
-Which is exactly where an archive earns its keep. Editors need citable, stable, dated sources. A permanent, well-captioned, publicly findable record — one that isn't going to move or disappear — is precisely the kind of thing that gets cited. You don't control the page. You control the source it draws from, and over time that is the more durable position.
-
-## Next steps
-
-1. **Tell me which updating option you want** — A, B or C. That's the only decision that changes the number.
-2. **Send me an export of the Google Photos library.** Google Photos can't hand someone your whole library directly, so the route is Google Takeout — choose Google Photos, set the destination to Google Drive, and share that folder with me when it finishes. It runs on its own and emails you when it's ready. I'll walk you through it if you'd rather not do it alone, and I'll want a listing of what's on the drives too. Then I come back with a firm scope rather than a range.
-3. **We start with one chapter.** I'd suggest the Robert Wood Johnson years, since it's the densest and it will tell us what the rest of the project really takes.
-4. **You see something real within a few weeks** — one chapter, working, before the bulk of the material is touched.
+1. **Tell me which updating option you would like** — A, B or C. That is the only decision that affects the price.
+2. **Send me an export of the Google Photos library.** Google Photos can't hand someone your entire library directly, so the route is Google Takeout. Choose Google Photos, set the destination to Google Drive, and share that folder with me when it finishes. It runs on its own and emails you when it's ready. I will walk you through it if you would rather not do it alone. I will need a listing of what is on the drives so we know the scope of the project.
+3. **We start with one chapter.** I'd suggest we start with the Robert Wood Johnson years, as they have the most material.
+4. **You see something complete within a few weeks.** One chapter, live, before the bulk of the material is touched.
 
 {{< hub/note >}}
-Thank you for the conversation — it was a genuine pleasure.
+Thank you for the conversation. It was a genuine pleasure.
 
-This proposal is valid for 60 days. Nothing in it is binding until we've both agreed a scope in writing.
+This proposal is valid for 60 days. Nothing in it is binding until we have both agreed upon a scope in writing.
 {{< /hub/note >}}

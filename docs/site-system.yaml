@@ -262,6 +262,52 @@ site_system:
       baseof.html falls back to images/og-default.jpg for any page not yet in
       data/og/manifest.json, so a missing card never becomes a broken preview.
 
+  client_hub:
+    what: >
+      clients.arts-link.com — a private page per client (proposal, status,
+      files), built from this same repository as a second Hugo site. It is not
+      part of the public site's page inventory: nothing links to it, it carries
+      no social cards or analytics, and robots.txt there is a blanket disallow.
+      It replaces the "Draft Proposals" section listed under pages_cut, which
+      was rendering publicly by accident.
+    build: >
+      `hugo --environment clients` (config/clients/hugo.toml) mounts
+      content-clients/ as the content tree and renders it through layouts/hub/.
+      scripts/vercel-build.sh builds both projects; the clients project sets
+      HUGO_ENVIRONMENT=clients. Locally: `npm run hub`, which builds to
+      public-clients/ and serves it behind the auth gate on :1315.
+      tailwind.config.js excludes layouts/hub/** from the public build, so hub
+      classes never reach the public stylesheet.
+    access: >
+      HTTP Basic auth in middleware.ts, per client, keyed
+      CLIENT_HUB_<FOLDER>_USER / _PASS. Fails closed — a client folder with no
+      credentials configured is challenged, not served.
+    readability_standard: >
+      These pages are documents a client reads once, closely, to decide whether
+      to hire us, and often prints. They are deliberately held to a stricter
+      standard than the public site, which is moody on purpose:
+
+        - Light by default, unlike the public site. The footer toggle still
+          offers dark and the choice persists.
+        - Text at 7:1 against its background (WCAG AAA for body text); text at
+          24px or larger may sit at 4.5:1. Structural borders at 3:1.
+        - 16px floor for running text, 14px absolute floor, 13px only for
+          uppercase tracked labels at weight 700.
+        - Running text in DM Sans. Fraunces is a display face — its thin
+          strokes disappear at body size, which is the same reason the social
+          card uses font-medium — so it is kept to headings and pull-quotes.
+        - Ember is never a text colour here. At full strength it measures
+          4.03:1 on dark ink and 4.19:1 on light, both under the bar, and the
+          value that would clear 7:1 on dark is a washed-out salmon. It stays
+          at full strength for rules, spine dots, link underlines and the
+          suggested-option border; text that was ember is cream instead.
+
+      Alpha is the trap: light mode blends toward a bright background and so
+      loses contrast much faster than dark (cream/0.60 is 6.20:1 on dark ink
+      but 4.37:1 on light). 0.75 is the floor where both themes clear 7:1,
+      which is why there are exactly two text levels and nothing fainter. The
+      full contract lives at the top of assets/css/hub.css.
+
   analytics:
     primary_events:
       - Contact form submission (keystone)

@@ -31,6 +31,9 @@ hugo --minify && npm test
 
 # Regenerate social share cards — requires a build first (see Social Cards)
 hugo --minify && npm run og
+
+# Build and serve the private client hub behind its auth gate (see Client Hub)
+npm run hub
 ```
 
 The test suite reads from the generated `public/` directory. Without it, `tests/smoke.test.js` skips itself silently, so always build before running tests.
@@ -120,6 +123,8 @@ Theming is done entirely with CSS custom properties in `assets/css/main.css`:
 - **Dark is the default**, defined on `:root`
 - **Light is opt-in**, defined on `html.light`
 - The `light` class is set pre-paint by an inline script at the top of `baseof.html` (reading `localStorage.theme`), and toggled by the Alpine component in `layouts/partials/footer.html`
+
+**The client hub inverts this.** `layouts/hub/baseof.html` ships `class="light"` on `<html>` and its pre-paint script *removes* the class for a client who chose dark, rather than adding it. Those pages are documents meant to be read closely and printed, so light is the default there and dark is the opt-in — the exact opposite of the public site. Don't "fix" the asymmetry; see `client_hub.readability_standard` in `docs/site-system.yaml` and the contract at the top of `assets/css/hub.css`.
 
 So a new color means adding a `--color-*` variable to **both** the `:root` and `html.light` blocks, then registering it in `tailwind.config.js` using the same `rgb(var(…) / <alpha-value>)` form. Anything built from the existing `ink` / `cream` / `ember` tokens adapts to both themes for free.
 
