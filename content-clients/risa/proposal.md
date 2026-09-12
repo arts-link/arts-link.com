@@ -2,7 +2,7 @@
 title = "Proposal"
 weight = 10
 date = 2026-09-08
-lastmod = 2026-09-08
+lastmod = 2026-09-12
 
 client_name = "Risa Lavizzo-Mourey"
 project_title = "Lavizzo-Mourey Archive"

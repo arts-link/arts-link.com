@@ -4,7 +4,7 @@ client_name = "Risa Lavizzo-Mourey"
 project_title = "Lavizzo-Mourey Archive"
 phase = "Phase One — proposal under review"
 date = 2026-09-08
-lastmod = 2026-09-08
+lastmod = 2026-09-12
 weight = 30
 blurb = "The shared folder, and how to send the Google Photos export."
 +++
