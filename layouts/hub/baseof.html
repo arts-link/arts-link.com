@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html lang="{{ .Site.Language.Lang }}">
+<html lang="{{ .Site.Language.Lang }}" class="light">
 <head>
+  {{/* These pages are documents — a proposal a client reads once, closely, and
+       often prints. They default to light, unlike the public site: the class is
+       on <html> above, so the only job left here is to take it back off for a
+       client who has explicitly chosen dark. Removing rather than adding keeps
+       both paths flash-free. */}}
   <script>
     try {
-      if (localStorage.getItem('theme') === 'light') {
-        document.documentElement.classList.add('light');
+      if (localStorage.getItem('theme') === 'dark') {
+        document.documentElement.classList.remove('light');
       }
     } catch(e) {}
   </script>

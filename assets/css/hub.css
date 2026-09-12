@@ -8,96 +8,152 @@
  * Plain CSS on purpose: every colour is one of the five theme tokens defined
  * in main.css (:root dark, html.light light), so all of this adapts to both
  * themes for free and no new variable is introduced.
+ *
+ * ---------------------------------------------------------------------------
+ * READABILITY CONTRACT — read before changing a size or an alpha.
+ *
+ * These pages are documents. A client reads their proposal once, closely, to
+ * decide whether to hire us, and often prints it. They are held to a stricter
+ * standard than the public site, which is moody on purpose:
+ *
+ *   - Text is 7:1 against its background (WCAG AAA for body text); text at
+ *     24px or larger may sit at 4.5:1. Structural borders are 3:1.
+ *   - Running text has a 16px floor. Nothing is below 14px, and 13px is only
+ *     for uppercase tracked labels at weight 700.
+ *   - Running text is DM Sans. Fraunces is a display face — its thin strokes
+ *     disappear at body size (the same lesson CLAUDE.md records for OG cards),
+ *     so it is kept for headings and pull-quotes only.
+ *   - Ember is never a text colour here. At full brand strength it measures
+ *     4.03:1 on dark ink and 4.19:1 on light, both under the bar, and the
+ *     value that would clear 7:1 on dark is a washed-out salmon. So ember
+ *     stays at full strength for everything graphical — rules, spine dots,
+ *     link underlines, the suggested-option border — and text that used to be
+ *     ember is cream instead.
+ *
+ * Alpha is the trap. Light mode blends toward a bright background, so it loses
+ * contrast far faster than dark: cream/0.60 is 6.20:1 on dark ink but only
+ * 4.37:1 on light. 0.75 is the floor at which both themes clear 7:1, which is
+ * why there are exactly two text levels below and nothing fainter.
+ * ---------------------------------------------------------------------------
  */
+
+:root {
+  /* Muted text — the only step below full-strength cream. Measured against
+     --color-ink / --color-ink-light: 9.56:1 / 8.96:1 dark, 7.48:1 / 7.03:1
+     light. Hierarchy below this level is carried by size, weight and tracking,
+     never by going fainter. */
+  --hub-muted: rgb(var(--color-cream) / 0.75);
+
+  /* Borders that carry meaning — card edges, table and price-row rules. 4.2:1
+     dark, 3.1:1 light, over the 3:1 non-text bar. The option cards and the
+     price block need this: ink-light against ink is only 1.09:1, so the border
+     is the whole boundary. */
+  --hub-rule: rgb(var(--color-cream) / 0.5);
+
+  /* Purely decorative hairlines — section dividers, the spine rail. */
+  --hub-rule-faint: rgb(var(--color-cream) / 0.2);
+}
+
+/* The film grain is a fixed dark noise layer over the whole page. It is
+   decorative, and it takes a bite out of every ratio above, so it is dialled
+   back here rather than in main.css, which the public site shares. */
+.grain { opacity: 0.02; }
 
 /* ---------- prose ---------- */
 
 .hub-prose {
-  color: rgb(var(--color-cream) / 0.75);
-  font-size: 1.02rem;
+  color: var(--hub-muted);
+  font-size: 1.125rem;
   line-height: 1.7;
 }
-.hub-prose > * + * { margin-top: 1rem; }
+.hub-prose > * + * { margin-top: 1.1rem; }
 
 .hub-prose h2 {
   font-family: Fraunces, Georgia, serif;
   font-weight: 400;
-  font-size: 1.7rem;
+  font-size: 1.9rem;
   line-height: 1.2;
   letter-spacing: -0.012em;
   color: rgb(var(--color-cream));
   margin-top: 3.2rem;
   padding-top: 3.2rem;
-  border-top: 1px solid rgb(var(--color-cream) / 0.08);
+  border-top: 1px solid var(--hub-rule-faint);
 }
 .hub-prose > h2:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
 
 .hub-prose h3 {
   font-family: Fraunces, Georgia, serif;
   font-weight: 500;
-  font-size: 1.16rem;
+  font-size: 1.3rem;
   color: rgb(var(--color-cream));
   margin-top: 2.2rem;
 }
 
-.hub-prose p { font-family: Fraunces, Georgia, serif; font-size: 1.06rem; line-height: 1.68; }
+/* DM Sans, not Fraunces — see the contract above. */
+.hub-prose p { font-size: 1.125rem; line-height: 1.7; }
 .hub-prose strong { color: rgb(var(--color-cream)); font-weight: 600; }
 .hub-prose em { font-style: italic; }
 
+/* Link text is cream at full strength (16:1); the ember lives in the
+   underline, which is decoration and carries no contrast minimum. A 2px
+   underline is a stronger signal than the tint it replaces, and it survives
+   for anyone who cannot separate ember from body text by hue. */
 .hub-prose a {
-  color: rgb(var(--color-ember));
+  color: rgb(var(--color-cream));
   text-decoration: underline;
-  text-underline-offset: 2px;
-  text-decoration-thickness: 1px;
+  text-decoration-color: rgb(var(--color-ember));
+  text-underline-offset: 3px;
+  text-decoration-thickness: 2px;
 }
-.hub-prose a:hover { color: rgb(var(--color-ember-light)); }
+.hub-prose a:hover { text-decoration-color: rgb(var(--color-ember-light)); }
 
 /* Unbulleted list — the proposal's `plain` list. */
-.hub-prose ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.7rem; }
+.hub-prose ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.8rem; }
 .hub-prose ul li {
   position: relative;
-  padding-left: 1.3rem;
-  font-size: 0.96rem;
-  line-height: 1.55;
+  padding-left: 1.4rem;
+  font-size: 1.0625rem;
+  line-height: 1.6;
 }
 .hub-prose ul li::before {
   content: "";
   position: absolute;
   left: 0;
-  top: 0.62em;
-  width: 6px;
+  top: 0.72em;
+  width: 7px;
   height: 1px;
   background: rgb(var(--color-ember));
 }
 
 /* Numbered steps. */
-.hub-prose ol { list-style: none; counter-reset: step; padding: 0; display: flex; flex-direction: column; gap: 1rem; }
+.hub-prose ol { list-style: none; counter-reset: step; padding: 0; display: flex; flex-direction: column; gap: 1.1rem; }
 .hub-prose ol li {
   counter-increment: step;
   position: relative;
-  padding-left: 2.4rem;
-  font-size: 0.96rem;
-  line-height: 1.55;
-  min-height: 1.6rem;
+  padding-left: 2.6rem;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  min-height: 1.8rem;
 }
 .hub-prose ol li::before {
   content: counter(step);
   position: absolute;
   left: 0;
   top: 0;
-  width: 1.6rem;
-  height: 1.6rem;
+  width: 1.8rem;
+  height: 1.8rem;
   border: 1px solid rgb(var(--color-ember) / 0.5);
-  color: rgb(var(--color-ember));
+  color: rgb(var(--color-cream));
   font-family: "DM Sans", system-ui, sans-serif;
-  font-size: 0.74rem;
+  font-size: 0.8125rem;
   font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* Pull-quote — an ordinary markdown blockquote. */
+/* Pull-quote — an ordinary markdown blockquote. Fraunces earns its keep here:
+   it is large, and it is meant to be looked at rather than read through. */
 .hub-prose blockquote {
   border-left: 2px solid rgb(var(--color-ember));
   padding: 0.15rem 0 0.15rem 1.15rem;
@@ -105,7 +161,7 @@
 }
 .hub-prose blockquote p {
   font-family: Fraunces, Georgia, serif;
-  font-size: 1.24rem;
+  font-size: 1.35rem;
   line-height: 1.45;
   font-style: italic;
   color: rgb(var(--color-cream));
@@ -113,23 +169,23 @@
 
 /* Tables scroll rather than pushing the page sideways. */
 .hub-prose .table-wrap { overflow-x: auto; margin-top: 1.3rem; }
-.hub-prose table { width: 100%; border-collapse: collapse; font-family: "DM Sans", system-ui, sans-serif; font-size: 0.9rem; }
+.hub-prose table { width: 100%; border-collapse: collapse; font-family: "DM Sans", system-ui, sans-serif; font-size: 1rem; }
 .hub-prose th {
   text-align: left;
-  font-size: 0.66rem;
-  letter-spacing: 0.13em;
+  font-size: 0.8125rem;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
-  color: rgb(var(--color-cream) / 0.4);
+  color: var(--hub-muted);
   font-weight: 700;
   padding: 0 1rem 0.6rem 0;
-  border-bottom: 1px solid rgb(var(--color-cream) / 0.2);
+  border-bottom: 1px solid var(--hub-rule);
   white-space: nowrap;
 }
 .hub-prose td {
-  padding: 0.75rem 1rem 0.75rem 0;
-  border-bottom: 1px solid rgb(var(--color-cream) / 0.08);
+  padding: 0.8rem 1rem 0.8rem 0;
+  border-bottom: 1px solid var(--hub-rule-faint);
   vertical-align: top;
-  line-height: 1.5;
+  line-height: 1.55;
 }
 .hub-prose td:first-child { color: rgb(var(--color-cream)); font-weight: 600; }
 .hub-prose tr:last-child td { border-bottom: none; }
@@ -138,11 +194,11 @@
 
 .hub-spine {
   margin-top: 1.6rem;
-  border-left: 1px solid rgb(var(--color-cream) / 0.12);
+  border-left: 1px solid var(--hub-rule-faint);
   padding-left: 1.6rem;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.6rem;
 }
 .hub-era { position: relative; }
 .hub-era::before {
@@ -158,14 +214,14 @@
 }
 .hub-era .yr {
   font-family: "DM Sans", system-ui, sans-serif;
-  font-size: 0.72rem;
+  font-size: 0.8125rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
-  color: rgb(var(--color-ember));
+  letter-spacing: 0.09em;
+  color: var(--hub-muted);
   font-variant-numeric: tabular-nums;
 }
-.hub-era h4 { font-family: Fraunces, Georgia, serif; font-size: 1.06rem; font-weight: 500; color: rgb(var(--color-cream)); margin: 0.15rem 0 0.25rem; }
-.hub-era p { font-size: 0.9rem; line-height: 1.55; color: rgb(var(--color-cream) / 0.6); }
+.hub-era h4 { font-family: Fraunces, Georgia, serif; font-size: 1.2rem; font-weight: 500; color: rgb(var(--color-cream)); margin: 0.2rem 0 0.3rem; }
+.hub-era p { font-size: 1rem; line-height: 1.6; color: var(--hub-muted); }
 
 /* ---------- option cards ---------- */
 
@@ -175,70 +231,86 @@
 
 .hub-opt {
   background: rgb(var(--color-ink-light));
-  border: 1px solid rgb(var(--color-cream) / 0.1);
-  padding: 1.2rem 1.25rem;
+  border: 1px solid var(--hub-rule);
+  padding: 1.3rem 1.35rem;
   display: flex;
   flex-direction: column;
-  gap: 0.55rem;
+  gap: 0.6rem;
 }
-.hub-opt.is-pick { border-color: rgb(var(--color-ember)); }
-.hub-opt .tag { font-family: "DM Sans", system-ui, sans-serif; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgb(var(--color-ember)); }
-.hub-opt h4 { font-family: Fraunces, Georgia, serif; font-size: 1.06rem; font-weight: 500; color: rgb(var(--color-cream)); }
+/* The suggested option is called out by a 2px ember edge rather than by tinted
+   text — it has to read as the emphasis without failing the contrast bar. */
+.hub-opt.is-pick { border-color: rgb(var(--color-ember)); border-width: 2px; padding: calc(1.3rem - 1px) calc(1.35rem - 1px); }
+.hub-opt .tag { font-family: "DM Sans", system-ui, sans-serif; font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.11em; text-transform: uppercase; color: rgb(var(--color-cream)); }
+.hub-opt h4 { font-family: Fraunces, Georgia, serif; font-size: 1.2rem; font-weight: 500; color: rgb(var(--color-cream)); }
 .hub-opt .price {
   font-family: "DM Sans", system-ui, sans-serif;
-  font-size: 1.28rem;
+  font-size: 1.375rem;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
   letter-spacing: -0.02em;
   color: rgb(var(--color-cream));
 }
-.hub-opt .price small { display: block; font-size: 0.76rem; font-weight: 400; color: rgb(var(--color-cream) / 0.4); letter-spacing: 0; margin-top: 0.15rem; }
-.hub-opt p { font-size: 0.88rem; line-height: 1.55; color: rgb(var(--color-cream) / 0.6); }
-.hub-opt .fit { margin-top: auto; padding-top: 0.7rem; border-top: 1px solid rgb(var(--color-cream) / 0.08); font-size: 0.82rem; color: rgb(var(--color-cream) / 0.6); }
+.hub-opt .price small { display: block; font-size: 0.9375rem; font-weight: 400; color: var(--hub-muted); letter-spacing: 0; margin-top: 0.2rem; }
+.hub-opt p { font-size: 1rem; line-height: 1.6; color: var(--hub-muted); }
+.hub-opt .fit { margin-top: auto; padding-top: 0.8rem; border-top: 1px solid var(--hub-rule-faint); font-size: 1rem; line-height: 1.55; color: var(--hub-muted); }
 .hub-opt .fit b { color: rgb(var(--color-cream)); font-weight: 600; }
 
 /* ---------- price block ---------- */
 
 .hub-money {
   background: rgb(var(--color-ink-light));
-  border: 1px solid rgb(var(--color-cream) / 0.1);
+  border: 1px solid var(--hub-rule);
   padding: 1.5rem;
   margin-top: 1.5rem;
 }
-.hub-line { display: flex; justify-content: space-between; gap: 1.5rem; align-items: baseline; padding: 0.7rem 0; border-bottom: 1px solid rgb(var(--color-cream) / 0.08); }
+.hub-line { display: flex; justify-content: space-between; gap: 1.5rem; align-items: baseline; padding: 0.8rem 0; border-bottom: 1px solid var(--hub-rule-faint); }
 .hub-line:last-of-type { border-bottom: none; }
-.hub-line .what { font-size: 0.94rem; color: rgb(var(--color-cream)); }
-.hub-line .what small { display: block; color: rgb(var(--color-cream) / 0.45); font-size: 0.82rem; margin-top: 0.15rem; line-height: 1.45; }
-.hub-line .amt { font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; font-size: 0.98rem; color: rgb(var(--color-cream)); }
-.hub-line .amt s { color: rgb(var(--color-cream) / 0.35); font-weight: 400; margin-right: 0.4rem; }
+.hub-line .what { font-size: 1.0625rem; color: rgb(var(--color-cream)); }
+.hub-line .what small { display: block; color: var(--hub-muted); font-size: 0.9375rem; margin-top: 0.25rem; line-height: 1.5; }
+.hub-line .amt { font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; font-size: 1.0625rem; color: rgb(var(--color-cream)); }
+/* The old price is struck through; that, not a fainter colour, is what marks
+   it as superseded. */
+.hub-line .amt s { color: var(--hub-muted); font-weight: 400; margin-right: 0.4rem; }
 
-.hub-total { display: flex; justify-content: space-between; gap: 1.5rem; align-items: baseline; margin-top: 1rem; padding-top: 1rem; border-top: 2px solid rgb(var(--color-cream) / 0.3); }
-.hub-total .what { font-family: Fraunces, Georgia, serif; font-size: 1.16rem; color: rgb(var(--color-cream)); }
-.hub-total .amt { font-size: 1.5rem; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; color: rgb(var(--color-ember)); }
+.hub-total { display: flex; justify-content: space-between; gap: 1.5rem; align-items: baseline; margin-top: 1rem; padding-top: 1rem; border-top: 2px solid rgb(var(--color-ember)); }
+.hub-total .what { font-family: Fraunces, Georgia, serif; font-size: 1.25rem; color: rgb(var(--color-cream)); }
+/* The bottom line should be the most legible number on the page, so it is
+   cream at full strength; the ember rule above it does the pointing. */
+.hub-total .amt { font-size: 1.6rem; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; color: rgb(var(--color-cream)); }
 
 /* ---------- note ---------- */
 
 .hub-note {
-  border-left: 2px solid rgb(var(--color-ember) / 0.5);
+  border-left: 2px solid rgb(var(--color-ember));
   background: rgb(var(--color-ink-light));
-  padding: 1rem 1.2rem;
-  font-size: 0.9rem;
-  line-height: 1.6;
-  color: rgb(var(--color-cream) / 0.75);
+  padding: 1.1rem 1.3rem;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--hub-muted);
   margin-top: 1.3rem;
 }
 .hub-note b, .hub-note strong { color: rgb(var(--color-cream)); font-weight: 600; }
-.hub-note p { font-family: "DM Sans", system-ui, sans-serif; font-size: 0.9rem; }
+.hub-note p { font-family: "DM Sans", system-ui, sans-serif; font-size: 1rem; }
 .hub-note > * + * { margin-top: 0.6rem; }
 
 /* ---------- print ---------- */
 
 @media print {
   .hub-prose { color: #000; }
-  .hub-prose h2, .hub-prose h3, .hub-prose strong { color: #000; }
-  .hub-prose a { color: #000; }
+  .hub-prose h2, .hub-prose h3, .hub-prose strong, .hub-prose td:first-child { color: #000; }
+  .hub-prose a { color: #000; text-decoration-color: #000; }
+  .hub-prose th, .hub-prose blockquote p { color: #000; }
+  .hub-prose ol li::before { color: #000; border-color: #666; }
+  .hub-era .yr, .hub-era h4, .hub-era p { color: #000; }
+  .hub-opt .tag, .hub-opt h4, .hub-opt .price, .hub-opt p, .hub-opt .fit { color: #000; }
+  .hub-opt .fit b, .hub-note b, .hub-note strong { color: #000; }
+  .hub-opt .price small { color: #000; }
+  .hub-line .what, .hub-line .what small, .hub-line .amt, .hub-line .amt s { color: #000; }
+  .hub-total .what, .hub-total .amt { color: #000; }
+  .hub-note { color: #000; }
   .hub-opt, .hub-money, .hub-note { background: #fff; border-color: #999; }
   .hub-opts { grid-template-columns: repeat(3, 1fr); }
   .hub-era::before { box-shadow: none; }
+  .grain { display: none; }
   section, .hub-prose h2 { break-inside: avoid; }
 }

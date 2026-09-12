@@ -4,11 +4,11 @@
      without a link the only escape is typing the real address. */}}
 {{ define "main" }}
   <div class="max-w-3xl mx-auto px-6 py-32 text-center">
-    <p class="font-display italic text-2xl text-cream/70">arts-link</p>
-    <p class="text-sm text-cream/35 mt-4">{{ .Content | plainify | truncate 120 }}</p>
+    <p class="font-display italic text-2xl text-cream">arts-link</p>
+    <p class="text-base text-cream/75 mt-4">{{ .Content | plainify | truncate 120 }}</p>
 
     <a href="https://www.arts-link.com/"
-       class="inline-block mt-10 text-cream text-sm tracking-widest uppercase px-8 py-4 border border-ember hover:bg-ember transition-colors duration-200">
+       class="inline-block mt-10 text-cream text-base tracking-widest uppercase px-8 py-4 border-2 border-ember hover:bg-ember transition-colors duration-200">
       Go to arts-link.com
     </a>
   </div>
