@@ -4,30 +4,28 @@ client_name = "Risa Lavizzo-Mourey"
 project_title = "Lavizzo-Mourey Archive"
 phase = "Phase One — proposal under review"
 date = 2026-09-08
-lastmod = 2026-09-08
+lastmod = 2026-09-12
 weight = 20
 blurb = "Where things stand, updated as the project moves."
 +++
 
-A running log. Newest first. I update this as things move, so it is always the
-honest answer to "where is this?"
+A running log, newest updates first.
 
-## 8 September 2026 — Proposal delivered
+## 8 September 2026 — Proposal Delivered
 
-The Phase One proposal is up. It covers the career archive: consolidation from
-the drives and Google Photos, organisation, identification, and the
-chapter-based site with search and access controls.
+The Phase One proposal covers the career archive: consolidation from the
+drives and Google Photos, organisation, identification, and the chapter-based
+site with search and access controls.
 
-Two things are open, and they are the only two:
+Two things remain open:
 
-- **Which updating option** — A, B or C. It is the one decision that changes
-  the number.
-- **The Google Takeout export.** Once I can see the real shape of the library I
-  can replace the range with a fixed price.
+- **Which updating option you would like** — A, B or C.
+- **The Google Takeout export.** Once I see the scope of the library I can
+  quote you a final price.
 
-## 5 September 2026 — Call
+## 5 September 2026 — Initial Call
 
-Talked through the material: the drives, the Google Photos library you have
-been working at, and the 8mm film and 35mm slides from the early married years.
-Agreed the career archive comes first and the personal material follows as
+We discussed the material: the drives, the Google Photos library you have been
+working on, and the 8mm film and 35mm slides from your early married years. We
+agreed the career archive comes first and the personal material follows as
 Phase Two.

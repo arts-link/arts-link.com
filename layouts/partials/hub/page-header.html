@@ -1,26 +1,28 @@
 {{/* Hub page header. Reads front matter, falls back to the page title.
-     `title_emphasis` italicises the trailing words in ember — the one flourish
-     borrowed from the proposal's own hero. */}}
-<header class="border-b border-cream/5 bg-ink-light">
+     `title_emphasis` italicises the trailing words. It used to tint them ember
+     as well, but ember is not a text colour on these pages — see the
+     readability contract at the top of assets/css/hub.css. The italic carries
+     the emphasis on its own. */}}
+<header class="border-b border-cream/20 bg-ink-light">
   <div class="max-w-3xl mx-auto px-6 py-16 md:py-24">
 
     {{- with .Params.eyebrow }}
-    <p class="text-[0.68rem] font-semibold tracking-[0.16em] uppercase text-cream/40">{{ . }}</p>
+    <p class="text-sm font-bold tracking-[0.14em] uppercase text-cream/75">{{ . }}</p>
     {{- end }}
 
     <h1 class="font-display font-light text-4xl md:text-5xl lg:text-[3.15rem] leading-[1.08] tracking-tight text-cream mt-4">
       {{- with .Params.title_heading }}{{ . }}{{ else }}{{ .Title }}{{ end }}
-      {{- with .Params.title_emphasis }} <em class="italic text-ember">{{ . }}</em>{{ end }}
+      {{- with .Params.title_emphasis }} <em class="italic">{{ . }}</em>{{ end }}
     </h1>
 
     {{- with .Params.lede }}
-    <p class="font-display text-lg md:text-xl leading-relaxed text-cream/60 mt-6 max-w-2xl">{{ . }}</p>
+    <p class="font-display text-xl md:text-2xl leading-relaxed text-cream/75 mt-6 max-w-2xl">{{ . }}</p>
     {{- end }}
 
     {{- with .Params.meta }}
-    <div class="mt-10 pt-5 border-t border-cream/10 flex flex-wrap gap-x-9 gap-y-2 text-xs text-cream/40">
+    <div class="mt-10 pt-5 border-t border-cream/20 flex flex-wrap gap-x-9 gap-y-2 text-sm text-cream/75">
       {{- range . }}
-      <span>{{ .label }} <b class="text-cream/75 font-semibold">{{ .value }}</b></span>
+      <span>{{ .label }} <b class="text-cream font-semibold">{{ .value }}</b></span>
       {{- end }}
     </div>
     {{- end }}

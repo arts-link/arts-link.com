@@ -4,13 +4,13 @@ client_name = "Risa Lavizzo-Mourey"
 project_title = "Lavizzo-Mourey Archive"
 phase = "Phase One — proposal under review"
 date = 2026-09-08
-lastmod = 2026-09-08
+lastmod = 2026-09-12
 weight = 30
 blurb = "The shared folder, and how to send the Google Photos export."
 +++
 
-One shared folder, used in both directions. You put material in, I put finished
-work back.
+One shared folder, used in both directions. You put material in, I put in
+completed work.
 
 **[Open the shared folder](#)** — link to be added.
 
@@ -22,21 +22,21 @@ Google Takeout:
 1. Go to **takeout.google.com** and choose **Deselect all**.
 2. Select **Google Photos** only.
 3. Set the destination to **Google Drive**.
-4. Start the export. It runs on its own and emails you when it is done — for a
-   library this size, expect hours rather than minutes.
+4. Start the export. It runs on its own and emails you when it is done. For a
+   library this size, expect it to take hours rather than minutes.
 5. Share the resulting folder with **ben@benstrawbridge.com**.
 
-Happy to walk through this on a call instead if you would rather not do it
-alone.
+I would be happy to walk you through this on a call if you would rather not do
+it alone.
 
-## The drives
+## The Drives
 
-A listing is enough to start — I do not need the files yet. On a Mac, plug the
+A listing is enough to start. I do not need the files yet. On a Mac, plug the
 drive in and send me a screenshot of the top-level folders. If any drive has not
 been powered on in several years, tell me which, and we will handle that one
 first.
 
-## What comes back to you
+## What Comes Back to You
 
 Organised, de-duplicated, dated files, delivered to the same folder. Yours to
 keep regardless of what happens to the site.
