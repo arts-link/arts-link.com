@@ -4,7 +4,7 @@ client_name = "Risa Lavizzo-Mourey"
 project_title = "Lavizzo-Mourey Archive"
 phase = "Phase One — proposal under review"
 date = 2026-09-08
-lastmod = 2026-09-12
+lastmod = 2026-09-14
 weight = 30
 blurb = "The shared folder, and how to send the Google Photos export."
 +++
@@ -14,7 +14,7 @@ completed work.
 
 **[Open the shared folder](#)** — link to be added.
 
-## Sending me the Google Photos library
+## Sending Me the Google Photos Library
 
 Google Photos cannot hand someone your whole library directly. The route is
 Google Takeout:
