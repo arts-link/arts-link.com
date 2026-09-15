@@ -1,0 +1,159 @@
+<!-- Client copy of the nihilists.net audience report. Served only from the
+     clients build (see the static-clients mount in config/clients/hugo.toml),
+     behind Elisha's password. The privacy meta matches layouts/hub/baseof.html:
+     a private page that is neither indexed nor allowed to leak its URL. -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="googlebot" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Nihilists.net Audience</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{--paper:#f4f3ef;--card:#fcfcfa;--ink:#18181c;--ink-2:#55555d;--ink-3:#86868e;
+ --rule:#dedcd5;--rule-2:#eae8e2;--accent:#eb6834;--s1:#2a78d6;--s3:#1baf7a;--quiet:#fdf2ec}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+ --paper:#131316;--card:#1c1c20;--ink:#f3f2ef;--ink-2:#abaab3;--ink-3:#7d7d86;
+ --rule:#2f2f35;--rule-2:#26262b;--accent:#d95926;--s1:#3987e5;--s3:#199e70;--quiet:#2a1a12}}
+:root[data-theme="dark"]{--paper:#131316;--card:#1c1c20;--ink:#f3f2ef;--ink-2:#abaab3;--ink-3:#7d7d86;
+ --rule:#2f2f35;--rule-2:#26262b;--accent:#d95926;--s1:#3987e5;--s3:#199e70;--quiet:#2a1a12}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:"IBM Plex Sans",system-ui,sans-serif;
+ line-height:1.6;padding-block:52px;padding-left:20px;padding-right:20px}
+.wrap{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:46px}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.14em;
+ text-transform:uppercase;color:var(--ink-3)}
+h1{font-family:"Archivo Black",sans-serif;font-size:clamp(32px,6.5vw,50px);line-height:1;
+ margin:12px 0 0;text-wrap:balance;letter-spacing:-.015em}
+h2{font-family:"Archivo Black",sans-serif;font-size:21px;margin:0;letter-spacing:-.01em;text-wrap:balance}
+.lead{font-size:18.5px;color:var(--ink-2);margin:16px 0 0;max-width:60ch}
+section{display:flex;flex-direction:column;gap:16px}
+p{margin:0;max-width:64ch}
+.big{font-family:"Archivo Black",sans-serif;font-size:clamp(40px,9vw,64px);line-height:1;
+ letter-spacing:-.025em;color:var(--accent)}
+.bigrow{display:flex;flex-wrap:wrap;gap:28px;align-items:baseline}
+.bigrow div{display:flex;flex-direction:column;gap:4px}
+.bigrow .cap{font-size:14px;color:var(--ink-2);max-width:24ch}
+figure{margin:0;display:flex;flex-direction:column;gap:12px}
+.chart{width:100%;overflow-x:auto}
+svg{display:block;max-width:100%;height:auto}
+.gl{stroke:var(--rule-2);stroke-width:1}
+.ax{fill:var(--ink-3);font-family:"IBM Plex Mono",monospace;font-size:10.5px}
+.vl{fill:var(--ink-2);font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:500}
+.pl{fill:var(--ink);font-size:12.5px;font-family:"IBM Plex Sans",sans-serif}
+.panel{background:var(--card);border:1px solid var(--rule);border-radius:4px;padding:22px 24px;
+ display:flex;flex-direction:column;gap:12px}
+.quiet{background:var(--quiet);border:1px solid var(--rule);border-left:3px solid var(--accent);
+ border-radius:0 4px 4px 0;padding:20px 22px;display:flex;flex-direction:column;gap:11px}
+ul{margin:0;padding-left:20px;color:var(--ink-2);display:flex;flex-direction:column;gap:7px}
+strong{color:var(--ink)}
+footer{border-top:1px solid var(--rule);padding-top:22px;color:var(--ink-3);font-size:13px;
+ display:flex;flex-direction:column;gap:8px}
+</style>
+<div class="wrap">
+<header>
+ <div class="eyebrow">nihilists.net &middot; audience review 2026</div>
+ <h1>Who&rsquo;s actually reading your site</h1>
+ <p class="lead">Your web server kept a record of every visit this year. Here is what it
+ says about who comes to nihilists.net, what they read, and how they find you.</p>
+</header>
+
+<section>
+ <h2>The Film Festival is what people come for</h2>
+ <p>Setting aside the front page, the festival pages are read more than anything else on
+ the site &mdash; and the old programs page is the single most-read page you have. Press
+ coverage is close behind. People are looking up the festival&rsquo;s history.</p>
+ <figure><div class="chart" id="c-pages"></div>
+ <p style="font-size:13px;color:var(--ink-3)">Page views, January&ndash;August 2026.</p></figure>
+</section>
+
+<section>
+ <h2>A steady audience, all year</h2>
+ <div class="bigrow">
+  <div><span class="big">216</span><span class="cap">pages read on an average day</span></div>
+  <div><span class="big">1,752</span><span class="cap">different people in a typical month</span></div>
+ </div>
+ <p>That is a real readership for a site that hasn&rsquo;t been promoted. It has not
+ drifted down over the year &mdash; month to month it holds steady.</p>
+ <figure><div class="chart" id="c-steady"></div>
+ <p style="font-size:13px;color:var(--ink-3)">Visits recorded per day, averaged within
+ each month.</p></figure>
+</section>
+
+<section>
+ <h2>They come straight to you</h2>
+ <p>Almost everyone who visits types the address or uses a bookmark. Search engines sent
+ <strong>141 visits in eight months</strong> &mdash; against more than 48,000 who arrived
+ directly.</p>
+ <figure><div class="chart" id="c-origin"></div></figure>
+ <p>This says something worth knowing: your audience already knows you exist. They are
+ not stumbling in from Google. That is why keeping your existing web addresses working
+ mattered so much in the move &mdash; every old link and bookmark still lands where it
+ should.</p>
+</section>
+
+<div class="quiet">
+ <h2>Why your old statistics looked like traffic was falling</h2>
+ <p>The program on the old server that counted your visitors <strong>stopped running in
+ June</strong>. It missed seventeen days in July entirely, and recorded nothing at all
+ after 25 August.</p>
+ <p>So the dip you may have seen in the old stats pages is missing records, not missing
+ readers. Corrected for the days it failed to count, your traffic is flat.</p>
+ <p>The new Cloudflare setup measures visits and page performance without depending on
+ the old server&rsquo;s scheduled statistics job. It is running on the staging site now and
+ will receive a fresh production tag when nihilists.net launches.</p>
+</div>
+
+<section>
+ <h2>One thing that sounds alarming and isn&rsquo;t</h2>
+ <p>Most of what reached your old server was not people. Automated programs constantly
+ scan every website on the internet looking for weaknesses &mdash; they were asking your
+ server for login pages and admin panels that your site has never had.</p>
+ <p>That is completely normal for a domain that has been online since 2002, and none of
+ it got anywhere. The numbers on this page count <strong>only real people reading real
+ pages</strong>; the automated noise has been stripped out. Your new host filters most of
+ it before it ever arrives.</p>
+</section>
+
+<footer>
+ <div>Based on your web server&rsquo;s own visitor records for January&ndash;August 2026,
+ recovered from the old host during the move.</div>
+ <div>&ldquo;Pages read&rdquo; counts only successful requests for pages that exist on
+ your site, measured from the raw server records. The older statistics program counted
+ automated visitors as readers, which is why its totals ran much higher.</div>
+</footer>
+</div>
+<script>
+const D={"pages":[{"p":"Film Festival \u2014 old programs","n":2883},{"p":"Nihilist Film Festival","n":2216},{"p":"More Nihilism","n":1974},{"p":"Nihilist Links","n":1944},{"p":"Goggles image","n":1852},{"p":"Press coverage","n":1741},{"p":"Skull image","n":1671},{"p":"Nihilist Productions","n":1619},{"p":"Nihilist Art","n":1596}],"months":[{"m":"2026-01","pd":116,"full":true},{"m":"2026-02","pd":148,"full":true},{"m":"2026-03","pd":168,"full":true},{"m":"2026-04","pd":165,"full":true},{"m":"2026-05","pd":147,"full":true},{"m":"2026-06","pd":177,"full":true},{"m":"2026-07","pd":183,"full":false},{"m":"2026-08","pd":139,"full":false}],"origin":{"direct":48059,"internal":10086,"search":141}};
+const cs=getComputedStyle(document.documentElement), C=n=>cs.getPropertyValue(n).trim();
+const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+const MN=m=>({'01':'Jan','02':'Feb','03':'Mar','04':'Apr','05':'May','06':'Jun','07':'Jul','08':'Aug'})[m.slice(5)];
+const svg=(w,h,i)=>`<svg viewBox="0 0 ${w} ${h}" role="img">${i}</svg>`;
+(function(){const r=D.pages,W=700,rh=34,T=8,L=210,R=64,H=T+8+r.length*rh,iw=W-L-R,
+ max=Math.max(...r.map(x=>x.n));let b='';
+ r.forEach((x,i)=>{const y=T+i*rh,w=Math.max(iw*x.n/max,2);
+  b+=`<text class="pl" x="${L-12}" y="${y+rh/2+4}" text-anchor="end">${esc(x.p)}</text>`;
+  b+=`<rect x="${L}" y="${y+6}" width="${w}" height="${rh-14}" rx="3" fill="${C('--s1')}"/>`;
+  b+=`<text class="vl" x="${L+w+9}" y="${y+rh/2+4}">${x.n.toLocaleString()}</text>`;});
+ document.getElementById('c-pages').innerHTML=svg(W,H,b);})();
+(function(){const m=D.months,W=700,H=230,L=40,R=14,T=16,B=32,iw=W-L-R,ih=H-T-B,
+ max=Math.max(...m.map(x=>x.pd))*1.2,bw=iw/m.length*0.6,step=iw/m.length;let g='',b='';
+ for(let i=0;i<=3;i++){const y=T+ih-ih*i/3;
+  g+=`<line class="gl" x1="${L}" y1="${y}" x2="${W-R}" y2="${y}"/>`+
+     `<text class="ax" x="${L-8}" y="${y+3.5}" text-anchor="end">${Math.round(max*i/3)}</text>`;}
+ m.forEach((x,i)=>{const h=ih*x.pd/max,px=L+step*i+(step-bw)/2,y=T+ih-h;
+  b+=`<rect x="${px}" y="${y}" width="${bw}" height="${h}" rx="3" fill="${C('--s3')}"/>`;
+  b+=`<text class="vl" x="${px+bw/2}" y="${y-6}" text-anchor="middle">${x.pd}</text>`;
+  b+=`<text class="ax" x="${px+bw/2}" y="${H-14}" text-anchor="middle">${MN(x.m)}</text>`;});
+ document.getElementById('c-steady').innerHTML=svg(W,H,g+b);})();
+(function(){const o=D.origin,tot=o.direct+o.internal+o.search,
+ rows=[['Typed it in or used a bookmark',o.direct,'--s1'],
+       ['Clicked a link inside your site',o.internal,'--s3'],
+       ['Arrived from a search engine',o.search,'--accent']],
+ W=700,rh=46,T=4,H=T+rows.length*rh+4,L=248,R=82,iw=W-L-R;let b='';
+ rows.forEach((r,i)=>{const y=T+i*rh,w=Math.max(iw*r[1]/tot,2);
+  b+=`<text class="pl" x="${L-12}" y="${y+rh/2+4}" text-anchor="end">${r[0]}</text>`;
+  b+=`<rect x="${L}" y="${y+10}" width="${w}" height="${rh-24}" rx="3" fill="${C(r[2])}"/>`;
+  b+=`<text class="vl" x="${L+w+9}" y="${y+rh/2+4}">${r[1].toLocaleString()}</text>`;});
+ document.getElementById('c-origin').innerHTML=svg(W,H,b);})();
+</script>

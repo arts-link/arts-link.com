@@ -24,6 +24,16 @@ import { JSDOM } from 'jsdom';
 const PUBLIC = path.resolve(process.cwd(), 'public-clients');
 const built = fs.existsSync(PUBLIC);
 
+function findHtmlFiles(dir) {
+  return fs.readdirSync(dir, { withFileTypes: true }).flatMap((e) =>
+    e.isDirectory()
+      ? findHtmlFiles(path.join(dir, e.name))
+      : e.name.endsWith('.html')
+        ? [path.join(dir, e.name)]
+        : [],
+  );
+}
+
 // Derived, so adding a client folder extends the suite automatically rather
 // than quietly leaving the new hub untested.
 const CLIENTS = built
@@ -34,21 +44,20 @@ const CLIENTS = built
       .filter((name) => fs.existsSync(path.join(PUBLIC, name, 'index.html')))
   : [];
 
-const CLIENT_PAGES = CLIENTS.flatMap((c) =>
-  ['index.html', 'proposal/index.html', 'status/index.html', 'files/index.html']
-    .map((p) => `${c}/${p}`)
-    .filter((rel) => fs.existsSync(path.join(PUBLIC, rel))),
-);
+// Every HTML file inside a client folder, Hugo-rendered or not. Derived rather
+// than listed, so a new hub page — or a report dropped into static-clients/ —
+// is covered the moment it is built rather than whenever someone remembers to
+// add it here.
+const htmlUnder = (rel) => {
+  const dir = path.join(PUBLIC, rel);
+  return fs.existsSync(dir) ? findHtmlFiles(dir).map((f) => path.relative(PUBLIC, f)) : [];
+};
 
-function findHtmlFiles(dir) {
-  return fs.readdirSync(dir, { withFileTypes: true }).flatMap((e) =>
-    e.isDirectory()
-      ? findHtmlFiles(path.join(dir, e.name))
-      : e.name.endsWith('.html')
-        ? [path.join(dir, e.name)]
-        : [],
-  );
-}
+const CLIENT_PAGES = CLIENTS.flatMap((c) => htmlUnder(c));
+
+// The subset Hugo rendered through layouts/hub/. A static HTML report carries
+// its own styling and is not expected to have the hub stylesheet inlined.
+const CLIENT_HUB_PAGES = CLIENT_PAGES.filter((rel) => path.basename(rel) === 'index.html');
 
 const read = (rel) => new JSDOM(fs.readFileSync(path.join(PUBLIC, rel), 'utf8'));
 
@@ -159,7 +168,7 @@ describe.skipIf(!built)('hub – privacy', () => {
 describe.skipIf(!built)('hub – styling', () => {
   // The module-mounts trap: drop the assets mount and the CSS pipeline yields
   // nothing, silently.
-  it.each(CLIENT_PAGES)('%s has non-empty inlined CSS', (rel) => {
+  it.each(CLIENT_HUB_PAGES)('%s has non-empty inlined CSS', (rel) => {
     const styles = [...read(rel).window.document.querySelectorAll('style')];
     const total = styles.reduce((n, s) => n + s.textContent.length, 0);
     expect(total).toBeGreaterThan(10000);

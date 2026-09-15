@@ -4,9 +4,9 @@ weight = 10
 blurb = "The move, what it costs, and when it happens."
 client_name = "Elisha Shapiro"
 project_title = "Moving nihilists.net"
-phase = "Proposal delivered — awaiting your go-ahead"
+phase = "Rescued and staged — awaiting launch decisions"
 date = 2026-09-09
-lastmod = 2026-09-09
+lastmod = 2026-09-15
 
 eyebrow = "A proposal · Arts-Link"
 title_heading = "Moving"

@@ -1,17 +1,62 @@
 +++
 title = "Status"
 weight = 20
-blurb = "Where things stand, updated as the project moves."
+blurb = "Where things stand, and what is left before launch."
 client_name = "Elisha Shapiro"
 project_title = "Moving nihilists.net"
-phase = "Proposal delivered — awaiting your go-ahead"
+phase = "Rescued and staged — awaiting launch decisions"
 date = 2026-09-09
-lastmod = 2026-09-09
+lastmod = 2026-09-15
 
 eyebrow = "Moving nihilists.net"
 title_heading = "Status"
 lede = "A running log, newest first. I keep this current, so it is always the honest answer to \"where is this?\""
 +++
+
+## 15 September 2026 — Rescued, rebuilt, and running at a test address
+
+The site is off the old server and onto its new home. In short:
+
+- The **whole hosting account** was copied, checked and preserved — 1,291 of
+  1,292 files, with the one miss confirmed to be a PowWeb system marker rather
+  than anything of yours.
+- The public site is **rebuilt and deployed to a test address**:
+  [nihilists-net.ben-574.workers.dev](https://nihilists-net.ben-574.workers.dev).
+  The version I verified is commit
+  `5ec2ff599af991dde99d7d342bb3647dcc046fbb`.
+- The source lives in a **private Arts-Link repository on GitHub**, ready for
+  you to be invited to.
+- Every page, image, PDF and old link was tested, and five pages were read
+  through in a browser. That review caught one broken image on the newsletter
+  page, now fixed.
+
+The full write-up is on [The move, in review]({{< relref "report" >}}).
+
+**Your live site has not changed.** nihilists.net still comes from PowWeb, its
+domain settings are untouched, and the account is still running. That stays true
+until we deliberately switch it over.
+
+Two things are waiting on you: your GitHub username
+([how to get one]({{< relref "github" >}})), and the questions about the LA
+Freak book file on [Your files]({{< relref "files" >}}).
+
+### What is left before launch
+
+1. Settle the LA Freak book download — the questions on
+   [Your files]({{< relref "files" >}}).
+2. Set up clean visitor statistics for nihilists.net itself, replacing the test
+   ones.
+3. Build and double-check the new domain settings for the site.
+4. Point nihilists.net at its new home.
+5. Test the real address end to end once it is live — the site, the `www`
+   version, the old links, the security certificate, the downloads and the
+   statistics.
+6. **Only then** cancel PowWeb, once the new site has been independently
+   confirmed working.
+
+None of that happens without your say-so, and the order matters: cancelling the
+old host is always the last step, never a step taken because the new one looks
+healthy.
 
 ## 9 September 2026 — Proposal delivered
 

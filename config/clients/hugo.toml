@@ -36,3 +36,19 @@ disableKinds = ["taxonomy", "term", "sitemap"]
   [[module.mounts]]
     source = "assets"
     target = "assets"
+  # Restates Hugo's implicit static mount, which declaring the one below would
+  # otherwise replace — same trap again, and losing it would take the fonts and
+  # Alpine with it.
+  [[module.mounts]]
+    source = "static"
+    target = "static"
+  # Client-only static files: reports and attachments that are delivered as
+  # finished HTML rather than as Hugo pages. Mounted for this environment only,
+  # so nothing here can reach the public site. Everything under it sits beneath
+  # a client folder, which is what puts it behind that client's password —
+  # middleware.ts gates by first path segment. Never large binaries: anything
+  # that shouldn't live in Git goes to the private delivery folder instead and
+  # is linked from files.md.
+  [[module.mounts]]
+    source = "static-clients"
+    target = "static"
