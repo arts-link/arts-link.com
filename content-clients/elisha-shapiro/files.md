@@ -20,7 +20,7 @@ rather than from this page. Each link is restricted to your own account: signing
 in with your email is what opens it, and nobody who stumbles across the address
 can read it.
 
-### The preservation archive
+### The Preservation Archive
 
 {{< hub/table >}}
 | | |
@@ -40,7 +40,7 @@ Terminal, type `shasum -a 256 ` and drag the file onto the window.
 **What's in it.** All 1,291 files retrieved from your hosting account, not just
 the website: the folders above the public site, the old archived copies, the
 statistics history, everything. It also keeps both spellings of two pairs of
-files whose names differed only in capitalisation — `God.jpeg` and `god.jpeg`,
+files whose names differed only in capitalization — `God.jpeg` and `god.jpeg`,
 `WhiteH.gif` and `whiteH.gif`. Each pair turned out to be the same image twice
 over, but the names matter, because the new server treats capital letters
 strictly and an old link to the wrong spelling would otherwise break.
@@ -59,7 +59,7 @@ around or post anywhere, which is why the link is tied to your account rather
 than being open to anyone who has it.
 {{< /hub/note >}}
 
-### The LA Freak book file
+### The LA Freak Book File
 
 {{< hub/table >}}
 | | |
@@ -75,7 +75,7 @@ new host refuses any single file over 25 MB, and this is 27.3 MB. It is safe
 — preserved in the archive above and kept as its own copy — and it was left
 out of the repository and the test site on purpose rather than by accident.
 
-## Open questions for Elisha
+## Open Questions for Elisha
 
 {{< hub/note >}}
 **This is the one thing I need answers on.** There's no rush, and nothing is
@@ -102,7 +102,7 @@ has been decided** — I'd rather hear your answers first, because a download
 that's meant to be sold wants a different arrangement from one that's meant to
 be free.
 
-## Sending things to me
+## Sending Things to Me
 
 Email is fine:
 [ben@benstrawbridge.com](mailto:ben@benstrawbridge.com). If you'd rather not put

@@ -18,7 +18,7 @@ reports, your downloads, and the short guide to editing the site from now on.
 This page is private. It is not indexed by search engines and it sits behind a
 password.
 
-## Where things stand
+## Where Things Stand
 
 The whole of your old hosting account has been rescued, preserved and checked
 file by file. The site is rebuilt and running on its new home at a test
@@ -38,7 +38,7 @@ Have a look at the test address whenever you have a moment:
 That long string is the exact version of the site I checked, page by page, so
 that a year from now there is no doubt about what was tested.
 
-## What's here
+## What's Here
 
 The five pages below cover it: what was done and how it was checked, your own
 copies of everything, the short guide to editing the site from now on, the
@@ -55,7 +55,7 @@ running log, and the original proposal for reference.
 | [Editing the site]({{< relref "github" >}}) | The handoff: how you publish changes from now on. |
 {{< /hub/table >}}
 
-## What I need from you
+## What I Need From You
 
 {{< hub/note >}}
 **Two things, whenever you get to them.** Your GitHub username once you've made

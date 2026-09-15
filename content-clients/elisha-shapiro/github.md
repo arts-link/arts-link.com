@@ -14,7 +14,7 @@ title_emphasis = "site"
 lede = "You keep working in Dreamweaver exactly as you always have. Only the last step — the part where you send the changes out — is different."
 +++
 
-## The short version
+## The Short Version
 
 You edit and save in Dreamweaver, then press two buttons in a second program to
 send the changes out. The site updates itself a minute or so later. There is no
@@ -24,7 +24,7 @@ you touched — the second program works that out for you.
 Setting it up is a one-time job, and the first half of it is the part I need
 from you.
 
-## Step one: make a GitHub account
+## Step One — Make a GitHub Account
 
 GitHub is where the site's files live now. It's free, and you need an account of
 your own so I can give you access to yours.
@@ -45,7 +45,7 @@ one named account and nobody else. A near-miss invites a stranger with a similar
 name, so I'd rather copy and paste it than guess.
 {{< /hub/note >}}
 
-## Step two: install GitHub Desktop
+## Step Two — Install GitHub Desktop
 
 [GitHub Desktop](https://desktop.github.com/) is the program that moves your
 changes. It is free, made by GitHub, and it exists precisely so that none of
@@ -60,7 +60,7 @@ this has to happen at a command line.
 
 We'll do this part together on a call if you'd rather; it's about ten minutes.
 
-## Step three: how you publish from now on
+## Step Three — How You Publish From Now On
 
 {{< hub/spine >}}
 {{< hub/era years="1" title="Edit in Dreamweaver" >}}
@@ -83,7 +83,7 @@ publishes it on its own; the site updates within a minute or two.
 There is no step where anything is deleted or overwritten for good. Every
 version is kept, so a mistake is something we can simply step back from.
 
-## Two small habits worth having
+## Two Small Habits Worth Having
 
 - **Name new files in lowercase, with hyphens instead of spaces** —
   `craft-class.jpg` rather than `Craft Class.jpg`. The new server, unlike the old

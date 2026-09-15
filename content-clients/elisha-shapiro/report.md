@@ -14,7 +14,7 @@ title_emphasis = "review"
 lede = "Twenty-three years of nihilists.net, taken off a dying host, verified file by file, and rebuilt somewhere it can sit safely for another twenty-three."
 +++
 
-## What came off the old server
+## What Came Off the Old Server
 
 Your hosting account held a great deal more than the website. Above the public
 folder sat old archived copies, a `stats` directory going back to 2002, loose
@@ -33,14 +33,14 @@ everything exactly as it was — including the two pairs of filenames that diffe
 only by a capital letter. Your copy of that archive is on
 [Your files]({{< relref "files" >}}).
 
-## What was rebuilt
+## What Was Rebuilt
 
 From those 1,291 files, the actual public website is **29 pages and 143
 images, PDFs and other pieces** they depend on. Everything else — the duplicate
 folders, the old statistics, the abandoned experiments — stays preserved in the
 archive rather than being republished.
 
-That website now lives in a private repository in the Arts-Link organisation on
+That website now lives in a private repository in the Arts-Link organization on
 GitHub. A repository is really just a folder that remembers every version of
 itself: nothing can be lost by overwriting it, and any earlier state can be
 brought back. It is private, so only you and I can see it.
@@ -50,7 +50,7 @@ of the largest networks on the internet, and for a site like yours — pages,
 images and PDFs, with no software running behind them — it costs nothing and it
 does not go down.
 
-## Old links still work
+## Old Links Still Work
 
 Some page and image names changed along the way, mostly to remove the spaces
 and capital letters that the old host tolerated and the new one does not.
@@ -62,7 +62,7 @@ nihilists.net from a search engine — they type the address or use a bookmark
 saved years ago. There is no search index quietly re-pointing people, so old
 links are the only way in.
 
-## How it was checked
+## How It Was Checked
 
 {{< hub/spine >}}
 {{< hub/era years="EVERY FILE" title="All 143 public files load" >}}
@@ -90,7 +90,7 @@ That last one is the argument for looking at pages with your own eyes. Every
 automated check had passed; the image only revealed itself when someone actually
 read the page.
 
-## The lesson worth keeping
+## The Lesson Worth Keeping
 
 {{< hub/pull >}}
 Several of the old systems reported success while quietly leaving things out.
@@ -106,7 +106,7 @@ afterwards, by a different means than the one that did the work. The one loose
 file on your server was caught exactly that way, by a second pass that had no
 reason to agree with the first.
 
-## Your statistics
+## Your Statistics
 
 Your visitor statistics had already failed on the old host, months before any of
 this started — which is what the apparent drop in traffic really was. The full
@@ -120,7 +120,7 @@ Statistics are running on the test site now, which is how I know they work. But
 handful of them. A clean count that only measures your real readers gets set up
 as part of the launch.
 
-## What has not happened
+## What Has Not Happened
 
 Nothing about the live site has been touched. Its domain settings and
 nameservers are exactly as they were, the PowWeb account is still running and

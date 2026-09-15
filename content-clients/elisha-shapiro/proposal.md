@@ -24,7 +24,7 @@ lede = "Getting your site off Network Solutions and somewhere stable, without ch
   value = "September 9, 2026"
 +++
 
-## Where things stand
+## Where Things Stand
 
 Your host is PowWeb, which has been absorbed into Network Solutions. Their own support pages now redirect there. The company you originally signed up with doesn't really exist anymore, which goes some way toward explaining the service issues.
 
@@ -36,7 +36,7 @@ The site itself is hand-built HTML, first published around 1997. There is no dat
 
 You mentioned folders on the server you don't recognize and what looks like duplicate copies of files. That is normal for a site of this age. I will go through all of it and bring across only what is necessary.
 
-## What I'll do
+## What I'll Do
 
 - **Take a complete copy.** Every page, image and PDF, pulled from the live site and directly from the server. Nothing that isn't linked gets left behind. You get this copy for yourself in the first week, regardless of what else happens. You said your copies are old; this replaces them.
 - **Clean up what comes across.** The leftover folders and duplicate files stay behind. Nothing you can see on the site changes.
@@ -44,9 +44,9 @@ You mentioned folders on the server you don't recognize and what looks like dupl
 - **Turn on visitor statistics that work.** Track how many people visit your site, which pages they read, and where they go next, including who is clicking through to Film Freeway and to the calendar. This is the part you have been waiting on for two months.
 - **Move your domain registration to my account.** It stays in your name. You're the owner, I'm the administrator, and you can take it elsewhere whenever you like. The reason to do it is speed: when something needs changing, I can just do it rather than talking you through a control panel.
 - **Set you up to keep editing in Dreamweaver.** This is the next section.
-- **Leave the old host running for two weeks, then cancel it.** Nothing gets switched off until the new one has been running properly for a fortnight.
+- **Leave the old host running for two weeks, then cancel it.** Nothing gets switched off until the new one has been running properly for two weeks.
 
-## Keeping it updated yourself
+## Keeping It Updated Yourself
 
 You continue to update the calendar and film festival pages in Dreamweaver. The only thing that changes is the last step. Instead of sending the files to PowWeb, you'll send them to the new home.
 
@@ -65,7 +65,7 @@ You edit in Dreamweaver as usual, then drop your site folder onto a single web p
 **Either way.** I set it up, write you a one-page sheet with the steps on it, and walk you through it once on a call. And if you decide you'd rather not deal with it at all, sending me the changes is always fine.
 {{< /hub/note >}}
 
-## What it costs
+## What It Costs
 
 {{< hub/money >}}
 {{< hub/line what="The move, complete" note="Everything in “What I'll do” above, including the Dreamweaver setup and the walkthrough." amount="$400" >}}
@@ -97,20 +97,20 @@ Your address starts pointing to the new home.
 Domain transferred. Dreamweaver publishing set up, instruction sheet, walkthrough call.
 {{< /hub/era >}}
 {{< hub/era years="BEFORE OCT 24" title="Old host cancelled" >}}
-Only after the new one has been running properly for a fortnight.
+Only after the new one has been running properly for two weeks.
 {{< /hub/era >}}
 {{< /hub/spine >}}
 
 Nothing happens to the live site until you've seen it working at the test address.
 
-## What I need from you
+## What I Need From You
 
 - Your PowWeb login, or add me to the account
 - The FTP details Dreamweaver uses, if you can find them
 - Which version of Dreamweaver you have
 - Confirmation that the email address on the domain is still one you can read
 
-## Not included
+## Not Included
 
 None of this is part of the price above, and none of it is needed. It's here so you know what it would cost if you ever want it.
 
@@ -126,7 +126,7 @@ A few updates a year, the calendar and festival pages each season, and being the
 {{< /hub/option >}}
 {{< /hub/options >}}
 
-## One ask
+## One Ask
 
 If this project goes the way I expect it to, I'd like to reference it on Arts-Link. Arts-Link is built for artists with sites like yours.
 

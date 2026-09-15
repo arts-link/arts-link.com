@@ -13,7 +13,7 @@ title_heading = "Status"
 lede = "A running log, newest first. I keep this current, so it is always the honest answer to \"where is this?\""
 +++
 
-## 15 September 2026 — Rescued, rebuilt, and running at a test address
+## 15 September 2026 — Rescued, Rebuilt, and Running at a Test Address
 
 The site is off the old server and onto its new home. In short:
 
@@ -40,7 +40,7 @@ Two things are waiting on you: your GitHub username
 ([how to get one]({{< relref "github" >}})), and the questions about the LA
 Freak book file on [Your files]({{< relref "files" >}}).
 
-### What is left before launch
+### What Is Left Before Launch
 
 1. Settle the LA Freak book download — the questions on
    [Your files]({{< relref "files" >}}).
@@ -58,7 +58,7 @@ None of that happens without your say-so, and the order matters: cancelling the
 old host is always the last step, never a step taken because the new one looks
 healthy.
 
-## 9 September 2026 — Proposal delivered
+## 9 September 2026 — Proposal Delivered
 
 The proposal is up: the full move, the Dreamweaver setup, the schedule, and the
 price. $400 for the move, about $20 a year afterward for the domain and nothing
@@ -74,7 +74,7 @@ Waiting on your go-ahead. Two dates are driving everything:
 When you're ready, I also need the four items under *What I Need From You*. The
 PowWeb login is the one that gates the rest, so that's the one to find first.
 
-## 8 September 2026 — Intro call
+## 8 September 2026 — Intro Call
 
 Talked through the situation. The short version:
 
@@ -88,5 +88,5 @@ Talked through the situation. The short version:
 - You want to keep editing the calendar and film festival pages in Dreamweaver
   yourself. That stays true after the move.
 - Visitor statistics have not worked for two months. They will after this.
-- There are folders and duplicate files on the server you don't recognise.
+- There are folders and duplicate files on the server you don't recognize.
   Normal for a site this age; I'll bring across only what is needed.
