@@ -7,6 +7,9 @@
     "test": "vitest run",
     "postinstall": "cp node_modules/alpinejs/dist/cdn.min.js static/js/alpine.min.js",
     "og": "node scripts/og-images.mjs",
+    "cf:build": "sh scripts/cf-build.sh",
+    "cf:dev": "npm run cf:build && wrangler dev",
+    "cf:deploy": "npm run cf:build && wrangler deploy",
     "hub": "hugo --environment clients --destination public-clients --cleanDestinationDir && node scripts/hub-dev.mjs",
     "og:check": "node scripts/og-images.mjs --check"
   },
@@ -26,7 +29,8 @@
     "prettier": "3.2.5",
     "prettier-plugin-tailwindcss": "^0.5.11",
     "tailwindcss": "^3.4.0",
-    "vitest": "^4.1.0"
+    "vitest": "^4.1.0",
+    "wrangler": "^4.133.0"
   },
   "dependencies": {
     "@alpinejs/focus": "^3.13.7",

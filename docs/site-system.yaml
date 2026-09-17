@@ -153,12 +153,27 @@ site_system:
   architecture:
     frontend: Hugo (no theme — layouts built directly in root layouts/ with Tailwind + Alpine.js)
     cms: Markdown + Hugo front matter
-    hosting: Vercel (migrating from GitHub Pages)
+    hosting: >
+      Vercel, with Cloudflare Workers built and awaiting the DNS cutover. Both
+      configs are kept deliberately: Vercel is the rollback until www has been
+      on Cloudflare long enough to trust. The move is not about features — the
+      Vercel Hobby plan is non-commercial-only, and this site sells services.
+      The private client hub left for its own repository on Workers first.
     base_url: >
       Absolute URLs all derive from Hugo's baseURL, never from a hardcoded
-      domain. vercel.json runs scripts/vercel-build.sh, which passes --baseURL
-      from the deployment's own hostname on previews so a preview serves its
-      own social cards and canonical rather than production's.
+      domain. On Vercel, scripts/vercel-build.sh passes --baseURL from the
+      deployment's own hostname on previews so a preview serves its own social
+      cards and canonical rather than production's.
+
+      Cloudflare cannot do that: Workers Builds never tells a build its own URL,
+      because a preview's alias is assigned after the build finishes. So
+      scripts/cf-build.sh has previews claim nothing instead — noindex, no
+      canonical, no og:url, and a blanket-disallow robots.txt. Workers preview
+      URLs are public and crawlable, so this is load-bearing rather than tidy.
+    apex_redirect: >
+      apex -> www is a Cloudflare Redirect Rule, not repository config. Route
+      53's ALIAS record has no Cloudflare equivalent, and a _redirects file
+      matches paths rather than hostnames.
     form_handler: Formspree (connected to Contact page)
     seo_strategy: Static HTML, fast load, artist/band name targeting
     meta_descriptions: >

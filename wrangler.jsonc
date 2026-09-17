@@ -1,0 +1,43 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "arts-link-com",
+  "compatibility_date": "2026-09-17",
+
+  // No "main". This is an assets-only Worker: there is no Worker script at
+  // all, so requests are served straight from Cloudflare's edge and nothing
+  // executes per request. The client hub is the opposite — it sets
+  // `run_worker_first` precisely so its auth check runs before any asset —
+  // but this site is public, has nothing to gate, and every page is
+  // prerendered by Hugo. Adding a script here would buy nothing and put a
+  // cold start in front of a static file.
+  //
+  // Consequence worth knowing: `_redirects` and `_headers` are still honoured
+  // (they are parsed by the assets runtime, not by Worker code), but anything
+  // needing real logic would mean introducing a script and re-testing the
+  // whole routing story.
+
+  "assets": {
+    "directory": "./public",
+
+    // Hugo emits /about/index.html, so folder indexes must serve at /about/.
+    // This is the default, stated explicitly because the client hub had to
+    // reason about it and the two configs should be readable side by side.
+    "html_handling": "auto-trailing-slash",
+
+    // Serve layouts/404.html -> public/404.html for unmatched paths, with a
+    // real 404 status. Without this an unknown path returns Cloudflare's bare
+    // response and the site's own 404 page is dead weight.
+    "not_found_handling": "404-page"
+  },
+
+  // Preview URLs are PUBLIC when enabled, and this site is public anyway, so
+  // that is not a disclosure risk the way it would be on the hub. It does mean
+  // a preview is a real, crawlable copy of the site — which is why
+  // scripts/cf-build.sh marks non-production builds noindex and strips their
+  // canonical. See the comment block in that file.
+  "workers_dev": true,
+
+  "observability": {
+    "enabled": true
+  }
+}
