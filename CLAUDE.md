@@ -34,6 +34,13 @@ hugo --minify && npm run og
 
 # Build and serve the private client hub behind its auth gate (see Client Hub)
 npm run hub
+
+# Cloudflare Workers (see Deployment) — build, serve on the real Workers
+# runtime, deploy. cf:dev is the only way to check routing behaviour that
+# `hugo server` cannot show you: trailing-slash redirects and the 404 status.
+npm run cf:build
+npm run cf:dev
+npm run cf:deploy
 ```
 
 The test suite reads from the generated `public/` directory. Without it, `tests/smoke.test.js` skips itself silently, so always build before running tests.
@@ -96,7 +103,33 @@ of ~27px, the display face is `font-medium` rather than the site's usual `font-l
 check a redesign at those widths rather than at 1200px — everything looks fine at full
 size.
 
-**Deployment**: Vercel builds via `vercel.json` → `scripts/vercel-build.sh`, which passes
+**Deployment — in transition.** Two configs exist on purpose: Vercel is live and is
+the rollback, Cloudflare is built and waiting for the DNS cutover. Do not delete the
+Vercel half until `www` has been on Cloudflare long enough to trust.
+
+**Cloudflare (the target)**: `wrangler.jsonc` → `scripts/cf-build.sh`. An **assets-only
+Worker** — there is no `main`, so nothing executes per request and `public/` is served
+straight from the edge. (The client hub is the opposite: it sets `run_worker_first` so
+its auth check runs before any asset. This site has nothing to gate.)
+
+The preview problem is solved differently here, and the difference is the interesting
+part. Vercel hands a build its own hostname; **Workers Builds does not** — it injects
+`WORKERS_CI`, `WORKERS_CI_BRANCH`, `WORKERS_CI_COMMIT_SHA` and `WORKERS_CI_BUILD_UUID`,
+and no URL, because a preview's alias is assigned during `versions upload`, after the
+build has finished. The hostname does not exist yet while you are building for it.
+
+So instead of naming the preview, a preview declines to make any claim: non-production
+builds set `HUGO_PARAMS_PREVIEW`, and `baseof.html` then emits `noindex, nofollow` and
+omits both `canonical` and `og:url`, while `robots.txt` becomes a blanket disallow. This
+matters because **Workers preview URLs are public and crawlable**. Set `PREVIEW_BASE_URL`
+if you do know the hostname; the noindex still applies. `tests/cloudflare.test.js` builds
+both ways into temp directories and asserts each.
+
+**The apex → `www` 301 is not in this repo.** Route 53's ALIAS record has no Cloudflare
+equivalent, and `_redirects` matches paths rather than hostnames, so it belongs in a
+Cloudflare **Redirect Rule** — which also avoids invoking anything per request.
+
+**Vercel (still live)**: `vercel.json` → `scripts/vercel-build.sh`, which passes
 `--baseURL` derived from the deployment's own hostname (`VERCEL_BRANCH_URL`, falling back
 to `VERCEL_URL`) on previews, and uses the configured `baseURL` in production. Hugo
 resolves every absolute URL — `og:image`, `og:url`, `canonical`, the JSON-LD `@id`s, the

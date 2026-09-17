@@ -1,4 +1,10 @@
-{{- if eq site.Params.env "clients" -}}
+{{- /* Preview builds are public and crawlable but are not the site, and their
+       absolute URLs still point at production — see the comment in
+       layouts/_default/baseof.html. A preview that said "Allow: /" and then
+       advertised production's sitemap would be inviting crawlers to treat a
+       throwaway deployment as the real thing. */ -}}
+{{- $preview := in (slice true "true" "1") site.Params.preview -}}
+{{- if or (eq site.Params.env "clients") $preview -}}
 User-agent: *
 Disallow: /
 {{- else -}}
