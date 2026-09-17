@@ -28,7 +28,7 @@
 
   {{- if and (not $desc) (eq $.Section "work") }}
     {{/* A work entry is often just a screenshot and front matter, with no body
-         for Hugo to summarise. Compose something specific from what the entry
+         for Hugo to summarize. Compose something specific from what the entry
          does declare rather than repeating the site blurb. No stack names —
          see the copywriting rules in CLAUDE.md. */}}
     {{- $lead := cond (eq $.Params.site_type "rescue")
