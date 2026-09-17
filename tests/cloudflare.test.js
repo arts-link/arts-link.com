@@ -143,4 +143,25 @@ describe.skipIf(!hasHugo)('production builds are unchanged', () => {
     expect(robots).toMatch(/Allow:\s*\//);
     expect(robots).toMatch(/Sitemap:\s*https:\/\/www\.arts-link\.com\/sitemap\.xml/);
   });
+
+  // The enforcement lives in the Cloudflare dashboard, where it is invisible
+  // to this repository. These assertions are the part we can hold: the stated
+  // preference has to keep agreeing with the configured one, and the two
+  // search crawlers we deliberately left out have to stay out.
+  it.each(['GPTBot', 'ClaudeBot', 'Google-Extended', 'CCBot', 'anthropic-ai'])(
+    'asks %s not to crawl',
+    (agent) => {
+      expect(robots).toMatch(new RegExp(`User-agent:\\s*${agent}\\s*\\nDisallow:\\s*/`));
+    },
+  );
+
+  it('declares the content signal', () => {
+    expect(robots).toMatch(/Content-Signal:.*ai-train=no/);
+  });
+
+  // Cloudflare's managed list blocks these. They are web search, not training,
+  // and blocking AI training is not a reason to leave two search engines.
+  it.each(['Baiduspider', 'PetalBot'])('does not block %s, which is a search crawler', (agent) => {
+    expect(robots).not.toMatch(new RegExp(`User-agent:\\s*${agent}`));
+  });
 });

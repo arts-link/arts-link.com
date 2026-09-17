@@ -168,3 +168,14 @@ So a new color means adding a `--color-*` variable to **both** the `:root` and `
 **Naming the stack is fine when it's the subject.** Case studies, work entries, and blog posts describe specific projects, and being concrete about what a given site was actually built with is honest and useful. Say Hugo when the project is Hugo, Astro when it's Astro. What to avoid is implying every Arts-Link site is built the same way.
 
 Rule of thumb: technology in the *body* of a project story, yes; technology in the *pitch*, no.
+
+**Never link to the working surface of a tool we used.** No `claude.ai` artifact, no shared
+chat, no scratch document or notebook — not in a work entry, not in a blog post, not in
+anything emailed to a client or prospect. Three reasons, and the first one has already bitten
+us on a client hub: such links are usually private to whoever made them, so the reader meets a
+login wall for an account they do not have; they can be revoked or expire, and nothing in this
+repository would notice; and they tell someone buying the result how the work was made.
+
+If the thing is worth showing, bring it into the repository and serve it from our own domain.
+The client hub repo has the same rule with a test enforcing it — see "Never link a client to a
+tool we used" in its `CLAUDE.md`.
