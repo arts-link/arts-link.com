@@ -3,7 +3,7 @@
  *
  * The one thing these tests cannot cover is whether returning `undefined`
  * actually continues the request to the static asset — that is Vercel edge
- * behaviour and only a real deployment proves it. Everything else about the
+ * behavior and only a real deployment proves it. Everything else about the
  * gate is decided here.
  */
 
@@ -164,7 +164,7 @@ describe('client hub auth — the admin pair', () => {
     }
   });
 
-  // Absent admin variables, behaviour is exactly as before.
+  // Absent admin variables, behavior is exactly as before.
   it('changes nothing when not configured', () => {
     deploy({ risa: RISA });
     expect(middleware(req('/risa/', admin)).status).toBe(401);

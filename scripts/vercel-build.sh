@@ -6,7 +6,7 @@
 # served from its own hostname. Hugo resolves every absolute URL — og:image,
 # og:url, canonical, the JSON-LD @ids, the sitemap line in robots.txt — against
 # baseURL, so without this a preview advertises production's social cards and
-# canonicalises itself to the live site.
+# canonicalizes itself to the live site.
 #
 # The GitHub Pages workflow already does the same thing with the URL Pages
 # hands it; this is the Vercel half.
