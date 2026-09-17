@@ -33,6 +33,11 @@ Desktop.ini
 # Vercel CLI link state
 .vercel/
 
+# Wrangler local state — miniflare's emulated KV/D1/R2/cache, written by
+# `npm run cf:dev`. Machine-local scratch, and it is SQLite, so committing it
+# would churn binary diffs on every local run.
+.wrangler/
+
 # Claude Code (machine-local)
 .claude/settings.local.json
 Claude Outputs/

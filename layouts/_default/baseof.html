@@ -24,16 +24,38 @@
     {{- $image = absURL (printf "og/%s.jpg" $key) }}
   {{- end }}
 
+  {{/* Preview builds. scripts/cf-build.sh sets HUGO_PARAMS_PREVIEW on any
+       Workers Builds run that is not the production branch.
+
+       Workers preview URLs are public and crawlable, and Hugo has already
+       baked the production baseURL into every absolute URL on the page —
+       Workers Builds cannot tell us the preview hostname, because the alias is
+       assigned after the build finishes. So a preview would otherwise be a
+       full copy of the site either asking to be indexed or claiming that its
+       canonical is the live page.
+
+       Rather than assert something false, assert nothing: no canonical, no
+       og:url, and noindex. Compared against known-true values so that setting
+       the variable to "false" turns preview mode off rather than on, which is
+       what anyone typing that would expect. */}}
+  {{- $preview := in (slice true "true" "1") site.Params.preview }}
+
   <title>{{ $title }}</title>
   <meta name="description" content="{{ $description }}">
+  {{- if $preview }}
+  <meta name="robots" content="noindex, nofollow">
+  {{- else }}
   <link rel="canonical" href="{{ .Permalink }}">
+  {{- end }}
 
   <!-- OG / social -->
   <meta property="og:site_name" content="{{ .Site.Title }}">
   <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
   <meta property="og:title" content="{{ $title }}">
   <meta property="og:description" content="{{ $description }}">
+  {{- if not $preview }}
   <meta property="og:url" content="{{ .Permalink }}">
+  {{- end }}
   <meta property="og:image" content="{{ $image }}">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
