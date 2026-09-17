@@ -62,7 +62,7 @@ const sha256 = (...parts) => {
 
 /**
  * Styling inputs shared by every card: the palette tokens and @font-face rules
- * live in main.css, the colour and font registrations in the Tailwind config.
+ * live in main.css, the color and font registrations in the Tailwind config.
  * A change to either should re-render everything.
  */
 const globalStyleHash = sha256(

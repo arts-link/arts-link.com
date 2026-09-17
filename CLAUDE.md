@@ -66,7 +66,7 @@ weight = 1                    # ascending sort on /work/; lowest 3 also feature 
 **Page descriptions**: `layouts/partials/page-description.html` returns the text used
 for `meta description`, `og:description`, `twitter:description` and the social card,
 so those can't drift apart. It prefers front matter `description`, then the page
-`.Summary`, then — for a work entry with no body to summarise — a line composed from
+`.Summary`, then — for a work entry with no body to summarize — a line composed from
 its own front matter, and only falls back to `.Site.Params.description` if all of those
 are empty. Authored `description` copy passes through untouched; derived text is
 plainified and trimmed to 160 characters. Write a `description` whenever the derived
@@ -101,7 +101,7 @@ size.
 to `VERCEL_URL`) on previews, and uses the configured `baseURL` in production. Hugo
 resolves every absolute URL — `og:image`, `og:url`, `canonical`, the JSON-LD `@id`s, the
 sitemap line in `robots.txt` — against `baseURL`, so without that a preview deployment
-advertises production's social cards and canonicalises itself to the live site. Nothing
+advertises production's social cards and canonicalizes itself to the live site. Nothing
 in `layouts/` hardcodes the domain; keep it that way.
 
 Also still deployable to GitHub Pages via `.github/workflows/hugo.yml` (manual trigger, Hugo v0.138.0 extended), which passes the URL Pages gives it for the same reason. Note that `docs/site-system.yaml` records a migration to Vercel as in progress. CI runs separately in `.github/workflows/test.yml` on every push and PR: `npm ci` → `hugo --minify` → `npm test`.

@@ -296,7 +296,7 @@ site_system:
         - Running text in DM Sans. Fraunces is a display face — its thin
           strokes disappear at body size, which is the same reason the social
           card uses font-medium — so it is kept to headings and pull-quotes.
-        - Ember is never a text colour here. At full strength it measures
+        - Ember is never a text color here. At full strength it measures
           4.03:1 on dark ink and 4.19:1 on light, both under the bar, and the
           value that would clear 7:1 on dark is a washed-out salmon. It stays
           at full strength for rules, spine dots, link underlines and the
