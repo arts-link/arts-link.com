@@ -109,18 +109,24 @@ Vercel half until `www` has been on Cloudflare long enough to trust.
 
 **Nothing in `.github/workflows/` deploys to Cloudflare.** Workers Builds is
 Cloudflare's own CI — it connects through the Cloudflare GitHub App, runs on
-Cloudflare's infrastructure, and reports only in the Cloudflare dashboard under
-**Workers & Pages → `arts-link-com` → Deployments**. It posts no check run, no
-commit status and no GitHub deployment record, so a green tick on a merged PR
-says only that the tests passed.
+Cloudflare's infrastructure, and has its own history under **Workers & Pages →
+`arts-link-com` → Deployments**.
 
-**Its failure mode is silence.** If the repository is missing from the
-Cloudflare GitHub App's repository access list, or the Git account
-authorization lapses, pushes stop producing builds and nothing anywhere says
-so: `main` moves forward and production does not. This has already happened
-once — the app had access to `clients.arts-link.com` but not this repository,
-so the hub deployed on every push while the marketing site sat ten hours behind
-`main` with a stale `robots.txt`.
+When it is working it posts a check run called **`Workers Builds:
+arts-link-com`** alongside `test`, so a PR shows three checks rather than two.
+
+**That check's absence is the thing to watch for.** If the repository is missing
+from the Cloudflare GitHub App's access list, or the Git account authorization
+lapses, no build runs and no check appears — and an absent check looks like
+nothing at all, whereas a failing one would be obvious. `main` moves forward,
+production does not, and the PR still goes green on the checks that did run.
+
+This has already happened. The app had access to `clients.arts-link.com` but
+not to this repository, so the hub deployed on every push while the marketing
+site sat ten hours behind `main` serving a stale `robots.txt`. It was found by
+fetching the file and reading it, not by anything reporting an error.
+
+So: **three checks on a PR, not two.** Two means the deploy is not wired up.
 
 **Settings → Builds** shows a banner reading "This project is disconnected from
 your Git account" while still listing the repository, which is confusing and
