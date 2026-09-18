@@ -107,6 +107,37 @@ size.
 the rollback, Cloudflare is built and waiting for the DNS cutover. Do not delete the
 Vercel half until `www` has been on Cloudflare long enough to trust.
 
+**Nothing in `.github/workflows/` deploys to Cloudflare.** Workers Builds is
+Cloudflare's own CI — it connects through the Cloudflare GitHub App, runs on
+Cloudflare's infrastructure, and has its own history under **Workers & Pages →
+`arts-link-com` → Deployments**.
+
+When it is working it posts a check run called **`Workers Builds:
+arts-link-com`** alongside `test`, so a PR shows three checks rather than two.
+
+**That check's absence is the thing to watch for.** If the repository is missing
+from the Cloudflare GitHub App's access list, or the Git account authorization
+lapses, no build runs and no check appears — and an absent check looks like
+nothing at all, whereas a failing one would be obvious. `main` moves forward,
+production does not, and the PR still goes green on the checks that did run.
+
+This has already happened. The app had access to `clients.arts-link.com` but
+not to this repository, so the hub deployed on every push while the marketing
+site sat ten hours behind `main` serving a stale `robots.txt`. It was found by
+fetching the file and reading it, not by anything reporting an error.
+
+So: **three checks on a PR, not two.** Two means the deploy is not wired up.
+
+**Settings → Builds** shows a banner reading "This project is disconnected from
+your Git account" while still listing the repository, which is confusing and
+means exactly one thing: the repository is configured, the account link is not.
+**Manage** repairs it; **Disconnect** discards the configuration.
+
+So after a merge that matters, confirm the deploy rather than assuming it —
+the Deployments tab should show a new version carrying the commit message and a
+branch badge. A version labelled "Manually deployed" with no branch came from
+the dashboard, not from git.
+
 **Cloudflare (the target)**: `wrangler.jsonc` → `scripts/cf-build.sh`. An **assets-only
 Worker** — there is no `main`, so nothing executes per request and `public/` is served
 straight from the edge. (The client hub is the opposite: it sets `run_worker_first` so
