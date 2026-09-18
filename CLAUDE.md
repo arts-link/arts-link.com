@@ -107,6 +107,31 @@ size.
 the rollback, Cloudflare is built and waiting for the DNS cutover. Do not delete the
 Vercel half until `www` has been on Cloudflare long enough to trust.
 
+**Nothing in `.github/workflows/` deploys to Cloudflare.** Workers Builds is
+Cloudflare's own CI — it connects through the Cloudflare GitHub App, runs on
+Cloudflare's infrastructure, and reports only in the Cloudflare dashboard under
+**Workers & Pages → `arts-link-com` → Deployments**. It posts no check run, no
+commit status and no GitHub deployment record, so a green tick on a merged PR
+says only that the tests passed.
+
+**Its failure mode is silence.** If the repository is missing from the
+Cloudflare GitHub App's repository access list, or the Git account
+authorization lapses, pushes stop producing builds and nothing anywhere says
+so: `main` moves forward and production does not. This has already happened
+once — the app had access to `clients.arts-link.com` but not this repository,
+so the hub deployed on every push while the marketing site sat ten hours behind
+`main` with a stale `robots.txt`.
+
+**Settings → Builds** shows a banner reading "This project is disconnected from
+your Git account" while still listing the repository, which is confusing and
+means exactly one thing: the repository is configured, the account link is not.
+**Manage** repairs it; **Disconnect** discards the configuration.
+
+So after a merge that matters, confirm the deploy rather than assuming it —
+the Deployments tab should show a new version carrying the commit message and a
+branch badge. A version labelled "Manually deployed" with no branch came from
+the dashboard, not from git.
+
 **Cloudflare (the target)**: `wrangler.jsonc` → `scripts/cf-build.sh`. An **assets-only
 Worker** — there is no `main`, so nothing executes per request and `public/` is served
 straight from the edge. (The client hub is the opposite: it sets `run_worker_first` so
