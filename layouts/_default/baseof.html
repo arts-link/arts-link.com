@@ -98,8 +98,7 @@
       api_host: '{{ $.Site.Params.posthog_host }}',
       ui_host: 'https://us.posthog.com',
       defaults: '2026-01-30',
-      person_profiles: 'identified_only',
-      before_send: function(e){ return window.location.hostname.endsWith('.vercel.app') ? null : e; }
+      person_profiles: 'identified_only'
     });
   </script>
   {{ end }}

@@ -154,18 +154,17 @@ site_system:
     frontend: Hugo (no theme — layouts built directly in root layouts/ with Tailwind + Alpine.js)
     cms: Markdown + Hugo front matter
     hosting: >
-      Vercel, with Cloudflare Workers built and awaiting the DNS cutover. Both
-      configs are kept deliberately: Vercel is the rollback until www has been
-      on Cloudflare long enough to trust. The move is not about features — the
-      Vercel Hobby plan is non-commercial-only, and this site sells services.
-      The private client hub left for its own repository on Workers first.
+      Cloudflare Workers, the sole target for this site. The Vercel cutover is
+      done: vercel.json and scripts/vercel-build.sh are gone, and the Vercel
+      arts-link-com project has been deleted. The move was not about features
+      — the Vercel Hobby plan is non-commercial-only, and this site sells
+      services. The private client hub left for its own repository on Workers
+      first. (Vercel is not retired from Arts-Link generally —
+      screenshots.arts-link.com, a separate tool with its own repository,
+      still runs there.)
     base_url: >
       Absolute URLs all derive from Hugo's baseURL, never from a hardcoded
-      domain. On Vercel, scripts/vercel-build.sh passes --baseURL from the
-      deployment's own hostname on previews so a preview serves its own social
-      cards and canonical rather than production's.
-
-      Cloudflare cannot do that: Workers Builds never tells a build its own URL,
+      domain. Workers Builds never tells a build its own URL,
       because a preview's alias is assigned after the build finishes. So
       scripts/cf-build.sh has previews claim nothing instead — noindex, no
       canonical, no og:url, and a blanket-disallow robots.txt. Workers preview

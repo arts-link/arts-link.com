@@ -12,8 +12,8 @@ Two-tier setup:
 - API key + proxy host: `config/production/hugo.toml` → `[params]`
 - PostHog project: `https://us.posthog.com`
 - `person_profiles: 'identified_only'` — no anonymous profiles created
-- Vercel preview deployments are filtered via `before_send` (no noise from CI)
 - `preconnect` + `dns-prefetch` hints for `posthog_host` added early in `<head>` (see below)
+- Cloudflare Workers Builds preview deployments are **not yet filtered** — see issue #59
 
 ### Adding a new third-party origin
 

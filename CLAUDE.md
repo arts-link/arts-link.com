@@ -100,9 +100,11 @@ of ~27px, the display face is `font-medium` rather than the site's usual `font-l
 check a redesign at those widths rather than at 1200px — everything looks fine at full
 size.
 
-**Deployment — in transition.** Two configs exist on purpose: Vercel is live and is
-the rollback, Cloudflare is built and waiting for the DNS cutover. Do not delete the
-Vercel half until `www` has been on Cloudflare long enough to trust.
+**Deployment.** Cloudflare Workers is the sole deployment target for this site. The
+Vercel cutover is done — `vercel.json` and `scripts/vercel-build.sh` are gone, and the
+Vercel `arts-link-com` project has been deleted. (Vercel is not retired from Arts-Link
+generally — `screenshots.arts-link.com`, a separate tool with its own repository, still
+runs there. This section is about this site only.)
 
 **Nothing in `.github/workflows/` deploys to Cloudflare.** Workers Builds is
 Cloudflare's own CI — it connects through the Cloudflare GitHub App, runs on
@@ -157,15 +159,11 @@ both ways into temp directories and asserts each.
 equivalent, and `_redirects` matches paths rather than hostnames, so it belongs in a
 Cloudflare **Redirect Rule** — which also avoids invoking anything per request.
 
-**Vercel (still live)**: `vercel.json` → `scripts/vercel-build.sh`, which passes
-`--baseURL` derived from the deployment's own hostname (`VERCEL_BRANCH_URL`, falling back
-to `VERCEL_URL`) on previews, and uses the configured `baseURL` in production. Hugo
-resolves every absolute URL — `og:image`, `og:url`, `canonical`, the JSON-LD `@id`s, the
-sitemap line in `robots.txt` — against `baseURL`, so without that a preview deployment
-advertises production's social cards and canonicalizes itself to the live site. Nothing
-in `layouts/` hardcodes the domain; keep it that way.
+Nothing in `layouts/` hardcodes the domain; keep it that way — Hugo resolves every
+absolute URL (`og:image`, `og:url`, `canonical`, the JSON-LD `@id`s, the sitemap line in
+`robots.txt`) against `baseURL`.
 
-Also still deployable to GitHub Pages via `.github/workflows/hugo.yml` (manual trigger, Hugo v0.138.0 extended), which passes the URL Pages gives it for the same reason. Note that `docs/site-system.yaml` records a migration to Vercel as in progress. CI runs separately in `.github/workflows/test.yml` on every push and PR: `npm ci` → `hugo --minify` → `npm test`.
+Also still deployable to GitHub Pages via `.github/workflows/hugo.yml` (manual trigger, Hugo v0.138.0 extended), which passes the URL Pages gives it for the same reason. CI runs separately in `.github/workflows/test.yml` on every push and PR: `npm ci` → `hugo --minify` → `npm test`.
 
 ## Tailwind & Styling
 

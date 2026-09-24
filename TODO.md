@@ -3,7 +3,7 @@
 ## Launch Playbook — Technical Readiness
 
 ### 1. Canonical Domain & HTTPS
-- [ ] Confirm `https://www.arts-link.com/` is the canonical host in Vercel/DNS settings
+- [ ] Confirm `https://www.arts-link.com/` is the canonical host in Cloudflare/DNS settings
 - [ ] Verify all redirect variants return 301:
   - `http://arts-link.com` → `https://www.arts-link.com/`
   - `https://arts-link.com` → `https://www.arts-link.com/`
