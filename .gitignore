@@ -27,7 +27,11 @@ Desktop.ini
 .vscode/
 .idea/
 
-# Client hub verification build (see scripts/vercel-build.sh)
+# Stray output directory name — the script that used to build here (`npm run
+# hub`) is gone, so nothing generates this any more, but it is cheap defensive
+# cover against exactly the failure mode it just caught: a leftover local
+# build almost got committed as tracked files when this line was removed
+# during the client-hub removal PR.
 /public-clients/
 
 # Vercel CLI link state

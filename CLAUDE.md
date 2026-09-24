@@ -32,9 +32,6 @@ hugo --minify && npm test
 # Regenerate social share cards — requires a build first (see Social Cards)
 hugo --minify && npm run og
 
-# Build and serve the private client hub behind its auth gate (see Client Hub)
-npm run hub
-
 # Cloudflare Workers (see Deployment) — build, serve on the real Workers
 # runtime, deploy. cf:dev is the only way to check routing behaviour that
 # `hugo server` cannot show you: trailing-slash redirects and the 404 status.
@@ -103,9 +100,11 @@ of ~27px, the display face is `font-medium` rather than the site's usual `font-l
 check a redesign at those widths rather than at 1200px — everything looks fine at full
 size.
 
-**Deployment — in transition.** Two configs exist on purpose: Vercel is live and is
-the rollback, Cloudflare is built and waiting for the DNS cutover. Do not delete the
-Vercel half until `www` has been on Cloudflare long enough to trust.
+**Deployment.** Cloudflare Workers is the sole deployment target for this site. The
+Vercel cutover is done — `vercel.json` and `scripts/vercel-build.sh` are gone, and the
+Vercel `arts-link-com` project has been deleted. (Vercel is not retired from Arts-Link
+generally — `screenshots.arts-link.com`, a separate tool with its own repository, still
+runs there. This section is about this site only.)
 
 **Nothing in `.github/workflows/` deploys to Cloudflare.** Workers Builds is
 Cloudflare's own CI — it connects through the Cloudflare GitHub App, runs on
@@ -160,15 +159,11 @@ both ways into temp directories and asserts each.
 equivalent, and `_redirects` matches paths rather than hostnames, so it belongs in a
 Cloudflare **Redirect Rule** — which also avoids invoking anything per request.
 
-**Vercel (still live)**: `vercel.json` → `scripts/vercel-build.sh`, which passes
-`--baseURL` derived from the deployment's own hostname (`VERCEL_BRANCH_URL`, falling back
-to `VERCEL_URL`) on previews, and uses the configured `baseURL` in production. Hugo
-resolves every absolute URL — `og:image`, `og:url`, `canonical`, the JSON-LD `@id`s, the
-sitemap line in `robots.txt` — against `baseURL`, so without that a preview deployment
-advertises production's social cards and canonicalizes itself to the live site. Nothing
-in `layouts/` hardcodes the domain; keep it that way.
+Nothing in `layouts/` hardcodes the domain; keep it that way — Hugo resolves every
+absolute URL (`og:image`, `og:url`, `canonical`, the JSON-LD `@id`s, the sitemap line in
+`robots.txt`) against `baseURL`.
 
-Also still deployable to GitHub Pages via `.github/workflows/hugo.yml` (manual trigger, Hugo v0.138.0 extended), which passes the URL Pages gives it for the same reason. Note that `docs/site-system.yaml` records a migration to Vercel as in progress. CI runs separately in `.github/workflows/test.yml` on every push and PR: `npm ci` → `hugo --minify` → `npm test`.
+Also still deployable to GitHub Pages via `.github/workflows/hugo.yml` (manual trigger, Hugo v0.138.0 extended), which passes the URL Pages gives it for the same reason. CI runs separately in `.github/workflows/test.yml` on every push and PR: `npm ci` → `hugo --minify` → `npm test`.
 
 ## Tailwind & Styling
 
@@ -188,7 +183,7 @@ Theming is done entirely with CSS custom properties in `assets/css/main.css`:
 - **Light is opt-in**, defined on `html.light`
 - The `light` class is set pre-paint by an inline script at the top of `baseof.html` (reading `localStorage.theme`), and toggled by the Alpine component in `layouts/partials/footer.html`
 
-**The client hub inverts this.** `layouts/hub/baseof.html` ships `class="light"` on `<html>` and its pre-paint script *removes* the class for a client who chose dark, rather than adding it. Those pages are documents meant to be read closely and printed, so light is the default there and dark is the opt-in — the exact opposite of the public site. Don't "fix" the asymmetry; see `client_hub.readability_standard` in `docs/site-system.yaml` and the contract at the top of `assets/css/hub.css`.
+**The client hub (`clients.arts-link.com`) inverts this** — light by default, dark opt-in, the reverse of the public site — but it is a separate repository now (`arts-link/clients.arts-link.com`) with its own `CLAUDE.md` and its own readability contract. Nothing about its theming lives here any more.
 
 So a new color means adding a `--color-*` variable to **both** the `:root` and `html.light` blocks, then registering it in `tailwind.config.js` using the same `rgb(var(…) / <alpha-value>)` form. Anything built from the existing `ink` / `cream` / `ember` tokens adapts to both themes for free.
 
