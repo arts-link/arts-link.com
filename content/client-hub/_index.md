@@ -4,8 +4,8 @@ description = "Where to find your Arts-Link project hub, and what to do if the l
 
 # Reuses layouts/thanks/list.html, which is the site's data-driven utility
 # layout — eyebrow, heading, body, and one way onward. Nothing about it is
-# specific to thanking anyone, and a second copy of the same markup under
-# layouts/hub/ would be a copy to keep in step for no gain.
+# specific to thanking anyone, and this page has no reason to define its own
+# markup just to say the same thing once.
 type = "thanks"
 
 eyebrow = "Client hubs"

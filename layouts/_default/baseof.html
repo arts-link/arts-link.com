@@ -107,14 +107,10 @@
 </head>
 <body>
   <div class="grain" aria-hidden="true"></div>
-  {{/* The clients build reaches this shell only for its 404 page. The public
-       header and footer link to /work/, /services/, /blog/ and /contact/, none
-       of which exist there — a 404 whose every link is another 404. */}}
-  {{- $clients := eq site.Params.env "clients" }}
-  {{ if $clients }}{{ partial "hub/header.html" . }}{{ else }}{{ partial "header.html" . }}{{ end }}
+  {{ partial "header.html" . }}
   <main>
     {{ block "main" . }}{{ end }}
   </main>
-  {{ if $clients }}{{ partial "hub/footer.html" . }}{{ else }}{{ partial "footer.html" . }}{{ end }}
+  {{ partial "footer.html" . }}
 </body>
 </html>

@@ -11,10 +11,12 @@
 # The GitHub Pages workflow already does the same thing with the URL Pages
 # hands it; this is the Vercel half.
 #
-# The same script builds two Vercel projects from this repo. The public site
-# leaves HUGO_ENVIRONMENT unset and gets `production`, which is what Hugo would
-# have defaulted to anyway; the client hub project sets HUGO_ENVIRONMENT=clients
-# and picks up config/clients/.
+# Cloudflare Workers is the live deployment target now (see cf-build.sh);
+# Vercel is kept only as the rollback until that has proven itself. This
+# repository used to also build a second Vercel project — a private client
+# hub, with HUGO_ENVIRONMENT=clients picking up config/clients/ — which has
+# since moved to its own private repository on Cloudflare. There is only ever
+# one environment to build here now.
 set -eu
 
 HUGO_ENVIRONMENT="${HUGO_ENVIRONMENT:-production}"

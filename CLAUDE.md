@@ -32,9 +32,6 @@ hugo --minify && npm test
 # Regenerate social share cards — requires a build first (see Social Cards)
 hugo --minify && npm run og
 
-# Build and serve the private client hub behind its auth gate (see Client Hub)
-npm run hub
-
 # Cloudflare Workers (see Deployment) — build, serve on the real Workers
 # runtime, deploy. cf:dev is the only way to check routing behaviour that
 # `hugo server` cannot show you: trailing-slash redirects and the 404 status.
@@ -188,7 +185,7 @@ Theming is done entirely with CSS custom properties in `assets/css/main.css`:
 - **Light is opt-in**, defined on `html.light`
 - The `light` class is set pre-paint by an inline script at the top of `baseof.html` (reading `localStorage.theme`), and toggled by the Alpine component in `layouts/partials/footer.html`
 
-**The client hub inverts this.** `layouts/hub/baseof.html` ships `class="light"` on `<html>` and its pre-paint script *removes* the class for a client who chose dark, rather than adding it. Those pages are documents meant to be read closely and printed, so light is the default there and dark is the opt-in — the exact opposite of the public site. Don't "fix" the asymmetry; see `client_hub.readability_standard` in `docs/site-system.yaml` and the contract at the top of `assets/css/hub.css`.
+**The client hub (`clients.arts-link.com`) inverts this** — light by default, dark opt-in, the reverse of the public site — but it is a separate repository now (`arts-link/clients.arts-link.com`) with its own `CLAUDE.md` and its own readability contract. Nothing about its theming lives here any more.
 
 So a new color means adding a `--color-*` variable to **both** the `:root` and `html.light` blocks, then registering it in `tailwind.config.js` using the same `rgb(var(…) / <alpha-value>)` form. Anything built from the existing `ink` / `cream` / `ember` tokens adapts to both themes for free.
 
