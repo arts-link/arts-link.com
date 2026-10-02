@@ -43,7 +43,7 @@ Detail: [`docs/architecture.md`](docs/architecture.md).
 - **Descriptions** — `layouts/partials/page-description.html` feeds meta, OG, Twitter, and the social card. Authored `description` wins. A smoke test fails if two indexable pages share one.
 - **Social cards** — every page gets a committed 1200×630 card rendered from the `ogcard` output format. See [`docs/social-cards.md`](docs/social-cards.md).
 - **Deployment** — Cloudflare Workers (assets-only), deployed by Workers Builds. See [`docs/deployment.md`](docs/deployment.md).
-- **Design** — before designing or restyling anything, read [`docs/design-system.md`](docs/design-system.md) and the imported Claude Design guide in `docs/design-system/source/readme.md`. In short: square corners, Fraunces light headings, opacity on cream rather than new colors, no gradients, no emoji. Where the guide and the CSS disagree, the CSS ships and the drift table records the gap.
+- **Design** — read [`docs/design-system.md`](docs/design-system.md) and the imported guide in `docs/design-system/source/readme.md` before designing anything; voice and language rules are in [`docs/writing-style.md`](docs/writing-style.md).
 
 ## Rules That Bite
 
@@ -64,8 +64,6 @@ Full guide: [`docs/writing-style.md`](docs/writing-style.md).
 **Don't let technology define the offering.** Arts-Link is a web studio, not a Hugo shop. On positioning surfaces — hero copy, taglines, service descriptions, page descriptions, meta and OG text — sell the outcome (fast, beautiful, accessible, yours to own), never a stack.
 
 **Naming the stack is fine when it's the subject.** Case studies, work entries, and blog posts describe specific projects; say Hugo when it's Hugo, Astro when it's Astro. Rule of thumb: technology in the *body* of a project story, yes; technology in the *pitch*, no.
-
-**American English, US dollars, US dates** ("September 30, 2026"). **First person "I"** on positioning surfaces, never "we".
 
 **Never link to the working surface of a tool we used.** No `claude.ai` artifact, shared chat, scratch document or notebook — not in a work entry, blog post, or anything sent to a client. Such links are usually private to their maker, can expire silently, and show a buyer how the sausage is made. If it's worth showing, bring it into the repository and serve it from our own domain.
 
