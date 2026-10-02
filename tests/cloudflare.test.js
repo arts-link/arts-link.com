@@ -59,6 +59,13 @@ describe('wrangler.jsonc', () => {
     expect(config.assets.not_found_handling).toBe('404-page');
   });
 
+  it('enables preview URLs by decision, not by default', () => {
+    // Previews are public and crawlable. That is safe only because
+    // scripts/cf-build.sh marks them noindex; the setting and the build
+    // belong together, so the setting is pinned here.
+    expect(config.preview_urls).toBe(true);
+  });
+
   it('serves folder indexes with a trailing slash', () => {
     // Hugo emits /about/index.html. Dropping trailing slashes here would
     // break every internal link on the site at once.
