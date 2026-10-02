@@ -8,7 +8,7 @@ _Last surveyed: October 2026, while building this knowledge base._
 
 | Item | Why it matters | Suggested fix |
 |---|---|---|
-| `content/draft-proposals/philly-historical-markers/index.md` | `_build` keeps it out of the site, but the **source is public** in this repo and includes a personal phone number. Proposals belong outside a public repo; see [`client-hub-boundary.md`](client-hub-boundary.md). | Move to the hub repo or a private store, then delete the section and its `pages_cut` note. |
+| `content/draft-proposals/philly-historical-markers/index.md` | `_build` keeps it out of the site, but the **source is public** in this repo. Proposals belong in the hub repo, not here; see [`client-hub-boundary.md`](client-hub-boundary.md). | Move to the hub repo or a private store, then delete the section and its `pages_cut` note. |
 
 ## Stale from the Ryder-theme era
 
@@ -24,6 +24,17 @@ _Last surveyed: October 2026, while building this knowledge base._
 | Unused dependencies: `@fortawesome/*`, `leaflet`, `@alpinejs/focus` | Remove them from `package.json` after confirming nothing loads them. |
 | `package.json` `name` is `benstrawbridge.com`, and `description` is `"## inital setup"` | Rename it to `arts-link.com`. |
 | `content/_index.md` carries `homeFeatureIcon` and `ogTitleText`, which no template reads | Remove them. |
+
+## Design drift
+
+These items come from the drift table in [`design-system.md`](design-system.md#drift-design-vs-code).
+
+| Item | Suggested fix |
+|---|---|
+| `bg-[#252220]` is hardcoded in `layouts/partials/modules/project-card.html`, so it doesn't adapt to light mode | Add `--color-well` to both theme blocks plus Tailwind, and use `bg-well`. |
+| Blog images are rounded (`prose-img:rounded-xl` in `layouts/blog/single.html`), but the design rule is radius 0 | Remove the rounding. |
+| Text opacity uses about 15 steps against the design's six (100/55/35/25/10/5) | Fold stragglers into the ladder as templates are touched. |
+| `layouts/partials/logo.html` is unused and leftover from the theme era (`font-header`, `text-black`, an `<h1>`) | Delete it. |
 
 ## Copy and content
 

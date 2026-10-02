@@ -16,7 +16,7 @@ So anything about a specific client's engagement goes in the hub repo, or nowher
 - proposals, estimates and statements of work, **including drafts** (see [`known-debt.md`](known-debt.md) about `content/draft-proposals/`)
 - hub code: auth, Access policies, `run_worker_first`, `CLIENT_ROUTES`, hub templates
 - hub design rules. The hub is **light by default, dark opt-in**, the reverse of this site, and has its own readability contract.
-- personal contact details beyond the public `hello@arts-link.com`
+- contact details on public pages beyond `hello@arts-link.com`. Proposals carry Ben's direct contact details, and proposals live in the hub repo. The one deliberate exception is `docs/design-system/source/project-rules.md`, which says where those details go in a proposal; Ben chose to keep it as imported.
 - credentials of any kind, and links to tool working surfaces (see `AGENTS.md`)
 
 ## What legitimately lives here
