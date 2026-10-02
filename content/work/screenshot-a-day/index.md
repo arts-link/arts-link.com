@@ -8,7 +8,7 @@ live_url = "https://arts-link.github.io/screenshot-a-day/"
 repo_url = "https://github.com/arts-link/screenshot-a-day"
 live_label = "Visit the project site"
 case_study = true
-weight = 1
+weight = 2
 +++
 
 Websites are often changed and their history lost forever. A redesign is implemented, a page gets rewritten. A client asks what the homepage looked like two years ago, and the honest answer is that no one remembers.
