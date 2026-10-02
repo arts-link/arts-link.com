@@ -4,6 +4,9 @@
   "description": "## inital setup",
   "main": "index.js",
   "scripts": {
+    "hugo": "sh scripts/hugo.sh",
+    "dev": "sh scripts/hugo.sh server",
+    "build": "sh scripts/hugo.sh --minify --cleanDestinationDir",
     "test": "vitest run",
     "postinstall": "cp node_modules/alpinejs/dist/cdn.min.js static/js/alpine.min.js",
     "og": "node scripts/og-images.mjs",

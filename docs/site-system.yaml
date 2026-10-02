@@ -269,7 +269,7 @@ site_system:
       scripts/og-images.mjs screenshots those pages with Playwright into
       static/og/<page-path>.jpg.
     workflow: >
-      The images are committed. Run `hugo --minify && npm run og` after adding
+      The images are committed. Run `npm run build && npm run og` after adding
       or retitling a page, and commit static/og/ and data/og/manifest.json with
       the content change. Only cards whose source actually changed are
       re-rendered, so this is normally a no-op. CI runs `npm run og:check`,

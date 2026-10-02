@@ -26,7 +26,7 @@ const WRANGLER = path.join(ROOT, 'wrangler.jsonc');
 
 const hasHugo = (() => {
   try {
-    execFileSync('hugo', ['version'], { stdio: 'ignore' });
+    execFileSync('sh', ['scripts/hugo.sh', 'version'], { stdio: 'ignore' });
     return true;
   } catch {
     return false;

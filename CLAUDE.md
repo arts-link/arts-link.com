@@ -18,29 +18,54 @@ The site strategy follows the framework in `docs/web-systems-adventure-mode.md`.
 
 ```bash
 # Start local dev server
-hugo server
+npm run dev
 
 # Build for production
-hugo --minify
+npm run build
 
 # Install dependencies (after cloning)
 npm ci
 
 # Run tests (vitest) — requires a build first, see below
-hugo --minify && npm test
+npm run build && npm test
 
 # Regenerate social share cards — requires a build first (see Social Cards)
-hugo --minify && npm run og
+npm run build && npm run og
 
 # Cloudflare Workers (see Deployment) — build, serve on the real Workers
 # runtime, deploy. cf:dev is the only way to check routing behaviour that
-# `hugo server` cannot show you: trailing-slash redirects and the 404 status.
+# `npm run dev` cannot show you: trailing-slash redirects and the 404 status.
 npm run cf:build
 npm run cf:dev
 npm run cf:deploy
 ```
 
 The test suite reads from the generated `public/` directory. Without it, `tests/smoke.test.js` skips itself silently, so always build before running tests.
+
+### One Hugo version, everywhere
+
+**Don't run a bare `hugo`.** The site is pinned to one Hugo version, written in
+`.hugo-version` and nowhere else. `scripts/hugo.sh` runs exactly that version: it uses
+the `hugo` on your PATH if it already matches, and otherwise downloads the pinned
+extended release once into `node_modules/.cache/hugo/` (checksum-verified). `npm run
+dev`, `npm run build`, `npm run hugo -- <args>`, `scripts/cf-build.sh` and all three
+workflows go through it. A brew Hugo is fine to keep for other projects; this one won't
+use it unless it's the same version.
+
+It's enforced, not just encouraged: `layouts/partials/hugo-version-guard.html` fails
+the build with an explanatory error under any other version, and
+`tests/hugo-version.test.js` fails if a workflow grows its own Hugo install or if
+`public/` was built by a different version.
+
+The reason is the social cards. Different Hugo versions name resized images
+differently, the cards embed those names, and so a local Hugo that drifts from CI's
+makes `og:check` fail in CI on cards nobody touched. That broke PR #64.
+
+To upgrade Hugo: change `.hugo-version`, run `npm run build && npm run og`, and commit
+the version file together with the re-rendered `static/og/` and `data/og/manifest.json`.
+The Workers Builds `HUGO_VERSION` dashboard variable can stay as it is — `hugo.sh`
+fetches the pinned version when the image's Hugo doesn't match — but updating it to
+`extended_<version>` saves the download.
 
 ## Architecture
 
@@ -83,13 +108,13 @@ the site's own CSS so it uses the real `ink`/`cream`/`ember` tokens and self-hos
 fonts. `scripts/og-images.mjs` screenshots those with Playwright into `static/og/`.
 
 The images are **committed** — nothing renders at deploy time. After adding or
-retitling a page, run `hugo --minify && npm run og` and commit `static/og/` along with
+retitling a page, run `npm run build && npm run og` and commit `static/og/` along with
 `data/og/manifest.json`; only cards whose source changed are re-rendered, so it's
 usually a no-op. CI runs `npm run og:check` and fails if a card is missing or stale.
 `baseof.html` falls back to `og-default.jpg` for pages not yet in the manifest.
 
 To redesign the card, edit `layouts/partials/og-card.html` and preview it live at
-`localhost:1313/work/rt2026/og.html` during `hugo server`. Note that
+`localhost:1313/work/rt2026/og.html` during `npm run dev`. Note that
 `baseof.ogcard.html` deliberately has no `{{ block "main" }}` — see the comment in that
 file.
 
@@ -163,7 +188,7 @@ Nothing in `layouts/` hardcodes the domain; keep it that way — Hugo resolves e
 absolute URL (`og:image`, `og:url`, `canonical`, the JSON-LD `@id`s, the sitemap line in
 `robots.txt`) against `baseURL`.
 
-Also still deployable to GitHub Pages via `.github/workflows/hugo.yml` (manual trigger, Hugo v0.138.0 extended), which passes the URL Pages gives it for the same reason. CI runs separately in `.github/workflows/test.yml` on every push and PR: `npm ci` → `hugo --minify` → `npm test`.
+Also still deployable to GitHub Pages via `.github/workflows/hugo.yml` (manual trigger, Hugo from `.hugo-version`), which passes the URL Pages gives it for the same reason. CI runs separately in `.github/workflows/test.yml` on every push and PR: `npm ci` → `npm run build` → `npm run og:check` → `npm test`.
 
 ## Tailwind & Styling
 
