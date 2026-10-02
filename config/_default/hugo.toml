@@ -35,8 +35,12 @@ enableGitInfo = false
   section = ["HTML", "ogcard"]
   
 [module]
+  # Image .Process (homepage, work pages, project cards) is extended-only.
+  # Declaring it makes a standard-edition Hugo refuse to start with one clear
+  # message, instead of failing once per template at render time. On Workers
+  # Builds that means HUGO_VERSION=extended_0.138.0, not 0.138.0.
   [module.hugoVersion]
-    extended = false
+    extended = true
     min = "0.116.0"
   [[module.mounts]]
     source = "assets"
