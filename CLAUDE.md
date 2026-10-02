@@ -169,7 +169,7 @@ Also still deployable to GitHub Pages via `.github/workflows/hugo.yml` (manual t
 
 Custom additions in `tailwind.config.js`:
 - Colors: `ink` / `ink-light` (backgrounds), `cream` (text), `ember` / `ember-light` (accent) — all defined as `rgb(var(--color-…) / <alpha-value>)`, so opacity modifiers like `text-cream/50` work
-- Fonts: `font-display` → Fraunces (headings), `font-body` → DM Sans — self-hosted variable woff2 in `static/fonts/`, preloaded in `baseof.html`
+- Fonts: `font-display` → Fraunces (headings), `font-body` → DM Sans — self-hosted variable woff2 in `static/fonts/`, preloaded in `baseof.html`. The six woff2 files are Google Fonts' own `latin` and `latin-ext` subsets of the variable fonts (the `unicode-range` values in `main.css` are Google's), saved from the Google Fonts CSS API. They are the only font files the site ships — the OFL texts beside them are the licenses, which travel with the fonts. If a weight or subset is ever needed, fetch it the same way rather than committing the full TTF downloads.
 - Breakpoint: `xs: 475px`
 
 The `@tailwindcss/typography` plugin is active for prose content.
