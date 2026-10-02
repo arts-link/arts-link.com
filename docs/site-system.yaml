@@ -167,8 +167,11 @@ site_system:
       domain. Workers Builds never tells a build its own URL,
       because a preview's alias is assigned after the build finishes. So
       scripts/cf-build.sh has previews claim nothing instead — noindex, no
-      canonical, no og:url, and a blanket-disallow robots.txt. Workers preview
-      URLs are public and crawlable, so this is load-bearing rather than tidy.
+      canonical, no og:url, no PostHog, and a blanket-disallow robots.txt.
+      Workers preview URLs are public and crawlable, so this is load-bearing
+      rather than tidy. Previews still build in the production Hugo
+      environment, so without the PostHog gate every click through a PR would
+      land in the dataset the keystone metrics are read from.
     apex_redirect: >
       apex -> www is a Cloudflare Redirect Rule, not repository config. Route
       53's ALIAS record has no Cloudflare equivalent, and a _redirects file

@@ -50,7 +50,7 @@ The test suite reads from the generated `public/` directory. Without it, `tests/
 
 **Interactivity**: Alpine.js handles UI interactivity (theme toggle, image galleries, mobile nav). No bundler — `static/js/alpine.min.js` is copied from `node_modules` by the `postinstall` script and loaded directly.
 
-**Environment configs**: `config/_default/` applies everywhere; `config/production/` sets the production `title` and adds PostHog analytics (`posthog_key`, `posthog_host`). The PostHog snippet in `baseof.html` is gated on `hugo.Environment` being production. `static/js/analytics.js` loads in every environment.
+**Environment configs**: `config/_default/` applies everywhere; `config/production/` sets the production `title` and adds PostHog analytics (`posthog_key`, `posthog_host`). The PostHog snippet in `baseof.html` is gated on `hugo.Environment` being production *and* the build not being a preview — previews build in the production environment too (see Deployment), so the environment check alone would send every PR click-through into the live analytics. `static/js/analytics.js` loads in every environment.
 
 **Content model**: `content/work/` holds portfolio entries as page bundles — an `index.md` plus a `screenshot.*` image resource picked up by `.Resources.GetMatch`. Front matter:
 ```toml

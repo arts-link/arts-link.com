@@ -109,6 +109,14 @@ describe.skipIf(!hasHugo)('preview builds do not impersonate production', () => 
     expect(head).toMatch(/name=["']?robots["']?\s+content=["']noindex/);
   });
 
+  // Previews build in the production Hugo environment, which is what supplies
+  // the PostHog key. Without the preview gate every PR click-through would be
+  // counted as a real visit in the dataset the keystone metrics are read from.
+  it('does not load PostHog', () => {
+    expect(head).not.toMatch(/posthog\.init/);
+    expect(head).not.toMatch(/g\.arts-link\.com/);
+  });
+
   it('disallows crawling in robots.txt and advertises no sitemap', () => {
     expect(robots).toMatch(/Disallow:\s*\/\s*$/m);
     expect(robots).not.toMatch(/Sitemap:/i);
@@ -140,6 +148,10 @@ describe.skipIf(!hasHugo)('production builds are unchanged', () => {
 
   it('still emits og:url', () => {
     expect(head).toMatch(/og:url/);
+  });
+
+  it('still loads PostHog', () => {
+    expect(head).toMatch(/posthog\.init/);
   });
 
   it('does not carry the preview noindex', () => {
