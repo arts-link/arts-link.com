@@ -13,7 +13,7 @@ Production doesn't deploy from GitHub Actions. **Cloudflare Workers Builds** bui
 3. It reads the commit's first line from GitHub and calls the official [`PostHog/posthog-github-action`](https://github.com/PostHog/posthog-github-action), pinned to v1.3.0 by commit, which creates a project annotation:
 
    ```
-   arts-link.com production deploy @ <full SHA> · <short SHA> · <commit subject> · https://github.com/arts-link/arts-link.com/commit/<full SHA>
+   arts-link.com production deploy @ <full SHA> · <commit subject> · https://github.com/arts-link/arts-link.com/commit/<full SHA>
    ```
 
 4. Before creating anything, the action searches for an annotation that starts with `arts-link.com production deploy @ <full SHA>`. If it finds one, it skips. That makes "Re-run jobs" and a Cloudflare build retry safe. The full SHA leads the text because the action matches on a prefix.
@@ -69,7 +69,7 @@ Until both the secret and `POSTHOG_PROJECT_ID` exist, each production deploy sho
 7. Open **Data management → Annotations** for the list. Then open a time series, for example **Product analytics → New insight → Trends** with `$pageview` over the last 24 hours, by hour.
 8. Annotations show as small badges under the x-axis. If none appear, check that the insight's date range includes the deploy time.
 9. Check that the badge sits at the deploy time. The action stamps the time it runs, usually under a minute after Cloudflare finishes. PostHog shows it in the project timezone (UTC).
-10. Hover the badge and check the full SHA, short SHA, commit subject and link against the commit on GitHub.
+10. Hover the badge and check the SHA, commit subject and link against the commit on GitHub.
 11. Back in GitHub, open the same run and click **Re-run all jobs**. The step should now log `Annotation already exists, skipping: arts-link.com production deploy @ <SHA>`, and **Data management → Annotations** should still list one entry for that SHA.
 
 ## D. Troubleshooting
