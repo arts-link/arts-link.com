@@ -51,6 +51,6 @@ Dashboard recipes are in [`analytics.md`](analytics.md#recommended-posthog-dashb
 |---|---|
 | Monthly | Contact submissions vs Formspree; top pages; CTA location breakdown |
 | Quarterly | The three funnels; blog organic growth; whether each page still earns its place (`page_inventory`) |
-| After a launch or redesign | The before/after funnel for the affected page; social card unfurls in iMessage, Slack and X |
+| After a launch or redesign | The before/after funnel for the affected page, split at the deploy annotation PostHog draws for that commit; social card unfurls in iMessage, Slack and X |
 
 Take decisions that come out of a review (cutting a page, moving a CTA) back into `site-system.yaml`.

@@ -16,6 +16,7 @@ Nothing in `docs/` is published. Hugo's content directory is `content/`, so thes
 | Write or edit copy | [`writing-style.md`](writing-style.md) | Voice, positioning, descriptions, story structure |
 | Change the social share image | [`social-cards.md`](social-cards.md) | `ogcard` output, renderer, legibility |
 | Ship, preview, or debug a deploy | [`deployment.md`](deployment.md) | Cloudflare Workers, Workers Builds, robots, DNS |
+| Set up or fix PostHog deploy markers | [`runbooks/posthog-deploy-tracking.md`](runbooks/posthog-deploy-tracking.md) | Deploy annotations, the CI-only PostHog key, rotation |
 | Understand a red check | [`ci-and-testing.md`](ci-and-testing.md) | Workflows and test assertions |
 | Track a new interaction | [`analytics.md`](analytics.md) | PostHog wiring, event inventory, dashboards |
 | Read the numbers | [`metrics-and-stats.md`](metrics-and-stats.md) | Keystone metrics → events → funnels, review cadence |

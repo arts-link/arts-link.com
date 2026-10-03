@@ -33,7 +33,8 @@ This has already happened. The app had access to `clients.arts-link.com` but not
 
 1. Check that the PR showed three checks.
 2. In **Deployments**, find a new version carrying the commit message and a branch badge.
-3. Fetch a page or file you changed from `https://www.arts-link.com/` and read it. `curl -s https://www.arts-link.com/robots.txt` is a quick freshness probe.
+3. In PostHog, a deploy annotation for that commit appears on the charts. It comes from `.github/workflows/posthog-deploy-annotation.yml`, which waits for the Workers Builds check to succeed on a `main` commit. Setup and checks are in [`runbooks/posthog-deploy-tracking.md`](runbooks/posthog-deploy-tracking.md).
+4. Fetch a page or file you changed from `https://www.arts-link.com/` and read it. `curl -s https://www.arts-link.com/robots.txt` is a quick freshness probe.
 
 ## Previews
 

@@ -10,6 +10,7 @@ This page covers what runs on every push, what each test asserts, and how to rep
 |---|---|---|
 | `test.yml` (**`test`** check) | push to `main`, every PR | `npm ci` → `npm run build` → `npm run og:check` → `npm test`, on the Hugo in `.hugo-version` (via `scripts/hugo.sh`; no workflow installs its own). Skips the Playwright browser download. |
 | `og-cards.yml` | manual | Builds the site, renders stale social cards with Chromium, and commits `static/og/` + `data/og/` to the branch it runs on. For when you have no local Chromium. |
+| `posthog-deploy-annotation.yml` | `check_run` completed (runs from `main`'s copy) | When `Workers Builds: arts-link-com` succeeds on a commit on `main`, it creates a deduplicated PostHog deploy annotation. Skips every other check, including previews, and can't fail a deploy. See [`runbooks/posthog-deploy-tracking.md`](runbooks/posthog-deploy-tracking.md). |
 | `hugo.yml` | manual | Legacy GitHub Pages deploy. Not production. |
 | *Workers Builds* (**`Workers Builds: arts-link-com`** check) | every push, run by Cloudflare rather than GitHub Actions | Builds and deploys. See [`deployment.md`](deployment.md). |
 
@@ -42,6 +43,11 @@ npm run build && npm test
 **`tests/site-system.test.js`** checks that `docs/site-system.yaml` parses with no errors or warnings (duplicate keys included) and has every top-level section.
 
 **`tests/hugo-version.test.js`** checks that no workflow pins or installs its own Hugo, and that `public/` was built by the version in `.hugo-version`.
+
+**`tests/posthog-deploy.test.js`** checks the deploy-annotation workflow and the CI key:
+- It triggers only on a completed check run, and only for a successful `Workers Builds: arts-link-com` on a commit on `main`.
+- The PostHog step is `continue-on-error`, has a failure warning, is pinned to a commit SHA, and dedupes on `arts-link.com production deploy @ <SHA>`.
+- `POSTHOG_CI_API_KEY` is read only from `secrets`. Neither that name nor a `phx_` Personal API Key appears in `layouts/`, `static/`, `assets/`, `config/`, `content/`, `data/`, `scripts/` or the built `public/`.
 
 **`tests/analytics.test.js`** (jsdom) checks `static/js/analytics.js`:
 - A click on `[data-track-event]` captures the right name, and valid JSON props are passed through.
