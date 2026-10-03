@@ -50,3 +50,7 @@ Ready to give your work a better home? **[Tell me about your project.](https://a
 <p align="center">
   <a href="mailto:hello@arts-link.com">hello@arts-link.com</a> · <a href="https://arts-link.com">arts-link.com</a>
 </p>
+
+---
+
+<sub>Working on this repository? Start with [AGENTS.md](AGENTS.md) and the [docs knowledge base](docs/README.md).</sub>
