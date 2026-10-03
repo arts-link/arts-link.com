@@ -1,5 +1,9 @@
 # Analytics — arts-link.com
 
+This page covers how events get from the page to PostHog, what is tracked, and how to add more. For what the numbers *mean*, and which ones matter, see [`metrics-and-stats.md`](metrics-and-stats.md).
+
+**Source of truth:** `static/js/analytics.js`, the PostHog block in `layouts/_default/baseof.html`, `config/production/hugo.toml`, `tests/analytics.test.js`.
+
 ## Architecture
 
 Two-tier setup:
@@ -13,7 +17,8 @@ Two-tier setup:
 - PostHog project: `https://us.posthog.com`
 - `person_profiles: 'identified_only'` — no anonymous profiles created
 - `preconnect` + `dns-prefetch` hints for `posthog_host` added early in `<head>` (see below)
-- Cloudflare Workers Builds preview deployments are **not yet filtered** — see issue #59
+- Both the snippet and the hints are gated on `hugo.Environment == "production"` **and** `not $preview`. Workers Builds previews build in the production environment too, so the environment check alone would send every PR click-through into the live dataset ([#59](https://github.com/arts-link/arts-link.com/issues/59)). `tests/cloudflare.test.js` asserts a preview build has no PostHog and a production build does. Data captured from previews before the fix can be excluded by host (`$host` ending in `workers.dev`).
+- `npm run dev` runs in the development environment, so local browsing sends nothing.
 
 ### Adding a new third-party origin
 
@@ -39,9 +44,15 @@ These are the events fired by the `data-track-*` attribute system. They appear i
 | `CTA Click` | `layouts/partials/modules/hero.html` | `{location: "hero"}` |
 | `CTA Click` | `layouts/partials/modules/cta-block.html` | `{location: "cta-block"}` |
 | `CTA Click` | `layouts/partials/footer.html` | `{location: "footer"}` |
+| `Blog Callout Click` | `layouts/partials/modules/latest-post.html` (title, description and "Read" links) | `{location: "home"}` |
 | `Contact Form Submit` | `layouts/partials/modules/contact-form.html` | _(none)_ |
+| `Archive Worksheet Submit` | `layouts/archive-worksheet/list.html` | _(none)_ |
 
 PostHog also captures `$pageview` automatically on every page load.
+
+`cta-block.html` is rendered on Home, Work, Services and every Blog page, and always reports `location: "cta-block"`. To tell a blog-post CTA from a homepage one, break down by `$pathname` (or filter `$current_url` contains `/blog/`). Don't expect a `blog-post` location value; none is emitted.
+
+A form `submit` event fires when the browser submits, before Formspree validates anything. Treat it as an attempted submission. Formspree's own dashboard is the record of what was actually received.
 
 ---
 
@@ -141,3 +152,8 @@ For form submissions, use `data-track-form` on the `<form>` element:
 ```
 
 No JavaScript changes needed — `analytics.js` picks up any element with these attributes automatically.
+
+Then, in the same PR:
+1. Add a row to the **Custom Events Inventory** above.
+2. If the event feeds a funnel or keystone metric, update [`metrics-and-stats.md`](metrics-and-stats.md) and `analytics` in `docs/site-system.yaml`.
+3. Reuse existing event names and vary `location`, rather than inventing a new name for every placement. `CTA Click` is one event with many locations.

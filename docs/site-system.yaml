@@ -1,4 +1,6 @@
 site_system:
+  # Strategy lives here. How it is implemented, deployed and measured lives in
+  # the knowledge base at docs/README.md; agent rules are in AGENTS.md.
   keystone_metrics:
     primary: New clients onboarded
     secondary: Revenue
