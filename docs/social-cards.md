@@ -18,7 +18,7 @@ This page covers how every page gets its own 1200×630 Open Graph image, and how
 Cards are **committed**, and nothing renders at deploy.
 
 ```bash
-hugo --minify && npm run og      # renders only cards whose source changed
+npm run build && npm run og      # renders only cards whose source changed
 git add static/og data/og/manifest.json
 ```
 
@@ -47,4 +47,4 @@ Link unfurls show the card at about **300px** (iMessage), **360px** (Slack) or *
 - restrained letter-spacing on small caps
 - the ember bar carries the brand when no type survives at all
 
-**Judge a redesign at 300–500px wide, never at 1200px**, where everything looks fine. Preview it live during `hugo server` at `localhost:1313/work/rt2026/og.html`, then shrink the window or zoom out.
+**Judge a redesign at 300–500px wide, never at 1200px**, where everything looks fine. Preview it live during `npm run dev` at `localhost:1313/work/rt2026/og.html`, then shrink the window or zoom out.

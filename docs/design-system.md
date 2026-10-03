@@ -59,7 +59,7 @@ Anything built from the existing `ink` / `cream` / `ember` tokens adapts to both
 | Display | **Fraunces** (variable, normal + italic) | `font-display` | 300–700 | every heading, **always `font-light` (300)**; italic for emphasis and the wordmark. The one exception is social cards (500), for legibility at small sizes. |
 | Body | **DM Sans** (variable) | `font-body` (also the `body` default) | 300–500 | everything else |
 
-- The fonts are self-hosted woff2 in `static/fonts/`, subset to `latin` and `latin-ext`, with one variable file per subset. The source TTFs are in `static/fonts/DM_Sans/` and `static/fonts/Fraunces/`.
+- The fonts are self-hosted woff2 in `static/fonts/`, subset to `latin` and `latin-ext`, with one variable file per subset. The six woff2 files are Google Fonts' own `latin` and `latin-ext` subsets of the variable fonts (the `unicode-range` values in `main.css` are Google's), saved from the Google Fonts CSS API. They are the only font files the site ships; the OFL texts beside them are the licenses. If a weight or subset is ever needed, fetch it the same way rather than committing the full TTF downloads.
 - The three `latin` files are `<link rel="preload">`ed in `baseof.html`. Fraunces `latin` uses `font-display: optional`, so it never causes layout shift; everything else uses `swap`.
 - **The signature move** is a wide-tracked uppercase eyebrow (`text-ember text-xs tracking-[0.3em] uppercase`) above a very large light serif heading.
 - The hero runs `text-[clamp(3.5rem,9vw,8.5rem)] leading-[0.9]`. The CTA and thanks pattern is `font-display text-5xl md:text-7xl font-light`.

@@ -37,6 +37,12 @@
   // canonical. See the comment block in that file.
   "workers_dev": true,
 
+  // Stated rather than inherited: with workers_dev on, Wrangler enables
+  // preview URLs by default and warns on every deploy that it did so. We want
+  // them — a branch push gets a reviewable URL — and the build above already
+  // makes them safe to have.
+  "preview_urls": true,
+
   "observability": {
     "enabled": true
   }

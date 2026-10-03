@@ -169,8 +169,11 @@ site_system:
       domain. Workers Builds never tells a build its own URL,
       because a preview's alias is assigned after the build finishes. So
       scripts/cf-build.sh has previews claim nothing instead — noindex, no
-      canonical, no og:url, and a blanket-disallow robots.txt. Workers preview
-      URLs are public and crawlable, so this is load-bearing rather than tidy.
+      canonical, no og:url, no PostHog, and a blanket-disallow robots.txt.
+      Workers preview URLs are public and crawlable, so this is load-bearing
+      rather than tidy. Previews still build in the production Hugo
+      environment, so without the PostHog gate every click through a PR would
+      land in the dataset the keystone metrics are read from.
     apex_redirect: >
       apex -> www is a Cloudflare Redirect Rule, not repository config. Route
       53's ALIAS record has no Cloudflare equivalent, and a _redirects file
@@ -200,7 +203,9 @@ site_system:
         - live_url
       optional:
         - repo_url: public source repository, rendered beside the live link on the entry page
-        - live_label: 'overrides the entry page''s live-link wording (default: "Visit the live site", or "View the live demo" for open-source entries)'
+        - live_label: >-
+            overrides the entry page's live-link wording (default: "Visit the
+            live site", or "View the live demo" for open-source entries)
         - designer: name of a collaborating designer (renders prose credit below screenshot)
         - designer_url: URL to link the designer's name in the credit line
         - case_study: true/false (enables full case study page)
@@ -266,7 +271,7 @@ site_system:
       scripts/og-images.mjs screenshots those pages with Playwright into
       static/og/<page-path>.jpg.
     workflow: >
-      The images are committed. Run `hugo --minify && npm run og` after adding
+      The images are committed. Run `npm run build && npm run og` after adding
       or retitling a page, and commit static/og/ and data/og/manifest.json with
       the content change. Only cards whose source actually changed are
       re-rendered, so this is normally a no-op. CI runs `npm run og:check`,

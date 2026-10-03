@@ -20,16 +20,18 @@ The strategy follows the framework in `docs/web-systems-adventure-mode.md`. Refe
 
 ```bash
 npm ci                          # install (postinstall copies Alpine into static/js/)
-hugo server                     # local dev server
-hugo --minify                   # production build into public/
-hugo --minify && npm test       # tests read public/ — build first or smoke tests skip silently
-hugo --minify && npm run og     # regenerate social cards (commit static/og/ + data/og/manifest.json)
+npm run dev                     # local dev server
+npm run build                   # production build into public/
+npm run build && npm test       # tests read public/ — build first or smoke tests skip silently
+npm run build && npm run og     # regenerate social cards (commit static/og/ + data/og/manifest.json)
 npm run og:check                # fail if any card is missing or stale (what CI runs)
 npm run cf:build                # build the way Workers Builds does
 npm run cf:dev                  # serve on the real Workers runtime — the only way to check
                                 # trailing-slash redirects and the 404 status
 npm run cf:deploy               # manual deploy (normally Workers Builds deploys on merge)
 ```
+
+**Don't run a bare `hugo`.** The Hugo version is written in `.hugo-version` and nowhere else; `scripts/hugo.sh` runs exactly that version (the `hugo` on PATH if it matches, otherwise the pinned extended release, downloaded once into `node_modules/.cache/hugo/` and checksum-verified). The npm scripts, `cf-build.sh` and every workflow go through it, and a template guard fails the build under any other version. → [`docs/architecture.md`](docs/architecture.md#one-hugo-version)
 
 ## Architecture in Brief
 
@@ -38,7 +40,7 @@ Detail: [`docs/architecture.md`](docs/architecture.md).
 - **Templates** — no theme. `layouts/_default/baseof.html` is the page shell; section directories (`layouts/work/`, `layouts/blog/`, …) provide `list.html` / `single.html`. Reusable blocks live in `layouts/partials/modules/` — **check there before writing new markup**.
 - **CSS** — Tailwind via PostCSS (`postcss-import` → `tailwindcss` → `autoprefixer`). Tailwind scans `layouts/**/*.html` and `hugo_stats.json` (emitted because `[build] writeStats = true`). The compiled CSS is **inlined** into a `<style>` tag in `baseof.html`.
 - **JS** — Alpine.js, no bundler. `static/js/alpine.min.js` is copied from `node_modules` by `postinstall`. `static/js/analytics.js` is the event layer.
-- **Config** — `config/_default/` everywhere; `config/production/` sets the production `title` and the PostHog `posthog_key` / `posthog_host`. The PostHog snippet is gated on `hugo.Environment == "production"`.
+- **Config** — `config/_default/` everywhere; `config/production/` sets the production `title` and the PostHog `posthog_key` / `posthog_host`. The PostHog snippet is gated on `hugo.Environment == "production"` **and** the build not being a preview (previews build in the production environment too).
 - **Content** — work entries are page bundles in `content/work/` (`index.md` + `screenshot.*`). Front-matter fields are defined in `docs/site-system.yaml` (`content_model.work_entries`) and explained in [`docs/content-model.md`](docs/content-model.md).
 - **Descriptions** — `layouts/partials/page-description.html` feeds meta, OG, Twitter, and the social card. Authored `description` wins. A smoke test fails if two indexable pages share one.
 - **Social cards** — every page gets a committed 1200×630 card rendered from the `ogcard` output format. See [`docs/social-cards.md`](docs/social-cards.md).
@@ -51,7 +53,7 @@ These are the things that have caused real problems or fail silently. Each links
 
 1. **Never write `dark:` utilities.** They silently never apply — `darkMode: 'class'` is vestigial. Dark is the default on `:root`; light is opt-in on `html.light`. A new color needs a `--color-*` variable in **both** blocks of `assets/css/main.css` plus a `rgb(var(…) / <alpha-value>)` entry in `tailwind.config.js`. → [`docs/design-system.md`](docs/design-system.md)
 2. **Never hardcode the domain** in `layouts/`. Every absolute URL resolves against `baseURL`; preview builds depend on it. → [`docs/deployment.md`](docs/deployment.md)
-3. **Social cards are committed.** After adding or retitling a page, run `hugo --minify && npm run og` and commit `static/og/` + `data/og/manifest.json`. CI fails on a stale card. Judge card redesigns at 300–500px wide, not 1200px. → [`docs/social-cards.md`](docs/social-cards.md)
+3. **Social cards are committed.** After adding or retitling a page, run `npm run build && npm run og` and commit `static/og/` + `data/og/manifest.json`. CI fails on a stale card. Judge card redesigns at 300–500px wide, not 1200px. → [`docs/social-cards.md`](docs/social-cards.md)
 4. **A PR should show three checks, not two**: `test`, plus **`Workers Builds: arts-link-com`**. If the Workers check is absent, the deploy isn't wired up and `main` will move without production. After a merge that matters, confirm the new version in the Cloudflare dashboard. → [`docs/deployment.md`](docs/deployment.md)
 5. **Write a `description`** whenever the derived one is weak; duplicates fail the smoke test. → [`docs/content-model.md`](docs/content-model.md)
 6. **Nothing from the client hub comes into this repo** — no client data, pricing, proposals, or hub code. This repository is public. → [`docs/client-hub-boundary.md`](docs/client-hub-boundary.md)

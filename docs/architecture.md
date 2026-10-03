@@ -8,7 +8,7 @@ This page covers how the site is put together: templates, styling, scripts, conf
 
 | Layer | Choice | Notes |
 |---|---|---|
-| Generator | Hugo (CI pins 0.138.0 extended; config requires ≥ 0.116.0) | **No theme.** Every template is in root `layouts/`. |
+| Generator | Hugo extended, pinned in `.hugo-version` and run through `scripts/hugo.sh` (see [One Hugo version](#one-hugo-version)) | **No theme.** Every template is in root `layouts/`. |
 | CSS | Tailwind 3 via PostCSS | Compiled CSS is inlined into every page. |
 | JS | Alpine.js 3, no bundler | Copied from `node_modules` by `postinstall`. |
 | Forms | Formspree | IDs in `config/_default/params.toml`. |
@@ -16,6 +16,16 @@ This page covers how the site is put together: templates, styling, scripts, conf
 | Hosting | Cloudflare Workers, assets only | See [`deployment.md`](deployment.md). |
 
 "Ryder" is Arts-Link's open-source Hugo theme, in a separate repository. It is **not** used here. Older docs that mention `themes/ryder` or `ryder-dev` are out of date.
+
+## One Hugo version
+
+**Don't run a bare `hugo`.** The site is pinned to one Hugo version, written in `.hugo-version` and nowhere else. `scripts/hugo.sh` runs exactly that version: it uses the `hugo` on your PATH if it already matches, and otherwise downloads the pinned extended release once into `node_modules/.cache/hugo/` (checksum-verified). `npm run dev`, `npm run build`, `npm run hugo -- <args>`, `scripts/cf-build.sh` and all three workflows go through it. A brew Hugo is fine to keep for other projects; this one won't use it unless it's the same version. `config/_default/hugo.toml` also declares `extended = true`, so a standard-edition Hugo stops at startup.
+
+It's enforced, not just encouraged: `layouts/partials/hugo-version-guard.html` fails the build with an explanatory error under any other version, and `tests/hugo-version.test.js` fails if a workflow grows its own Hugo install or if `public/` was built by a different version.
+
+The reason is the social cards. Different Hugo versions name resized images differently, the cards embed those names, and so a local Hugo that drifts from CI's makes `og:check` fail in CI on cards nobody touched. That broke PR #64.
+
+To upgrade Hugo: change `.hugo-version`, run `npm run build && npm run og`, and commit the version file together with the re-rendered `static/og/` and `data/og/manifest.json`. The Workers Builds `HUGO_VERSION` dashboard variable can stay as it is — `hugo.sh` fetches the pinned version when the image's Hugo doesn't match — but updating it to `extended_<version>` saves the download.
 
 ## Templates
 
@@ -70,7 +80,7 @@ Theming is done with CSS custom properties, not `dark:` utilities. See [`design-
 |---|---|---|
 | `config/_default/hugo.toml` | everywhere | `baseURL` (`https://www.arts-link.com/`), dev title, output formats, `writeStats` |
 | `config/_default/params.toml` | everywhere | site `description`, Formspree IDs, author |
-| `config/production/hugo.toml` | `hugo` / `hugo --minify` (production is Hugo's default environment for builds) | production `title`, `posthog_key`, `posthog_host` |
+| `config/production/hugo.toml` | `npm run build` (production is Hugo's default environment for builds) | production `title`, `posthog_key`, `posthog_host` |
 
 The PostHog key is a public project key, the kind that is meant to ship in client-side HTML. It is not a secret.
 

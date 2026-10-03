@@ -49,7 +49,7 @@ Open-source projects (Ryder, Screenshot-a-Day) use `site_type = "open-source"`. 
 1. Create `content/work/<slug>/index.md` with the fields above, and add `screenshot.png` (or `.jpg`/`.webp`) next to it.
 2. Write a `description` in the house voice (see [`writing-style.md`](writing-style.md)).
 3. Pick a `weight`. Entries 1–3 are on the homepage, so only take one of those slots on purpose.
-4. Run `hugo --minify && npm run og`, then commit the new card in `static/og/work/<slug>.jpg` and `data/og/manifest.json`.
+4. Run `npm run build && npm run og`, then commit the new card in `static/og/work/<slug>.jpg` and `data/og/manifest.json`.
 5. Run `npm test`.
 6. If it changes the portfolio story, update `page_inventory` → Work in `site-system.yaml`.
 

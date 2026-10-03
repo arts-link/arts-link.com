@@ -136,7 +136,7 @@ function serve(root) {
 // ─── Main ────────────────────────────────────────────────────────────────────
 
 if (!fs.existsSync(PUBLIC)) {
-  console.error('public/ not found — run `hugo --minify` first.');
+  console.error('public/ not found — run `npm run build` first.');
   process.exit(1);
 }
 

@@ -8,7 +8,7 @@ This page covers what runs on every push, what each test asserts, and how to rep
 
 | Workflow | Trigger | Does |
 |---|---|---|
-| `test.yml` (**`test`** check) | push to `main`, every PR | `npm ci` → `hugo --minify` → `npm run og:check` → `npm test`, on Hugo 0.138.0 extended. Skips the Playwright browser download. |
+| `test.yml` (**`test`** check) | push to `main`, every PR | `npm ci` → `npm run build` → `npm run og:check` → `npm test`, on the Hugo in `.hugo-version` (via `scripts/hugo.sh`; no workflow installs its own). Skips the Playwright browser download. |
 | `og-cards.yml` | manual | Builds the site, renders stale social cards with Chromium, and commits `static/og/` + `data/og/` to the branch it runs on. For when you have no local Chromium. |
 | `hugo.yml` | manual | Legacy GitHub Pages deploy. Not production. |
 | *Workers Builds* (**`Workers Builds: arts-link-com`** check) | every push, run by Cloudflare rather than GitHub Actions | Builds and deploys. See [`deployment.md`](deployment.md). |
@@ -18,7 +18,7 @@ A healthy PR shows **three** checks. Two means the Cloudflare deploy isn't conne
 ## Running tests
 
 ```bash
-hugo --minify && npm test
+npm run build && npm test
 ```
 
 **Build first.** `tests/smoke.test.js` reads `public/` and **skips itself silently** when the folder is missing, so a "passing" run with no build has tested nothing. Rebuild after changing content or templates too, or the tests read a stale `public/`.
@@ -35,9 +35,13 @@ hugo --minify && npm test
 - **Every internal `href` resolves** to a file in `public/`.
 
 **`tests/cloudflare.test.js`** checks the Workers config and the preview model:
-- `wrangler.jsonc` has the right name, no `main`, `./public`, `404-page` and `auto-trailing-slash`.
-- A preview build has no canonical, no `og:url`, has `noindex`, and robots.txt disallows everything with no sitemap.
-- A production build keeps canonical and `og:url`, has no `noindex`, allows crawling, lists the sitemap, and declares the `Content-Signal`.
+- `wrangler.jsonc` has the right name, no `main`, `./public`, `404-page`, `auto-trailing-slash` and `"preview_urls": true`.
+- A preview build has no canonical, no `og:url`, no PostHog, has `noindex`, and robots.txt disallows everything with no sitemap.
+- A production build keeps canonical and `og:url`, has no `noindex`, allows crawling, lists the sitemap, declares the `Content-Signal`, and still loads PostHog.
+
+**`tests/site-system.test.js`** checks that `docs/site-system.yaml` parses with no errors or warnings (duplicate keys included) and has every top-level section.
+
+**`tests/hugo-version.test.js`** checks that no workflow pins or installs its own Hugo, and that `public/` was built by the version in `.hugo-version`.
 
 **`tests/analytics.test.js`** (jsdom) checks `static/js/analytics.js`:
 - A click on `[data-track-event]` captures the right name, and valid JSON props are passed through.
@@ -45,7 +49,7 @@ hugo --minify && npm test
 - Several tracked elements work independently. Form submits capture the right event.
 - The pre-paint theme script survives `localStorage` being unavailable.
 
-**`npm run og:check`** isn't a vitest test, but it runs in CI. It fails if any page's card is missing or stale against `data/og/manifest.json`. Fix it with `hugo --minify && npm run og` and commit the result.
+**`npm run og:check`** isn't a vitest test, but it runs in CI. It fails if any page's card is missing or stale against `data/og/manifest.json`. Fix it with `npm run build && npm run og` and commit the result.
 
 ## Common failures
 
@@ -54,4 +58,6 @@ hugo --minify && npm test
 | Duplicate description | A new page has no `description` and derived the same text as another. Write one. |
 | Missing or stale card | A page was added or retitled without `npm run og`. |
 | Internal link doesn't resolve | A link points at a cut section (`_build` render never) or is missing its trailing slash. |
+| Build stops with a Hugo version error | You ran a bare `hugo` that doesn't match `.hugo-version`. Use `npm run dev` / `npm run build`. |
+| Stale card on pages nobody touched | `public/` was built by a different Hugo version. Rebuild with `npm run build`. |
 | All smoke tests "pass" in a second | `public/` doesn't exist, so the suite skipped. Build first. |

@@ -15,8 +15,6 @@ _Last surveyed: October 2026, while building this knowledge base._
 | Item | Suggested fix |
 |---|---|
 | `assets/jsconfig.json` points at `../themes/ryder/assets/*` | Delete it, or repoint it to `assets/`. |
-| `assets/css/extended/custom.css` (Chalkduster) is not imported anywhere | Delete it. |
-| `static/fonts/Chalkduster.ttf` is unreferenced, but still copied into every build | Delete it. |
 | `assets/common-partials/opengraph/` is unreferenced | Delete it. |
 | `.gitignore` theme lines (`/themes/*/exampleSite/`, `/themes/ryder-dev/`, `# /themes/benstraw/`) and `/assets/plausible-export/` | Prune them. |
 | `.gitmodules` is empty, yet the workflows check out `submodules: recursive` | Delete `.gitmodules` and drop the option. |
@@ -53,5 +51,4 @@ These items come from the drift table in [`design-system.md`](design-system.md#d
 | Item | Suggested fix |
 |---|---|
 | `TODO.md` has Plausible tasks and launch-checklist items (redirect checks, Search Console) that may be done | Re-audit it; move durable items into [`deployment.md`](deployment.md) and [`metrics-and-stats.md`](metrics-and-stats.md). |
-| PostHog loads on preview deployments: [arts-link/arts-link.com#59](https://github.com/arts-link/arts-link.com/issues/59) | Gate the snippet on `not $preview` in `baseof.html`. |
 | `.github/workflows/hugo.yml` (GitHub Pages) is kept "still deployable" but is unused | Decide whether to keep it; if it goes, update [`deployment.md`](deployment.md). |

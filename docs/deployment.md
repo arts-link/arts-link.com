@@ -42,11 +42,11 @@ Workers Builds builds every non-production branch as a preview. **Preview URLs a
 Hugo bakes `baseURL` into every absolute URL, and Workers Builds can't tell the build its own hostname, because the preview alias is assigned during `versions upload`, after the build finishes. It only injects `WORKERS_CI`, `WORKERS_CI_BRANCH`, `WORKERS_CI_COMMIT_SHA` and `WORKERS_CI_BUILD_UUID`. So instead of guessing the hostname, a preview **claims nothing**:
 
 - `scripts/cf-build.sh` sets `HUGO_PARAMS_PREVIEW=true` when `WORKERS_CI` is set and the branch isn't `PRODUCTION_BRANCH` (default `main`).
-- `baseof.html` then emits `noindex, nofollow` and omits `canonical` and `og:url`.
+- `baseof.html` then emits `noindex, nofollow` and omits `canonical`, `og:url` and PostHog.
 - `layouts/robots.txt` becomes `Disallow: /` with no sitemap.
 - If you know the hostname, set `PREVIEW_BASE_URL`. The noindex still applies.
 
-Previews currently **do** load PostHog; see [`analytics.md`](analytics.md) and [arts-link/arts-link.com#59](https://github.com/arts-link/arts-link.com/issues/59).
+Previews still build in the production Hugo environment, so the PostHog gate is what keeps PR click-throughs out of the live analytics; see [`analytics.md`](analytics.md). `wrangler.jsonc` states `"preview_urls": true` explicitly.
 
 `tests/cloudflare.test.js` builds both modes into temp directories and asserts each one.
 
@@ -71,11 +71,11 @@ Previews currently **do** load PostHog; see [`analytics.md`](analytics.md) and [
 
 | Command | Use it to |
 |---|---|
-| `hugo server` | design and write; doesn't show trailing-slash redirects or 404 status |
+| `npm run dev` | design and write; doesn't show trailing-slash redirects or 404 status |
 | `npm run cf:build` | reproduce the Workers Builds build (production mode outside CI) |
 | `npm run cf:dev` | serve `public/` on the real Workers runtime: routing, redirects, 404s |
 | `WORKERS_CI=1 WORKERS_CI_BRANCH=test npm run cf:build` | reproduce a preview build locally |
 
 ## Legacy: GitHub Pages
 
-`.github/workflows/hugo.yml` can still deploy to GitHub Pages (manual trigger, Hugo 0.138.0 extended). It passes the URL Pages gives it as `--baseURL`, which only works because nothing hardcodes the domain. It is not the production path. Whether to keep it is listed in [`known-debt.md`](known-debt.md).
+`.github/workflows/hugo.yml` can still deploy to GitHub Pages (manual trigger, Hugo from `.hugo-version`). It passes the URL Pages gives it as `--baseURL`, which only works because nothing hardcodes the domain. It is not the production path. Whether to keep it is listed in [`known-debt.md`](known-debt.md).

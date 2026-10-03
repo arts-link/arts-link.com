@@ -17,8 +17,8 @@ Two-tier setup:
 - PostHog project: `https://us.posthog.com`
 - `person_profiles: 'identified_only'` — no anonymous profiles created
 - `preconnect` + `dns-prefetch` hints for `posthog_host` added early in `<head>` (see below)
-- Both the snippet and the hints are gated on `hugo.Environment == "production"`, which is Hugo's default for `hugo` builds, **so Workers Builds preview deployments also load PostHog**. `HUGO_PARAMS_PREVIEW` does not currently gate analytics, so previews are **not yet filtered** ([arts-link/arts-link.com#59](https://github.com/arts-link/arts-link.com/issues/59)). Until that's fixed, filter previews out in PostHog by host (`$host` not ending in `workers.dev`).
-- `hugo server` runs in the development environment, so local browsing sends nothing.
+- Both the snippet and the hints are gated on `hugo.Environment == "production"` **and** `not $preview`. Workers Builds previews build in the production environment too, so the environment check alone would send every PR click-through into the live dataset ([#59](https://github.com/arts-link/arts-link.com/issues/59)). `tests/cloudflare.test.js` asserts a preview build has no PostHog and a production build does. Data captured from previews before the fix can be excluded by host (`$host` ending in `workers.dev`).
+- `npm run dev` runs in the development environment, so local browsing sends nothing.
 
 ### Adding a new third-party origin
 
