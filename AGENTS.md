@@ -88,6 +88,7 @@ When you change how something works, update the matching page in `docs/` — and
 | [`docs/deployment.md`](docs/deployment.md) | Cloudflare Workers, Workers Builds, previews, robots, DNS |
 | [`docs/ci-and-testing.md`](docs/ci-and-testing.md) | Workflows and what each test asserts |
 | [`docs/analytics.md`](docs/analytics.md) | PostHog setup, event inventory, dashboards |
+| [`docs/runbooks/posthog-deploy-tracking.md`](docs/runbooks/posthog-deploy-tracking.md) | PostHog deploy annotations: one-time setup, verification, key rotation |
 | [`docs/metrics-and-stats.md`](docs/metrics-and-stats.md) | Keystone metrics, funnels, review cadence |
 | [`docs/client-hub-boundary.md`](docs/client-hub-boundary.md) | What lives in the hub repo and must stay out of this one |
 | [`docs/known-debt.md`](docs/known-debt.md) | Stale code and copy found but not yet fixed |

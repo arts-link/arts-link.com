@@ -20,6 +20,10 @@ Two-tier setup:
 - Both the snippet and the hints are gated on `hugo.Environment == "production"` **and** `not $preview`. Workers Builds previews build in the production environment too, so the environment check alone would send every PR click-through into the live dataset ([#59](https://github.com/arts-link/arts-link.com/issues/59)). `tests/cloudflare.test.js` asserts a preview build has no PostHog and a production build does. Data captured from previews before the fix can be excluded by host (`$host` ending in `workers.dev`).
 - `npm run dev` runs in the development environment, so local browsing sends nothing.
 
+### Deploy annotations
+
+Every successful production deploy leaves an annotation on the project's charts, `arts-link.com production deploy @ <SHA> · … · <commit link>`, so a change in traffic or conversions can be lined up against what shipped. It comes from `.github/workflows/posthog-deploy-annotation.yml` and uses a CI-only Personal API Key (`POSTHOG_CI_API_KEY`). That key is a different thing from the public `posthog_key` above and must never reach the build. PostHog releases were evaluated and not enabled, because the site has no Error Tracking or source maps to attach them to. Setup, verification and rotation are in [`runbooks/posthog-deploy-tracking.md`](runbooks/posthog-deploy-tracking.md).
+
 ### Adding a new third-party origin
 
 For any external origin that loads resources (scripts, fonts, APIs), add a connection hint pair early in `baseof.html`, before the font preloads:
