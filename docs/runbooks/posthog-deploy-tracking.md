@@ -63,7 +63,7 @@ Until both the secret and `POSTHOG_PROJECT_ID` exist, each production deploy sho
 1. Complete A and B.
 2. Ship a harmless production change. Merging the PR that added this workflow is the first one. Otherwise, merge a one-word copy fix. The workflow only runs once its file is on `main`, because GitHub reads `check_run` workflows from the default branch.
 3. On the merged commit, wait for **`Workers Builds: arts-link-com`** to go green. That is the deploy.
-4. Open **Actions → PostHog deploy annotation**. Each check run on every commit starts a run, so expect several. The ones for `test` and for previews show the job as **skipped**, which is correct. Open the run for your commit whose `annotate` job ran.
+4. Open **Actions → PostHog deploy annotation**. Nothing shows up until Workers Builds finishes. It creates its check run only when the build is done, which can take ten minutes after the merge. GitHub never starts this workflow for the `test` check, because that check comes from GitHub Actions itself. A Workers Builds preview also starts a run, but its **Create PostHog annotation** step shows as skipped. Open the run for your merge commit.
 5. In **Confirm production deploy**, check that the log says `vs main: identical` (or `behind`). **Create PostHog annotation** should be green and log `Created PostHog annotation: arts-link.com production deploy @ …`.
 6. Open PostHog (arts-link.com project).
 7. Open **Data management → Annotations** for the list. Then open a time series, for example **Product analytics → New insight → Trends** with `$pageview` over the last 24 hours, by hour.
