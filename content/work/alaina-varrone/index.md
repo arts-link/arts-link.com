@@ -11,7 +11,7 @@ weight = 1
 
 Alaina Varrone's embroidery portfolio had been offline for years. The Wix site was gone, and with it the only organized record of her work: titles, descriptions, sale status, and the full-resolution photographs of 138 pieces.
 
-The Internet Archive's Wayback Machine had kept some of it, but not in a form anyone could use. Wix does not publish a gallery as ordinary HTML. It ships a large blob of JavaScript bootstrap data and builds the page in the browser, so the archived snapshots looked mostly empty. Walking back through the captures turned up a version from March 2021 that still had the full gallery model embedded in it. Pulling that data apart recovered the page text, the menu, the theme, and 139 image records.
+The Internet Archive's [Wayback Machine](https://web.archive.org/) had kept some of it, but not in a form anyone could use. Wix does not publish a gallery as ordinary HTML. It ships a large blob of JavaScript bootstrap data and builds the page in the browser, so the archived snapshots looked mostly empty. Walking back through the captures turned up a version from March 2021 that still had the full gallery model embedded in it. Pulling that data apart recovered the page text, the menu, the theme, and 139 image records.
 
 Each image record pointed at an obfuscated Wix media ID rather than a real file. Tracing those IDs back to Wix's own image CDN showed the original full-resolution photographs were still sitting there, years after the site that used them had disappeared. A download pass retrieved every one. Thirty-four failed the first time and were pulled down on a second pass. That came to about 263 MB of artwork that had seemed lost.
 
