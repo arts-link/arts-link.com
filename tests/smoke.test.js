@@ -338,15 +338,23 @@ describe.skipIf(!built)('smoke – work type filter', () => {
     expect(parts.every((p) => p.length > 0)).toBe(true);
   });
 
-  it('pill counts match the cards on each type page', () => {
-    const count = (a) => Number(a.textContent.match(/\((\d+)\)/)[1]);
+  it('tab counts match the cards on each type page', () => {
+    const count = (a) => Number(a.textContent.trim().match(/(\d+)$/)[1]);
     expect(count(pill('work/index.html', 'All'))).toBe(cards('work/index.html').length);
     expect(count(pill('work/index.html', 'Rescues'))).toBe(cards('work/rescue/index.html').length);
     expect(count(pill('work/index.html', 'Open source'))).toBe(cards('work/open-source/index.html').length);
     expect(count(pill('work/index.html', 'New sites'))).toBe(cards('work/new/index.html').length);
   });
 
-  it('marks the current type pill on its own page', () => {
+  it('offers the same choices in the small-screen select', () => {
+    const opts = (rel) =>
+      [...readPage(rel).window.document.querySelectorAll('#work-type option')].map((o) => o.value);
+    expect(opts('work/index.html')).toEqual(['', 'new', 'rescue', 'open-source']);
+    const sel = readPage('work/rescue/index.html').window.document.querySelector('#work-type option[selected]');
+    expect(sel?.value).toBe('rescue');
+  });
+
+  it('marks the current type tab on its own page', () => {
     expect(pill('work/rescue/index.html', 'Rescues').getAttribute('aria-current')).toBe('page');
     expect(pill('work/rescue/index.html', 'All').getAttribute('aria-current')).toBeNull();
   });
