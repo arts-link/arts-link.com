@@ -47,6 +47,9 @@ site_system:
         (self-hosted visual website archive) — badged "Open source" so they
         read as contributions to the ecosystem rather than as client work, and
         linking out to the public site/demo and the source repository.
+        /work/ can be filtered by type (New sites, Rescues, Open source),
+        instantly in the page and as static pages at /work/new/, /work/rescue/
+        and /work/open-source/, each with its own description and social card.
 
     - name: Services
       type: Collector

@@ -1,0 +1,46 @@
+{{/*
+  Work type filter — pills above the project grid.
+
+  Call with a dict:
+    "active"  the filter key currently shown ("" for All)
+    "alpine"  true on /work/, where the pills also drive the x-data scope
+              declared in layouts/work/list.html. Without JS (or on the
+              per-type pages) they are plain links to /work/<type>/.
+
+  Types come from each entry's `site_type`; an entry with none counts as "new",
+  matching the badge in project-card.html.
+*/}}
+{{- $active := .active | default "" -}}
+{{- $alpine := .alpine | default false -}}
+{{- $all := (site.GetPage "/work").RegularPages -}}
+{{- $types := slice
+      (dict "key" "new"         "label" "New sites")
+      (dict "key" "rescue"      "label" "Rescues")
+      (dict "key" "open-source" "label" "Open source") -}}
+{{- $on  := "text-ink bg-ember border-ember" -}}
+{{- $off := "text-cream/60 border-cream/15 hover:text-cream hover:border-cream/40" -}}
+
+<nav aria-label="Filter work by type" class="flex flex-wrap gap-3 mb-12">
+  <a href="/work/"
+     {{ if $alpine }}@click.prevent="pick('')" :aria-current="type === '' ? 'page' : null" :class="type === '' ? '{{ $on }}' : '{{ $off }}'"{{ end }}
+     {{ if eq $active "" }}aria-current="page"{{ end }}
+     data-track-event="Work Filter" data-track-props='{"type":"all"}'
+     class="text-xs uppercase tracking-widest border px-4 py-2 leading-none transition-colors {{ if eq $active "" }}{{ $on }}{{ else }}{{ $off }}{{ end }}">
+    All <span class="opacity-60">({{ len $all }})</span>
+  </a>
+  {{ range $types }}
+    {{- $key := .key -}}
+    {{- $n := cond (eq $key "new")
+          (len (where $all "Params.site_type" "not in" (slice "rescue" "open-source")))
+          (len (where $all "Params.site_type" "eq" $key)) -}}
+    {{- if $n }}
+    <a href="/work/{{ $key }}/"
+       {{ if $alpine }}@click.prevent="pick('{{ $key }}')" :aria-current="type === '{{ $key }}' ? 'page' : null" :class="type === '{{ $key }}' ? '{{ $on }}' : '{{ $off }}'"{{ end }}
+       {{ if eq $active $key }}aria-current="page"{{ end }}
+       data-track-event="Work Filter" data-track-props='{"type":"{{ $key }}"}'
+       class="text-xs uppercase tracking-widest border px-4 py-2 leading-none transition-colors {{ if eq $active $key }}{{ $on }}{{ else }}{{ $off }}{{ end }}">
+      {{ .label }} <span class="opacity-60">({{ $n }})</span>
+    </a>
+    {{- end }}
+  {{ end }}
+</nav>

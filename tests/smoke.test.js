@@ -21,6 +21,9 @@ const built = fs.existsSync(PUBLIC);
 const INDEXABLE_PAGES = [
   'index.html',
   'work/index.html',
+  'work/new/index.html',
+  'work/rescue/index.html',
+  'work/open-source/index.html',
   'services/index.html',
   'contact/index.html',
   'work/cindy-kindred/index.html',
@@ -31,6 +34,9 @@ const INDEXABLE_PAGES = [
   'work/ryder/index.html',
   'work/writing-sos/index.html',
 ];
+
+// Listing pages under work/: the grid itself and one page per project type.
+const WORK_LISTS = ['work/index.html', 'work/new/index.html', 'work/rescue/index.html', 'work/open-source/index.html'];
 
 function findHtmlFiles(dir) {
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap((e) =>
@@ -254,7 +260,7 @@ describe.skipIf(!built)('smoke – SEO: JSON-LD', () => {
   // work/index.html is a list page — Hugo's json-ld partial only fires on
   // .IsHome and .IsPage, so the listing is intentionally excluded here.
   const jsonLdPages = INDEXABLE_PAGES.filter(
-    (p) => p === 'index.html' || (p.startsWith('work/') && p !== 'work/index.html'),
+    (p) => p === 'index.html' || (p.startsWith('work/') && !WORK_LISTS.includes(p)),
   );
   it.each(jsonLdPages)('%s contains valid JSON-LD', (rel) => {
     const { document } = readPage(rel).window;
@@ -312,5 +318,36 @@ describe.skipIf(!built)('smoke – internal links resolve', () => {
         });
     }
     expect(broken).toEqual([]);
+  });
+});
+
+// ─── Work filter ─────────────────────────────────────────────────────────────
+
+describe.skipIf(!built)('smoke – work type filter', () => {
+  const cards = (rel) =>
+    [...readPage(rel).window.document.querySelectorAll('article h3')].map((h) => h.textContent.trim());
+  const pill = (rel, label) =>
+    [...readPage(rel).window.document.querySelectorAll('nav[aria-label="Filter work by type"] a')].find((a) =>
+      a.textContent.trim().startsWith(label),
+    );
+
+  it('each type page lists exactly its own entries', () => {
+    const all = cards('work/index.html');
+    const parts = ['new', 'rescue', 'open-source'].map((t) => cards(`work/${t}/index.html`));
+    expect(parts.flat().sort()).toEqual([...all].sort());
+    expect(parts.every((p) => p.length > 0)).toBe(true);
+  });
+
+  it('pill counts match the cards on each type page', () => {
+    const count = (a) => Number(a.textContent.match(/\((\d+)\)/)[1]);
+    expect(count(pill('work/index.html', 'All'))).toBe(cards('work/index.html').length);
+    expect(count(pill('work/index.html', 'Rescues'))).toBe(cards('work/rescue/index.html').length);
+    expect(count(pill('work/index.html', 'Open source'))).toBe(cards('work/open-source/index.html').length);
+    expect(count(pill('work/index.html', 'New sites'))).toBe(cards('work/new/index.html').length);
+  });
+
+  it('marks the current type pill on its own page', () => {
+    expect(pill('work/rescue/index.html', 'Rescues').getAttribute('aria-current')).toBe('page');
+    expect(pill('work/rescue/index.html', 'All').getAttribute('aria-current')).toBeNull();
   });
 });
