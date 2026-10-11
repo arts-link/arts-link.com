@@ -12,6 +12,7 @@ This page covers what lives in `content/`, the front matter each kind of page us
 | `content/work/` | ✅ | `layouts/work/` | Page bundles, one per project (see below). |
 | `content/blog/` | ✅ | `layouts/blog/` | Posts, either single files or bundles with images. Each ends in a CTA block. |
 | `content/services/_index.md` | ✅ | `layouts/services/list.html` | New Site, Site Rescue, and "What it costs". |
+| `content/services/site-rescue/index.md` | ✅ | `layouts/services/single.html` | Services detail page, linked from the Site Rescue box. Front matter: `title`, `description`, `lede`. Don't give it a future `date` — Hugo won't publish it. |
 | `content/contact/_index.md` | ✅ | `layouts/contact/list.html` | Converter page. One job, minimal form. |
 | `content/thanks/` | ✅ | `layouts/thanks/list.html` | The Formspree landing page. |
 | `content/archive-worksheet/` | ✅ (not in nav) | own `baseof` | Family archive intake. Soft launch, linked only from the family archive post. |

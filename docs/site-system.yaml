@@ -59,7 +59,21 @@ site_system:
         Describe New Site and Site Rescue. Includes a "What it costs"
         section with two cards: Artist Site and Band/Musician Site,
         both starting from $1,000, listing the included pages for each.
-        All pricing CTAs route to Contact.
+        All pricing CTAs route to Contact. The Site Rescue box links to
+        /services/site-rescue/, the first services detail page (see below).
+
+    - name: Site rescue (services detail)
+      type: Collector
+      target_action: Route to Contact
+      metric: Contact page visits from Site rescue
+      notes: >
+        /services/site-rescue/. The full description of the rescue service:
+        who it is for (platform closing, paying for more than you use, site
+        already gone), what gets recovered, the five-step process, what you end
+        up with, what a rescue can't do, and "from $1,000". Written
+        generically; it names no client project and links to /work/rescue/ for
+        examples. Reuses layouts/services/single.html, so further services
+        detail pages can follow the same template.
 
     - name: Contact
       type: Converter

@@ -1,0 +1,36 @@
+{{/*
+  A services detail page, one per service (currently only Site rescue).
+  Linked from the matching box in layouts/partials/modules/service-block.html.
+  Front matter: title, description, and `lede` (the larger paragraph under the title).
+*/}}
+{{ define "main" }}
+<article>
+
+  <div class="max-w-3xl mx-auto px-6 pt-16 pb-12">
+    <a href="/services/"
+       class="inline-flex items-center gap-2 text-cream/55 hover:text-cream text-xs tracking-widest uppercase transition-colors duration-200 mb-12">
+      <span aria-hidden="true">←</span> Services
+    </a>
+
+    <p class="text-ember text-xs tracking-[0.3em] uppercase mb-4">Services</p>
+    <h1 class="font-display text-5xl md:text-7xl text-cream font-light leading-none tracking-tight mb-8">{{ .Title }}</h1>
+    {{ with .Params.lede }}<p class="text-cream/60 text-xl leading-relaxed max-w-2xl">{{ . }}</p>{{ end }}
+  </div>
+
+  <div class="max-w-3xl mx-auto px-6"><hr class="border-cream/10"></div>
+
+  <div class="max-w-3xl mx-auto px-6 pt-12 pb-32">
+    <div class="prose prose-invert prose-lg max-w-none
+      prose-headings:font-display prose-headings:font-light prose-headings:text-cream prose-headings:tracking-tight
+      prose-p:text-cream/70 prose-p:leading-relaxed
+      prose-li:text-cream/70 prose-li:marker:text-ember
+      prose-a:text-ember prose-a:underline prose-a:underline-offset-2
+      prose-strong:text-cream prose-strong:font-medium">
+      {{ .Content }}
+    </div>
+  </div>
+
+</article>
+
+{{ partial "modules/cta-block.html" . }}
+{{ end }}

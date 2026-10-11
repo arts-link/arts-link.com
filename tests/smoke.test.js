@@ -25,6 +25,7 @@ const INDEXABLE_PAGES = [
   'work/rescue/index.html',
   'work/open-source/index.html',
   'services/index.html',
+  'services/site-rescue/index.html',
   'contact/index.html',
   'work/cindy-kindred/index.html',
   'work/gordon-landreth-photography/index.html',
@@ -113,6 +114,21 @@ describe.skipIf(!built)('smoke – services page (public/services/index.html)', 
 
   it('title contains "Services"', () => {
     expect(dom.window.document.title).toContain('Services');
+  });
+});
+
+describe.skipIf(!built)('smoke – site rescue page (public/services/site-rescue/index.html)', () => {
+  it('is linked from the Site Rescue box on the services page', () => {
+    const { document } = readPage('services/index.html').window;
+    const hrefs = [...document.querySelectorAll('a')].map((a) => a.getAttribute('href'));
+    expect(hrefs).toContain('/services/site-rescue/');
+  });
+
+  it('names no client project', () => {
+    const text = readPage('services/site-rescue/index.html').window.document.body.textContent;
+    for (const name of ['Alaina', 'Varrone', 'Bonovitz', 'Writing SOS', 'nihilists']) {
+      expect(text).not.toContain(name);
+    }
   });
 });
 
