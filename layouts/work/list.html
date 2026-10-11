@@ -1,16 +1,53 @@
+{{/*
+  Serves /work/ and the per-type pages (/work/rescue/, /work/open-source/,
+  /work/new/). A type page is a child section whose front matter sets `filter`.
+
+  On /work/ the pills are also an Alpine filter: clicking one hides the other
+  cards without a reload and records the choice as ?type=… so the view can be
+  shared. The per-type pages are the same list rendered statically, for
+  crawlers, link previews and visitors without JS.
+*/}}
 {{ define "main" }}
 
-  <div class="max-w-6xl mx-auto px-6 pt-16 pb-32">
+  {{- $filter := .Params.filter | default "" -}}
+  {{- $isRoot := eq $filter "" -}}
+  {{- $entries := (site.GetPage "/work").RegularPages -}}
+  {{- if eq $filter "new" -}}
+    {{- $entries = where $entries "Params.site_type" "not in" (slice "rescue" "open-source") -}}
+  {{- else if $filter -}}
+    {{- $entries = where $entries "Params.site_type" "eq" $filter -}}
+  {{- end -}}
+  {{- $entries = $entries.ByParam "weight" -}}
 
-    <header class="mb-20">
+  <div class="max-w-6xl mx-auto px-6 pt-16 pb-32"
+    {{ if $isRoot }}x-data="{
+      type: '',
+      init() {
+        const t = new URLSearchParams(location.search).get('type') || '';
+        if (['new', 'rescue', 'open-source'].includes(t)) this.type = t;
+      },
+      pick(t) {
+        this.type = t;
+        history.replaceState(null, '', t ? '?type=' + t : location.pathname);
+      },
+      shows(t) { return this.type === '' || this.type === t; }
+    }"{{ end }}>
+
+    <header class="mb-12">
       <p class="text-ember text-xs tracking-[0.3em] uppercase mb-4">Portfolio</p>
-      <h1 class="font-display text-5xl md:text-7xl text-cream font-light">Work</h1>
+      <h1 class="font-display text-5xl md:text-7xl text-cream font-light">{{ if $isRoot }}Work{{ else }}{{ .Title }}{{ end }}</h1>
+      {{ with and (not $isRoot) .Params.description }}<p class="text-cream/60 text-lg mt-6 max-w-2xl">{{ . }}</p>{{ end }}
     </header>
 
-    {{ if .Pages }}
+    {{ partial "modules/work-filter.html" (dict "active" $filter "alpine" $isRoot) }}
+
+    {{ if $entries }}
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      {{ range .Pages.ByParam "weight" }}
-        {{ partial "modules/project-card.html" (dict "page" . "sizes" "(max-width: 767px) calc(100vw - 3rem), (max-width: 1151px) calc(50vw - 2.5rem), 536px") }}
+      {{ range $entries }}
+        {{- $t := .Params.site_type | default "new" -}}
+        <div {{ if $isRoot }}x-show="shows('{{ $t }}')"{{ end }}>
+          {{ partial "modules/project-card.html" (dict "page" . "sizes" "(max-width: 767px) calc(100vw - 3rem), (max-width: 1151px) calc(50vw - 2.5rem), 536px") }}
+        </div>
       {{ end }}
     </div>
     {{ else }}

@@ -44,6 +44,15 @@ weight = 1                    # ascending sort on /work/; the lowest 3 also feat
 
 Open-source projects (Ryder, Screenshot-a-Day) use `site_type = "open-source"`. They are badged so they read as contributions to the ecosystem, not as client work.
 
+### Filtering by type
+
+`/work/` shows text tabs (All, New sites, Rescues, Open source) with counts on md+, and a select on small screens, built from each entry's `site_type`. There are two layers:
+
+- **Static pages.** `content/work/{new,rescue,open-source}/_index.md` are child sections whose front matter sets `filter`. `layouts/work/list.html` renders the same grid for them, limited to that type, so `/work/rescue/` etc. work without JS, are indexable, and get their own description and social card. An entry with no `site_type` counts as `new`.
+- **Instant filter.** On `/work/` an Alpine scope hides the other cards without a reload and records the choice as `?type=rescue`. Loading that URL restores the filter.
+
+Adding a fourth `site_type` means a new `_index.md`, a new entry in `layouts/partials/modules/work-filter.html`, the allow-list in `layouts/work/list.html`, and a card (`npm run build && npm run og`). The list templates use `.RegularPages` so these child sections never show up as projects.
+
 ### Adding a work entry
 
 1. Create `content/work/<slug>/index.md` with the fields above, and add `screenshot.png` (or `.jpg`/`.webp`) next to it.

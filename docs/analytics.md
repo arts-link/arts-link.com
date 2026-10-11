@@ -49,6 +49,7 @@ These are the events fired by the `data-track-*` attribute system. They appear i
 | `CTA Click` | `layouts/partials/modules/cta-block.html` | `{location: "cta-block"}` |
 | `CTA Click` | `layouts/partials/footer.html` | `{location: "footer"}` |
 | `Blog Callout Click` | `layouts/partials/modules/latest-post.html` (title, description and "Read" links) | `{location: "home"}` |
+| `Work Filter` | `layouts/partials/modules/work-filter.html` (the type tabs on /work/ and the per-type pages; the small-screen select is not tracked) | `{type: "all" \| "new" \| "rescue" \| "open-source"}` |
 | `Contact Form Submit` | `layouts/partials/modules/contact-form.html` | _(none)_ |
 | `Archive Worksheet Submit` | `layouts/archive-worksheet/list.html` | _(none)_ |
 
