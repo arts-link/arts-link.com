@@ -1,0 +1,32 @@
+{{/*
+  Proof strip for the Site rescue page: real rescues, with the problem and the
+  result stated on this page so a visitor needn't leave to learn the work has
+  been done. Entries come from `[[proof]]` in the page's front matter:
+    entry   path of the work entry (e.g. "work/alaina-varrone")
+    problem one line
+    result  one line
+  The link target and name come from the work entry itself.
+*/}}
+{{- with .Params.proof }}
+<section aria-labelledby="rescue-proof-heading" class="max-w-3xl mx-auto px-6 pb-12">
+  <h2 id="rescue-proof-heading" class="font-display text-3xl text-cream font-light tracking-tight mb-8">Recent Rescues</h2>
+  <ul class="grid gap-px bg-cream/10 border border-cream/10 sm:grid-cols-2">
+    {{- range . }}
+    {{- $item := . }}
+    {{- with site.GetPage $item.entry }}
+    <li class="bg-ink p-6 flex flex-col">
+      {{ with .Resources.GetMatch "screenshot*" }}
+      {{- $thumb := .Fill "480x270 Top" }}
+      <img src="{{ $thumb.RelPermalink }}" width="{{ $thumb.Width }}" height="{{ $thumb.Height }}" alt="" loading="lazy" decoding="async" class="w-full h-auto aspect-[2/1] object-cover object-top mb-5 border border-cream/10">
+      {{ end }}
+      <p class="text-ember text-xs tracking-widest uppercase mb-3">{{ .Title }}</p>
+      <p class="text-cream/70 leading-relaxed mb-3">{{ $item.problem }}</p>
+      <p class="text-cream leading-relaxed mb-5">{{ $item.result }}</p>
+      <a href="{{ .RelPermalink }}" class="mt-auto text-xs uppercase tracking-widest text-ember hover:underline">Read the story →</a>
+    </li>
+    {{- end }}
+    {{- end }}
+  </ul>
+  <p class="mt-6"><a href="/work/rescues/" class="text-cream/70 underline underline-offset-2 hover:text-cream">See all the sites I've rescued</a></p>
+</section>
+{{- end }}

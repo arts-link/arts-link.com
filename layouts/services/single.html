@@ -1,7 +1,10 @@
 {{/*
   A services detail page, one per service (currently only Site rescue).
   Linked from the matching box in layouts/partials/modules/service-block.html.
-  Front matter: title, description, and `lede` (the larger paragraph under the title).
+  Front matter: title, description, `lede` (the larger paragraph under the title),
+  and optionally `seo_title` (the <title> tag only), `invitation`, `price_note`,
+  `directness` (the opening call to action), `[[proof]]` (see
+  modules/rescue-proof.html) and `closing_title` / `closing_text`.
 */}}
 {{ define "main" }}
 <article>
@@ -15,11 +18,22 @@
     <p class="text-ember text-xs tracking-[0.3em] uppercase mb-4">Services</p>
     <h1 class="font-display text-5xl md:text-7xl text-cream font-light leading-none tracking-tight mb-8">{{ .Title | title }}</h1>
     {{ with .Params.lede }}<p class="text-cream/60 text-xl leading-relaxed max-w-2xl">{{ . }}</p>{{ end }}
+
+    {{ with .Params.invitation }}
+    <div class="mt-10 max-w-2xl">
+      <p class="text-cream/70 text-lg leading-relaxed mb-8">{{ . }}</p>
+      {{ partial "modules/rescue-cta.html" (dict "location" "site-rescue-opening") }}
+      {{ with $.Params.price_note }}<p class="mt-6 text-cream text-sm tracking-wide">{{ . }}</p>{{ end }}
+      {{ with $.Params.directness }}<p class="mt-2 text-cream/55 text-sm leading-relaxed">{{ . }}</p>{{ end }}
+    </div>
+    {{ end }}
   </div>
 
   <div class="max-w-3xl mx-auto px-6"><hr class="border-cream/10"></div>
 
-  <div class="max-w-3xl mx-auto px-6 pt-12 pb-32">
+  <div class="pt-12">{{ partial "modules/rescue-proof.html" . }}</div>
+
+  <div class="max-w-3xl mx-auto px-6 pb-32">
     <div class="prose prose-invert prose-lg max-w-none
       prose-headings:font-display prose-headings:font-light prose-headings:text-cream prose-headings:tracking-tight
       prose-p:text-cream/70 prose-p:leading-relaxed
@@ -34,5 +48,15 @@
 
 {{ partial "modules/faq.html" . }}
 
+{{ if .Params.closing_title }}
+<section class="border-t border-cream/10">
+  <div class="max-w-6xl mx-auto px-6 py-32 text-center">
+    <h2 class="font-display text-5xl md:text-7xl text-cream font-light mb-6">{{ .Params.closing_title | title }}</h2>
+    {{ with .Params.closing_text }}<p class="text-cream/60 text-lg mb-14 max-w-md mx-auto leading-relaxed">{{ . }}</p>{{ end }}
+    {{ partial "modules/rescue-cta.html" (dict "location" "site-rescue-closing") }}
+  </div>
+</section>
+{{ else }}
 {{ partial "modules/cta-block.html" . }}
+{{ end }}
 {{ end }}

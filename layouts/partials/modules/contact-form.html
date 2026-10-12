@@ -5,6 +5,10 @@
   class="flex flex-col gap-10"
 >
 
+  {{/* Where the visitor came from, set from ?from= by the script below. Empty
+       (and ignored by Formspree) on a plain visit. */}}
+  <input type="hidden" name="source" id="source" value="">
+
   <div>
     <label for="name" class="block text-xs uppercase tracking-widest text-cream/35 mb-4">Your name</label>
     <input
@@ -53,3 +57,9 @@
   </div>
 
 </form>
+<script>
+  try {
+    var from = new URLSearchParams(location.search).get('from');
+    if (from) document.getElementById('source').value = from.slice(0, 40);
+  } catch (e) {}
+</script>

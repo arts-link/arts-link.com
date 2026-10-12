@@ -41,37 +41,48 @@
 }
 </script>
 {{- else -}}
+{{- /* Every other page: a WebPage and a breadcrumb that follows the page's real
+       ancestry (Home → Services → Site rescue), built with dict/jsonify so
+       titles and descriptions are escaped properly. */ -}}
+{{- $crumbs := slice (dict "@type" "ListItem" "position" 1 "name" "Home" "item" .Site.BaseURL) }}
+{{- range .Ancestors.Reverse }}
+  {{- if not .IsHome }}
+    {{- $crumbs = $crumbs | append (dict "@type" "ListItem" "position" (add (len $crumbs) 1) "name" (.Title | title) "item" .Permalink) }}
+  {{- end }}
+{{- end }}
+{{- $crumbs = $crumbs | append (dict "@type" "ListItem" "position" (add (len $crumbs) 1) "name" (.Title | title) "item" .Permalink) }}
+{{- $graph := slice
+      (dict
+        "@type" (cond .IsPage "WebPage" "CollectionPage")
+        "@id" (printf "%s#webpage" .Permalink)
+        "url" .Permalink
+        "name" (.Title | title)
+        "description" (default .Site.Params.description .Description)
+        "isPartOf" (dict "@id" (printf "%s#website" .Site.BaseURL)))
+      (dict "@type" "BreadcrumbList" "itemListElement" $crumbs) }}
+
+{{- /* Site rescue is a Service. It points at the business entity the home page
+       already defines (#organization) instead of declaring another, and at this
+       page's own WebPage. "From $1,000" is a minimum, not a fixed price. */ -}}
+{{- if eq .Section "services" }}{{ if .Params.price_from }}
+{{- $graph = $graph | append (dict
+      "@type" "Service"
+      "@id" (printf "%s#service" .Permalink)
+      "name" (.Title | title)
+      "serviceType" "Website recovery and migration"
+      "description" (default .Site.Params.description .Description)
+      "url" .Permalink
+      "mainEntityOfPage" (dict "@id" (printf "%s#webpage" .Permalink))
+      "provider" (dict "@id" (printf "%s#organization" .Site.BaseURL))
+      "audience" (dict "@type" "Audience" "audienceType" "Artists, bands, photographers and other creative people")
+      "offers" (dict
+        "@type" "Offer"
+        "url" .Permalink
+        "priceCurrency" "USD"
+        "priceSpecification" (dict "@type" "PriceSpecification" "minPrice" .Params.price_from "priceCurrency" "USD"))) }}
+{{- end }}{{ end }}
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "{{ if .IsPage }}WebPage{{ else }}CollectionPage{{ end }}",
-      "@id": "{{ .Permalink }}#webpage",
-      "url": "{{ .Permalink }}",
-      "name": "{{ .Title | title }}",
-      "description": "{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}",
-      "isPartOf": { "@id": "{{ .Site.BaseURL }}#website" }
-    },
-    {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "{{ .Site.BaseURL }}"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "{{ .Title | title }}",
-          "item": "{{ .Permalink }}"
-        }
-      ]
-    }
-  ]
-}
+{{ dict "@context" "https://schema.org" "@graph" $graph | jsonify (dict "indent" "  ") | safeJS }}
 </script>
 {{- end -}}
 

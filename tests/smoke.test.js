@@ -124,11 +124,64 @@ describe.skipIf(!built)('smoke – site rescue page (public/services/site-rescue
     expect(hrefs).toContain('/services/site-rescue/');
   });
 
-  it('names no client project', () => {
-    const text = readPage('services/site-rescue/index.html').window.document.body.textContent;
-    for (const name of ['Alaina', 'Varrone', 'Bonovitz', 'Writing SOS', 'nihilists']) {
+  // The page shows proof from two real rescues. Those are the only client
+  // names it may carry, and each must link to its own case study.
+  it('names only the two rescue clients it links to', () => {
+    const { document } = readPage('services/site-rescue/index.html').window;
+    const text = document.body.textContent;
+    for (const name of ['Alaina Varrone', 'Jill Bonovitz']) {
+      expect(text).toContain(name);
+    }
+    for (const name of ['nihilists']) {
       expect(text).not.toContain(name);
     }
+    const hrefs = [...document.querySelectorAll('a')].map((a) => a.getAttribute('href'));
+    for (const slug of ['alaina-varrone', 'jill-bonovitz']) {
+      expect(hrefs).toContain(`/work/${slug}/`);
+    }
+  });
+
+  it('offers the contact action at the opening, after the process and at the end', () => {
+    const { document } = readPage('services/site-rescue/index.html').window;
+    const locations = [...document.querySelectorAll('a[href="/contact/?from=site-rescue"]')].map(
+      (a) => JSON.parse(a.getAttribute('data-track-props')).location,
+    );
+    expect(locations).toEqual(['site-rescue-opening', 'site-rescue-process', 'site-rescue-closing']);
+  });
+
+  it('has one h1 and a search title distinct from it', () => {
+    const { document } = readPage('services/site-rescue/index.html').window;
+    expect(document.querySelectorAll('h1').length).toBe(1);
+    expect(document.title).toContain('Website Rescue & Migration for Artists');
+  });
+
+  it('describes Site rescue as a Service tied to the business and page, priced as a minimum', () => {
+    const { document } = readPage('services/site-rescue/index.html').window;
+    const graph = JSON.parse(
+      document.querySelector('script[type="application/ld+json"]').textContent,
+    )['@graph'];
+    const service = graph.find((n) => n['@type'] === 'Service');
+    expect(service['@id']).toMatch(/\/services\/site-rescue\/#service$/);
+    expect(service.provider['@id']).toMatch(/\/#organization$/);
+    expect(graph.some((n) => n['@id'] === service.mainEntityOfPage['@id'])).toBe(true);
+    expect(service.offers.price).toBeUndefined();
+    expect(service.offers.priceSpecification.minPrice).toBe(1000);
+    expect(service.offers.priceSpecification.priceCurrency).toBe('USD');
+    expect(service.areaServed).toBeUndefined();
+  });
+
+  it('breadcrumbs follow the page ancestry: Home, Services, Site Rescue', () => {
+    const { document } = readPage('services/site-rescue/index.html').window;
+    const graph = JSON.parse(
+      document.querySelector('script[type="application/ld+json"]').textContent,
+    )['@graph'];
+    const names = graph.find((n) => n['@type'] === 'BreadcrumbList').itemListElement.map((i) => i.name);
+    expect(names).toEqual(['Home', 'Services', 'Site Rescue']);
+  });
+
+  it('is listed in llms.txt with its price', () => {
+    const llms = fs.readFileSync(path.join(PUBLIC, 'llms.txt'), 'utf8');
+    expect(llms).toMatch(/\[Site rescue\]\([^)]*\/services\/site-rescue\/\).*\$1,000/);
   });
 });
 

@@ -1,0 +1,14 @@
+{{/*
+  The primary action on the Site rescue page: one button to the Contact page,
+  tagged with where on the page it sits. Reuses the existing `CTA Click` event
+  and varies only `location` (see docs/analytics.md). `?from=site-rescue` rides
+  to the contact form, which copies it into a hidden field so the Formspree
+  email says where the enquiry came from.
+
+  Params: location (required, e.g. "site-rescue-opening"), label (optional).
+*/}}
+{{- $label := .label | default "Send me your site →" -}}
+<a href="/contact/?from=site-rescue"
+   data-track-event="CTA Click"
+   data-track-props='{{ dict "location" .location | jsonify }}'
+   class="not-prose inline-block text-cream text-sm tracking-widest uppercase px-10 py-4 border border-ember hover:bg-ember transition-colors duration-200">{{ $label }}</a>
