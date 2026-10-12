@@ -22,7 +22,7 @@ Two-tier setup:
 
 ### Deploy annotations
 
-Every successful production deploy leaves an annotation on the project's charts, `arts-link.com production deploy @ <SHA> · … · <commit link>`, so a change in traffic or conversions can be lined up against what shipped. It comes from `.github/workflows/posthog-deploy-annotation.yml` and uses a CI-only Personal API Key (`POSTHOG_CI_API_KEY`). That key is a different thing from the public `posthog_key` above and must never reach the build. PostHog releases were evaluated and not enabled, because the site has no Error Tracking or source maps to attach them to. Setup, verification and rotation are in [`runbooks/posthog-deploy-tracking.md`](runbooks/posthog-deploy-tracking.md).
+Every successful production deploy leaves an annotation on the project's charts, `arts-link.com production deploy @ <SHA> · <commit subject> · <commit link>`, so a change in traffic or conversions can be lined up against what shipped. It comes from `.github/workflows/posthog-deploy-annotation.yml` and uses a CI-only Personal API Key (`POSTHOG_CI_API_KEY`). That key is a different thing from the public `posthog_key` above and must never reach the build. PostHog releases were evaluated and not enabled, because the site has no Error Tracking or source maps to attach them to. Setup, verification and rotation are in [`runbooks/posthog-deploy-tracking.md`](runbooks/posthog-deploy-tracking.md).
 
 ### Adding a new third-party origin
 
