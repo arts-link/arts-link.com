@@ -75,6 +75,19 @@ Every post:
 
 The homepage "Studio notes" callout (`layouts/partials/modules/latest-post.html`) automatically shows the newest post.
 
+## FAQs
+
+Any page can carry a FAQ. Add `[[faq]]` tables at the end of its front matter:
+
+```toml
+[[faq]]
+q = "Can you rescue a site that's already offline?"
+a = "Often, yes, though not always. …"   # markdown allowed
+featured = true                           # shown open on the page; omit to fold into an accordion
+```
+
+`layouts/partials/modules/faq.html` renders them (featured questions open, the rest as `<details>` accordions under a "Common questions" heading; `faq_title` in front matter overrides it), and `layouts/partials/head/json-ld.html` emits a matching `FAQPage` block from the same list, so the visible text and the schema can't drift. It's already called from `services/single.html`, `blog/single.html` and `work/single.html`; a page with no `faq` renders nothing. Keep it to 3–4 featured questions and answers of a few sentences, in the first-person voice from [`writing-style.md`](writing-style.md). Only write answers that are true of how the studio actually works. Google no longer shows FAQ rich results for most sites, so the visible answers matter more than the schema.
+
 ## Page descriptions
 
 `layouts/partials/page-description.html` returns one string, which is used for `meta description`, `og:description`, `twitter:description` and the social card. In order of preference:

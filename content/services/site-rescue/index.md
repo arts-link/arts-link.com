@@ -3,6 +3,46 @@ title = "Site rescue"
 description = "Your site's host is closing, the platform costs too much, or the site is already gone. I recover everything and rebuild it fast, on a domain you own."
 lede = "Your site is stuck on a platform that is closing, costing too much, or already gone. I bring everything across to a fast site that belongs to you."
 draft = false
+
+[[faq]]
+q = "What does a site rescue cost, and how long does it take?"
+a = "Site rescues start from $1,000. The price depends on how many pages and images there are and how much digging it takes to get them back. I'll give you a number, and an honest idea of timing, once I've seen what you have and before any work begins."
+featured = true
+
+[[faq]]
+q = "Can you rescue a site that's already offline?"
+a = "Often, yes, though not always. Public web archives keep copies of many sites, sometimes far more than they appear to, and the original images can still sit on servers long after the pages are gone. If you have backups or the original files, even better. I'll look first and tell you what's recoverable before you commit to anything."
+featured = true
+
+[[faq]]
+q = "My site says \"not secure.\" Can you fix that?"
+a = "Yes. That warning means the site's security certificate has expired or was never set up properly. On the rebuilt site the certificate is handled for you and renews on its own, so it can't quietly lapse again."
+featured = true
+
+[[faq]]
+q = "Who owns the new site?"
+a = "You do. Your domain is registered in your name, the files are handed to you, and nothing ties you to me or to any platform. If you ever want someone else to take over, you give them everything."
+featured = true
+
+[[faq]]
+q = "Will it look the same as before?"
+a = "If you like how it looks, yes. Same design and same content with the platform taken out, and visitors often can't tell anything changed. If you'd rather refresh the design, we can talk about that first, because it changes the scope."
+
+[[faq]]
+q = "Do I have to keep paying for hosting or the old platform?"
+a = "Not for a site like this. Simple sites are cheap or free to host, so the platform and hosting fees go away. You'll still renew your domain name each year, since that's yours. If you'd rather not think about renewals, I can look after them for you."
+
+[[faq]]
+q = "What happens to my old site while you work?"
+a = "It stays up, untouched, until you've seen the new one and you're happy with it. The switch happens last."
+
+[[faq]]
+q = "Can I edit the new site myself?"
+a = "Yes. I show you how to update it yourself, or I'll do it for you."
+
+[[faq]]
+q = "What can't be rescued?"
+a = "Anything that lived in a database nobody backed up: form submissions, comments, orders. A site that never existed online can't be recovered, and a site with an online shop or member logins is a different conversation. Tell me up front and I'll say what's realistic."
 +++
 
 ## When a site needs rescuing

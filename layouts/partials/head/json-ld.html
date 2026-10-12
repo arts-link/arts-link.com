@@ -74,3 +74,19 @@
 }
 </script>
 {{- end -}}
+
+{{- /* FAQPage — only on pages that declare `faq` in front matter. The answer text
+       is the same markdown the page shows (layouts/partials/modules/faq.html),
+       reduced to plain text. */ -}}
+{{- with .Params.faq }}
+{{- $entities := slice }}
+{{- range . }}
+  {{- $entities = $entities | append (dict
+        "@type" "Question"
+        "name" .q
+        "acceptedAnswer" (dict "@type" "Answer" "text" (.a | markdownify | plainify | htmlUnescape))) }}
+{{- end }}
+<script type="application/ld+json">
+{{ dict "@context" "https://schema.org" "@type" "FAQPage" "mainEntity" $entities | jsonify (dict "indent" "  ") | safeJS }}
+</script>
+{{- end }}

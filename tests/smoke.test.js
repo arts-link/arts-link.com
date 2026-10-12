@@ -132,6 +132,58 @@ describe.skipIf(!built)('smoke – site rescue page (public/services/site-rescue
   });
 });
 
+// ─── FAQ (front-matter `faq`, layouts/partials/modules/faq.html) ─────────────
+
+describe.skipIf(!built)('smoke – FAQ on the site rescue page', () => {
+  const rel = 'services/site-rescue/index.html';
+  const faqSchema = () => {
+    const { document } = readPage(rel).window;
+    return [...document.querySelectorAll('script[type="application/ld+json"]')]
+      .map((s) => JSON.parse(s.textContent))
+      .find((d) => d['@type'] === 'FAQPage');
+  };
+
+  it('emits a FAQPage with a question and answer for every entry', () => {
+    const faq = faqSchema();
+    expect(faq?.mainEntity.length).toBeGreaterThanOrEqual(5);
+    for (const q of faq.mainEntity) {
+      expect(q['@type']).toBe('Question');
+      expect(q.name.length).toBeGreaterThan(0);
+      expect(q.acceptedAnswer.text.length).toBeGreaterThan(0);
+    }
+  });
+
+  it('answer text is plain: no tags or HTML entities', () => {
+    for (const q of faqSchema().mainEntity) {
+      expect(q.acceptedAnswer.text).not.toMatch(/<[a-zA-Z/]|&(?:[a-zA-Z]+|#\d+);/);
+    }
+  });
+
+  // The schema is only honest if the page shows the same questions.
+  it('every schema question is visible on the page', () => {
+    const { document } = readPage(rel).window;
+    const shown = [...document.querySelectorAll('#faq-heading ~ div h3, #faq-heading ~ div summary h3')].map((h) =>
+      h.textContent.trim(),
+    );
+    expect(shown.sort()).toEqual(faqSchema().mainEntity.map((q) => q.name).sort());
+  });
+
+  it('shows the featured questions open and folds the rest into accordions', () => {
+    const { document } = readPage(rel).window;
+    expect(document.querySelectorAll('section[aria-labelledby="faq-heading"] details').length).toBeGreaterThan(0);
+    expect(document.querySelectorAll('section[aria-labelledby="faq-heading"] > div:first-of-type h3').length).toBe(4);
+  });
+
+  it('pages without a faq emit no FAQPage', () => {
+    const { document } = readPage('services/index.html').window;
+    const types = [...document.querySelectorAll('script[type="application/ld+json"]')].map(
+      (s) => JSON.parse(s.textContent)['@type'],
+    );
+    expect(types).not.toContain('FAQPage');
+    expect(document.querySelector('#faq-heading')).toBeNull();
+  });
+});
+
 // ─── Contact page ────────────────────────────────────────────────────────────
 
 describe.skipIf(!built)('smoke – contact page (public/contact/index.html)', () => {
@@ -276,7 +328,7 @@ describe.skipIf(!built)('smoke – SEO: JSON-LD', () => {
   // work/index.html is a list page — Hugo's json-ld partial only fires on
   // .IsHome and .IsPage, so the listing is intentionally excluded here.
   const jsonLdPages = INDEXABLE_PAGES.filter(
-    (p) => p === 'index.html' || (p.startsWith('work/') && !WORK_LISTS.includes(p)),
+    (p) => p === 'index.html' || p === 'services/site-rescue/index.html' || (p.startsWith('work/') && !WORK_LISTS.includes(p)),
   );
   it.each(jsonLdPages)('%s contains valid JSON-LD', (rel) => {
     const { document } = readPage(rel).window;
