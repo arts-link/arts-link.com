@@ -15,6 +15,19 @@ Most rescues start with one of three situations.
 
 **The site is already gone.** The platform closed, the account lapsed, or the host disappeared, and nobody kept a copy. This is the hardest case, but it is not always a lost one.
 
+## Other signs a site needs rescuing
+
+Sometimes nothing is closing. The site is just quietly falling apart:
+
+- **Browsers warn visitors that your site isn't secure.** An expired or misconfigured SSL certificate puts a full-page warning between your work and the people trying to see it. Many visitors will leave rather than click past it.
+- **Images are missing or broken.** Gaps where your artwork used to be, thumbnails that no longer open, galleries that load half empty.
+- **Pages or content have vanished.** Old links lead to errors, whole sections are gone, and what's left is out of date.
+- **The domain or hosting lapsed.** A renewal went to an old email address, and now the site is offline or parked behind someone else's ad page.
+- **No one can log in.** The developer moved on, the password went with them, and you can't change anything.
+- **It broke after an update, or it's just slow.** Every fix seems to cause another problem, and pages take seconds to appear.
+
+Any of these can be fixed one at a time. Usually the better answer is to move everything to a simple site that has none of those moving parts, so they can't come back.
+
 ## What I recover
 
 Everything a visitor would have seen, and as much of what sat behind it as survives:
@@ -25,7 +38,7 @@ Everything a visitor would have seen, and as much of what sat behind it as survi
 - your menu and the structure of the site
 - the look of the site, if you want it kept
 
-Where an image only exists as a small thumbnail, I'll say so rather than quietly pass it off as the original.
+Missing images are often easier to get back than they look. The original files can still sit on the old host, in a backup, or in a web archive, even when the page that showed them is broken. Where an image only exists as a small thumbnail, I'll say so rather than quietly pass it off as the original.
 
 ## How it works
 
