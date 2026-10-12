@@ -1,53 +1,54 @@
 {{/*
-  Serves /work/ and the per-type pages (/work/rescue/, /work/open-source/,
-  /work/new/). A type page is a child section whose front matter sets `filter`.
+  Serves /work/ and its three filter pages (/work/new-sites/, /work/rescues/,
+  /work/open-source/). The filter pages are branch bundles with no children, so
+  they fall back to this template; their `_index.md` sets `filter` (a
+  `site_type`) and `eyebrow`. Every filter link is a plain <a href>.
 
-  On /work/ the pills are also an Alpine filter: clicking one hides the other
-  cards without a reload and records the choice as ?type=… so the view can be
-  shared. The per-type pages are the same list rendered statically, for
-  crawlers, link previews and visitors without JS.
+  Cards come from the section's regular pages, so the filter pages themselves
+  are never listed as projects.
 */}}
 {{ define "main" }}
 
-  {{- $filter := .Params.filter | default "" -}}
-  {{- $isRoot := eq $filter "" -}}
-  {{- $entries := (site.GetPage "/work").RegularPages -}}
-  {{- if eq $filter "new" -}}
-    {{- $entries = where $entries "Params.site_type" "not in" (slice "rescue" "open-source") -}}
-  {{- else if $filter -}}
-    {{- $entries = where $entries "Params.site_type" "eq" $filter -}}
-  {{- end -}}
-  {{- $entries = $entries.ByParam "weight" -}}
+  {{- $all := where site.RegularPages "Section" "work" -}}
+  {{- $projects := $all -}}
+  {{- with .Params.filter }}{{ $projects = where $all "Params.site_type" . }}{{ end -}}
+  {{- $here := .RelPermalink -}}
+  {{- $filters := slice
+        (dict "label" "All"         "href" "/work/"             "n" (len $all))
+        (dict "label" "New sites"   "href" "/work/new-sites/"   "n" (len (where $all "Params.site_type" "new")))
+        (dict "label" "Site rescues" "href" "/work/rescues/"    "n" (len (where $all "Params.site_type" "rescue")))
+        (dict "label" "Open source" "href" "/work/open-source/" "n" (len (where $all "Params.site_type" "open-source"))) -}}
 
-  <div class="max-w-6xl mx-auto px-6 pt-16 pb-32"
-    {{ if $isRoot }}x-data="{
-      type: '',
-      init() {
-        const t = new URLSearchParams(location.search).get('type') || '';
-        if (['new', 'rescue', 'open-source'].includes(t)) this.type = t;
-      },
-      pick(t) {
-        this.type = t;
-        history.replaceState(null, '', t ? '?type=' + t : location.pathname);
-      },
-      shows(t) { return this.type === '' || this.type === t; }
-    }"{{ end }}>
+  <div class="max-w-6xl mx-auto px-6 pt-16 pb-32">
 
-    <header class="mb-12">
-      <p class="text-ember text-xs tracking-[0.3em] uppercase mb-4">Portfolio</p>
-      <h1 class="font-display text-5xl md:text-7xl text-cream font-light">{{ if $isRoot }}Work{{ else }}{{ .Title }}{{ end }}</h1>
-      {{ with and (not $isRoot) .Params.description }}<p class="text-cream/60 text-lg mt-6 max-w-2xl">{{ . }}</p>{{ end }}
+    <header>
+      <p class="text-ember text-xs tracking-[0.3em] uppercase mb-4">{{ .Params.eyebrow | default "Portfolio" }}</p>
+      <h1 class="font-display text-5xl md:text-7xl text-cream font-light">{{ .Title }}</h1>
+      {{ with .Description }}<p class="text-cream/55 text-base md:text-lg leading-relaxed max-w-xl mt-6">{{ . }}</p>{{ end }}
     </header>
 
-    {{ partial "modules/work-filter.html" (dict "active" $filter "alpine" $isRoot) }}
+    <!-- Filter. One markup for every width: a scrolling tab rail below md
+         (full-bleed, so the next tab peeks off the edge), plain text links from
+         md up. -->
+    <nav aria-label="Filter work"
+         class="work-filter relative flex gap-7 mt-8 mb-10 -mx-6 px-6 overflow-x-auto snap-x scroll-pl-6 border-b border-cream/10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden
+                md:mx-0 md:px-0 md:flex-wrap md:gap-x-8 md:overflow-visible md:border-b-0">
+      {{ range $filters }}
+      <a href="{{ .href }}"{{ if eq $here .href }} aria-current="page"{{ end }}
+         class="group snap-start shrink-0 whitespace-nowrap inline-flex items-center gap-2 h-11 md:h-auto md:pb-2 text-[13px] uppercase tracking-[0.1em] text-cream/55 hover:text-cream
+                transition-colors duration-200 ease-[cubic-bezier(0.16,1,0.3,1)]
+                aria-[current=page]:text-cream aria-[current=page]:shadow-[inset_0_-2px_0_rgb(var(--color-ember))]
+                focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-ember">
+        {{ .label }}
+        <span class="text-cream/25 group-aria-[current=page]:text-cream/35">{{ .n }}</span>
+      </a>
+      {{ end }}
+    </nav>
 
-    {{ if $entries }}
+    {{ if $projects }}
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      {{ range $entries }}
-        {{- $t := .Params.site_type | default "new" -}}
-        <div {{ if $isRoot }}x-show="shows('{{ $t }}')"{{ end }}>
-          {{ partial "modules/project-card.html" (dict "page" . "sizes" "(max-width: 767px) calc(100vw - 3rem), (max-width: 1151px) calc(50vw - 2.5rem), 536px") }}
-        </div>
+      {{ range $projects.ByParam "weight" }}
+        {{ partial "modules/project-card.html" (dict "page" . "sizes" "(max-width: 767px) calc(100vw - 3rem), (max-width: 1151px) calc(50vw - 2.5rem), 536px") }}
       {{ end }}
     </div>
     {{ else }}
@@ -57,5 +58,15 @@
   </div>
 
   {{ partial "modules/cta-block.html" . }}
+
+  {{/* Progressive enhancement: on a narrow screen, bring the current tab into
+       view. Plain scrollLeft, because scrollIntoView can scroll the page too. */}}
+  <script>
+    (function () {
+      var nav = document.querySelector('.work-filter');
+      var cur = nav && nav.querySelector('[aria-current="page"]');
+      if (nav && cur) nav.scrollLeft = cur.offsetLeft - 24;
+    })();
+  </script>
 
 {{ end }}

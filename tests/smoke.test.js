@@ -21,8 +21,8 @@ const built = fs.existsSync(PUBLIC);
 const INDEXABLE_PAGES = [
   'index.html',
   'work/index.html',
-  'work/new/index.html',
-  'work/rescue/index.html',
+  'work/new-sites/index.html',
+  'work/rescues/index.html',
   'work/open-source/index.html',
   'services/index.html',
   'services/site-rescue/index.html',
@@ -37,7 +37,7 @@ const INDEXABLE_PAGES = [
 ];
 
 // Listing pages under work/: the grid itself and one page per project type.
-const WORK_LISTS = ['work/index.html', 'work/new/index.html', 'work/rescue/index.html', 'work/open-source/index.html'];
+const WORK_LISTS = ['work/index.html', 'work/new-sites/index.html', 'work/rescues/index.html', 'work/open-source/index.html'];
 
 function findHtmlFiles(dir) {
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap((e) =>
@@ -389,41 +389,58 @@ describe.skipIf(!built)('smoke – internal links resolve', () => {
   });
 });
 
-// ─── Work filter ─────────────────────────────────────────────────────────────
+// ─── Work filter pages ───────────────────────────────────────────────────────
 
-describe.skipIf(!built)('smoke – work type filter', () => {
+describe.skipIf(!built)('smoke – work filter pages', () => {
+  const FILTERS = [
+    { page: 'work/index.html', href: '/work/', label: 'All', type: null },
+    { page: 'work/new-sites/index.html', href: '/work/new-sites/', label: 'New sites', type: 'new' },
+    { page: 'work/rescues/index.html', href: '/work/rescues/', label: 'Site rescues', type: 'rescue' },
+    { page: 'work/open-source/index.html', href: '/work/open-source/', label: 'Open source', type: 'open-source' },
+  ];
   const cards = (rel) =>
     [...readPage(rel).window.document.querySelectorAll('article h3')].map((h) => h.textContent.trim());
-  const pill = (rel, label) =>
-    [...readPage(rel).window.document.querySelectorAll('nav[aria-label="Filter work by type"] a')].find((a) =>
-      a.textContent.trim().startsWith(label),
-    );
+  const tabs = (rel) =>
+    [...readPage(rel).window.document.querySelectorAll('nav[aria-label="Filter work"] a')];
 
-  it('each type page lists exactly its own entries', () => {
+  it('each filter page lists exactly its own entries, and together they are all the work', () => {
     const all = cards('work/index.html');
-    const parts = ['new', 'rescue', 'open-source'].map((t) => cards(`work/${t}/index.html`));
+    const parts = FILTERS.slice(1).map((f) => cards(f.page));
     expect(parts.flat().sort()).toEqual([...all].sort());
     expect(parts.every((p) => p.length > 0)).toBe(true);
   });
 
-  it('tab counts match the cards on each type page', () => {
-    const count = (a) => Number(a.textContent.trim().match(/(\d+)$/)[1]);
-    expect(count(pill('work/index.html', 'All'))).toBe(cards('work/index.html').length);
-    expect(count(pill('work/index.html', 'Rescues'))).toBe(cards('work/rescue/index.html').length);
-    expect(count(pill('work/index.html', 'Open source'))).toBe(cards('work/open-source/index.html').length);
-    expect(count(pill('work/index.html', 'New sites'))).toBe(cards('work/new/index.html').length);
+  it.each(FILTERS)('$page: same four plain links, current one marked, counts match the cards', ({ page, href }) => {
+    const links = tabs(page);
+    expect(links.map((a) => a.getAttribute('href'))).toEqual(FILTERS.map((f) => f.href));
+    expect(links.filter((a) => a.getAttribute('aria-current') === 'page').map((a) => a.getAttribute('href'))).toEqual([href]);
+    FILTERS.forEach((f, i) => {
+      expect(Number(links[i].querySelector('span').textContent)).toBe(cards(f.page).length);
+    });
   });
 
-  it('offers the same choices in the small-screen select', () => {
-    const opts = (rel) =>
-      [...readPage(rel).window.document.querySelectorAll('#work-type option')].map((o) => o.value);
-    expect(opts('work/index.html')).toEqual(['', 'new', 'rescue', 'open-source']);
-    const sel = readPage('work/rescue/index.html').window.document.querySelector('#work-type option[selected]');
-    expect(sel?.value).toBe('rescue');
+  it('has no filter switch left: no select, no Alpine state, no data-filter', () => {
+    const { document } = readPage('work/index.html').window;
+    expect(document.querySelector('select')).toBeNull();
+    expect(document.querySelector('.work-filter').closest('[x-data]')).toBeNull();
+    expect(document.querySelector('.work-filter').parentElement.querySelector('[x-show], [\\@click]')).toBeNull();
+    expect(document.querySelector('[data-filter]')).toBeNull();
   });
 
-  it('marks the current type tab on its own page', () => {
-    expect(pill('work/rescue/index.html', 'Rescues').getAttribute('aria-current')).toBe('page');
-    expect(pill('work/rescue/index.html', 'All').getAttribute('aria-current')).toBeNull();
+  it.each(FILTERS.slice(1))('$page has its own title, description and canonical', ({ page, label, href }) => {
+    const { document } = readPage(page).window;
+    expect(document.querySelector('h1').textContent.trim()).toBe(label);
+    expect(document.title).toContain(label);
+    expect(document.querySelector('link[rel="canonical"]').getAttribute('href')).toMatch(new RegExp(`${href}$`));
+    expect(document.querySelector('header p.text-cream\\/55')?.textContent.trim()).toBe(metaDescription(page));
+  });
+
+  it('filter pages are never listed as projects (home, llms.txt)', () => {
+    const home = readPage('index.html').window.document.body.innerHTML;
+    const llms = fs.readFileSync(path.join(PUBLIC, 'llms.txt'), 'utf8');
+    for (const slug of ['new-sites', 'rescues', 'open-source']) {
+      expect(home).not.toContain(`/work/${slug}/`);
+      expect(llms).not.toContain(`/work/${slug}/`);
+    }
   });
 });

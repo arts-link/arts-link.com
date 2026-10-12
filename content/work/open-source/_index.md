@@ -1,5 +1,6 @@
 +++
 title = "Open source"
-description = "Free tools and themes Arts-Link builds in the open, so anyone can use them, change them, and learn from them."
+description = "Free tools and themes I build in the open, shaped by client work."
 filter = "open-source"
+eyebrow = "Work"
 +++

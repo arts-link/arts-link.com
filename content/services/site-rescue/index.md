@@ -108,4 +108,4 @@ If the work was ever online, chances are parts of it can be recovered. I won't k
 
 Site rescues start from $1,000. The price depends on how many pages and images there are, and how much digging it takes to get them back. I'll give you a number once I've seen what you have, and before any work begins.
 
-[See the sites I've rescued →](/work/rescue/)
+[See the sites I've rescued →](/work/rescues/)

@@ -47,12 +47,18 @@ Open-source projects (Ryder, Screenshot-a-Day) use `site_type = "open-source"`. 
 
 ### Filtering by type
 
-`/work/` shows text tabs (All, New sites, Rescues, Open source) with counts on md+, and a select on small screens, built from each entry's `site_type`. There are two layers:
+`/work/` and three filter pages share one template, `layouts/work/list.html`:
 
-- **Static pages.** `content/work/{new,rescue,open-source}/_index.md` are child sections whose front matter sets `filter`. `layouts/work/list.html` renders the same grid for them, limited to that type, so `/work/rescue/` etc. work without JS, are indexable, and get their own description and social card. An entry with no `site_type` counts as `new`.
-- **Instant filter.** On `/work/` an Alpine scope hides the other cards without a reload and records the choice as `?type=rescue`. Loading that URL restores the filter.
+| URL | Shows | `site_type` |
+|---|---|---|
+| `/work/` | All work | (none) |
+| `/work/new-sites/` | New sites | `new` |
+| `/work/rescues/` | Site rescues | `rescue` |
+| `/work/open-source/` | Open source | `open-source` |
 
-Adding a fourth `site_type` means a new `_index.md`, a new entry in `layouts/partials/modules/work-filter.html`, the allow-list in `layouts/work/list.html`, and a card (`npm run build && npm run og`). The list templates use `.RegularPages` so these child sections never show up as projects.
+The filter pages are branch bundles with no children: `content/work/{new-sites,rescues,open-source}/_index.md`, each setting `filter` (the `site_type` to show) and `eyebrow`. Projects stay in `content/work/<slug>/`. Each filter page has its own title, description, canonical and social card, and every filter link is a plain `<a href>` — there is no filter JavaScript. The nav shows computed counts and marks the current page with `aria-current="page"`. The same markup is a scrolling tab rail below `md` and plain text links from `md` up; a three-line script scrolls the current tab into view on narrow screens and is optional.
+
+The templates that list projects use `where site.RegularPages "Section" "work"`, so these child sections are never listed as projects. Adding a fourth `site_type` means a new `_index.md`, a new entry in the `$filters` array in `layouts/work/list.html`, and a card (`npm run build && npm run og`).
 
 ### Adding a work entry
 
