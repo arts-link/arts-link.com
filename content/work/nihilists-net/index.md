@@ -8,7 +8,7 @@ image = "screenshot.jpg"
 live_url = "https://www.nihilists.net"
 description = "A preservation-first rescue of Elisha Shapiro’s hand-built website.  Twenty-three years of Los Angeles art moved off a failing host without redesigning away its character."
 case_study = true
-weight = 4
+weight = 2
 +++
 
 Elisha Shapiro—the self-described LA Freak—is a Los Angeles conceptual artist whose nihilism has taken the form of the Nihilist Olympics, the National Nihilist Party, the Nihilism Expo, a television show, and an international film festival. His memoir, [*LA Freak*](https://link.amazon/A0iMl5PxF), looks back at the rebellious, alternative Los Angeles that shaped him. Since the late 1990s, **Nihilists’ Corner** has been the work’s home online: a hand-built maze of art, images, provocations, festival programs, political campaigns, and newsletters.

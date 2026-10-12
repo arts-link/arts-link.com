@@ -38,12 +38,12 @@ site_system:
       target_action: Route to Contact
       metric: Contact page visits from Work
       notes: >
-        Portfolio of sites built — Alaina Varrone (the first work item and a
-        rescue of an offline portfolio), Louise Strawbridge, Cindy Kindred,
-        road trip site, grandfather photography, Jill Bonovitz (rescue story),
-        nihilists.net (preservation-first rescue for conceptual artist Elisha
-        Shapiro), and Verdèzul (first band; the work card links out to the full
-        launch case study on the Blog). Each entry should name the service type
+        Portfolio of sites built — Alaina Varrone first (a rescue of an offline
+        portfolio), followed by nihilists.net (a preservation-first rescue for
+        conceptual artist Elisha Shapiro), then Screenshot-a-Day, Verdèzul,
+        the road trip site, Jill Bonovitz, Ryder, Cindy Kindred, the Gordon
+        Landreth photography archive, Louise Strawbridge, and Writing SOS.
+        Each entry should name the service type
         (new vs rescue). The portfolio also carries the open source projects
         Arts-Link maintains — Ryder (Hugo theme) and Screenshot-a-Day
         (self-hosted visual website archive) — badged "Open source" so they
