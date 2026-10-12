@@ -33,4 +33,4 @@ When two sources disagree, **the code that ships wins** over the docs, and `site
 - **Don't duplicate.** If something is explained in a file's own comment block, summarise it in a line and link to the file.
 - **No secrets, no client material, and no links to tool working surfaces**: no `claude.ai` artifact links, shared chats or scratch notebooks. This repository is public.
 - **Update in the same PR** as the change. A doc that lags the code is worse than no doc.
-- Use plain Markdown, sentence-case headings and short sections. Use tables for inventories and fenced blocks for commands.
+- Use plain Markdown, sentence-case headings (that rule is for these docs; the site's own `h1`/`h2` are title case) and short sections. Use tables for inventories and fenced blocks for commands.

@@ -394,9 +394,9 @@ describe.skipIf(!built)('smoke – internal links resolve', () => {
 describe.skipIf(!built)('smoke – work filter pages', () => {
   const FILTERS = [
     { page: 'work/index.html', href: '/work/', label: 'All', type: null },
-    { page: 'work/new-sites/index.html', href: '/work/new-sites/', label: 'New sites', type: 'new' },
-    { page: 'work/rescues/index.html', href: '/work/rescues/', label: 'Site rescues', type: 'rescue' },
-    { page: 'work/open-source/index.html', href: '/work/open-source/', label: 'Open source', type: 'open-source' },
+    { page: 'work/new-sites/index.html', href: '/work/new-sites/', label: 'New sites', heading: 'New Sites', type: 'new' },
+    { page: 'work/rescues/index.html', href: '/work/rescues/', label: 'Site rescues', heading: 'Site Rescues', type: 'rescue' },
+    { page: 'work/open-source/index.html', href: '/work/open-source/', label: 'Open source', heading: 'Open Source', type: 'open-source' },
   ];
   const cards = (rel) =>
     [...readPage(rel).window.document.querySelectorAll('article h3')].map((h) => h.textContent.trim());
@@ -427,10 +427,10 @@ describe.skipIf(!built)('smoke – work filter pages', () => {
     expect(document.querySelector('[data-filter]')).toBeNull();
   });
 
-  it.each(FILTERS.slice(1))('$page has its own title, description and canonical', ({ page, label, href }) => {
+  it.each(FILTERS.slice(1))('$page has its own title, description and canonical', ({ page, heading, href }) => {
     const { document } = readPage(page).window;
-    expect(document.querySelector('h1').textContent.trim()).toBe(label);
-    expect(document.title).toContain(label);
+    expect(document.querySelector('h1').textContent.trim()).toBe(heading);
+    expect(document.title).toContain(heading);
     expect(document.querySelector('link[rel="canonical"]').getAttribute('href')).toMatch(new RegExp(`${href}$`));
     expect(document.querySelector('header p.text-cream\\/55')?.textContent.trim()).toBe(metaDescription(page));
   });
@@ -442,5 +442,31 @@ describe.skipIf(!built)('smoke – work filter pages', () => {
       expect(home).not.toContain(`/work/${slug}/`);
       expect(llms).not.toContain(`/work/${slug}/`);
     }
+  });
+});
+
+// ─── Title case ──────────────────────────────────────────────────────────────
+
+// h1 and h2 are title case site-wide. Templates and the markdown heading hook
+// run text through Hugo's `title` (AP style: these small words stay lowercase
+// unless they start the heading). The content/ layouts' hand-written headings
+// are checked here too, since Hugo cannot do that for literal text.
+describe.skipIf(!built)('smoke – title case headings', () => {
+  const SMALL = new Set(['a', 'an', 'and', 'as', 'at', 'but', 'by', 'for', 'if', 'in', 'nor', 'of', 'on', 'or', 'so', 'the', 'to', 'up', 'vs', 'yet']);
+  const offenders = [];
+  for (const file of findHtmlFiles(PUBLIC)) {
+    const { document } = new JSDOM(fs.readFileSync(file, 'utf8')).window;
+    for (const h of document.querySelectorAll('h1, h2')) {
+      const words = h.textContent.replace(/\s+/g, ' ').trim().split(' ');
+      const bad = words.find((w, i) => {
+        const bare = w.replace(/^[^A-Za-z]+/, '');
+        return bare && /[a-z]/.test(bare[0]) && (i === 0 || !SMALL.has(bare.toLowerCase().replace(/[^a-z]+$/, '')));
+      });
+      if (bad) offenders.push(`${path.relative(PUBLIC, file)}: "${words.join(' ')}"`);
+    }
+  }
+
+  it('every h1 and h2 is in title case', () => {
+    expect(offenders).toEqual([]);
   });
 });

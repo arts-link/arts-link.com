@@ -23,7 +23,7 @@
 
     <header>
       <p class="text-ember text-xs tracking-[0.3em] uppercase mb-4">{{ .Params.eyebrow | default "Portfolio" }}</p>
-      <h1 class="font-display text-5xl md:text-7xl text-cream font-light">{{ .Title }}</h1>
+      <h1 class="font-display text-5xl md:text-7xl text-cream font-light">{{ .Title | title }}</h1>
       {{ with .Description }}<p class="text-cream/55 text-base md:text-lg leading-relaxed max-w-xl mt-6">{{ . }}</p>{{ end }}
     </header>
 

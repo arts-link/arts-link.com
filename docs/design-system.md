@@ -64,7 +64,7 @@ Anything built from the existing `ink` / `cream` / `ember` tokens adapts to both
 - **The signature move** is a wide-tracked uppercase eyebrow (`text-ember text-xs tracking-[0.3em] uppercase`) above a very large light serif heading.
 - The hero runs `text-[clamp(3.5rem,9vw,8.5rem)] leading-[0.9]`. The CTA and thanks pattern is `font-display text-5xl md:text-7xl font-light`.
 - Body copy is 16–18px at about 1.65 line height.
-- **Sentence case** for headings and prose. UPPERCASE is only for tracked micro-labels: eyebrows, nav, badges, buttons.
+- **Title case** for `h1`/`h2` (Hugo's `title`, see [`writing-style.md`](writing-style.md)); sentence case for `h3` and below and for prose. UPPERCASE is only for tracked micro-labels: eyebrows, nav, badges, buttons.
 - There's no third family and no monospace face in the design.
 - `@tailwindcss/typography` (`prose`) styles long-form content.
 

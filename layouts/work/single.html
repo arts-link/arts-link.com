@@ -19,7 +19,7 @@
         {{ end }}
         <span class="text-cream/35 text-sm capitalize">{{ .Params.client_type }}</span>
       </div>
-      <h1 class="font-display text-5xl md:text-7xl text-cream font-light mb-8">{{ .Title }}</h1>
+      <h1 class="font-display text-5xl md:text-7xl text-cream font-light mb-8">{{ .Title | title }}</h1>
       <div class="flex flex-wrap items-center gap-6">
         {{ with .Params.live_url }}
         <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="text-ember text-sm tracking-wide hover:underline">

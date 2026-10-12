@@ -102,7 +102,7 @@
       {{ with $eyebrow }}
         <p class="mb-[22px] text-[30px] font-medium uppercase tracking-[0.13em] text-ember">{{ . }}</p>
       {{ end }}
-      <h1 class="font-display font-medium leading-[1.06] text-cream {{ $titleSize }}">{{ .Title }}</h1>
+      <h1 class="font-display font-medium leading-[1.06] text-cream {{ $titleSize }}">{{ .Title | title }}</h1>
       {{ with $desc }}
         <p class="mt-[26px] line-clamp-2 text-[36px] leading-snug text-cream/75">{{ . }}</p>
       {{ end }}

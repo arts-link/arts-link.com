@@ -5,7 +5,7 @@
   <header class="pb-14 border-b border-cream/10">
     <p class="text-cream/25 text-xs tracking-widest uppercase mb-5" aria-hidden="true">Studio notes</p>
     <h1 class="font-display text-6xl md:text-7xl text-cream font-light leading-none mb-6">
-      {{ .Title }}
+      {{ .Title | title }}
     </h1>
     {{ with .Description }}
     <p class="text-cream/45 text-lg max-w-lg leading-relaxed">{{ . }}</p>
@@ -30,7 +30,7 @@
           <!-- Content -->
           <div class="flex-1 min-w-0">
             <h2 class="font-display text-3xl md:text-4xl text-cream font-light leading-snug mb-4 group-hover:text-ember transition-colors duration-300">
-              <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+              <a href="{{ .RelPermalink }}">{{ .Title | title }}</a>
             </h2>
             {{ with .Description }}
             <p class="text-cream/60 text-base leading-relaxed mb-6 max-w-xl">{{ . }}</p>
