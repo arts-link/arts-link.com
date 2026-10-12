@@ -17,9 +17,9 @@ By 2026, the work was still alive but the infrastructure around it was failing. 
 
 The assignment was never to redesign it. The site’s raw, early-web appearance is part of the artwork. Making it conventionally modern would have erased the very thing worth preserving.
 
-I copied and independently verified the entire hosting account: **1,291 files recovered**, including archives and working material that an ordinary website copier would have missed. From that collection we identified the live site: 29 pages and 143 supporting images, PDFs, and other files.  I preserved the rest in a complete private archive.
+I copied and independently verified the entire hosting account: **1,291 files recovered**, including archives and working material that an ordinary website copier would have missed. From that collection I identified the live site: 29 pages and 143 supporting images, PDFs, and other files.  I preserved the rest in a complete private archive.
 
-The public site moved to dependable, secure hosting with no annual hosting fee. We added working visitor statistics, version history, a proper missing-page response, and **36 permanent redirects,** so bookmarks collected by visitors over decades still arrive where they should. Every public file and every redirect was checked individually, followed by a visual review that caught and repaired an image modern browsers had stopped displaying.
+The public site moved to dependable, secure hosting with no annual hosting fee. I added working visitor statistics, version history, a proper missing-page response, and **36 permanent redirects,** so bookmarks collected by visitors over decades still arrive where they should. Every public file and every redirect was checked individually, followed by a visual review that caught and repaired an image modern browsers had stopped displaying.
 
 Elisha still edits the pages in Dreamweaver, as he always has. A simple publishing workflow now keeps every revision and puts his changes online in about a minute. One week after launch, he published his first update himself.
 
