@@ -48,6 +48,10 @@
 # search results regardless of whether its URLs are right.
 set -eu
 
+# Hugo itself comes from scripts/hugo.sh, which runs the version pinned in
+# .hugo-version whatever the Workers Builds HUGO_VERSION variable says.
+cd "$(dirname "$0")/.."
+
 PRODUCTION_BRANCH="${PRODUCTION_BRANCH:-main}"
 
 # Outside Workers Builds (a local run, or CI that just wants the artifact)
@@ -55,7 +59,7 @@ PRODUCTION_BRANCH="${PRODUCTION_BRANCH:-main}"
 # Same rule the Vercel script used for builds with no VERCEL_URL.
 if [ -z "${WORKERS_CI:-}" ] || [ "${WORKERS_CI_BRANCH:-}" = "$PRODUCTION_BRANCH" ]; then
   echo "cf-build: production build (baseURL from config)"
-  exec hugo --minify "$@"
+  exec sh scripts/hugo.sh --minify "$@"
 fi
 
 echo "cf-build: preview build of branch '${WORKERS_CI_BRANCH:-unknown}' — noindex, no canonical"
@@ -68,7 +72,7 @@ export HUGO_PARAMS_PREVIEW
 
 if [ -n "${PREVIEW_BASE_URL:-}" ]; then
   echo "cf-build: using PREVIEW_BASE_URL=$PREVIEW_BASE_URL"
-  exec hugo --minify --baseURL "$PREVIEW_BASE_URL" "$@"
+  exec sh scripts/hugo.sh --minify --baseURL "$PREVIEW_BASE_URL" "$@"
 fi
 
-exec hugo --minify "$@"
+exec sh scripts/hugo.sh --minify "$@"

@@ -13,9 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    env:
-      HUGO_VERSION: 0.138.0
-
     steps:
       - uses: actions/checkout@v4
         with:
@@ -26,20 +23,17 @@ jobs:
           node-version: 'lts/*'
           cache: 'npm'
 
-      - name: Install Hugo CLI
-        run: |
-          wget -O ${{ runner.temp }}/hugo.deb \
-            https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb \
-          && sudo dpkg -i ${{ runner.temp }}/hugo.deb
-
       - name: Install Node.js dependencies
         run: npm ci
 
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
 
+      # No Hugo install step: scripts/hugo.sh (behind `npm run build`) fetches
+      # the version pinned in .hugo-version, the same one every other build
+      # uses. Pinning it here as well is how CI and local drifted apart.
       - name: Build site
-        run: hugo --minify
+        run: npm run build
 
       - name: Render cards
         run: npm run og

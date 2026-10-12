@@ -11,7 +11,6 @@ jobs:
     permissions:
       contents: read
     env:
-      HUGO_VERSION: 0.138.0
       # This job only hashes the cards (`npm run og:check`); it never renders
       # them, so there is no reason to pull down a browser on install.
       PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
@@ -26,17 +25,14 @@ jobs:
           node-version: 'lts/*'
           cache: 'npm'
 
-      - name: Install Hugo CLI
-        run: |
-          wget -O ${{ runner.temp }}/hugo.deb \
-            https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb \
-          && sudo dpkg -i ${{ runner.temp }}/hugo.deb
-
       - name: Install Node.js dependencies
         run: npm ci
 
+      # No Hugo install step: scripts/hugo.sh (behind `npm run build`) fetches
+      # the version pinned in .hugo-version, the same one every other build
+      # uses. Pinning it here as well is how CI and local drifted apart.
       - name: Build site
-        run: hugo --minify
+        run: npm run build
 
       - name: Check social cards are current
         run: npm run og:check

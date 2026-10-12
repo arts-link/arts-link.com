@@ -1,0 +1,19 @@
+{{- /* Refuse to build under any Hugo but the pinned one.
+
+     Hugo's own [module.hugoVersion] min/max does not stop a newer Hugo from
+     building, and a newer Hugo produces different output — resized image
+     names change, and the social cards embed them, so CI's og:check fails on
+     cards nobody touched. Rather than let that surface three steps later as
+     "stale cards", stop here and say what is actually wrong.
+
+     The version is read from .hugo-version, the same file scripts/hugo.sh
+     reads, so there is still exactly one place it is written down.
+
+     Called through partialCached from baseof.html, so it runs once per build. */ -}}
+{{- $want := os.ReadFile ".hugo-version" | strings.TrimSpace -}}
+{{- if ne hugo.Version $want -}}
+  {{- errorf "This site is pinned to Hugo %s (.hugo-version), but this is Hugo %s. Use `npm run dev` / `npm run build`, or `sh scripts/hugo.sh <args>`, which run the pinned version." $want hugo.Version -}}
+{{- end -}}
+{{- if not hugo.IsExtended -}}
+  {{- errorf "This site needs Hugo extended (image processing). Use `sh scripts/hugo.sh`, which runs the pinned extended build." -}}
+{{- end -}}

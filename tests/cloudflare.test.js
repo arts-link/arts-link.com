@@ -26,7 +26,7 @@ const WRANGLER = path.join(ROOT, 'wrangler.jsonc');
 
 const hasHugo = (() => {
   try {
-    execFileSync('hugo', ['version'], { stdio: 'ignore' });
+    execFileSync('sh', ['scripts/hugo.sh', 'version'], { stdio: 'ignore' });
     return true;
   } catch {
     return false;
@@ -57,6 +57,13 @@ describe('wrangler.jsonc', () => {
 
   it('serves the real 404 page with a 404 status', () => {
     expect(config.assets.not_found_handling).toBe('404-page');
+  });
+
+  it('enables preview URLs by decision, not by default', () => {
+    // Previews are public and crawlable. That is safe only because
+    // scripts/cf-build.sh marks them noindex; the setting and the build
+    // belong together, so the setting is pinned here.
+    expect(config.preview_urls).toBe(true);
   });
 
   it('serves folder indexes with a trailing slash', () => {
@@ -102,6 +109,14 @@ describe.skipIf(!hasHugo)('preview builds do not impersonate production', () => 
     expect(head).toMatch(/name=["']?robots["']?\s+content=["']noindex/);
   });
 
+  // Previews build in the production Hugo environment, which is what supplies
+  // the PostHog key. Without the preview gate every PR click-through would be
+  // counted as a real visit in the dataset the keystone metrics are read from.
+  it('does not load PostHog', () => {
+    expect(head).not.toMatch(/posthog\.init/);
+    expect(head).not.toMatch(/g\.arts-link\.com/);
+  });
+
   it('disallows crawling in robots.txt and advertises no sitemap', () => {
     expect(robots).toMatch(/Disallow:\s*\/\s*$/m);
     expect(robots).not.toMatch(/Sitemap:/i);
@@ -133,6 +148,10 @@ describe.skipIf(!hasHugo)('production builds are unchanged', () => {
 
   it('still emits og:url', () => {
     expect(head).toMatch(/og:url/);
+  });
+
+  it('still loads PostHog', () => {
+    expect(head).toMatch(/posthog\.init/);
   });
 
   it('does not carry the preview noindex', () => {

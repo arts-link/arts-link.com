@@ -4,6 +4,9 @@
   "description": "## inital setup",
   "main": "index.js",
   "scripts": {
+    "hugo": "sh scripts/hugo.sh",
+    "dev": "sh scripts/hugo.sh server",
+    "build": "sh scripts/hugo.sh --minify --cleanDestinationDir",
     "test": "vitest run",
     "postinstall": "cp node_modules/alpinejs/dist/cdn.min.js static/js/alpine.min.js",
     "og": "node scripts/og-images.mjs",
@@ -29,7 +32,8 @@
     "prettier-plugin-tailwindcss": "^0.5.11",
     "tailwindcss": "^3.4.0",
     "vitest": "^4.1.0",
-    "wrangler": "^4.133.0"
+    "wrangler": "^4.133.0",
+    "yaml": "^2.9.1"
   },
   "dependencies": {
     "@alpinejs/focus": "^3.13.7",
