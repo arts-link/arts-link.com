@@ -70,7 +70,8 @@ site_system:
         /services/site-rescue/. The full description of the rescue service:
         who it is for (platform closing, paying for more than you use, site
         already gone), what gets recovered, the five-step process, what you end
-        up with, what a rescue can't do, and "from $1,000". Written
+        up with, what a rescue can't do, a FAQ (four questions open, five in
+        accordions, with matching FAQPage schema), and "from $1,000". Written
         generically; it names no client project and links to /work/rescue/ for
         examples. Reuses layouts/services/single.html, so further services
         detail pages can follow the same template.

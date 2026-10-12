@@ -57,7 +57,7 @@ Most rescues start with one of three situations.
 
 ## Other signs a site needs rescuing
 
-Sometimes nothing is closing. The site is just quietly falling apart:
+Not every rescue starts with a shutdown. Sometimes the site is still up, but it's quietly falling apart:
 
 - **Browsers warn visitors that your site isn't secure.** An expired or misconfigured SSL certificate puts a full-page warning between your work and the people trying to see it. Many visitors will leave rather than click past it.
 - **Images are missing or broken.** Gaps where your artwork used to be, thumbnails that no longer open, galleries that load half empty.
