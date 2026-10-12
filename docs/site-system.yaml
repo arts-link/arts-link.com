@@ -38,8 +38,9 @@ site_system:
       notes: >
         Portfolio of sites built — Louise Strawbridge, Cindy Kindred,
         road trip site, grandfather photography, Jill Bonovitz (rescue story),
-        and Verdèzul (first band; the work card links out to the full launch
-        case study on the Blog). Each entry should name the service type
+        nihilists.net (preservation-first rescue for conceptual artist Elisha
+        Shapiro), and Verdèzul (first band; the work card links out to the full
+        launch case study on the Blog). Each entry should name the service type
         (new vs rescue). The portfolio also carries the open source projects
         Arts-Link maintains — Ryder (Hugo theme) and Screenshot-a-Day
         (self-hosted visual website archive) — badged "Open source" so they
@@ -205,7 +206,10 @@ site_system:
         - story: short narrative for case study pages
       notes: >
         Card grid by default. Projects with case_study: true get their
-        own page. Jill Bonovitz is the first case study candidate (rescue story).
+        own page. Jill Bonovitz and nihilists.net demonstrate two different
+        rescue stories: rebuilding an unsupported site, and preserving a
+        culturally distinctive hand-built site while replacing its failing
+        infrastructure.
         client_type is free text, printed verbatim on the card, the entry page,
         and in llms.txt — store it lowercase, since the first two apply a CSS
         capitalize transform and llms.txt does not. The list above is the
