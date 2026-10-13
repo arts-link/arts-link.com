@@ -1,0 +1,11 @@
+{{/*
+  Markdown headings. h1 and h2 are set in title case with Hugo's `title`
+  (AP style: "of", "and", "to" stay lowercase); h3 and below are untouched.
+  Title case works on plain text, so a heading with inline markup (a link or
+  code span) is left as written.
+*/}}
+{{- $text := .Text | safeHTML -}}
+{{- if and (le .Level 2) (not (findRE "<" .Text)) -}}
+  {{- $text = .PlainText | htmlUnescape | title -}}
+{{- end -}}
+<h{{ .Level }} id="{{ .Anchor | safeURL }}"{{ range $k, $v := .Attributes }}{{ if ne $k "id" }} {{ $k }}="{{ $v }}"{{ end }}{{ end }}>{{ $text }}</h{{ .Level }}>

@@ -1,0 +1,46 @@
+{{/*
+  FAQ — rendered from front matter, so the visible text and the FAQPage JSON-LD
+  (layouts/partials/head/json-ld.html) come from one list and can't drift.
+
+    [[faq]]
+    q = "Can you rescue a site that's already offline?"
+    a = "Often, yes. …"          # markdown allowed; links are dropped from the schema text
+    featured = true               # shown open on the page; the rest sit in accordions
+
+  Optional page param `faq_title` overrides the heading ("Common questions").
+  Renders nothing on a page with no `faq`. Call it from a layout:
+
+    {{ partial "modules/faq.html" . }}
+*/}}
+{{- with .Params.faq -}}
+{{- $featured := where . "featured" true -}}
+{{- $more := where . "featured" "ne" true -}}
+<section class="max-w-3xl mx-auto px-6 pb-24" aria-labelledby="faq-heading">
+  <hr class="border-cream/10 mb-12">
+  <h2 id="faq-heading" class="font-display text-3xl md:text-4xl text-cream font-light tracking-tight mb-10">{{ $.Params.faq_title | default "Common questions" | title }}</h2>
+
+  <div class="space-y-10 mb-12">
+    {{ range $featured }}
+    <div>
+      <h3 class="font-display text-xl md:text-2xl text-cream font-light mb-3">{{ .q }}</h3>
+      <div class="text-cream/70 leading-relaxed [&_a]:text-ember [&_a]:underline [&_a]:underline-offset-2 [&_p+p]:mt-4">{{ .a | markdownify }}</div>
+    </div>
+    {{ end }}
+  </div>
+
+  {{ with $more }}
+  <div class="border-t border-cream/10">
+    {{ range . }}
+    <details class="group border-b border-cream/10">
+      <summary class="flex items-center justify-between gap-6 py-5 cursor-pointer list-none [&::-webkit-details-marker]:hidden text-cream hover:text-ember transition-colors">
+        <h3 class="font-display text-lg md:text-xl font-light">{{ .q }}</h3>
+        <span aria-hidden="true" class="shrink-0 text-ember text-xl leading-none group-open:hidden">+</span>
+        <span aria-hidden="true" class="shrink-0 text-ember text-xl leading-none hidden group-open:inline">−</span>
+      </summary>
+      <div class="pb-6 pr-10 text-cream/70 leading-relaxed [&_a]:text-ember [&_a]:underline [&_a]:underline-offset-2 [&_p+p]:mt-4">{{ .a | markdownify }}</div>
+    </details>
+    {{ end }}
+  </div>
+  {{ end }}
+</section>
+{{- end -}}

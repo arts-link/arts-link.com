@@ -47,6 +47,9 @@ site_system:
         (self-hosted visual website archive) — badged "Open source" so they
         read as contributions to the ecosystem rather than as client work, and
         linking out to the public site/demo and the source repository.
+        /work/ is filtered by type through real pages, /work/new-sites/,
+        /work/rescues/ and /work/open-source/, each with its own description
+        and social card (no filter JavaScript).
 
     - name: Services
       type: Collector
@@ -56,7 +59,36 @@ site_system:
         Describe New Site and Site Rescue. Includes a "What it costs"
         section with two cards: Artist Site and Band/Musician Site,
         both starting from $1,000, listing the included pages for each.
-        All pricing CTAs route to Contact.
+        All pricing CTAs route to Contact. The Site Rescue box links to
+        /services/site-rescue/, the first services detail page (see below).
+
+    - name: Site rescue (services detail)
+      type: Collector
+      target_action: Route to Contact
+      metric: Contact page visits from Site rescue
+      notes: >
+        /services/site-rescue/. The full description of the rescue service:
+        who it is for (platform closing, paying for more than you use, site
+        already gone), a "Send me your site" call to action with "from $1,000"
+        at the top, a proof strip naming two real rescues (Alaina Varrone,
+        Jill Bonovitz, each with a screenshot thumbnail; the only client names
+        the page may carry, each linking to its case study), what gets recovered, the five-step
+        process followed by a second call to action, search rankings, links
+        and email, what a rescue can't do, a FAQ (four questions open, four in
+        accordions, with matching FAQPage schema), and a service-specific
+        closing call to action. All three calls to action use `CTA Click` with
+        `location` site-rescue-opening / -process / -closing and pass
+        `?from=site-rescue` to Contact, which records it in a hidden `source`
+        field. The page also emits Service JSON-LD (provider is the home
+        page's #organization; "from $1,000" is a minimum price, no areaServed).
+        Reuses layouts/services/single.html, so further services detail pages
+        can follow the same template.
+
+        Migration practice, as confirmed by Ben and now stated on the page:
+        redirect changed URLs, carry over titles/descriptions/image text, leave
+        email DNS records alone, and keep the old site live until the switch
+        only while it is still online and its host is still running. Not
+        claimed: sitemap submission, post-launch audits, any response time.
 
     - name: Contact
       type: Converter

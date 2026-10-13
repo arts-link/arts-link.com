@@ -49,6 +49,8 @@ These are the events fired by the `data-track-*` attribute system. They appear i
 | `CTA Click` | `layouts/partials/modules/cta-block.html` | `{location: "cta-block"}` |
 | `CTA Click` | `layouts/partials/footer.html` | `{location: "footer"}` |
 | `Blog Callout Click` | `layouts/partials/modules/latest-post.html` (title, description and "Read" links) | `{location: "home"}` |
+| `CTA Click` (Site rescue) | `layouts/partials/modules/rescue-cta.html`, on `/services/site-rescue/` | `{location: "site-rescue-opening" \| "site-rescue-process" \| "site-rescue-closing"}`; the link carries `?from=site-rescue` and the contact form copies it into a hidden `source` field |
+| `Service Detail Click` | `layouts/partials/modules/service-block.html` ("How a rescue works →", on Home and Services) | `{service: "site-rescue"}` |
 | `Contact Form Submit` | `layouts/partials/modules/contact-form.html` | _(none)_ |
 | `Archive Worksheet Submit` | `layouts/archive-worksheet/list.html` | _(none)_ |
 

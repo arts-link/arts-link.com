@@ -7,6 +7,7 @@ Arts-link.com is a boutique web studio run by Ben Strawbridge. We build bespoke 
 ## Services
 
 - [Services]({{ "/services/" | absURL }}): Custom portfolio sites for artists and bands. New builds start from scratch; site rescues migrate away from expensive or dying platforms. Starting from $1,000.
+- [Site rescue]({{ "/services/site-rescue/" | absURL }}): Recover a lost website or move a portfolio off WordPress, Wix, or Squarespace. Starting from $1,000.
 
 ## Work
 {{ $work := where .Site.RegularPages "Section" "work" -}}

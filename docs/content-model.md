@@ -12,6 +12,7 @@ This page covers what lives in `content/`, the front matter each kind of page us
 | `content/work/` | ✅ | `layouts/work/` | Page bundles, one per project (see below). |
 | `content/blog/` | ✅ | `layouts/blog/` | Posts, either single files or bundles with images. Each ends in a CTA block. |
 | `content/services/_index.md` | ✅ | `layouts/services/list.html` | New Site, Site Rescue, and "What it costs". |
+| `content/services/site-rescue/index.md` | ✅ | `layouts/services/single.html` | Services detail page, linked from the Site Rescue box. Front matter: `title`, `description`, `lede`; optional `seo_title` (the `<title>` tag only), `invitation`, `price_note`, `price_from` (feeds Service JSON-LD), `directness`, `closing_title`, `closing_text`, and `[[proof]]` (`entry`, `problem`, `result`). Don't give it a future `date` — Hugo won't publish it. |
 | `content/contact/_index.md` | ✅ | `layouts/contact/list.html` | Converter page. One job, minimal form. |
 | `content/thanks/` | ✅ | `layouts/thanks/list.html` | The Formspree landing page. |
 | `content/archive-worksheet/` | ✅ (not in nav) | own `baseof` | Family archive intake. Soft launch, linked only from the family archive post. |
@@ -44,6 +45,21 @@ weight = 1                    # ascending sort on /work/; the lowest 3 also feat
 
 Open-source projects (Ryder, Screenshot-a-Day) use `site_type = "open-source"`. They are badged so they read as contributions to the ecosystem, not as client work.
 
+### Filtering by type
+
+`/work/` and three filter pages share one template, `layouts/work/list.html`:
+
+| URL | Shows | `site_type` |
+|---|---|---|
+| `/work/` | All work | (none) |
+| `/work/new-sites/` | New sites | `new` |
+| `/work/rescues/` | Site rescues | `rescue` |
+| `/work/open-source/` | Open source | `open-source` |
+
+The filter pages are branch bundles with no children: `content/work/{new-sites,rescues,open-source}/_index.md`, each setting `filter` (the `site_type` to show) and `eyebrow`. Projects stay in `content/work/<slug>/`. Each filter page has its own title, description, canonical and social card, and every filter link is a plain `<a href>` — there is no filter JavaScript. The nav shows computed counts and marks the current page with `aria-current="page"`. The same markup is a scrolling tab rail below `md` and plain text links from `md` up; a three-line script scrolls the current tab into view on narrow screens and is optional.
+
+The templates that list projects use `where site.RegularPages "Section" "work"`, so these child sections are never listed as projects. Adding a fourth `site_type` means a new `_index.md`, a new entry in the `$filters` array in `layouts/work/list.html`, and a card (`npm run build && npm run og`).
+
 ### Adding a work entry
 
 1. Create `content/work/<slug>/index.md` with the fields above, and add `screenshot.png` (or `.jpg`/`.webp`) next to it.
@@ -64,6 +80,19 @@ Every post:
 - gets its social card committed
 
 The homepage "Studio notes" callout (`layouts/partials/modules/latest-post.html`) automatically shows the newest post.
+
+## FAQs
+
+Any page can carry a FAQ. Add `[[faq]]` tables at the end of its front matter:
+
+```toml
+[[faq]]
+q = "Can you rescue a site that's already offline?"
+a = "Often, yes, though not always. …"   # markdown allowed
+featured = true                           # shown open on the page; omit to fold into an accordion
+```
+
+`layouts/partials/modules/faq.html` renders them (featured questions open, the rest as `<details>` accordions under a "Common questions" heading; `faq_title` in front matter overrides it), and `layouts/partials/head/json-ld.html` emits a matching `FAQPage` block from the same list, so the visible text and the schema can't drift. It's already called from `services/single.html`, `blog/single.html` and `work/single.html`; a page with no `faq` renders nothing. Keep it to 3–4 featured questions and answers of a few sentences, in the first-person voice from [`writing-style.md`](writing-style.md). Only write answers that are true of how the studio actually works. Google no longer shows FAQ rich results for most sites, so the visible answers matter more than the schema.
 
 ## Page descriptions
 

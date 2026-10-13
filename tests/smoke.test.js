@@ -21,7 +21,11 @@ const built = fs.existsSync(PUBLIC);
 const INDEXABLE_PAGES = [
   'index.html',
   'work/index.html',
+  'work/new-sites/index.html',
+  'work/rescues/index.html',
+  'work/open-source/index.html',
   'services/index.html',
+  'services/site-rescue/index.html',
   'contact/index.html',
   'work/cindy-kindred/index.html',
   'work/gordon-landreth-photography/index.html',
@@ -31,6 +35,9 @@ const INDEXABLE_PAGES = [
   'work/ryder/index.html',
   'work/writing-sos/index.html',
 ];
+
+// Listing pages under work/: the grid itself and one page per project type.
+const WORK_LISTS = ['work/index.html', 'work/new-sites/index.html', 'work/rescues/index.html', 'work/open-source/index.html'];
 
 function findHtmlFiles(dir) {
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap((e) =>
@@ -107,6 +114,126 @@ describe.skipIf(!built)('smoke – services page (public/services/index.html)', 
 
   it('title contains "Services"', () => {
     expect(dom.window.document.title).toContain('Services');
+  });
+});
+
+describe.skipIf(!built)('smoke – site rescue page (public/services/site-rescue/index.html)', () => {
+  it('is linked from the Site Rescue box on the services page', () => {
+    const { document } = readPage('services/index.html').window;
+    const hrefs = [...document.querySelectorAll('a')].map((a) => a.getAttribute('href'));
+    expect(hrefs).toContain('/services/site-rescue/');
+  });
+
+  // The page shows proof from two real rescues. Those are the only client
+  // names it may carry, and each must link to its own case study.
+  it('names only the two rescue clients it links to', () => {
+    const { document } = readPage('services/site-rescue/index.html').window;
+    const text = document.body.textContent;
+    for (const name of ['Alaina Varrone', 'Jill Bonovitz']) {
+      expect(text).toContain(name);
+    }
+    for (const name of ['nihilists']) {
+      expect(text).not.toContain(name);
+    }
+    const hrefs = [...document.querySelectorAll('a')].map((a) => a.getAttribute('href'));
+    for (const slug of ['alaina-varrone', 'jill-bonovitz']) {
+      expect(hrefs).toContain(`/work/${slug}/`);
+    }
+  });
+
+  it('offers the contact action at the opening, after the process and at the end', () => {
+    const { document } = readPage('services/site-rescue/index.html').window;
+    const locations = [...document.querySelectorAll('a[href="/contact/?from=site-rescue"]')].map(
+      (a) => JSON.parse(a.getAttribute('data-track-props')).location,
+    );
+    expect(locations).toEqual(['site-rescue-opening', 'site-rescue-process', 'site-rescue-closing']);
+  });
+
+  it('has one h1 and a search title distinct from it', () => {
+    const { document } = readPage('services/site-rescue/index.html').window;
+    expect(document.querySelectorAll('h1').length).toBe(1);
+    expect(document.title).toContain('Website Rescue & Migration for Artists');
+  });
+
+  it('describes Site rescue as a Service tied to the business and page, priced as a minimum', () => {
+    const { document } = readPage('services/site-rescue/index.html').window;
+    const graph = JSON.parse(
+      document.querySelector('script[type="application/ld+json"]').textContent,
+    )['@graph'];
+    const service = graph.find((n) => n['@type'] === 'Service');
+    expect(service['@id']).toMatch(/\/services\/site-rescue\/#service$/);
+    expect(service.provider['@id']).toMatch(/\/#organization$/);
+    expect(graph.some((n) => n['@id'] === service.mainEntityOfPage['@id'])).toBe(true);
+    expect(service.offers.price).toBeUndefined();
+    expect(service.offers.priceSpecification.minPrice).toBe(1000);
+    expect(service.offers.priceSpecification.priceCurrency).toBe('USD');
+    expect(service.areaServed).toBeUndefined();
+  });
+
+  it('breadcrumbs follow the page ancestry: Home, Services, Site Rescue', () => {
+    const { document } = readPage('services/site-rescue/index.html').window;
+    const graph = JSON.parse(
+      document.querySelector('script[type="application/ld+json"]').textContent,
+    )['@graph'];
+    const names = graph.find((n) => n['@type'] === 'BreadcrumbList').itemListElement.map((i) => i.name);
+    expect(names).toEqual(['Home', 'Services', 'Site Rescue']);
+  });
+
+  it('is listed in llms.txt with its price', () => {
+    const llms = fs.readFileSync(path.join(PUBLIC, 'llms.txt'), 'utf8');
+    expect(llms).toMatch(/\[Site rescue\]\([^)]*\/services\/site-rescue\/\).*\$1,000/);
+  });
+});
+
+// ─── FAQ (front-matter `faq`, layouts/partials/modules/faq.html) ─────────────
+
+describe.skipIf(!built)('smoke – FAQ on the site rescue page', () => {
+  const rel = 'services/site-rescue/index.html';
+  const faqSchema = () => {
+    const { document } = readPage(rel).window;
+    return [...document.querySelectorAll('script[type="application/ld+json"]')]
+      .map((s) => JSON.parse(s.textContent))
+      .find((d) => d['@type'] === 'FAQPage');
+  };
+
+  it('emits a FAQPage with a question and answer for every entry', () => {
+    const faq = faqSchema();
+    expect(faq?.mainEntity.length).toBeGreaterThanOrEqual(5);
+    for (const q of faq.mainEntity) {
+      expect(q['@type']).toBe('Question');
+      expect(q.name.length).toBeGreaterThan(0);
+      expect(q.acceptedAnswer.text.length).toBeGreaterThan(0);
+    }
+  });
+
+  it('answer text is plain: no tags or HTML entities', () => {
+    for (const q of faqSchema().mainEntity) {
+      expect(q.acceptedAnswer.text).not.toMatch(/<[a-zA-Z/]|&(?:[a-zA-Z]+|#\d+);/);
+    }
+  });
+
+  // The schema is only honest if the page shows the same questions.
+  it('every schema question is visible on the page', () => {
+    const { document } = readPage(rel).window;
+    const shown = [...document.querySelectorAll('#faq-heading ~ div h3, #faq-heading ~ div summary h3')].map((h) =>
+      h.textContent.trim(),
+    );
+    expect(shown.sort()).toEqual(faqSchema().mainEntity.map((q) => q.name).sort());
+  });
+
+  it('shows the featured questions open and folds the rest into accordions', () => {
+    const { document } = readPage(rel).window;
+    expect(document.querySelectorAll('section[aria-labelledby="faq-heading"] details').length).toBeGreaterThan(0);
+    expect(document.querySelectorAll('section[aria-labelledby="faq-heading"] > div:first-of-type h3').length).toBe(4);
+  });
+
+  it('pages without a faq emit no FAQPage', () => {
+    const { document } = readPage('services/index.html').window;
+    const types = [...document.querySelectorAll('script[type="application/ld+json"]')].map(
+      (s) => JSON.parse(s.textContent)['@type'],
+    );
+    expect(types).not.toContain('FAQPage');
+    expect(document.querySelector('#faq-heading')).toBeNull();
   });
 });
 
@@ -254,7 +381,7 @@ describe.skipIf(!built)('smoke – SEO: JSON-LD', () => {
   // work/index.html is a list page — Hugo's json-ld partial only fires on
   // .IsHome and .IsPage, so the listing is intentionally excluded here.
   const jsonLdPages = INDEXABLE_PAGES.filter(
-    (p) => p === 'index.html' || (p.startsWith('work/') && p !== 'work/index.html'),
+    (p) => p === 'index.html' || p === 'services/site-rescue/index.html' || (p.startsWith('work/') && !WORK_LISTS.includes(p)),
   );
   it.each(jsonLdPages)('%s contains valid JSON-LD', (rel) => {
     const { document } = readPage(rel).window;
@@ -312,5 +439,87 @@ describe.skipIf(!built)('smoke – internal links resolve', () => {
         });
     }
     expect(broken).toEqual([]);
+  });
+});
+
+// ─── Work filter pages ───────────────────────────────────────────────────────
+
+describe.skipIf(!built)('smoke – work filter pages', () => {
+  const FILTERS = [
+    { page: 'work/index.html', href: '/work/', label: 'All', type: null },
+    { page: 'work/new-sites/index.html', href: '/work/new-sites/', label: 'New sites', heading: 'New Sites', type: 'new' },
+    { page: 'work/rescues/index.html', href: '/work/rescues/', label: 'Site rescues', heading: 'Site Rescues', type: 'rescue' },
+    { page: 'work/open-source/index.html', href: '/work/open-source/', label: 'Open source', heading: 'Open Source', type: 'open-source' },
+  ];
+  const cards = (rel) =>
+    [...readPage(rel).window.document.querySelectorAll('article h3')].map((h) => h.textContent.trim());
+  const tabs = (rel) =>
+    [...readPage(rel).window.document.querySelectorAll('nav[aria-label="Filter work"] a')];
+
+  it('each filter page lists exactly its own entries, and together they are all the work', () => {
+    const all = cards('work/index.html');
+    const parts = FILTERS.slice(1).map((f) => cards(f.page));
+    expect(parts.flat().sort()).toEqual([...all].sort());
+    expect(parts.every((p) => p.length > 0)).toBe(true);
+  });
+
+  it.each(FILTERS)('$page: same four plain links, current one marked, counts match the cards', ({ page, href }) => {
+    const links = tabs(page);
+    expect(links.map((a) => a.getAttribute('href'))).toEqual(FILTERS.map((f) => f.href));
+    expect(links.filter((a) => a.getAttribute('aria-current') === 'page').map((a) => a.getAttribute('href'))).toEqual([href]);
+    FILTERS.forEach((f, i) => {
+      expect(Number(links[i].querySelector('span').textContent)).toBe(cards(f.page).length);
+    });
+  });
+
+  it('has no filter switch left: no select, no Alpine state, no data-filter', () => {
+    const { document } = readPage('work/index.html').window;
+    expect(document.querySelector('select')).toBeNull();
+    expect(document.querySelector('.work-filter').closest('[x-data]')).toBeNull();
+    expect(document.querySelector('.work-filter').parentElement.querySelector('[x-show], [\\@click]')).toBeNull();
+    expect(document.querySelector('[data-filter]')).toBeNull();
+  });
+
+  it.each(FILTERS.slice(1))('$page has its own title, description and canonical', ({ page, heading, href }) => {
+    const { document } = readPage(page).window;
+    expect(document.querySelector('h1').textContent.trim()).toBe(heading);
+    expect(document.title).toContain(heading);
+    expect(document.querySelector('link[rel="canonical"]').getAttribute('href')).toMatch(new RegExp(`${href}$`));
+    expect(document.querySelector('header p.text-cream\\/55')?.textContent.trim()).toBe(metaDescription(page));
+  });
+
+  it('filter pages are never listed as projects (home, llms.txt)', () => {
+    const home = readPage('index.html').window.document.body.innerHTML;
+    const llms = fs.readFileSync(path.join(PUBLIC, 'llms.txt'), 'utf8');
+    for (const slug of ['new-sites', 'rescues', 'open-source']) {
+      expect(home).not.toContain(`/work/${slug}/`);
+      expect(llms).not.toContain(`/work/${slug}/`);
+    }
+  });
+});
+
+// ─── Title case ──────────────────────────────────────────────────────────────
+
+// h1 and h2 are title case site-wide. Templates and the markdown heading hook
+// run text through Hugo's `title` (AP style: these small words stay lowercase
+// unless they start the heading). The content/ layouts' hand-written headings
+// are checked here too, since Hugo cannot do that for literal text.
+describe.skipIf(!built)('smoke – title case headings', () => {
+  const SMALL = new Set(['a', 'an', 'and', 'as', 'at', 'but', 'by', 'for', 'if', 'in', 'nor', 'of', 'on', 'or', 'so', 'the', 'to', 'up', 'vs', 'yet']);
+  const offenders = [];
+  for (const file of findHtmlFiles(PUBLIC)) {
+    const { document } = new JSDOM(fs.readFileSync(file, 'utf8')).window;
+    for (const h of document.querySelectorAll('h1, h2')) {
+      const words = h.textContent.replace(/\s+/g, ' ').trim().split(' ');
+      const bad = words.find((w, i) => {
+        const bare = w.replace(/^[^A-Za-z]+/, '');
+        return bare && /[a-z]/.test(bare[0]) && (i === 0 || !SMALL.has(bare.toLowerCase().replace(/[^a-z]+$/, '')));
+      });
+      if (bad) offenders.push(`${path.relative(PUBLIC, file)}: "${words.join(' ')}"`);
+    }
+  }
+
+  it('every h1 and h2 is in title case', () => {
+    expect(offenders).toEqual([]);
   });
 });

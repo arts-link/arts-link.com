@@ -17,4 +17,4 @@ Each image record pointed at an obfuscated Wix media ID rather than a real file.
 
 With the originals back in hand, we rebuilt the site from scratch so it would never depend on Wix again. Every image is self-hosted, and each work of art has its own permanent page and its own social card. The gallery scores 100 on desktop Lighthouse. It's a small static build with no framework, served from Cloudflare's edge, and Alaina owns it outright at her own domain, [alainavarrone.art](https://alainavarrone.art).
 
-This is what a site rescue can look like even when the site is already gone. If the work was ever online, chances are parts of it can be recovered.
+This is what a [site rescue](/services/site-rescue/) can look like even when the site is already gone. If the work was ever online, chances are parts of it can be recovered.

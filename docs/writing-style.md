@@ -67,7 +67,7 @@ Open-source entries describe a contribution, not a client: what it is, its licen
 
 ## Headings and labels
 
-- **Sentence case**, short and plain: "What I build", "Ready to talk?", "What it costs". No colons, no cleverness, no "Unlock your…".
+- **Title case for `h1` and `h2`**: "What I Build", "Ready to Talk?", "What It Costs". Dynamic text (page titles, front-matter headings, markdown `#`/`##` headings) goes through Hugo's `title` function in the layout or `layouts/_default/_markup/render-heading.html`, which follows AP style — "of", "and", "to" stay lowercase. Hand-written headings in templates are typed in title case; a smoke test checks every built `h1`/`h2`. `h3` and below, and card or FAQ questions, stay sentence case. Headings stay short and plain: no colons, no cleverness, no "Unlock your…".
 - UPPERCASE is only for tracked micro-labels (eyebrows, nav, badges, buttons), never for a heading or a sentence.
 - CTA labels end in a glyph: `Work with me →`, `Get in touch →`, `Visit site ↗`, `← All work`.
 - **No emoji anywhere**: copy, headings or UI.

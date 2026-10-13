@@ -13,4 +13,4 @@ Writing SOS was paying for a hosted CMS they never actually used. The subscripti
 
 We rebuilt it completely on Hugo — identical design, identical content, but with the CMS stripped out and replaced with static files. To a visitor nothing changed. Behind the scenes, the subscription fees disappeared and the site now runs for free.
 
-This is a common situation. If you're running a simple portfolio or informational site on WordPress, Squarespace, or a managed CMS — there's a good chance you're paying for infrastructure you don't need.
+This is a common situation, and the kind of thing a [site rescue](/services/site-rescue/) is for. If you're running a simple portfolio or informational site on WordPress, Squarespace, or a managed CMS — there's a good chance you're paying for infrastructure you don't need.

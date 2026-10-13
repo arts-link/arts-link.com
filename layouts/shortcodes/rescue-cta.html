@@ -1,0 +1,3 @@
+{{- /* A Site rescue call to action inside the body copy; takes `location` and
+       optional `label`. See layouts/partials/modules/rescue-cta.html. */ -}}
+<div class="not-prose my-10">{{ partial "modules/rescue-cta.html" (dict "location" (.Get "location") "label" (.Get "label")) }}</div>
