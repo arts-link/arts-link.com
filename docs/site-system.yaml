@@ -72,8 +72,8 @@ site_system:
         /services/site-rescue/. The full description of the rescue service:
         who it is for (platform closing, paying for more than you use, site
         already gone), a "Send me your site" call to action with "from $1,000"
-        at the top, a proof strip naming two real rescues (Alaina Varrone,
-        Jill Bonovitz, each with a screenshot thumbnail; the only client names
+        at the top, a proof strip of the two newest rescues, pulled automatically by work weight (currently Alaina Varrone,
+        nihilists.net, each with a screenshot thumbnail; the only client names
         the page may carry, each linking to its case study), what gets recovered, the five-step
         process followed by a second call to action, search rankings, links
         and email, what a rescue can't do, a FAQ (four questions open, four in

@@ -11,15 +11,7 @@ closing_title = "Send me your site"
 closing_text = "Tell me where it lives, or where it used to. I'll tell you what I think can be saved."
 draft = false
 
-[[proof]]
-entry = "work/alaina-varrone"
-problem = "A Wix site that had been offline for years."
-result = "138 artworks recovered and rebuilt as a portfolio she owns."
-
-[[proof]]
-entry = "work/jill-bonovitz"
-problem = "Her host announced it was shutting down."
-result = "Her whole site moved, now free to host and quick to load."
+proof_count = 2   # newest rescues by work weight; see modules/rescue-proof.html
 
 [[faq]]
 q = "What does a site rescue cost, and how long does it take?"

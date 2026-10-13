@@ -5,6 +5,8 @@ client_type = "visual artist"
 site_type = "rescue"
 live_url = "https://jillbonovitz.com"
 case_study = true
+rescue_problem = "Her host announced it was shutting down."
+rescue_result = "Her whole site moved, now free to host and quick to load."
 weight = 20
 +++
 

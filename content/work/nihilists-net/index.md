@@ -8,6 +8,8 @@ image = "screenshot.jpg"
 live_url = "https://www.nihilists.net"
 description = "A preservation-first rescue of Elisha Shapiro’s hand-built website.  Twenty-three years of Los Angeles art moved off a failing host without redesigning away its character."
 case_study = true
+rescue_problem = "Twenty-three years of hand-built pages on a host that was failing."
+rescue_result = "Everything preserved and still itself, with 36 redirects and no hosting fee."
 weight = 2
 +++
 

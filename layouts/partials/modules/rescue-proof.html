@@ -1,27 +1,32 @@
 {{/*
-  Proof strip for the Site rescue page: real rescues, with the problem and the
-  result stated on this page so a visitor needn't leave to learn the work has
-  been done. Entries come from `[[proof]]` in the page's front matter:
-    entry   path of the work entry (e.g. "work/alaina-varrone")
-    problem one line
-    result  one line
-  The link target and name come from the work entry itself.
+  Proof strip for the Site rescue page: the most recent rescues, pulled from
+  the work entries themselves so it never needs hand-updating. "Most recent" is
+  the work page's own default order: ascending `weight` among entries with
+  `site_type = "rescue"`. The page sets `proof_count` (how many to show).
+  Each work entry supplies its blurb in front matter:
+    rescue_problem  one line, what was wrong
+    rescue_result   one line, what the client got
+  Either falls back to the entry's `description` if absent.
 */}}
-{{- with .Params.proof }}
+{{- with .Params.proof_count }}
+{{- $rescues := first . (where (where site.RegularPages "Section" "work") "Params.site_type" "rescue").ByWeight }}
 <section aria-labelledby="rescue-proof-heading" class="max-w-3xl mx-auto px-6 pb-12">
   <h2 id="rescue-proof-heading" class="font-display text-3xl text-cream font-light tracking-tight mb-8">Recent Rescues</h2>
   <ul class="grid gap-px bg-cream/10 border border-cream/10 sm:grid-cols-2">
-    {{- range . }}
-    {{- $item := . }}
-    {{- with site.GetPage $item.entry }}
+    {{- range $rescues }}
+    {{- with . }}
     <li class="bg-ink p-6 flex flex-col">
       {{ with .Resources.GetMatch "screenshot*" }}
       {{- $thumb := .Fill "480x270 Top" }}
       <img src="{{ $thumb.RelPermalink }}" width="{{ $thumb.Width }}" height="{{ $thumb.Height }}" alt="" loading="lazy" decoding="async" class="w-full h-auto aspect-[2/1] object-cover object-top mb-5 border border-cream/10">
       {{ end }}
       <p class="text-ember text-xs tracking-widest uppercase mb-3">{{ .Title }}</p>
-      <p class="text-cream/70 leading-relaxed mb-3">{{ $item.problem }}</p>
-      <p class="text-cream leading-relaxed mb-5">{{ $item.result }}</p>
+      {{- if .Params.rescue_problem }}
+      <p class="text-cream/70 leading-relaxed mb-3">{{ .Params.rescue_problem }}</p>
+      <p class="text-cream leading-relaxed mb-5">{{ .Params.rescue_result }}</p>
+      {{- else }}
+      <p class="text-cream/70 leading-relaxed mb-5">{{ .Description }}</p>
+      {{- end }}
       <a href="{{ .RelPermalink }}" class="mt-auto text-xs uppercase tracking-widest text-ember hover:underline">Read the story →</a>
     </li>
     {{- end }}
