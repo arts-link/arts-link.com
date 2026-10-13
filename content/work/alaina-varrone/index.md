@@ -6,6 +6,8 @@ client_type = "visual artist"
 site_type = "rescue"
 live_url = "https://alainavarrone.art"
 case_study = true
+rescue_problem = "A Wix site that had been offline for years."
+rescue_result = "138 artworks recovered and rebuilt as a portfolio she owns."
 weight = 1
 +++
 

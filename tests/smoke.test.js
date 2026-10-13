@@ -124,19 +124,20 @@ describe.skipIf(!built)('smoke – site rescue page (public/services/site-rescue
     expect(hrefs).toContain('/services/site-rescue/');
   });
 
-  // The page shows proof from two real rescues. Those are the only client
-  // names it may carry, and each must link to its own case study.
+  // The page shows the two newest rescues (lowest weight; see
+  // modules/rescue-proof.html). Those are the only client names it may carry,
+  // and each must link to its own case study. Update when a newer rescue lands.
   it('names only the two rescue clients it links to', () => {
     const { document } = readPage('services/site-rescue/index.html').window;
     const text = document.body.textContent;
-    for (const name of ['Alaina Varrone', 'Jill Bonovitz']) {
+    for (const name of ['Alaina Varrone', 'nihilists.net']) {
       expect(text).toContain(name);
     }
-    for (const name of ['nihilists']) {
+    for (const name of ['Jill Bonovitz', 'Writing SOS']) {
       expect(text).not.toContain(name);
     }
     const hrefs = [...document.querySelectorAll('a')].map((a) => a.getAttribute('href'));
-    for (const slug of ['alaina-varrone', 'jill-bonovitz']) {
+    for (const slug of ['alaina-varrone', 'nihilists-net']) {
       expect(hrefs).toContain(`/work/${slug}/`);
     }
   });

@@ -38,10 +38,12 @@ site_system:
       target_action: Route to Contact
       metric: Contact page visits from Work
       notes: >
-        Portfolio of sites built — Louise Strawbridge, Cindy Kindred,
-        road trip site, grandfather photography, Jill Bonovitz (rescue story),
-        and Verdèzul (first band; the work card links out to the full launch
-        case study on the Blog). Each entry should name the service type
+        Portfolio of sites built — Alaina Varrone first (a rescue of an offline
+        portfolio), followed by nihilists.net (a preservation-first rescue for
+        conceptual artist Elisha Shapiro), then Screenshot-a-Day, Verdèzul,
+        the road trip site, Jill Bonovitz, Ryder, Cindy Kindred, the Gordon
+        Landreth photography archive, Louise Strawbridge, and Writing SOS.
+        Each entry should name the service type
         (new vs rescue). The portfolio also carries the open source projects
         Arts-Link maintains — Ryder (Hugo theme) and Screenshot-a-Day
         (self-hosted visual website archive) — badged "Open source" so they
@@ -70,8 +72,8 @@ site_system:
         /services/site-rescue/. The full description of the rescue service:
         who it is for (platform closing, paying for more than you use, site
         already gone), a "Send me your site" call to action with "from $1,000"
-        at the top, a proof strip naming two real rescues (Alaina Varrone,
-        Jill Bonovitz, each with a screenshot thumbnail; the only client names
+        at the top, a proof strip of the two newest rescues, pulled automatically by work weight (currently Alaina Varrone,
+        nihilists.net, each with a screenshot thumbnail; the only client names
         the page may carry, each linking to its case study), what gets recovered, the five-step
         process followed by a second call to action, search rankings, links
         and email, what a rescue can't do, a FAQ (four questions open, four in
@@ -252,7 +254,10 @@ site_system:
         - story: short narrative for case study pages
       notes: >
         Card grid by default. Projects with case_study: true get their
-        own page. Jill Bonovitz is the first case study candidate (rescue story).
+        own page. Jill Bonovitz and nihilists.net demonstrate two different
+        rescue stories: rebuilding an unsupported site, and preserving a
+        culturally distinctive hand-built site while replacing its failing
+        infrastructure.
         client_type is free text, printed verbatim on the card, the entry page,
         and in llms.txt — store it lowercase, since the first two apply a CSS
         capitalize transform and llms.txt does not. The list above is the
