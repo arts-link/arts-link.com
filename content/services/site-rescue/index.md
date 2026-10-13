@@ -3,7 +3,7 @@ title = "Site rescue"
 seo_title = "Website Rescue & Migration for Artists"
 description = "Recover a lost website or move your portfolio off WordPress, Wix, or Squarespace. Arts-Link site rescues start from $1,000."
 lede = "Your portfolio is stuck on WordPress, Wix or Squarespace, the host is closing, or the site is already gone. I recover what still exists on the web and rebuild it as a fast site that you own."
-invitation = "Send me the URL address, or whatever you remember of it. I'll take a first look and tell you what is likely to be recoverable, what a rebuild would involve, and how much it would cost, before any work begins."
+invitation = "Send me the address, or whatever you remember of it. I'll take a first look and tell you what is likely to be recoverable, what a rebuild would involve, and how much it would cost, before any work begins."
 price_note = "Site rescues start from $1,000."
 price_from = 1000
 directness = "I will work with you directly from the first look through website launch."
@@ -84,7 +84,7 @@ Missing images can often be recovered. The original files may still be on the ol
 
 ## How It Works
 
-1. **You show me what you have.** Send me the URL address, or whatever you remember of it. I look at what is still online, what you can export, and what has been kept elsewhere.
+1. **You show me what you have.** Send me the address, or whatever you remember of it. I look at what is still online, what you can export, and what has been kept elsewhere.
 2. **I recover it.** From the live site, an export, or a backup, if there is one. If the site is gone, I dig through public web archives. I will tell you early on in the process what I expect to get back.
 3. **I rebuild it.** The same design with the platform stripped out, or a fresh one built around your work. Images are stored within the site itself, so nothing depends on a service that can disappear.
 4. **We check it together.** The new site is examined before going online.
