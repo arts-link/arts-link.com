@@ -1,0 +1,140 @@
+# Record every successful production deploy as a GitHub Deployment.
+#
+# WHY THIS EXISTS
+#
+# Vercel's GitHub integration used to create a Deployment for every deploy,
+# which is what filled the repository's Deployments -> Production page and put
+# "deployed to Production" on merged PRs. Cloudflare Workers Builds doesn't.
+# It only posts a check run named "Workers Builds: arts-link-com" (see
+# docs/deployment.md), so GitHub stopped hearing about deploys.
+#
+# HOW IT WORKS
+#
+# Nothing in .github/workflows/ deploys this site, and this doesn't change
+# that. Like posthog-deploy-annotation.yml, it waits for Cloudflare's check run
+# to finish successfully, confirms the commit is on the default branch (a PR
+# preview builds a branch commit, and previews are deliberately not recorded
+# here), then creates a Deployment in the "Production" environment and marks it
+# successful. Cloudflare has already finished by then, so this can't fail or
+# delay a deploy, and a Deployment can't trigger or roll one back either.
+#
+# Rules that keep this safe:
+# - GitHub only runs check_run workflows from the copy on the default branch,
+#   so a PR can't edit this file and run its edited copy.
+# - The only permission beyond reading is `deployments: write`, on the
+#   short-lived GITHUB_TOKEN. No other secret is used.
+# - Re-running is safe: if a Production deployment already exists for the
+#   commit, the job stops.
+# - The record step is continue-on-error. A GitHub API hiccup leaves a warning
+#   on this run; the deploy has already succeeded either way.
+name: GitHub deployment
+
+on:
+  check_run:
+    types: [completed]
+
+permissions:
+  contents: read
+  deployments: write
+
+# One run per commit at a time, so a Workers Builds retry and a "Re-run jobs"
+# can't race each other past the existing-deployment check.
+concurrency:
+  group: github-deployment-${{ github.event.check_run.head_sha }}
+  cancel-in-progress: false
+
+jobs:
+  record:
+    # Every check run in the repo (including `test`) fires this event. Act on
+    # the Cloudflare one, and only when the build and deploy both succeeded.
+    if: >-
+      github.event.check_run.name == 'Workers Builds: arts-link-com' &&
+      github.event.check_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Confirm production deploy
+        id: meta
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          SHA: ${{ github.event.check_run.head_sha }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          set -euo pipefail
+
+          # compare/<main>...<sha>: "identical" or "behind" means the commit is
+          # main's tip or already in its history, so this build was production.
+          # "ahead" or "diverged" means a branch commit, so this was a preview.
+          if ! status=$(gh api "repos/$REPO/compare/$DEFAULT_BRANCH...$SHA" --jq .status); then
+            echo "::warning title=GitHub deployment skipped::Could not ask GitHub whether $SHA is on $DEFAULT_BRANCH, so no deployment was recorded."
+            echo "production=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "Commit $SHA vs $DEFAULT_BRANCH: $status"
+          if [ "$status" != "identical" ] && [ "$status" != "behind" ]; then
+            echo "Preview build, not production. No deployment recorded."
+            echo "production=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          # A rerun, or a Workers Builds retry, must not add a second record.
+          existing=$(gh api "repos/$REPO/deployments?sha=$SHA&environment=Production" --jq 'length')
+          if [ "$existing" != "0" ]; then
+            echo "A Production deployment already exists for $SHA. Nothing to do."
+            echo "production=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "production=true" >> "$GITHUB_OUTPUT"
+
+      - name: Record deployment
+        id: record
+        if: steps.meta.outputs.production == 'true'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          SHA: ${{ github.event.check_run.head_sha }}
+          BUILD_URL: ${{ github.event.check_run.details_url }}
+          # Where the site lives. Override with a repository variable if the
+          # production hostname ever changes; nothing in the site build reads it.
+          SITE_URL: ${{ vars.PRODUCTION_URL || 'https://www.arts-link.com/' }}
+        run: |
+          set -euo pipefail
+
+          # required_contexts is empty: Cloudflare has already built and
+          # deployed, so there is nothing left to wait for. Built with jq so
+          # the values are never interpolated into a shell string.
+          id=$(jq -n --arg ref "$SHA" \
+                 '{ref: $ref, environment: "Production", production_environment: true,
+                   auto_merge: false, required_contexts: [], task: "deploy",
+                   description: "Deployed by Cloudflare Workers Builds"}' \
+               | gh api "repos/$REPO/deployments" --input - --jq .id)
+          echo "Created deployment $id"
+
+          jq -n --arg env_url "$SITE_URL" --arg log_url "$BUILD_URL" \
+                '{state: "success", environment: "Production",
+                  environment_url: $env_url, log_url: $log_url,
+                  description: "Live on Cloudflare Workers"}' \
+            | gh api "repos/$REPO/deployments/$id/statuses" --input - --silent
+          echo "Marked deployment $id successful"
+          echo "id=$id" >> "$GITHUB_OUTPUT"
+
+      - name: Report failure
+        if: steps.record.outcome == 'failure'
+        run: |
+          echo "::warning title=GitHub deployment not recorded::Production deployed fine, but the GitHub Deployment was not created. See the 'Record deployment' step."
+          echo "### ⚠️ GitHub deployment not recorded" >> "$GITHUB_STEP_SUMMARY"
+          echo "Production deployed. The Deployment record was not created; see the step log." >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Summary
+        if: steps.record.outcome == 'success'
+        env:
+          DEPLOYMENT_ID: ${{ steps.record.outputs.id }}
+          SHA: ${{ github.event.check_run.head_sha }}
+        run: |
+          {
+            echo "### GitHub deployment"
+            echo ""
+            echo "Recorded deployment \`$DEPLOYMENT_ID\` for \`$SHA\` in the Production environment."
+          } >> "$GITHUB_STEP_SUMMARY"
