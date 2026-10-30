@@ -130,7 +130,7 @@ describe.skipIf(!built)('smoke – site rescue page (public/services/site-rescue
   it('names only the two rescue clients it links to', () => {
     const { document } = readPage('services/site-rescue/index.html').window;
     const text = document.body.textContent;
-    for (const name of ['Alaina Varrone', 'nihilists.net']) {
+    for (const name of ['Alaina Varrone', 'Nihilists’ Corner']) {
       expect(text).toContain(name);
     }
     for (const name of ['Jill Bonovitz', 'Writing SOS']) {

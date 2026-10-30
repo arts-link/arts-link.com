@@ -1,5 +1,5 @@
 +++
-title = "nihilists.net"
+title = "Nihilists’ Corner"
 date = 2026-09-22
 client_name = "Elisha Shapiro"
 client_type = "conceptual artist"
