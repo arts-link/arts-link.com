@@ -15,23 +15,26 @@ Colors are CSS custom properties holding **space-separated RGB triplets**. Tailw
 | `--color-ink` | `ink` | `20 18 16` (#141210) | `247 243 236` (#F7F3EC) | page background |
 | `--color-ink-light` | `ink-light` | `30 27 24` (#1E1B18) | `237 231 220` (#EDE7DC) | raised surfaces, cards |
 | `--color-cream` | `cream` | `245 240 232` (#F5F0E8) | `26 23 20` (#1A1714) | text, rules (`cream/10` borders) |
-| `--color-ember` | `ember` | `196 80 42` (#C4502A) | same | accent: eyebrows, links, selection, the card's bottom bar |
-| `--color-ember-light` | `ember-light` | `212 98 46` (#D4622E) | same | accent hover |
+| `--color-ember` | `ember` | `218 106 62` (#DA6A3E) | `169 64 26` (#A9401A) | accent: eyebrows, links, selection, the card's bottom bar |
+| `--color-ember-light` | `ember-light` | `229 123 79` (#E57B4F) | `180 70 30` (#B4461E) | accent hover |
+
+Ember was one value (`#C4502A`) in both themes until November 2026. As small text it measured about 4:1 on both backgrounds, under WCAG AA, so it is now lighter on dark and darker on light. Both values clear 4.5:1 on `ink` and `ink-light`.
 
 The names describe their role in the **dark** theme. In light mode `ink` is the pale paper and `cream` the dark text, so read them as "background" and "foreground", not as literal colors.
 
-**Hierarchy comes from opacity on cream, not from new colors.** The design's ladder is:
+**Hierarchy comes from opacity on cream, not from new colors.** The ladder is:
 
 | Step | Use |
 |---|---|
 | `cream` (100%) | headings, strong text |
-| `cream/55` | body copy |
-| `cream/35` | muted: meta, captions |
-| `cream/25` | faint |
+| `cream/70` | body copy |
+| `cream/65` | muted: meta, captions, labels, placeholders. **The floor for any text.** |
 | `cream/10` | borders, section rules |
 | `cream/5` | hairlines (e.g. under the sticky header) |
 
-Use these steps in new work. The templates also contain older in-between values (see [drift](#drift-design-vs-code)). Social cards never go below `cream/65`; see [`social-cards.md`](social-cards.md).
+**No text below `cream/65`, in any theme.** The old design ladder (body `/55`, muted `/35`, faint `/25`) looked fine on the dark theme, but on the light theme anything under about 62% fails WCAG AA. It turned meta text, nav, captions and dates pale gray on cream, which is exactly the problem the site tells clients to fix. `npm run contrast` measures every page in both themes and fails CI below AA (see [`ci-and-testing.md`](ci-and-testing.md)). Social cards also stay at `cream/65` or above; see [`social-cards.md`](social-cards.md).
+
+**Prose follows the tokens too.** Every body-copy template uses Tailwind Typography's `prose-invert`, whose stock colors are fixed light grays. `tailwind.config.js` remaps all of its `--tw-prose-invert-*` variables to `cream` / `ember` / `ink`, so lists, bold, code and captions switch with the theme without per-template overrides.
 
 There are **no success, warning or error colors**, because the site has no such states.
 
@@ -87,13 +90,13 @@ Anything built from the existing `ink` / `cream` / `ember` tokens adapts to both
 - The hero fades up 1.5rem over 900ms on a 100 / 250 / 400 / 700ms stagger (`.animate-hero` + `.delay-*`).
 - Durations: hover color 200ms, card lift 300ms, image zoom 500ms, theme crossfade 350ms. Nothing bounces, springs or loops.
 - **Hovers are color floods, not opacity tricks:**
-  - The primary button fills ember.
+  - The primary button fills ember, and its text flips to `ink` (`hover:bg-ember hover:text-ink`); cream on ember fails contrast in both themes.
   - The secondary border turns ember.
-  - Links go from `cream/60` to `cream`.
+  - Links go from `cream/70` to `cream`.
   - A service block's border goes from `cream/10` to `ember/40`.
   - The project card (`.card-hover`) lifts 5px, tilts 0.3° and gains its one heavy shadow, while the screenshot scales to 1.05.
 - **There are no press states.** Focus is a 1px ember outline or ring. Disabled is 35% opacity.
-- Selection is ember with cream text.
+- Selection is ember with `ink` text.
 
 ## Iconography and logo
 
@@ -169,7 +172,8 @@ Record any place where the Claude Design project and the shipped CSS disagree, a
 
 | Item | Design project | Code | Resolution |
 |---|---|---|---|
-| Text opacity | A six-step ladder: 100 / 55 / 35 / 25 / 10 / 5 | About 15 steps in templates (`/50`, `/60`, `/70`, `/45`, `/30`, `/40`, `/20`, `/15`, …) | Design wins for new work. Fold stragglers into the ladder when you touch a template. |
+| Text opacity | A six-step ladder: 100 / 55 / 35 / 25 / 10 / 5 | 100 / 70 / 65 for text (a few `/75`–`/85`), 10 / 5 for rules | **Code wins.** The design's lower steps fail WCAG AA on the light theme. Text never goes below `/65`, and `npm run contrast` enforces it. Update the Claude Design project to match. |
+| Ember | `#C4502A` in both themes | `#DA6A3E` dark, `#A9401A` light | **Code wins**, for the same reason: the single ember was about 4:1 as text. |
 | Image well | `#252220` as a named surface | Hardcoded `bg-[#252220]` in `project-card.html`, so it doesn't adapt to light mode | Code should move: add `--color-well` to both theme blocks. |
 | Corners | Radius 0 except the toggle and `<code>` | Blog images `prose-img:rounded-xl` (`layouts/blog/single.html`); the card screenshot `rounded-md` (`og-card.html`) | Square the blog images. Social cards can stay a documented exception. |
 | Paint-drip texture | "Present but unused" | Used as a muted backdrop in `og-card.html` | The design doc is wrong; code stands. |

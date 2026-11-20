@@ -3,7 +3,7 @@
   <article class="max-w-4xl mx-auto px-6 pt-16 pb-32">
 
     <!-- Back -->
-    <a href="/work/" class="inline-flex items-center gap-2 text-cream/35 hover:text-cream text-sm tracking-wide transition-colors mb-16">
+    <a href="/work/" class="inline-flex items-center gap-2 text-cream/65 hover:text-cream text-sm tracking-wide transition-colors mb-16">
       ← All work
     </a>
 
@@ -15,9 +15,9 @@
         {{ else if eq .Params.site_type "open-source" }}
           <span class="text-xs uppercase tracking-widest text-cream bg-cream/10 border border-cream/25 px-3 py-1">Open source</span>
         {{ else }}
-          <span class="text-xs uppercase tracking-widest text-cream/35 border border-cream/10 px-3 py-1">New site</span>
+          <span class="text-xs uppercase tracking-widest text-cream/65 border border-cream/10 px-3 py-1">New site</span>
         {{ end }}
-        <span class="text-cream/35 text-sm capitalize">{{ .Params.client_type }}</span>
+        <span class="text-cream/65 text-sm capitalize">{{ .Params.client_type }}</span>
       </div>
       <h1 class="font-display text-5xl md:text-7xl text-cream font-light mb-8">{{ .Title | title }}</h1>
       <div class="flex flex-wrap items-center gap-6">
@@ -48,7 +48,7 @@
 
     <!-- Designer credit -->
     {{ with .Params.designer }}
-    <p class="text-cream/50 text-sm mb-16">This site was built in collaboration with artist and web designer {{ with $.Params.designer_url }}<a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="text-ember hover:underline">{{ $.Params.designer }}</a>{{ else }}{{ $.Params.designer }}{{ end }}.</p>
+    <p class="text-cream/70 text-sm mb-16">This site was built in collaboration with artist and web designer {{ with $.Params.designer_url }}<a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="text-ember hover:underline">{{ $.Params.designer }}</a>{{ else }}{{ $.Params.designer }}{{ end }}.</p>
     {{ end }}
 
     <!-- Content -->

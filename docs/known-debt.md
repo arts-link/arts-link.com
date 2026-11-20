@@ -31,7 +31,6 @@ These items come from the drift table in [`design-system.md`](design-system.md#d
 |---|---|
 | `bg-[#252220]` is hardcoded in `layouts/partials/modules/project-card.html`, so it doesn't adapt to light mode | Add `--color-well` to both theme blocks plus Tailwind, and use `bg-well`. |
 | Blog images are rounded (`prose-img:rounded-xl` in `layouts/blog/single.html`), but the design rule is radius 0 | Remove the rounding. |
-| Text opacity uses about 15 steps against the design's six (100/55/35/25/10/5) | Fold stragglers into the ladder as templates are touched. |
 | `layouts/partials/logo.html` is unused and leftover from the theme era (`font-header`, `text-black`, an `<h1>`) | Delete it. |
 
 ## Copy and content

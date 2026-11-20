@@ -8,7 +8,7 @@ This page covers what runs on every push, what each test asserts, and how to rep
 
 | Workflow | Trigger | Does |
 |---|---|---|
-| `test.yml` (**`test`** check) | push to `main`, every PR | `npm ci` → `npm run build` → `npm run og:check` → `npm test`, on the Hugo in `.hugo-version` (via `scripts/hugo.sh`; no workflow installs its own). Skips the Playwright browser download. |
+| `test.yml` (**`test`** check) | push to `main`, every PR | `npm ci` → `npm run build` → `npm run og:check` → `npm test` → `npm run contrast` (installs Chromium first), on the Hugo in `.hugo-version` (via `scripts/hugo.sh`; no workflow installs its own). Skips the Playwright browser download. |
 | `og-cards.yml` | manual | Builds the site, renders stale social cards with Chromium, and commits `static/og/` + `data/og/` to the branch it runs on. For when you have no local Chromium. |
 | `posthog-deploy-annotation.yml` | `check_run` completed (runs from `main`'s copy) | When `Workers Builds: arts-link-com` succeeds on a commit on `main`, it creates a deduplicated PostHog deploy annotation. Skips every other check, including previews, and can't fail a deploy. See [`runbooks/posthog-deploy-tracking.md`](runbooks/posthog-deploy-tracking.md). |
 | `github-deployment.yml` | `check_run` completed (runs from `main`'s copy) | When `Workers Builds: arts-link-com` succeeds on a commit on `main`, it records a GitHub Deployment in the `Production` environment (so **Deployments → Production** and "deployed to Production" on merged PRs work again, as they did under Vercel). Skips previews and commits that already have a record, and can't fail a deploy. Needs only `deployments: write`. |
@@ -35,6 +35,8 @@ npm run build && npm test
 - JSON-LD is present.
 - `llms.txt` has a top heading plus Work (at least one project), Services, Blog and Contact sections.
 - **Every internal `href` resolves** to a file in `public/`.
+
+**`scripts/contrast-audit.mjs`** (`npm run contrast`, a step in `test.yml`, not a vitest file because it needs a real browser) opens every built page in Chromium, once in the dark theme and once in the light (`localStorage.theme = 'light'`, as the toggle stores it). It measures every visible piece of text against the background really behind it, compositing opacity and ancestor background colors, and fails below WCAG AA: 4.5:1, or 3:1 for large text. It skips text over background images and `aria-hidden` text, and checks resting states only, not hover. Locally, with a preinstalled browser, run `CHROMIUM_PATH=/path/to/chrome npm run contrast` after `npm run build`.
 
 **`tests/cloudflare.test.js`** checks the Workers config and the preview model:
 - `wrangler.jsonc` has the right name, no `main`, `./public`, `404-page`, `auto-trailing-slash` and `"preview_urls": true`.
