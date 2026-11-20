@@ -11,8 +11,8 @@ jobs:
     permissions:
       contents: read
     env:
-      # This job only hashes the cards (`npm run og:check`); it never renders
-      # them, so there is no reason to pull down a browser on install.
+      # No browser on `npm ci`: the contrast step below installs Chromium
+      # explicitly, and the cards are only hashed here, never rendered.
       PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
 
     steps:
@@ -39,3 +39,14 @@ jobs:
 
       - name: Run tests
         run: npm test
+
+      # Text contrast in both themes, measured in a real browser: the blog's
+      # bullet lists once rendered light grey on the light theme, which no
+      # HTML-reading test could see. Fails on anything below WCAG AA.
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 0
+
+      - name: Check text contrast (both themes)
+        run: npm run contrast
