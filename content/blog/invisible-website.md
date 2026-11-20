@@ -66,8 +66,6 @@ This is where putting artwork online and making it findable part ways. When I re
 
 The visit itself matters too. A gallery page of photographs uploaded straight from a camera can weigh as much as a small app; on a phone in a gallery basement, it may never finish loading. Layouts that break on a small screen, menus that need a mouse, and pale gray text on a light background turn people away just as quietly. Search engines do pay some attention to speed and mobile layouts, but don't expect a faster site to leap up the rankings on its own. The real reason to fix these is the visitors who leave and never tell you why.
 
-I'm not above this myself. While writing these articles, I found pale gray list text on this very site in its light theme. It's fixed, and every change to the site is now checked for it automatically.
-
 ---
 
 ## How Do You Know What's Working?
