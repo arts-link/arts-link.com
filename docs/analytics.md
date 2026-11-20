@@ -56,7 +56,7 @@ These are the events fired by the `data-track-*` attribute system. They appear i
 
 PostHog also captures `$pageview` automatically on every page load.
 
-`cta-block.html` is rendered on Home, Work, Services and every Blog page, and always reports `location: "cta-block"`. To tell a blog-post CTA from a homepage one, break down by `$pathname` (or filter `$current_url` contains `/blog/`). Don't expect a `blog-post` location value; none is emitted.
+`cta-block.html` is rendered on Home, Work, Services and every Blog page (except posts that set `hide_cta_block = true`, whose closing paragraph links to Contact instead), and always reports `location: "cta-block"`. To tell a blog-post CTA from a homepage one, break down by `$pathname` (or filter `$current_url` contains `/blog/`). Don't expect a `blog-post` location value; none is emitted.
 
 A form `submit` event fires when the browser submits, before Formspree validates anything. Treat it as an attempted submission. Formspree's own dashboard is the record of what was actually received.
 

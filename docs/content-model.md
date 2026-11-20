@@ -10,7 +10,7 @@ This page covers what lives in `content/`, the front matter each kind of page us
 |---|---|---|---|
 | `content/_index.md` | ✅ `/` | `layouts/index.html` | Module order is set in `site-system.yaml` → Home. |
 | `content/work/` | ✅ | `layouts/work/` | Page bundles, one per project (see below). |
-| `content/blog/` | ✅ | `layouts/blog/` | Posts, either single files or bundles with images. Each ends in a CTA block. |
+| `content/blog/` | ✅ | `layouts/blog/` | Posts, either single files or bundles with images. Each ends in a CTA block unless it sets `hide_cta_block = true`. |
 | `content/services/_index.md` | ✅ | `layouts/services/list.html` | New Site, Site Rescue, and "What it costs". |
 | `content/services/site-rescue/index.md` | ✅ | `layouts/services/single.html` | Services detail page, linked from the Site Rescue box. Front matter: `title`, `description`, `lede`; optional `seo_title` (the `<title>` tag only), `invitation`, `price_note`, `price_from` (feeds Service JSON-LD), `directness`, `closing_title`, `closing_text`, and `proof_count` (how many of the newest rescues, by work `weight`, to show in the proof strip). Each rescue work entry supplies its blurb as `rescue_problem` + `rescue_result` (falls back to `description`). Don't give it a future `date` — Hugo won't publish it. |
 | `content/contact/_index.md` | ✅ | `layouts/contact/list.html` | Converter page. One job, minimal form. |
@@ -75,7 +75,7 @@ The templates that list projects use `where site.RegularPages "Section" "work"`,
 
 Every post:
 - has its own `description`
-- ends with a route to Contact (the CTA block is in `layouts/blog/single.html`)
+- ends with a route to Contact (the CTA block is in `layouts/blog/single.html`). A post whose closing paragraph is already a personal invitation to get in touch can set `hide_cta_block = true` so the generic "Ready to Talk?" strip doesn't follow it. The rescue and invisible-website posts do. That paragraph then has to carry the link to `/contact/` itself.
 - gets an entry in `site-system.yaml` → `page_inventory` → Blog notes, explaining why it exists
 - gets its social card committed
 

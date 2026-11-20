@@ -3,6 +3,8 @@ title = "Why Your Website Might Need Rescuing (Even If It Works Fine)"
 date = 2026-11-19
 description = "Surprise renewals, vanished artwork, lapsed domains, hosts that change hands. Real website rescues, and why owning your site matters more than how it looks."
 draft = false
+# The closing paragraph is the invitation; skip the shared "Ready to Talk?" block.
+hide_cta_block = true
 +++
 
 "My website doesn't need rescuing. It works fine."
@@ -85,13 +87,9 @@ Notice what didn't happen: a redesign. Sometimes the best rescue changes nothing
 
 Underneath all of these stories is the same question: who actually owns this thing?
 
-**Owning your domain isn't the same as controlling your website.** The domain is the address. The website is the building. You can own the address outright and still have no way to get the building out of someone else's lot.
+Owning your domain isn't the same as controlling your website. The domain is the address; the website is the building. You can own the address outright and still have no way to get the building out of someone else's lot. A login to a site builder is the same trap with a friendlier face: you can edit your site all day, but you can't pick it up and take it anywhere. If you leave, you usually start over.
 
-**A login to a site builder isn't the same as having your site.** You can edit it, but you can't pick it up and take it somewhere else. If you leave, you usually start over.
-
-**Renting hosting is fine. Being locked into it isn't.** Every website lives on someone's servers. The question is whether you could move to different ones next week without rebuilding.
-
-**A website that works today isn't the same as one that can be maintained and moved tomorrow.** The first is a good start. The second is the point.
+Hosting is different. Every website lives on someone's servers, and renting space on them is perfectly fine. What matters is whether you could move to different ones next week without rebuilding, because a website that works today isn't the same as one that can be maintained and moved tomorrow.
 
 The way I build sites, the client owns all of it: the code repository, the source files, the content, the images, the domain, and the hosting account. Nothing is locked inside a proprietary builder. If you want to move to a different host, it can usually be done quickly, often in minutes, without rebuilding anything. And if you ever want someone else to look after it instead of me, you hand them everything.
 

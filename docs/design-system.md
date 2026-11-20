@@ -125,7 +125,7 @@ These live in `layouts/partials/modules/`. Check here before writing new markup.
 | `service-block.html` | Home, Services | "What I build": New Site and Site Rescue. |
 | `pricing-section.html` | Services | "What it costs": Artist Site and Band/Musician Site, from $1,000. |
 | `latest-post.html` | Home | Studio notes callout for the newest post. Hides itself when there are no posts. |
-| `cta-block.html` | Home, Work (list + entries), Services, Blog (list + posts) | The "Ready to talk?" strip. Always `location: cta-block`; segment by page URL in PostHog. |
+| `cta-block.html` | Home, Work (list + entries), Services, Blog (list + posts) | The "Ready to talk?" strip. Always `location: cta-block`; segment by page URL in PostHog. A blog post can opt out with `hide_cta_block = true`. |
 | `contact-form.html` | Contact | Formspree with name, email and project, plus `data-track-form="Contact Form Submit"`. |
 
 Utility layout: `layouts/thanks/list.html`, an eyebrow, heading, body and one link, reused through `type = "thanks"`.
