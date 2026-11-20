@@ -486,7 +486,7 @@ describe.skipIf(!built)('smoke – work filter pages', () => {
     expect(document.querySelector('h1').textContent.trim()).toBe(heading);
     expect(document.title).toContain(heading);
     expect(document.querySelector('link[rel="canonical"]').getAttribute('href')).toMatch(new RegExp(`${href}$`));
-    expect(document.querySelector('header p.text-cream\\/55')?.textContent.trim()).toBe(metaDescription(page));
+    expect(document.querySelector('header h1 + p')?.textContent.trim()).toBe(metaDescription(page));
   });
 
   it('filter pages are never listed as projects (home, llms.txt)', () => {

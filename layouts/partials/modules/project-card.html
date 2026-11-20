@@ -47,11 +47,11 @@
       {{ if eq $p.Params.site_type "open-source" }}
         <div class="w-full h-full flex flex-col items-center justify-center gap-3 px-6 text-center">
           <p class="font-display text-4xl md:text-5xl text-cream/80 font-light">{{ $p.Title }}</p>
-          <p class="text-cream/35 text-xs tracking-[0.3em] uppercase">MIT licensed</p>
+          <p class="text-cream/65 text-xs tracking-[0.3em] uppercase">MIT licensed</p>
         </div>
       {{ else }}
         <div class="w-full h-full flex items-center justify-center">
-          <span class="text-cream/15 text-sm font-body">{{ $p.Title }}</span>
+          <span class="text-cream/65 text-sm font-body">{{ $p.Title }}</span>
         </div>
       {{ end }}
     {{ end }}
@@ -66,18 +66,18 @@
       {{ else if eq $p.Params.site_type "open-source" }}
         <span class="text-xs uppercase tracking-widest text-cream bg-cream/10 border border-cream/25 px-2 py-1 shrink-0 leading-none mt-1">Open source</span>
       {{ else }}
-        <span class="text-xs uppercase tracking-widest text-cream/50 border border-cream/10 px-2 py-1 shrink-0 leading-none mt-1">New site</span>
+        <span class="text-xs uppercase tracking-widest text-cream/70 border border-cream/10 px-2 py-1 shrink-0 leading-none mt-1">New site</span>
       {{ end }}
     </div>
 
-    <p class="text-cream/50 text-sm mb-6 capitalize">{{ $p.Params.client_type }}</p>
+    <p class="text-cream/70 text-sm mb-6 capitalize">{{ $p.Params.client_type }}</p>
 
     <div class="flex items-center gap-5">
       {{ if $p.Params.case_study }}
-        <a href="{{ $p.RelPermalink }}" class="text-xs uppercase tracking-widest text-cream/55 hover:text-cream transition-colors">Read story →</a>
+        <a href="{{ $p.RelPermalink }}" class="text-xs uppercase tracking-widest text-cream/70 hover:text-cream transition-colors">Read story →</a>
       {{ end }}
       {{ with $p.Params.live_url }}
-        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="text-xs uppercase tracking-widest text-cream/55 hover:text-cream transition-colors">Visit site ↗</a>
+        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="text-xs uppercase tracking-widest text-cream/70 hover:text-cream transition-colors">Visit site ↗</a>
       {{ end }}
     </div>
   </div>

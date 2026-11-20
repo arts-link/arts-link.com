@@ -25,6 +25,7 @@ npm run build                   # production build into public/
 npm run build && npm test       # tests read public/ — build first or smoke tests skip silently
 npm run build && npm run og     # regenerate social cards (commit static/og/ + data/og/manifest.json)
 npm run og:check                # fail if any card is missing or stale (what CI runs)
+npm run build && npm run contrast  # text contrast, both themes, every page (CI runs it)
 npm run cf:build                # build the way Workers Builds does
 npm run cf:dev                  # serve on the real Workers runtime — the only way to check
                                 # trailing-slash redirects and the 404 status
@@ -58,6 +59,7 @@ These are the things that have caused real problems or fail silently. Each links
 5. **Write a `description`** whenever the derived one is weak; duplicates fail the smoke test. → [`docs/content-model.md`](docs/content-model.md)
 6. **Nothing from the client hub comes into this repo** — no client data, pricing, proposals, or hub code. This repository is public. → [`docs/client-hub-boundary.md`](docs/client-hub-boundary.md)
 7. **Analytics events are attributes, not code.** Add `data-track-event` / `data-track-form`; add the event to the inventory in `docs/analytics.md`. → [`docs/analytics.md`](docs/analytics.md)
+8. **No text below `cream/65`, in either theme.** Lower steps look fine on dark and fail on light, as pale gray on cream. CI runs `npm run contrast`, which checks every page in both themes against WCAG AA. Body copy under `prose-invert` takes its colors from the tokens in `tailwind.config.js`, so don't re-color prose elements by hand. → [`docs/design-system.md`](docs/design-system.md)
 
 ## Copywriting Rules
 
