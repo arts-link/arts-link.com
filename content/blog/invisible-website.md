@@ -1,8 +1,11 @@
 +++
 title = "Your Website Isn't Broken. It's Just Invisible."
-date = 2026-12-10
+date = 2026-11-19
 description = "A good-looking website can still be hard to find. The hidden problems that keep artists' sites out of search, AI answers and link previews, and how to fix them."
-draft = true
+# PREVIEW ONLY: published on the PR branch so the Workers preview can show it.
+# BEFORE MERGING: set draft = true and date = 2026-12-10, then run
+# `npm run build && npm run og` (it removes this page's social card).
+draft = false
 +++
 
 Picture a website that looks good, loads, and makes its owner happy. Anyone who already knows the address can find everything on it.
