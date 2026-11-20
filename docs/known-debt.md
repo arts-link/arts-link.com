@@ -45,6 +45,7 @@ These items come from the drift table in [`design-system.md`](design-system.md#d
 | `docs/site-system.yaml` → `services[New Site].description` says "Custom Hugo portfolio", which breaks the positioning rule | Reword it as an outcome. |
 | `docs/site-system.yaml` → `analytics.primary_events` mentions `location: blog-post`, but blog posts use the shared CTA block (`location: cta-block`) | Fix the doc, or pass a location into `cta-block.html`. |
 | `content/work/jill-bonovitz/index.md` says the site is "hosted for free on GitHub Pages" | Confirm it's still true for that client. |
+| `content/work/jill-bonovitz/index.md` says her host "announced they were shutting down" and the old site ran on "an outdated CMS"; the project record says she was *told* the host was out of business (it wasn't) and the site was an Adobe Muse export. The blog post `content/blog/website-rescue/` tells the accurate version anonymously | Rewrite the entry from the project record. |
 
 ## Process and ops
 
