@@ -68,7 +68,7 @@ More and more people find artists, writers and organizations by asking an AI ass
 
 I'll be straight about this. Nobody controls what those systems include, and anyone promising to get you "into" AI answers is promising something they can't deliver.
 
-What does help is the same groundwork that helps search: clear writing that says who you are and what you make, pages that each have one job, accurate titles and descriptions, and labeled information about your work. A site like that is easier for any system, human or otherwise, to read and to quote correctly. That's worth doing for its own sake, and it doesn't depend on guessing where AI search goes next.
+What does help is the same groundwork that helps search: clear writing that says who you are and what you make, [pages that each have one job](/blog/web-systems-adventure-mode/), accurate titles and descriptions, and labeled information about your work. A site like that is easier for any system, human or otherwise, to read and to quote correctly. That's worth doing for its own sake, and it doesn't depend on guessing where AI search goes next.
 
 ---
 
