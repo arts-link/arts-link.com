@@ -57,5 +57,10 @@
 
 {{ partial "modules/faq.html" . }}
 
+{{- /* A post whose closing paragraph already invites the reader to get in
+       touch can set `hide_cta_block = true`, so the generic "Ready to Talk?"
+       strip doesn't follow its ending. Every other page keeps the block. */ -}}
+{{ if not .Params.hide_cta_block }}
 {{ partial "modules/cta-block.html" . }}
+{{ end }}
 {{ end }}

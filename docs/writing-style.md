@@ -62,7 +62,7 @@ Open-source entries describe a contribution, not a client: what it is, its licen
 - Use `##` sections with plain-language headings, often questions ("Where Do You Even Start?").
 - Use `---` rules between major movements, as the existing posts do.
 - Use figures with real alt text that describes what's in the image (`{{< figure >}}`).
-- End with the route to Contact. The layout adds the CTA block, so the closing paragraph should lead into it naturally.
+- End with the route to Contact. The layout adds the CTA block, so the closing paragraph should lead into it naturally. When the closing paragraph is itself the invitation (with a link to Contact), set `hide_cta_block = true` so the post ends on your words, not a generic strip.
 - Every post needs a reason to exist in `site-system.yaml` → Blog notes.
 
 ## Headings and labels

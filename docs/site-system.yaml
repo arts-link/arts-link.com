@@ -104,7 +104,9 @@ site_system:
       metric: Organic traffic volume; % routed to Contact
       notes: >
         Posts on build philosophy, SEO/GEO capability, open source theme work,
-        and technical depth. Each post ends with a CTA block routing to Contact.
+        and technical depth. Each post ends with a CTA block routing to Contact,
+        unless its closing paragraph is already a personal invitation with a
+        Contact link (hide_cta_block = true; the two rescue/optimization posts).
         First post: "Web Systems Adventure Mode" adapted for general audience.
         Open source/Ryder post: "Why I Build With Open Source" explains why
         Arts-Link builds with Hugo and maintains Ryder as a free theme for the
@@ -124,6 +126,20 @@ site_system:
         coordinated digitization, organization, curation, and a browsable
         archive site. Soft launch: the post is the landing page for the
         offering, deliberately not yet a Services card or a nav item.
+        Website rescue post: "Why Your Website Might Need Rescuing (Even If It
+        Works Fine)" collects real rescue stories (recurring fees, missing
+        images, lapsed domains, tangled accounts, failing hosts) and builds
+        to the ownership and portability argument. Search intent: website
+        rescue, recovery and migration. Every client story is anonymized (no
+        names in prose or images); links to published case studies use
+        neutral anchor text. Feeds Site Rescue and Contact.
+        Optimization post (draft, planned for December 2026): "Your Website
+        Isn't Broken. It's Just Invisible." takes the discoverability material
+        split out of the rescue post: titles and descriptions, crawling and
+        indexing, structured data, AI answers, link previews, speed and
+        accessibility, analytics. Search intent: why a good site isn't found.
+        Links back to the rescue post; when it publishes, add the reciprocal
+        link where the rescue post's closing teases it.
         Nav label: "Blog".
 
     - name: Family Archive — Project Worksheet
