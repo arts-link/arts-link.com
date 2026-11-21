@@ -1,7 +1,7 @@
 +++
 title = "Why Your Website Might Need Rescuing (Even If It Works Fine)"
 date = 2026-11-19
-description = "Surprise renewals, vanished artwork, lapsed domains, hosts that change hands. Real website rescues, and why owning your site matters more than how it looks."
+description = "Vanished artwork, lapsed domains, forgotten automatic renewals, hosts that change hands. Real website rescues, and why owning your site is so important."
 draft = false
 # The closing paragraph is the invitation; skip the shared "Ready to Talk?" block.
 hide_cta_block = true

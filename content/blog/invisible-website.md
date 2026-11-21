@@ -1,7 +1,7 @@
 +++
 title = "Your Website Isn't Broken. It's Just Invisible."
 date = 2026-11-19
-description = "A good-looking website can still be hard to find. The hidden problems that keep artists' sites out of search, AI answers and link previews, and how to fix them."
+description = "A well-built website can still be hard to find. The hidden problems that keep artists' sites out of web searches, AI answers and link previews, and how to fix them."
 # PREVIEW ONLY: published on the PR branch so the Workers preview can show it.
 # BEFORE MERGING: set draft = true and date = 2026-12-10, then run
 # `npm run build && npm run og` (it removes this page's social card).
@@ -10,13 +10,13 @@ draft = false
 hide_cta_block = true
 +++
 
-Picture a website that looks good, loads, and makes its owner happy. Anyone who already knows the address can find everything on it.
+A website may look good, load properly, and work as it should. Anyone who already knows the address can find everything on it.
 
-And for a lot of the people who might be looking for it, it's practically invisible.
+But for a lot of people who may be looking for it, it's practically invisible.
 
-What you see when you open your own site and what a search engine sees are two different things. A site can be beautiful to people and confusing to machines, and these days, machines decide a lot about who finds you.
+What you see when you open your site in a browser and what a search engine sees are two different things. A site can be beautiful to people and confusing to machines, and these days, machines decide a lot about who finds you.
 
-I wrote recently about [websites that need rescuing](/blog/website-rescue/) even though they work fine: the surprise bills, the lapsed domains, the hosts that change hands. This is a different problem: nothing is going wrong, but something isn't happening.
+I wrote recently about [websites that need rescuing](/blog/website-rescue/) even though they work fine. The surprise bills, the lapsed domains, the hosts that change hands. This is a different problem: nothing is going wrong, but something isn't happening.
 
 ---
 
@@ -28,9 +28,9 @@ Then we looked at Google's own reports. Search Console, the free tool Google giv
 
 That label isn't an error message. Google doesn't index every page it sees, and it doesn't explain its choices page by page. But when the pages being passed over are the heart of the site, it's worth a careful look.
 
-The same review turned up a few other things, unrelated to that list and to each other. The site had a sitemap, but it had never been submitted in Search Console, so nobody was watching what Google made of it. The homepage's title and main heading needed work. And a 418 KB font file that nothing on the page used was loading anyway.
+The same review turned up a few other things, unrelated to that list and to each other. The site had a sitemap, but it had never been submitted to Search Console, so nobody was taking note of what Google made of it. The homepage's title and main heading needed work. And a 418 KB font file that wasn't used on the page was loading anyway.
 
-None of it was visible from the front door. I can't tell you yet what the fixes will do; the rebuilt site is too new to judge, and nobody can promise rankings anyway. But each was a specific, checkable thing, and none required changing how the site looks.
+Addressing these issues didn't change anything about how the site looks.
 
 ---
 
